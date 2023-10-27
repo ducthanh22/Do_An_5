@@ -4,6 +4,7 @@ import { AboutComponent } from './about/about.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { ServiceComponent } from './service/service.component';
 import { HomeComponent } from './home/home.component';
+import { BlogComponent } from './blog/blog.component';
 
 
 const routes: Routes = [
@@ -34,6 +35,11 @@ const routes: Routes = [
         path: 'service',
         component:ServiceComponent,
         title: 'service',
+      },
+      {
+        path: 'blog',
+        component:BlogComponent,
+        title: 'blog',
       },
     
   

@@ -5,6 +5,7 @@ import { ServiceComponent } from './service/service.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { HomeComponent } from './home/home.component';
 import { ClientRoutingModule } from './client-routing.module';
+import { BlogComponent } from './blog/blog.component';
 
 
 
@@ -13,7 +14,8 @@ import { ClientRoutingModule } from './client-routing.module';
     AboutComponent,
     ServiceComponent,
     CategoriesComponent,
-    HomeComponent
+    HomeComponent,
+    BlogComponent
   ],
   imports: [
     CommonModule,
