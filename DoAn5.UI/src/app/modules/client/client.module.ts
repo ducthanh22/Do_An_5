@@ -7,6 +7,8 @@ import { HomeComponent } from './home/home.component';
 import { ClientRoutingModule } from './client-routing.module';
 import { BlogComponent } from './blog/blog.component';
 
+import { ContactComponent } from './contact/contact.component';
+
 
 
 @NgModule({
@@ -15,7 +17,9 @@ import { BlogComponent } from './blog/blog.component';
     ServiceComponent,
     CategoriesComponent,
     HomeComponent,
-    BlogComponent
+    BlogComponent,
+    
+    ContactComponent
   ],
   imports: [
     CommonModule,
