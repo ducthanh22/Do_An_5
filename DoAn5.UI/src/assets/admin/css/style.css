@@ -8018,7 +8018,7 @@ html:not([dir=rtl]) .header-nav {
 
 .sidebar {
   --cui-sidebar-width: 16rem;
-  --cui-sidebar-bg: #3c4b64;
+  --cui-sidebar-bg: rgb(6 101 183 / 90%);
   --cui-sidebar-padding-x: 0;
   --cui-sidebar-padding-y: 0;
   --cui-sidebar-color: rgba(255, 255, 255, 0.87);
@@ -8054,7 +8054,10 @@ html:not([dir=rtl]) .header-nav {
   --cui-sidebar-nav-link-border-color: transparent;
   --cui-sidebar-nav-link-border: 0 solid var(--cui-sidebar-nav-link-border-color);
   --cui-sidebar-nav-link-border-radius: 0;
-  --cui-sidebar-nav-link-active-color: rgba(255, 255, 255, 0.87);
+
+  --cui-sidebar-nav-link-active-color:#fff;
+  /* rgba(255, 255, 255, 0.87) */
+
   --cui-sidebar-nav-link-active-bg: rgba(255, 255, 255, 0.05);
   --cui-sidebar-nav-link-active-icon-color: rgba(255, 255, 255, 0.87);
   --cui-sidebar-nav-link-disabled-color: rgba(255, 255, 255, 0.38);
@@ -8447,9 +8450,11 @@ html:not([dir=rtl]) .sidebar-close {
 .sidebar-nav .nav-link.active {
   color: var(--cui-sidebar-nav-link-active-color);
   background: var(--cui-sidebar-nav-link-active-bg);
+  font-weight: bold;
 }
 .sidebar-nav .nav-link.active .nav-icon {
   color: var(--cui-sidebar-nav-link-active-icon-color);
+  
 }
 .sidebar-nav .nav-link.disabled {
   color: var(--cui-sidebar-nav-link-disabled-color);
@@ -10757,7 +10762,7 @@ html:not([dir=rtl]) .text-center {
 
 .bg-primary {
   --cui-bg-opacity: 1;
-  background-color: rgba(var(--cui-primary-rgb), var(--cui-bg-opacity)) !important;
+  /* background-color: rgba(var(--cui-primary-rgb), var(--cui-bg-opacity)) !important; */
 }
 
 .bg-secondary {

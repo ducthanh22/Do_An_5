@@ -1,0 +1,36 @@
+.table{
+    tbody{
+        tr{
+            .img{
+                padding-left: 2em;
+                width: 25%;
+                
+            }
+            .name{
+                font-size:2em;
+                width:35%;
+                padding-top: 1em;
+                color: #555555;
+                font-weight: 50;
+                
+            }
+            .quantity{
+                font-size:2em; width: 20%;
+                padding-top: 1em;
+                color: #555555;
+                font-weight: 50;
+            }
+            .price{
+                font-size: 2em;
+                color: #555555;padding-top: 1em;
+                font-weight: 50;
+            }
+            .xoa{
+                font-size: 2em;
+                color: #555555;padding-top: 1em;
+                font-weight: 50;
+            }
+
+        }
+    }
+}

@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\Wso2.props" />
+</Project>

@@ -8,6 +8,9 @@ import { ClientRoutingModule } from './client-routing.module';
 import { BlogComponent } from './blog/blog.component';
 
 import { ContactComponent } from './contact/contact.component';
+import { CartComponent } from './cart/cart.component';
+import { DetailproductsComponent } from './detailproducts/detailproducts.component';
+import { PayproductsComponent } from './payproducts/payproducts.component';
 
 
 
@@ -19,7 +22,10 @@ import { ContactComponent } from './contact/contact.component';
     HomeComponent,
     BlogComponent,
     
-    ContactComponent
+    ContactComponent,
+          CartComponent,
+          DetailproductsComponent,
+          PayproductsComponent
   ],
   imports: [
     CommonModule,
