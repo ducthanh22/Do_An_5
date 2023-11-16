@@ -51,22 +51,14 @@ namespace Back_end.Controllers
             return Ok(result);
         }
 
-        //[HttpGet("Search")]
-        //public async Task<IActionResult> Search([FromQuery] string searchTerm, [FromQuery] int page = 1, [FromQuery] int pageSize = 10 )
-        //{
-        //    var products = await _categoriesBus.Search(searchTerm, page, pageSize);
+        [HttpGet("Search")]
+        public async Task<IActionResult> Search([FromQuery] string keywork, [FromQuery] int page = 1, [FromQuery] int pageSize = 10)
+        {
+            var result = await _categoriesBus.Search(keywork, page, pageSize);
+          
 
-
-        //    var result = new
-        //    {
-
-        //        ItemsPerPage = pageSize,
-        //        CurrentPage = page,
-        //        Products = products
-        //    };
-
-        //    return Ok(result);
-        //}
+            return Ok(result);
+        }
 
     }
 }

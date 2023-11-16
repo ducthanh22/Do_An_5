@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DAL;
 using DAL.Interface;
+using DTO;
 
 namespace BUS
 {
@@ -43,7 +44,8 @@ namespace BUS
         {
             return await _res.Delete(id);
         }
-       
+        
+
 
     }
 }

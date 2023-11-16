@@ -1,4 +1,6 @@
-﻿using Model;
+﻿using Back_end.Model;
+using DTO;
+using Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,5 +11,7 @@ namespace DAL.Interface
 {
     public interface ICustommerRepository : IGenericRepository<Custommer>
     {
+        Task<BaseQuerieResponse<CustommerDto>>Search(string keywork, int page, int pageSize);
+
     }
 }

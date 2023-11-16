@@ -48,5 +48,12 @@ namespace Back_end.Controllers
             var result = await _Bus.Delete(id);
             return Ok(result);
         }
+        [HttpGet("Search")]
+        public async Task<IActionResult> Search([FromQuery] int keywork, [FromQuery] int page = 1, [FromQuery] int pageSize = 10)
+        {
+            var result = await _Bus.Search(keywork, page, pageSize);
+
+            return Ok(result);
+        }
     }
 }

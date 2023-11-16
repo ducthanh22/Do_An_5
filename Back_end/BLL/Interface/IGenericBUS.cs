@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DTO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,7 +14,7 @@ namespace BUS.Interface
         Task<T> Create(T entity);
         Task<T> Update(T entity);
         Task<T> Delete(int id);
-     
+        
 
 
 

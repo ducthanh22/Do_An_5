@@ -1,16 +1,18 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Identity;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace Back_end.Model
+namespace Model
 {
-    public class Basedb
+    public class Role : IdentityRole
     {
-        [Key]
-        public int Id { get; set; }
         public int? ActiveFlag { get; set; }
         public int? CreatedBy { get; set; }
         public DateTime? Created { get; set; }
         public int? ModifiedBy { get; set; }
         public DateTime? Modified { get; set; }
-
     }
 }

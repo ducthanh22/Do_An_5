@@ -11,7 +11,8 @@ namespace DTO
         public int PageIndex { get; set; }
         public int PageSize { get; set; } 
         public string? Keyword { get; set; } = "";
+        public int? Keynumber { get; set; } 
         public long TotalFilter { get; set; }
-        public List<T>? Data { get; set; }
+        public List<T> Data { get; set; }
     }
 }

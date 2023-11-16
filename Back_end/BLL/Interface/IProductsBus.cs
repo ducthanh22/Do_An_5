@@ -1,4 +1,5 @@
 ﻿using Back_end.Model;
+using DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace BUS.Interface
 {
     public interface IProductsBus : IGenericBUS<Products>
     {
-        //Task<IEnumerable<Products>> Search(string searchTerm, int page, int pageSize);
+        Task<BaseQuerieResponse<ProductsDto>> Search(string keywork, int page, int pageSize);
 
     }
 }

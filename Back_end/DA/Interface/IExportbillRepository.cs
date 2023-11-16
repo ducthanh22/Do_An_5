@@ -1,4 +1,6 @@
-﻿using Model;
+﻿using Back_end.Model;
+using DTO;
+using Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,5 +11,6 @@ namespace DAL.Interface
 {
     public interface IExportbillRepository:IGenericRepository<Exportbill>
     {
+        Task<BaseQuerieResponse<ExportbillDto>> Search(int keywork, int page, int pageSize);
     }
 }

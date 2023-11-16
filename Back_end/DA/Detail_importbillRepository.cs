@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
 using DAL.Interface;
+using DTO;
+using Microsoft.EntityFrameworkCore;
 using Model;
 using System;
 using System.Collections.Generic;
@@ -14,5 +16,6 @@ namespace DAL
         public Detail_importbillRepository(Achino_DbContext dbContext, IMapper mapper) : base(dbContext, mapper)
         {
         }
+        
     }
 }

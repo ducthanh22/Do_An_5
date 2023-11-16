@@ -1,6 +1,7 @@
 ﻿using Back_end.Model;
 using BUS.Interface;
 using DAL.Interface;
+using DTO;
 using Microsoft.EntityFrameworkCore;
 using Model;
 using System;
@@ -14,9 +15,16 @@ namespace BUS
 {
     public class CategoriesBus : GenericBus<Categories>, ICategoriesBus
     {
-       
-        public CategoriesBus(ICategoriesRepository categoriesRepository) : base(categoriesRepository)
+
+        private readonly ICategoriesRepository _res;
+        public CategoriesBus(ICategoriesRepository res) : base(res)
         {
+            _res = res;
+        }
+
+        public async Task<BaseQuerieResponse<CategoriesDto>> Search(string keywork, int page, int pageSize)
+        {
+            return await _res.Search(keywork, page, pageSize);
         }
     }
 }

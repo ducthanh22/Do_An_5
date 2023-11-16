@@ -49,5 +49,6 @@ namespace Back_end.Controllers
             var result = await _Bus.Delete(id);
             return Ok(result);
         }
+        
     }
 }

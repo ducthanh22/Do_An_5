@@ -1,4 +1,6 @@
-﻿using BUS.Interface;
+﻿using Back_end.Model;
+using BUS.Interface;
+using DTO;
 using Model;
 using System;
 using System.Collections.Generic;
@@ -10,5 +12,6 @@ namespace DAL.Interface
 {
     public interface IWarehouseBus : IGenericBUS<Warehouse>
     {
+        Task<BaseQuerieResponse<WarehouseDto>> Search(string keywork, int page, int pageSize);
     }
 }

@@ -1,4 +1,6 @@
-﻿using Model;
+﻿using Back_end.Model;
+using DTO;
+using Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,5 +11,6 @@ namespace BUS.Interface
 {
     public interface IDetail_importbillBus : IGenericBUS<Detail_importbill>
     {
+        //Task<IEnumerable<BaseQuerieResponse<Detail_importbillDto>>> Search(string keywork, int page, int pageSize);
     }
 }
