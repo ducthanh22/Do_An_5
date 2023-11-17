@@ -7,11 +7,12 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    public class Detail_exportbill : Basedb
+    public class Order_detailDto : BasedbDto
     {
-        public int IdExportbill {  get; set; }
-        public int Idproduct { get; set; }
+        public int Id_Order { get; set; }
+        public int Id_product { get; set; }
+        public int Quantity { get; set;}
         public int Price { get; set; }
-        public int Quantity { get; set; }
+
     }
 }

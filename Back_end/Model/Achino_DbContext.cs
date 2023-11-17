@@ -16,19 +16,21 @@ namespace Model
         public Achino_DbContext(DbContextOptions<Achino_DbContext> options) : base(options)
         {
         }
-        public DbSet<Categories> Categorie_entities{ get; set; }
-        public DbSet<Custommer> Custommer_entities { get; set; }
-        public DbSet<Detail_exportbill> Detail_exportbill_entities { get; set; }
-        public DbSet<Detail_importbill> Detail_importbill_entities { get; set; }
-        public DbSet<Detail_warehouse> Detail_warehouse_entities { get; set; }
-        public DbSet<Exportbill> Exportbill_entities { get; set; }
-        public DbSet<Importbill> Importbill_entities { get; set; }
-        public DbSet<Price> Price_entities { get; set; }
-        public DbSet<Produces> Produces_entities { get; set; }
-        public DbSet<Products> Products_entities { get; set; }
-        public DbSet<Staff> Staff_entities { get; set; }
-        public DbSet<Warehouse> Warehouse_entities { get; set; }
+        public DbSet<Categories> Categorie{ get; set; }
+        public DbSet<Custommer> Custommer { get; set; }
+        public DbSet<Detail_exportbill> Detail_exportbill { get; set; }
+        public DbSet<Detail_importbill> Detail_importbill { get; set; }
+        public DbSet<Detail_warehouse> Detail_warehouse { get; set; }
+        public DbSet<Exportbill> Exportbill { get; set; }
+        public DbSet<Importbill> Importbill { get; set; }
+        public DbSet<Price> Price { get; set; }
+        public DbSet<Produces> Produces { get; set; }
+        public DbSet<Products> Products { get; set; }
+        public DbSet<Staff> Staff { get; set; }
+        public DbSet<Warehouse> Warehouse { get; set; }
+        public DbSet<Order> Order { get; set; }
 
+        public DbSet<Order_detail> Order_detail { get; set; }
 
 
 

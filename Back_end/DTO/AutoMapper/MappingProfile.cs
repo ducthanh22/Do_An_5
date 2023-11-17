@@ -27,6 +27,11 @@ namespace DTO.AutoMapper
             CreateMap<Produces, ProducesDto>().ReverseMap();
             CreateMap<Staff, StaffDto>().ReverseMap();
             CreateMap<Warehouse, WarehouseDto>().ReverseMap();
+
+            CreateMap<Order, CreateOrderDto>().ReverseMap();
+            CreateMap<Order_detail, CreateOrderDto>().ReverseMap();
+            CreateMap<Order, OrderDto>().ReverseMap();
+            CreateMap<Order_detail, Order_detailDto>().ReverseMap();
         }
     }
 }

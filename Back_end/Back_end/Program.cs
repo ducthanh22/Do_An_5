@@ -62,6 +62,13 @@ builder.Services.AddScoped<IStaffRepository, StaffRepository>();
 builder.Services.AddScoped<IWarehouseBus, WarehouseBus>();
 builder.Services.AddScoped<IWarehouseRepository, WarehouseRepository>();
 
+builder.Services.AddScoped<IOder_detailBus, Order_detailBus>();
+
+builder.Services.AddScoped<IOrder_detailRepository, Order_detailRepository>();
+
+builder.Services.AddScoped<IOrderBus, OrderBus>();
+builder.Services.AddScoped<IOrderRepository, OrderRepository>();
+
 
 
 

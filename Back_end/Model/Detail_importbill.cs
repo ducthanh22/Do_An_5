@@ -9,6 +9,7 @@ namespace Model
 {
     public class Detail_importbill : Basedb
     {
+        public int IdImportbillId { get; set; }
         public int Idproduct {  get; set; }
         public int Price {  get; set; }
         public int Quantity {  get; set; }

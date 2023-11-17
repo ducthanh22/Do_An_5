@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Model;
 
@@ -11,9 +12,10 @@ using Model;
 namespace Model.Migrations
 {
     [DbContext(typeof(Achino_DbContext))]
-    partial class Achino_DbContextModelSnapshot : ModelSnapshot
+    [Migration("20231116084235_updateentitiesDBcontext3")]
+    partial class updateentitiesDBcontext3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -50,7 +52,7 @@ namespace Model.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categorie");
+                    b.ToTable("Categorie_entities");
                 });
 
             modelBuilder.Entity("Back_end.Model.Products", b =>
@@ -96,7 +98,7 @@ namespace Model.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Products");
+                    b.ToTable("Products_entities");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -338,7 +340,7 @@ namespace Model.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Custommer");
+                    b.ToTable("Custommer_entities");
                 });
 
             modelBuilder.Entity("Model.Detail_exportbill", b =>
@@ -358,9 +360,6 @@ namespace Model.Migrations
                     b.Property<int?>("CreatedBy")
                         .HasColumnType("int");
 
-                    b.Property<int>("IdExportbill")
-                        .HasColumnType("int");
-
                     b.Property<int>("Idproduct")
                         .HasColumnType("int");
 
@@ -378,7 +377,7 @@ namespace Model.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Detail_exportbill");
+                    b.ToTable("Detail_exportbill_entities");
                 });
 
             modelBuilder.Entity("Model.Detail_importbill", b =>
@@ -398,9 +397,6 @@ namespace Model.Migrations
                     b.Property<int?>("CreatedBy")
                         .HasColumnType("int");
 
-                    b.Property<int>("IdImportbillId")
-                        .HasColumnType("int");
-
                     b.Property<int>("Idproduct")
                         .HasColumnType("int");
 
@@ -418,7 +414,7 @@ namespace Model.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Detail_importbill");
+                    b.ToTable("Detail_importbill_entities");
                 });
 
             modelBuilder.Entity("Model.Detail_warehouse", b =>
@@ -455,7 +451,7 @@ namespace Model.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Detail_warehouse");
+                    b.ToTable("Detail_warehouse_entities");
                 });
 
             modelBuilder.Entity("Model.Exportbill", b =>
@@ -492,7 +488,7 @@ namespace Model.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Exportbill");
+                    b.ToTable("Exportbill_entities");
                 });
 
             modelBuilder.Entity("Model.Importbill", b =>
@@ -529,84 +525,7 @@ namespace Model.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Importbill");
-                });
-
-            modelBuilder.Entity("Model.Order", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int?>("ActiveFlag")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("Created")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("CreatedBy")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Id_customer")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("Modified")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("ModifiedBy")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("OrderDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("status")
-                        .HasColumnType("bit");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Order");
-                });
-
-            modelBuilder.Entity("Model.Order_detail", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int?>("ActiveFlag")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("Created")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("CreatedBy")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Id_Order")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Id_product")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("Modified")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("ModifiedBy")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Price")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Order_detail");
+                    b.ToTable("Importbill_entities");
                 });
 
             modelBuilder.Entity("Model.Price", b =>
@@ -646,7 +565,7 @@ namespace Model.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Price");
+                    b.ToTable("Price_entities");
                 });
 
             modelBuilder.Entity("Model.Produces", b =>
@@ -686,7 +605,7 @@ namespace Model.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Produces");
+                    b.ToTable("Produces_entities");
                 });
 
             modelBuilder.Entity("Model.Staff", b =>
@@ -734,7 +653,7 @@ namespace Model.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Staff");
+                    b.ToTable("Staff_entities");
                 });
 
             modelBuilder.Entity("Model.Warehouse", b =>
@@ -770,7 +689,7 @@ namespace Model.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Warehouse");
+                    b.ToTable("Warehouse_entities");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

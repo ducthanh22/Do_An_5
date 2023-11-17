@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Model;
 
@@ -11,9 +12,10 @@ using Model;
 namespace Model.Migrations
 {
     [DbContext(typeof(Achino_DbContext))]
-    partial class Achino_DbContextModelSnapshot : ModelSnapshot
+    [Migration("20231116084528_updateentitiesDBcontext4")]
+    partial class updateentitiesDBcontext4
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -358,9 +360,6 @@ namespace Model.Migrations
                     b.Property<int?>("CreatedBy")
                         .HasColumnType("int");
 
-                    b.Property<int>("IdExportbill")
-                        .HasColumnType("int");
-
                     b.Property<int>("Idproduct")
                         .HasColumnType("int");
 
@@ -396,9 +395,6 @@ namespace Model.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<int?>("CreatedBy")
-                        .HasColumnType("int");
-
-                    b.Property<int>("IdImportbillId")
                         .HasColumnType("int");
 
                     b.Property<int>("Idproduct")
