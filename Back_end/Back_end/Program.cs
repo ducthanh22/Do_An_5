@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,12 +23,12 @@ builder.Services.AddAutoMapper(typeof(MappingProfile));
 builder.Services.AddDbContext<Achino_DbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-builder.Services.AddIdentity<User, IdentityRole>(
-    options =>
-    {
-        options.Password.RequiredLength = 6;
-    }).AddEntityFrameworkStores<Achino_DbContext>().AddDefaultTokenProviders();
-
+builder.Services.AddIdentity<User, Role>(options =>
+{
+    options.Password.RequiredLength = 6;
+})
+.AddEntityFrameworkStores<Achino_DbContext>()
+.AddDefaultTokenProviders();
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -70,7 +71,6 @@ builder.Services.AddScoped<IDetail_exportbillRepository, Detail_exportbillReposi
 builder.Services.AddScoped<IDetail_importbillBus, Detail_importbillBus>();
 builder.Services.AddScoped<IDetail_importbillRepository, Detail_importbillRepository>();
 
-//builder.Services.AddScoped<IProductsBus, ProductsBus>();
 builder.Services.AddScoped<IDetail_warehouseBus, Detail_warehouseBus>();
 builder.Services.AddScoped<IDetail_warehouseRepository, Detail_warehouseRepository>();
 
@@ -102,12 +102,36 @@ builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 builder.Services.AddScoped<IAccountBus, AccountBus>();
 builder.Services.AddScoped<IAccountRepository, AccountRepository>();
 
-builder.Services.AddScoped<UserManager<User>>();
-builder.Services.AddScoped<SignInManager<User>>();
 
-
-
-
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "Your API", Version = "v1" });
+    // Thêm c?u hình Swagger ?? yêu c?u xác th?c
+    c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+    {
+        In = ParameterLocation.Header,
+        Description = "Please enter JWT with Bearer into field",
+        Name = "Authorization",
+        Type = SecuritySchemeType.ApiKey
+    });
+    c.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference
+                {
+                    Type = ReferenceType.SecurityScheme,
+                    Id = "Bearer"
+                },
+                Scheme="oauth2",
+                Name="Bearer",
+                In = ParameterLocation.Header,
+            },
+            new string[] { }
+        }
+    });
+});
 
 var app = builder.Build();
 
@@ -118,12 +142,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-
-
-
 app.UseHttpsRedirection();
 app.UseAuthentication();
-
 app.UseAuthorization();
 
 app.MapControllers();

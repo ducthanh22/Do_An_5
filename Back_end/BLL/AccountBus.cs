@@ -5,8 +5,10 @@ using Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using static DTO.RoleDto;
 
 namespace BUS
 {
@@ -22,13 +24,17 @@ namespace BUS
         {
             return await _accountRepository.Register(user);
         }
-        public async Task<bool> Login(UserDto user)
+        public async Task<bool> Login(User user)
         {
             return await _accountRepository.Login(user);
         }
-        public  string GenerateToken(UserDto user)
+        public  string GenerateToken(User user1)
         {
-            return  _accountRepository.GenerateToken(user);
+            return  _accountRepository.GenerateToken(user1);
+        }
+        public Task<bool> CreateRoleAsync(CreateRoleDto role)
+        {
+            return _accountRepository.CreateRoleAsync(role);
         }
     }
 }

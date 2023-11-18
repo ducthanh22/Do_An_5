@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using Back_end.Model;
 using Model;
+using static DTO.RoleDto;
 
 namespace DTO.AutoMapper
 {
@@ -34,6 +36,10 @@ namespace DTO.AutoMapper
             CreateMap<Order_detail, Order_detailDto>().ReverseMap();
 
             CreateMap<User, UserDto>().ReverseMap();
+            CreateMap<Role, RoleDto>().ReverseMap();
+            CreateMap<Claim, CreateRoleDto>().ReverseMap();
+            //CreateMap<Role, CreateRoleDto>().ReverseMap();
+
         }
     }
 }

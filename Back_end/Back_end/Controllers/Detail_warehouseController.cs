@@ -1,14 +1,17 @@
 ﻿using BUS.Interface;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Model;
 
 namespace Back_end.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class Detail_warehouseController : ControllerBase
     {
+      
         public IDetail_warehouseBus _Bus;
         public Detail_warehouseController(IDetail_warehouseBus Bus)
         {

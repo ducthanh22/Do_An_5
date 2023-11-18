@@ -16,11 +16,11 @@ namespace DAL
 
         }
 
-        public async Task<BaseQuerieResponse<CategoriesDto>> Search(string keyword, int page, int pageSize)
+        public async Task<BaseQuerieResponse<CategoriesDto>> Search(string? keyword, int page, int pageSize)
         {
 
             var query = from d in _DbContext.Set<Categories>().AsQueryable()
-                        where d.Name.Contains(keyword)
+                        where string.IsNullOrEmpty(keyword) || d.Name.Contains(keyword)
                         select new CategoriesDto 
                         {
                             Id = d.Id,
