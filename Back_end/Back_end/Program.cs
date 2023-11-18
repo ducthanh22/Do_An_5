@@ -7,10 +7,13 @@ using DAL.Interface;
 using Microsoft.AspNetCore.Hosting;
 using DTO.AutoMapper;
 using AutoMapper;
-
-
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
+
 
 
 builder.Services.AddAutoMapper(typeof(MappingProfile));
@@ -18,6 +21,33 @@ builder.Services.AddAutoMapper(typeof(MappingProfile));
 // Add services to the container.
 builder.Services.AddDbContext<Achino_DbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddIdentity<User, IdentityRole>(
+    options =>
+    {
+        options.Password.RequiredLength = 6;
+    }).AddEntityFrameworkStores<Achino_DbContext>().AddDefaultTokenProviders();
+
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+}).AddJwtBearer(options =>
+{
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidateLifetime = true,
+        ValidateIssuerSigningKey = true,
+
+        // Set your token parameters
+        ValidIssuer = builder.Configuration.GetSection("Jwt:Issuer").Value,
+        ValidAudience = builder.Configuration.GetSection("Jwt:Audience").Value,
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration.GetSection("Jwt:Key").Value))
+    };
+});
+
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
@@ -69,6 +99,13 @@ builder.Services.AddScoped<IOrder_detailRepository, Order_detailRepository>();
 builder.Services.AddScoped<IOrderBus, OrderBus>();
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 
+builder.Services.AddScoped<IAccountBus, AccountBus>();
+builder.Services.AddScoped<IAccountRepository, AccountRepository>();
+
+builder.Services.AddScoped<UserManager<User>>();
+builder.Services.AddScoped<SignInManager<User>>();
+
+
 
 
 
@@ -81,7 +118,12 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+
+
+
 app.UseHttpsRedirection();
+app.UseAuthentication();
+
 app.UseAuthorization();
 
 app.MapControllers();

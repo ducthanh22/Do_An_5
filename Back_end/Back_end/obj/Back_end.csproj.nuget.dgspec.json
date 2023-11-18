@@ -66,6 +66,10 @@
               "target": "Package",
               "version": "[8.1.1, )"
             },
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[6.0.25, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[6.0.24, )"
@@ -79,6 +83,10 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[6.0.24, )"
+            },
+            "Microsoft.Extensions.Configuration.Abstractions": {
+              "target": "Package",
+              "version": "[6.0.0, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
@@ -235,6 +243,10 @@
             "AutoMapper": {
               "target": "Package",
               "version": "[10.1.1, )"
+            },
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[6.0.25, )"
             }
           },
           "imports": [

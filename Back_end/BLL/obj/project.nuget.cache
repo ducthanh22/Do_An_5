@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "i0lGdhMe0WNjc7OwLZaJ3EMFcent2EFvDm4OsXsbXcMvLjuEKDXonRupvCEAPip1prX2OfQE83doT2oGi6L8zw==",
+  "dgSpecHash": "Z/J+j/9PiZ99mcvpxMG+eecOm68FLruU64Ocy+jrnS20fKo0Vljr/h5gtzySPcY+jEwz29xSZ/aB4TaP2Yaciw==",
   "success": true,
   "projectFilePath": "D:\\Do_An_5\\Back_end\\BLL\\BUS.csproj",
   "expectedPackageFiles": [
@@ -9,6 +9,7 @@
     "C:\\Users\\DUCTHANH\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.1.1\\microsoft.aspnetcore.authentication.abstractions.2.1.1.nupkg.sha512",
     "C:\\Users\\DUCTHANH\\.nuget\\packages\\microsoft.aspnetcore.authentication.cookies\\2.1.1\\microsoft.aspnetcore.authentication.cookies.2.1.1.nupkg.sha512",
     "C:\\Users\\DUCTHANH\\.nuget\\packages\\microsoft.aspnetcore.authentication.core\\2.1.1\\microsoft.aspnetcore.authentication.core.2.1.1.nupkg.sha512",
+    "C:\\Users\\DUCTHANH\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\6.0.25\\microsoft.aspnetcore.authentication.jwtbearer.6.0.25.nupkg.sha512",
     "C:\\Users\\DUCTHANH\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\6.0.24\\microsoft.aspnetcore.cryptography.internal.6.0.24.nupkg.sha512",
     "C:\\Users\\DUCTHANH\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\6.0.24\\microsoft.aspnetcore.cryptography.keyderivation.6.0.24.nupkg.sha512",
     "C:\\Users\\DUCTHANH\\.nuget\\packages\\microsoft.aspnetcore.dataprotection\\2.1.1\\microsoft.aspnetcore.dataprotection.2.1.1.nupkg.sha512",
@@ -49,8 +50,8 @@
     "C:\\Users\\DUCTHANH\\.nuget\\packages\\microsoft.identitymodel.abstractions\\6.32.3\\microsoft.identitymodel.abstractions.6.32.3.nupkg.sha512",
     "C:\\Users\\DUCTHANH\\.nuget\\packages\\microsoft.identitymodel.jsonwebtokens\\6.32.3\\microsoft.identitymodel.jsonwebtokens.6.32.3.nupkg.sha512",
     "C:\\Users\\DUCTHANH\\.nuget\\packages\\microsoft.identitymodel.logging\\6.32.3\\microsoft.identitymodel.logging.6.32.3.nupkg.sha512",
-    "C:\\Users\\DUCTHANH\\.nuget\\packages\\microsoft.identitymodel.protocols\\6.8.0\\microsoft.identitymodel.protocols.6.8.0.nupkg.sha512",
-    "C:\\Users\\DUCTHANH\\.nuget\\packages\\microsoft.identitymodel.protocols.openidconnect\\6.8.0\\microsoft.identitymodel.protocols.openidconnect.6.8.0.nupkg.sha512",
+    "C:\\Users\\DUCTHANH\\.nuget\\packages\\microsoft.identitymodel.protocols\\6.10.0\\microsoft.identitymodel.protocols.6.10.0.nupkg.sha512",
+    "C:\\Users\\DUCTHANH\\.nuget\\packages\\microsoft.identitymodel.protocols.openidconnect\\6.10.0\\microsoft.identitymodel.protocols.openidconnect.6.10.0.nupkg.sha512",
     "C:\\Users\\DUCTHANH\\.nuget\\packages\\microsoft.identitymodel.tokens\\6.32.3\\microsoft.identitymodel.tokens.6.32.3.nupkg.sha512",
     "C:\\Users\\DUCTHANH\\.nuget\\packages\\microsoft.net.http.headers\\2.1.1\\microsoft.net.http.headers.2.1.1.nupkg.sha512",
     "C:\\Users\\DUCTHANH\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",

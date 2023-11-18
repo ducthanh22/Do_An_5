@@ -32,6 +32,9 @@ namespace Model
 
         public DbSet<Order_detail> Order_detail { get; set; }
 
+        public DbSet<User> User { get; set; }
+        public DbSet<Role> Role { get; set; }
+
 
 
 

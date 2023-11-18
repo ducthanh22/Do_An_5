@@ -32,6 +32,8 @@ namespace DTO.AutoMapper
             CreateMap<Order_detail, CreateOrderDto>().ReverseMap();
             CreateMap<Order, OrderDto>().ReverseMap();
             CreateMap<Order_detail, Order_detailDto>().ReverseMap();
+
+            CreateMap<User, UserDto>().ReverseMap();
         }
     }
 }
