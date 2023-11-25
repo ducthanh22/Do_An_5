@@ -11,6 +11,6 @@ namespace DAL.Interface
     public interface ICategoriesRepository : IGenericRepository<Categories>
     {
 
-        Task<BaseQuerieResponse<CategoriesDto>>Search(string keywork, int page, int pageSize);
+        Task<BaseQuerieResponse<CategoriesDto>>Search(Paging paging);
     }
 }

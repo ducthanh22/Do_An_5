@@ -12,6 +12,6 @@ namespace DAL.Interface
 {
     public interface IWarehouseBus : IGenericBUS<Warehouse>
     {
-        Task<BaseQuerieResponse<WarehouseDto>> Search(string keywork, int page, int pageSize);
+        Task<BaseQuerieResponse<WarehouseDto>> Search(string? keywork, int page, int pageSize);
     }
 }

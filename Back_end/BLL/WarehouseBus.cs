@@ -17,7 +17,7 @@ namespace DAL
         {
             _res = res;
         }
-        public async Task<BaseQuerieResponse<WarehouseDto>>Search(string keywork, int page, int pageSize)
+        public async Task<BaseQuerieResponse<WarehouseDto>>Search(string? keywork, int page, int pageSize)
         {
             return await _res.Search(keywork, page, pageSize);
         }

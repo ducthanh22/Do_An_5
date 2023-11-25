@@ -38,13 +38,13 @@ namespace Back_end.Controllers
             return Ok(result);
         }
         [HttpPost("Login")]
-        public async Task<ActionResult<bool>> Login(User user)
+        public async Task<ActionResult<bool>> Login(UserDto user)
         {
             var result = await _Bus.Login(user);
             
             if(result==true)
             {             
-                var token = _Bus.GenerateToken(user);
+                var token = await _Bus.GenerateToken(user);
                 return Ok(token);
             }
 

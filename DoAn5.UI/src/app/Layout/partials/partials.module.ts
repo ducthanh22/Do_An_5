@@ -4,6 +4,7 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { RouterModule } from '@angular/router';
+import { HeaderadminComponent } from './headeradmin/headeradmin.component';
 
 
 
@@ -11,7 +12,8 @@ import { RouterModule } from '@angular/router';
   declarations: [
     HeaderComponent,
     FooterComponent,
-    SidebarComponent
+    SidebarComponent,
+    HeaderadminComponent
   ],
   imports: [
     CommonModule,
@@ -19,6 +21,6 @@ import { RouterModule } from '@angular/router';
   ],
   exports:[HeaderComponent,
     FooterComponent,
-    SidebarComponent]
+    SidebarComponent,HeaderadminComponent]
 })
 export class PartialsModule { }

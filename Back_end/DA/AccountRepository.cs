@@ -11,7 +11,6 @@ using Microsoft.Extensions.Configuration;
 using DTO;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
-using static DTO.RoleDto;
 
 namespace DAL
 {
@@ -22,15 +21,13 @@ namespace DAL
         private readonly RoleManager<Role> _roleManager;
         private readonly Achino_DbContext _dbContext;
         private readonly IConfiguration _config;
-    
-        
-        public AccountRepository(UserManager<User> userManager, Achino_DbContext dbContext,IConfiguration config  , RoleManager<Role> roleManager)
+        public AccountRepository(UserManager<User> userManager, Achino_DbContext dbContext,IConfiguration config  ,
+            RoleManager<Role> roleManager)
         {
             _userManager = userManager;
             _dbContext = dbContext;
             _config = config;
-            _roleManager = roleManager;
-            
+            _roleManager = roleManager; 
         }
 
         public async Task<bool> CreateRoleAsync(CreateRoleDto role)
@@ -57,7 +54,6 @@ namespace DAL
                     return true;
                 }
             }
-
             return false;
         }
 
@@ -72,17 +68,19 @@ namespace DAL
             };
             var result = await _userManager.CreateAsync(newUser, user.PasswordHash);
             if (result.Succeeded)
-            {     
+            {
+                await _userManager.AddToRoleAsync(newUser, "Staff");
                 await _dbContext.SaveChangesAsync();
                 return true;
             }
+
             else
             {
                 return false;
             }
         }
 
-        public async Task<bool> Login(User user)
+        public async Task<bool> Login(UserDto user)
         {
             var checkUser = await _userManager.FindByNameAsync(user.UserName);
 
@@ -93,29 +91,48 @@ namespace DAL
             return await _userManager.CheckPasswordAsync(checkUser, user.PasswordHash);
         }
 
-        public string GenerateToken(User user)
+        public async Task<GennToken> GenerateToken(UserDto user)
         {
-          
-            var claims= new List<Claim>
+            var checkUser = await _userManager.FindByNameAsync(user.UserName);
+            // Tạo danh sách claims với thông tin cơ bản
+            var claims = new List<Claim>
             {
-                new Claim("Username",user.UserName),
-                new Claim("pass",user.PasswordHash),
-                new Claim("id",user.Id),
-                new Claim("Email",user.Email)
+                new Claim("Username", checkUser.UserName),
+                new Claim("Id", checkUser.Id),
+                new Claim("Email", checkUser.Email),
             };
-            
-            var SecurityKey =new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config.GetSection("Jwt:Key").Value));
-            var SigningCred = new SigningCredentials (SecurityKey,SecurityAlgorithms.HmacSha256Signature);
+            var roles = await _userManager.GetRolesAsync(checkUser);
+            // Thêm các claims về vai trò vào danh sách claims
+            foreach (var role in roles)
+            {
+                claims.Add(new Claim(ClaimTypes.Role, role));
+                if (role != null)
+                {
+                    // Lấy danh sách Claims của vai trò
+                    var claim = await _roleManager.GetClaimsAsync(await _roleManager.FindByNameAsync(role));
+                    // Thêm các Claims vào danh sách roleClaims
+                    claims.AddRange(claim);
+                }
+            }
+            // Tạo mã khóa bảo mật từ cấu hình
+            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config.GetSection("Jwt:Key").Value));
+            // Tạo các thông tin xác thực
+            var signingCred = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256Signature);
+            // Tạo token với các thông tin cần thiết
             var securityToken = new JwtSecurityToken(
                 claims: claims,
-                expires: DateTime.Now.AddMinutes(60),
+                expires: DateTime.Now.AddDays(365),
                 issuer: _config.GetSection("Jwt:Issuer").Value,
                 audience: _config.GetSection("Jwt:Audience").Value,
-                signingCredentials:SigningCred
-                ) ;
-
-
-            return new JwtSecurityTokenHandler().WriteToken(securityToken);
+                signingCredentials: signingCred);
+            // Trả về chuỗi token
+            var token= new JwtSecurityTokenHandler().WriteToken(securityToken);
+            return new GennToken
+            {
+                UserName= checkUser.UserName,
+                Token=token,
+            };
         }
+
     }
 }

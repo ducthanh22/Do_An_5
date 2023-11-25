@@ -11,6 +11,6 @@ namespace DAL.Interface
 {
     public interface IWarehouseRepository : IGenericRepository<Warehouse>
     {
-        Task<BaseQuerieResponse<WarehouseDto>> Search(string keywork, int page, int pageSize);
+        Task<BaseQuerieResponse<WarehouseDto>> Search(string? keywork, int page, int pageSize);
     }
 }

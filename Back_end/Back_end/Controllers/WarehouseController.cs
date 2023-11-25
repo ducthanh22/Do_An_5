@@ -51,7 +51,7 @@ namespace Back_end.Controllers
             return Ok(result);
         }
         [HttpGet("Search")]
-        public async Task<IActionResult> Search([FromQuery] string keywork, [FromQuery] int page = 1, [FromQuery] int pageSize = 10)
+        public async Task<IActionResult> Search([FromQuery] string? keywork, [FromQuery] int page = 1, [FromQuery] int pageSize = 10)
         {
             
             var result = await _Bus.Search(keywork, page, pageSize);

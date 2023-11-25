@@ -20,7 +20,7 @@ namespace DAL
         {
 
             var query = from d in _DbContext.Set<Warehouse>().AsQueryable()
-                        where (d.Name.Contains(keyword.ToLower()) ||d.Name.Contains(keyword.ToLower()))
+                        where ( string.IsNullOrEmpty(keyword)||d.Name.Contains(keyword.ToLower()) ||d.Address.Contains(keyword.ToLower()))
                         select new WarehouseDto
                         {
                             Id = d.Id,

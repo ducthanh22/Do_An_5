@@ -16,11 +16,11 @@ namespace DAL
 
         }
 
-        public async Task<BaseQuerieResponse<CategoriesDto>> Search(string? keyword, int page, int pageSize)
+        public async Task<BaseQuerieResponse<CategoriesDto>> Search(Paging paging)
         {
 
             var query = from d in _DbContext.Set<Categories>().AsQueryable()
-                        where string.IsNullOrEmpty(keyword) || d.Name.Contains(keyword)
+                        where string.IsNullOrEmpty(paging.Keyword) || d.Name.Contains(paging.Keyword)
                         select new CategoriesDto 
                         {
                             Id = d.Id,
@@ -28,13 +28,13 @@ namespace DAL
                         };
   
             var totalCount = await query.LongCountAsync();
-            var pageResults = await query.Skip((page - 1) * pageSize).Take(pageSize) .ToListAsync();
+            var pageResults = await query.Skip((paging.PageIndex - 1) * paging.PageSize).Take(paging.PageSize) .ToListAsync();
       
             var searchResults = new BaseQuerieResponse<CategoriesDto>
             {
-                PageIndex = page,
-                PageSize = pageSize,
-                Keyword = keyword,
+                PageIndex = paging.PageIndex,
+                PageSize = paging.PageSize,
+                Keyword = paging.Keyword,
                 TotalFilter = totalCount,
                 Data = pageResults
             };

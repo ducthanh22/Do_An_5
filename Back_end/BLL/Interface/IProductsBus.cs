@@ -11,6 +11,8 @@ namespace BUS.Interface
     public interface IProductsBus : IGenericBUS<Products>
     {
         Task<BaseQuerieResponse<ProductsDto>> Search(string keywork, int page, int pageSize);
+        Task<UpLoadFile> UploadFile(UpLoadFile product);
+
 
     }
 }

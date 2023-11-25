@@ -24,13 +24,13 @@ namespace BUS
         {
             return await _accountRepository.Register(user);
         }
-        public async Task<bool> Login(User user)
+        public async Task<bool> Login(UserDto user)
         {
             return await _accountRepository.Login(user);
         }
-        public  string GenerateToken(User user1)
+        public async Task<GennToken> GenerateToken(UserDto user)
         {
-            return  _accountRepository.GenerateToken(user1);
+            return await _accountRepository.GenerateToken(user);
         }
         public Task<bool> CreateRoleAsync(CreateRoleDto role)
         {

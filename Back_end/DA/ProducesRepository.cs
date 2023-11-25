@@ -20,7 +20,7 @@ namespace DAL
         {
 
             var query = from d in _DbContext.Set<Produces>().AsQueryable()
-                        where d.Name.Contains(keyword)
+                        where string.IsNullOrEmpty(keyword) || d.Name.Contains(keyword)
                         select new ProducesDto
                         {
                             Id = d.Id,

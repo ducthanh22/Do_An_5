@@ -6,15 +6,15 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
-using static DTO.RoleDto;
+
 
 namespace DAL.Interface
 {
     public interface IAccountRepository 
     {
         Task<bool> CreateRoleAsync(CreateRoleDto role);
-        string GenerateToken(User user1);
+        Task<GennToken> GenerateToken(UserDto user);
         Task<bool> Register(User user);
-        Task<bool> Login(User user);
+        Task<bool> Login(UserDto user);
     }
 }

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "OsW+ikOeKoEWMvCK1mf0rk2YBDe95kPmDGjFBEgPMDddbLusciOns3Z4g/CcrS+E3MjBH9AXk1z0Dj60so5DnQ==",
+  "dgSpecHash": "OSOMgaL6l9m+pY42T8hUBYN2D5r09BC/eyFjaPGMWyj8E2/64Q40K/E7U+ycx2QmBRmQy7Wl3pq5s6Dde6KzpA==",
   "success": true,
   "projectFilePath": "D:\\Do_An_5\\Back_end\\Back_end\\Back_end.csproj",
   "expectedPackageFiles": [
@@ -12,6 +12,7 @@
     "C:\\Users\\DUCTHANH\\.nuget\\packages\\microsoft.aspnetcore.authentication.cookies\\2.1.1\\microsoft.aspnetcore.authentication.cookies.2.1.1.nupkg.sha512",
     "C:\\Users\\DUCTHANH\\.nuget\\packages\\microsoft.aspnetcore.authentication.core\\2.1.1\\microsoft.aspnetcore.authentication.core.2.1.1.nupkg.sha512",
     "C:\\Users\\DUCTHANH\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\6.0.25\\microsoft.aspnetcore.authentication.jwtbearer.6.0.25.nupkg.sha512",
+    "C:\\Users\\DUCTHANH\\.nuget\\packages\\microsoft.aspnetcore.cors\\2.1.0\\microsoft.aspnetcore.cors.2.1.0.nupkg.sha512",
     "C:\\Users\\DUCTHANH\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\6.0.24\\microsoft.aspnetcore.cryptography.internal.6.0.24.nupkg.sha512",
     "C:\\Users\\DUCTHANH\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\6.0.24\\microsoft.aspnetcore.cryptography.keyderivation.6.0.24.nupkg.sha512",
     "C:\\Users\\DUCTHANH\\.nuget\\packages\\microsoft.aspnetcore.dataprotection\\2.1.1\\microsoft.aspnetcore.dataprotection.2.1.1.nupkg.sha512",

@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -7,7 +7,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <!-- <meta content="width=device-width, initial-scale=1.0" name="viewport"> -->
+  <meta http-equiv="Content-Security-Policy" content="style-src 'self' 'unsafe-inline' https://chat.openai.com https://*.oaistatic.com https://chatgpt.com https://tcr9i.chat.openai.com https://*.chatgpt.com https://oaistatic.com https://fonts.googleapis.com;">
+
   <!-- client -->
   <!-- Favicons -->
   <link href="./assets/admin/assets/wiz_logo/favicon3-32x32.png" rel="icon">
@@ -15,11 +17,10 @@
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-
   <!-- Vendor CSS Files -->
   <link href="./assets/client/assets/vendor/animate.css/animate.min.css" rel="stylesheet">
   <link href="./assets/client/assets/vendor/aos/aos.css" rel="stylesheet">
-  <link href="./assets/client/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <!-- <link href="./assets/client/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"> -->
   <link href="./assets/client/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
   <link href="./assets/client/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
   <link href="./assets/client/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
@@ -27,17 +28,16 @@
   <link href="./assets/client/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
   <!-- Template Main CSS File -->
   <link href="./assets/client/assets/css/style.css" rel="stylesheet">
-  
+
   <!-- admin -->
-   
-    <!-- Vendors styles-->
-    <link rel="stylesheet" href="./assets/admin/vendors/simplebar/css/simplebar.css">
-    <link rel="stylesheet" href="./assets/admin/css/vendors/simplebar.css">
-    <!-- Main styles for this application-->
-    <link href="./assets/admin/css/style.css" rel="stylesheet">
-    <!-- We use those styles to show code examples, you should remove them in your application.-->
-    <link href="./assets/admin/css/examples.css" rel="stylesheet">
-    <link href="./assets/admin/vendors/@coreui/chartjs/css/coreui-chartjs.css" rel="stylesheet">
+     <!-- Vendor CSS Files -->
+  <link href="./assets/admin/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="./assets/admin/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="./assets/admin/vendor/quill/quill.snow.css" rel="stylesheet">
+  <link href="./assets/admin/vendor/quill/quill.bubble.css" rel="stylesheet">
+  <link href="./assets/admin/vendor/simple-datatables/style.css" rel="stylesheet">
+  <!-- Template Main CSS File -->
+  <link href="./assets/admin/css/style.css" rel="stylesheet">
 
     
 </head>
@@ -51,19 +51,13 @@
   <script src="./assets/client/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
   <script src="./assets/client/assets/vendor/swiper/swiper-bundle.min.js"></script>
   <script src="./assets/client/assets/vendor/php-email-form/validate.js"></script>
-
   <!-- Template Main JS File -->
   <script src="./assets/client/assets/js/main.js"></script>
-
-
 <!-- admin -->
-  <!-- CoreUI and necessary plugins-->
-  <script src="./assets/admin/vendors/@coreui/coreui/js/coreui.bundle.min.js"></script>
-  <script src="./assets/admin/vendors/simplebar/js/simplebar.min.js"></script>
-  <!-- Plugins and scripts required by this view-->
-  <script src="./assets/admin/vendors/chart.js/js/chart.min.js"></script>
-  <script src="./assets/admin/vendors/@coreui/chartjs/js/coreui-chartjs.js"></script>
-  <script src="./assets/admin/vendors/@coreui/utils/js/coreui-utils.js"></script>
-  <script src="./assets/admin/js/main.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+
+
+  
 </body>
 </html>

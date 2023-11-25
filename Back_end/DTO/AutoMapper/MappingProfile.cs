@@ -18,6 +18,9 @@ namespace DTO.AutoMapper
 
             CreateMap<Categories, CategoriesDto>().ReverseMap();
             CreateMap<Products, ProductsDto>().ReverseMap();
+         
+
+
             CreateMap<Custommer, CustommerDto>().ReverseMap();
             CreateMap<Detail_exportbill, Detail_exportbillDto>().ReverseMap();
             CreateMap<Detail_importbill, Detail_importbillDto>().ReverseMap();
@@ -29,6 +32,8 @@ namespace DTO.AutoMapper
             CreateMap<Produces, ProducesDto>().ReverseMap();
             CreateMap<Staff, StaffDto>().ReverseMap();
             CreateMap<Warehouse, WarehouseDto>().ReverseMap();
+            
+
 
             CreateMap<Order, CreateOrderDto>().ReverseMap();
             CreateMap<Order_detail, CreateOrderDto>().ReverseMap();
@@ -38,7 +43,7 @@ namespace DTO.AutoMapper
             CreateMap<User, UserDto>().ReverseMap();
             CreateMap<Role, RoleDto>().ReverseMap();
             CreateMap<Claim, CreateRoleDto>().ReverseMap();
-            //CreateMap<Role, CreateRoleDto>().ReverseMap();
+            CreateMap<User, GennToken>().ReverseMap();
 
         }
     }

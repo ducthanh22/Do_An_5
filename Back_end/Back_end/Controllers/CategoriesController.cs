@@ -1,16 +1,19 @@
-﻿using Back_end.Model;
+﻿using Back_end.Attribute;
+using Back_end.Model;
 using BUS.Interface;
+using DTO;
+using DTO.Enum;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Back_end.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [Route("api/[controller]")]
     [ApiController]
-  
-   
+    
+
     public class CategoriesController : ControllerBase
     {
         private ICategoriesBus _categoriesBus;
@@ -21,6 +24,7 @@ namespace Back_end.Controllers
         }
 
         [HttpGet("GetAll")]
+        //[HasPermission(new[] { (int)EnumModule.Module.QlDm }, new[] { (int)EnumPermission.Type.Update })]
         public async Task<ActionResult<List<CategoriesDto>>> GetAll()
         {
             var result= await _categoriesBus.GetAll();
@@ -28,6 +32,11 @@ namespace Back_end.Controllers
         }
 
         [HttpGet("GetByid")]
+        //[Authorize(Policy = "AdminRole")]
+        //[Authorize(Policy = "CustomerRole")]
+        //[Authorize(Roles = "Admin,Customer")]
+        //[HasPermission(new[] { (int)EnumModule.Module.QlDm }, new[] { (int)EnumPermission.Type.Update })]
+
         public async Task<ActionResult<CategoriesDto>> Getbyid(int id)
         {
             var result = await _categoriesBus.Getbyid(id);
@@ -56,9 +65,9 @@ namespace Back_end.Controllers
         }
 
         [HttpGet("Search")]
-        public async Task<IActionResult> Search([FromQuery] string? keywork, [FromQuery] int page = 1, [FromQuery] int pageSize = 10)
+        public async Task<IActionResult> Search([FromQuery] Paging paging)
         {
-            var result = await _categoriesBus.Search(keywork, page, pageSize);
+            var result = await _categoriesBus.Search(paging);
           
 
             return Ok(result);

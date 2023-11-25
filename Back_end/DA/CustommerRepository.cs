@@ -21,7 +21,7 @@ namespace DAL
         {
 
             var query = from d in _DbContext.Set<Custommer>().AsQueryable()
-                        where d.Name.Contains(keyword)
+                        where string.IsNullOrEmpty(keyword) || d.Name.Contains(keyword)
                         select new CustommerDto
                         {
                             Id = d.Id,

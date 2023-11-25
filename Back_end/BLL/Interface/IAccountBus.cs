@@ -12,9 +12,9 @@ namespace BUS.Interface
 {
     public interface IAccountBus
     {
-        string GenerateToken (User user1);
+         Task<GennToken> GenerateToken (UserDto user);
         Task<bool> Register(User user);
-        Task<bool> Login(User user);
+        Task<bool> Login(UserDto user);
         Task<bool> CreateRoleAsync(CreateRoleDto role);
     }
 }

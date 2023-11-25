@@ -23,12 +23,11 @@ builder.Services.AddAutoMapper(typeof(MappingProfile));
 builder.Services.AddDbContext<Achino_DbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-builder.Services.AddIdentity<User, Role>(options =>
-{
-    options.Password.RequiredLength = 6;
-})
-.AddEntityFrameworkStores<Achino_DbContext>()
-.AddDefaultTokenProviders();
+builder.Services.AddIdentity<User, Role>()
+    .AddEntityFrameworkStores<Achino_DbContext>()
+    .AddDefaultTokenProviders();
+
+
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -102,6 +101,18 @@ builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 builder.Services.AddScoped<IAccountBus, AccountBus>();
 builder.Services.AddScoped<IAccountRepository, AccountRepository>();
 
+builder.Services.AddScoped<IColorBus, ColorBus>();
+builder.Services.AddScoped<IColorRepository, ColorRepository>();
+
+builder.Services.AddCors();
+
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("CustomerRole", policy => policy.RequireRole("Customer"));
+    options.AddPolicy("AdminRole", policy => policy.RequireRole("admin"));
+    // Thêm các policy khác n?u c?n thi?t
+});
+
 
 builder.Services.AddSwaggerGen(c =>
 {
@@ -142,8 +153,13 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+// Add this line to configure CORS
+app.UseCors(options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+
+
 app.UseHttpsRedirection();
 app.UseAuthentication();
+
 app.UseAuthorization();
 
 app.MapControllers();

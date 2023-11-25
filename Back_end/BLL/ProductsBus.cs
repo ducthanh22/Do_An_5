@@ -23,5 +23,9 @@ namespace BUS
         {
             return await _res.Search(keywork, page, pageSize);
         }
+        public async Task<UpLoadFile> UploadFile(UpLoadFile product)
+        {
+            return await _res.UploadFile(product);
+        }
     }
 }

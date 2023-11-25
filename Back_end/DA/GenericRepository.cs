@@ -25,11 +25,9 @@ namespace DAL
         }
         public async Task<List<T>> GetAll()
         {
-            var categories = await _DbContext.Set<T>().ToListAsync(); // Assuming _DbContext is of type DbContext
-            // Assuming you have a mapping function like AutoMapper
-            //var result = _mapper.Map<List<T>>(categories);
+            var result = await _DbContext.Set<T>().ToListAsync(); 
 
-            return categories;
+            return result;
         }
 
         public async Task<T> Getbyid(int id)

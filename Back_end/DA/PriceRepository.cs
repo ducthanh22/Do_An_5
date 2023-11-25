@@ -16,7 +16,7 @@ namespace DAL
         public PriceRepository(Achino_DbContext dbContext, IMapper mapper) : base(dbContext, mapper)
         {
         }
-        public async Task<BaseQuerieResponse<PriceDto>> Search(int keyword, int page, int pageSize)
+        public async Task<BaseQuerieResponse<PriceDto>> Search(int? keyword, int page, int pageSize)
         {
 
             var query = from d in _DbContext.Set<Price>().AsQueryable()

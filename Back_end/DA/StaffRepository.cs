@@ -19,7 +19,7 @@ namespace DAL
         public async Task<BaseQuerieResponse<StaffDto>> Search(string keyword, int page, int pageSize)
         {
             var query = from d in _DbContext.Set<Staff>().AsQueryable()
-                        where d.Name.Contains(keyword)
+                        where string.IsNullOrEmpty(keyword) || d.Name.Contains(keyword)
                         select new StaffDto
                         {
                             Id = d.Id,

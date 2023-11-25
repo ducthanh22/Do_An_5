@@ -54,9 +54,16 @@ namespace Back_end.Controllers
         }
 
         [HttpGet("Search")]
-        public async Task<IActionResult> Search([FromQuery] string keywork, [FromQuery] int page = 1, [FromQuery] int pageSize = 10)
+        public async Task<IActionResult> Search([FromQuery] string? keywork, [FromQuery] int page = 1, [FromQuery] int pageSize = 10)
         {
             var result = await _productsBus.Search(keywork, page, pageSize);
+
+            return Ok(result);
+        }
+        [HttpPost("UpLoadFile")]
+        public async Task<IActionResult> UpLoadFile([FromForm] UpLoadFile product)
+        {
+            var result = await _productsBus.UploadFile(product);
 
             return Ok(result);
         }

@@ -22,9 +22,9 @@ namespace BUS
             _res = res;
         }
 
-        public async Task<BaseQuerieResponse<CategoriesDto>> Search(string keywork, int page, int pageSize)
+        public async Task<BaseQuerieResponse<CategoriesDto>> Search(Paging paging)
         {
-            return await _res.Search(keywork, page, pageSize);
+            return await _res.Search(paging);
         }
     }
 }
