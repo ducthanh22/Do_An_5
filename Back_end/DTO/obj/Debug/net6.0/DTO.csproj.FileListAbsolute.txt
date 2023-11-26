@@ -1,0 +1,15 @@
+D:\Do_An_5\Back_end\DTO\bin\Debug\net6.0\DTO.deps.json
+D:\Do_An_5\Back_end\DTO\bin\Debug\net6.0\DTO.dll
+D:\Do_An_5\Back_end\DTO\bin\Debug\net6.0\DTO.pdb
+D:\Do_An_5\Back_end\DTO\obj\Debug\net6.0\DTO.GeneratedMSBuildEditorConfig.editorconfig
+D:\Do_An_5\Back_end\DTO\obj\Debug\net6.0\DTO.AssemblyInfoInputs.cache
+D:\Do_An_5\Back_end\DTO\obj\Debug\net6.0\DTO.AssemblyInfo.cs
+D:\Do_An_5\Back_end\DTO\obj\Debug\net6.0\DTO.csproj.CoreCompileInputs.cache
+D:\Do_An_5\Back_end\DTO\obj\Debug\net6.0\DTO.dll
+D:\Do_An_5\Back_end\DTO\obj\Debug\net6.0\refint\DTO.dll
+D:\Do_An_5\Back_end\DTO\obj\Debug\net6.0\DTO.pdb
+D:\Do_An_5\Back_end\DTO\obj\Debug\net6.0\ref\DTO.dll
+D:\Do_An_5\Back_end\DTO\bin\Debug\net6.0\Model.dll
+D:\Do_An_5\Back_end\DTO\bin\Debug\net6.0\Model.pdb
+D:\Do_An_5\Back_end\DTO\obj\Debug\net6.0\DTO.csproj.AssemblyReference.cache
+D:\Do_An_5\Back_end\DTO\obj\Debug\net6.0\DTO.csproj.CopyComplete

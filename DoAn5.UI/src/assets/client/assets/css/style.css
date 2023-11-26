@@ -170,7 +170,7 @@ h6 {
 # Header
 --------------------------------------------------------------*/
 #header {
-  background: rgba(5, 87, 158, 0.9);
+  background: rgb(5, 87, 158);
   transition: all 0.5s;
   z-index: 997;
   height: 70px;
@@ -478,17 +478,18 @@ h6 {
   height: 80vh;
   overflow: hidden;
   position: relative;
-  background: url("../img/hero-bg.jpg") top center;
+  background: url("../img/panner.png") top center;
   background-size: cover;
   position: relative;
-  margin-bottom: -90px;
+  /* margin-bottom: -90px; */
+  margin-top: 70px;
   z-index: 99;
   transition: 0.3s;
 }
 
 #hero:before {
   content: "";
-  background: rgba(6, 101, 183, 0.9);
+  /* background: rgba(6, 101, 183, 0.9); */
   position: absolute;
   bottom: 0;
   top: 0;
@@ -585,7 +586,7 @@ h6 {
 # Sections General
 --------------------------------------------------------------*/
 section {
-  padding: 60px 0;
+  padding: 60px 30px;
   overflow: hidden;
 }
 
@@ -1753,8 +1754,10 @@ section {
 
 .blog .entry .entry-img {
   max-height: 440px;
-  margin: -30px -30px 20px -30px;
+  margin: -30px -30px 20px 90px;
   overflow: hidden;
+
+  
 }
 
 .blog .entry .entry-title {

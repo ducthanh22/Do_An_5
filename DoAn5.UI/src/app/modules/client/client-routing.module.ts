@@ -5,6 +5,10 @@ import { CategoriesComponent } from './categories/categories.component';
 import { ServiceComponent } from './service/service.component';
 import { HomeComponent } from './home/home.component';
 import { BlogComponent } from './blog/blog.component';
+import { ContactComponent } from './contact/contact.component';
+import { CartComponent } from './cart/cart.component';
+import { DetailproductsComponent } from './detailproducts/detailproducts.component';
+import { PayproductsComponent } from './payproducts/payproducts.component';
 
 
 const routes: Routes = [
@@ -18,29 +22,34 @@ const routes: Routes = [
       {
         path: 'about',
         component: AboutComponent,
-        title: 'about',
-        data: {
-          title: 'about',
-        },
+        title: 'About',
+        
       },
       {
         path: 'categories',
         component: CategoriesComponent,
-        title: 'categories',
-        data: {
-          title: 'categories',
-        },
+        title: 'Categories',
+       
       },
       {
         path: 'service',
         component:ServiceComponent,
-        title: 'service',
+        title: 'Service',
       },
       {
         path: 'blog',
         component:BlogComponent,
-        title: 'blog',
+        title: 'Blog',
       },
+      {
+        path: 'contact',
+        component:ContactComponent,
+        title: 'Contact',
+      },
+     {path:'cart',component:CartComponent,title:'Cart'},
+
+     {path:'detail',component:DetailproductsComponent,title:'Detail'},
+     {path:'pay',component:PayproductsComponent,title:'Pay'}
     
   
 

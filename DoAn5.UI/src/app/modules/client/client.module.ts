@@ -7,6 +7,11 @@ import { HomeComponent } from './home/home.component';
 import { ClientRoutingModule } from './client-routing.module';
 import { BlogComponent } from './blog/blog.component';
 
+import { ContactComponent } from './contact/contact.component';
+import { CartComponent } from './cart/cart.component';
+import { DetailproductsComponent } from './detailproducts/detailproducts.component';
+import { PayproductsComponent } from './payproducts/payproducts.component';
+
 
 
 @NgModule({
@@ -15,7 +20,12 @@ import { BlogComponent } from './blog/blog.component';
     ServiceComponent,
     CategoriesComponent,
     HomeComponent,
-    BlogComponent
+    BlogComponent,
+    
+    ContactComponent,
+          CartComponent,
+          DetailproductsComponent,
+          PayproductsComponent
   ],
   imports: [
     CommonModule,

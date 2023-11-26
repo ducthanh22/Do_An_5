@@ -5,19 +5,28 @@ import { ClientClienttemplateComponent } from './client-clienttemplate/client-cl
 import { PartialsModule } from '../partials/partials.module';
 import { ClientModule } from 'src/app/modules/client/client.module';
 import { ClientRoutingModule } from 'src/app/modules/client/client-routing.module';
+import { LoginComponent } from './login/login.component';
+import { AdminModule } from 'src/app/modules/admin/admin.module';
+import { AdminRoutingModule } from 'src/app/modules/admin/admin-routing.module';
+
+
 
 
 
 @NgModule({
   declarations: [
     AdminAdmintemplateComponent,
-    ClientClienttemplateComponent
+    ClientClienttemplateComponent,
+    LoginComponent,
+  
   ],
   imports: [
     CommonModule,
     PartialsModule,
     ClientModule,
-    ClientRoutingModule
+    ClientRoutingModule,
+    AdminModule,
+    AdminRoutingModule
   ]
 })
 export class TemplateModule { }
