@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  {path:'',redirectTo:'load/Home',pathMatch:'full'},
+  {path:'',redirectTo:'client/Home',pathMatch:'full'},
 
  
   // {path:'**',redirectTo:'load/Home',pathMatch:'full'}

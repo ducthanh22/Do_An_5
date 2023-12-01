@@ -8,6 +8,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
+import { CalendarModule } from 'primeng/calendar';
+import { ChartModule } from 'primeng/chart';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { ButtonModule } from 'primeng/button';
     HttpClientModule,
     FormsModule,
     TableModule,
-    ButtonModule
+    ButtonModule,
+    CalendarModule,
+    ChartModule
 
   ],
   providers: [
