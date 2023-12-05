@@ -5,7 +5,6 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
-using Back_end.Model;
 using Model;
 using static DTO.RoleDto;
 
@@ -18,7 +17,10 @@ namespace DTO.AutoMapper
 
             CreateMap<Categories, CategoriesDto>().ReverseMap();
             CreateMap<Products, ProductsDto>().ReverseMap();
-         
+            CreateMap<Color, ProductsDto>().ReverseMap();
+            CreateMap<Price, ProductsDto>().ReverseMap();
+
+
 
 
             CreateMap<Custommer, CustommerDto>().ReverseMap();

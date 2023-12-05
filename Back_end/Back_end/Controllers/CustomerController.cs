@@ -1,4 +1,4 @@
-﻿using Back_end.Model;
+﻿using Model;
 using BUS;
 using BUS.Interface;
 using Microsoft.AspNetCore.Authorization;

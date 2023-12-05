@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 
-namespace Back_end.Model
+namespace Model
 {
     public class ProductsDto 
     {
@@ -9,7 +9,9 @@ namespace Back_end.Model
         public int Idcategories {  get; set; }
         public int Idproduces { get; set;}
         public string Describe {  get; set; }
-        
+        public string NameColor { get; set; }
+        public int Price_product { get; set; }
+
 
     }
     public class UpLoadFile

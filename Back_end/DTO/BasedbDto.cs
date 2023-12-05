@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Back_end.Model
+namespace Model
 {
     public class BasedbDto
     {

@@ -1,4 +1,4 @@
-﻿using Back_end.Model;
+﻿using Model;
 using BUS.Interface;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -29,6 +29,12 @@ namespace Back_end.Controllers
         public async Task<ActionResult<ProductsDto>> Getbyid(int id)
         {
             var result = await _productsBus.Getbyid(id);
+            return Ok(result);
+        }
+        [HttpGet("GetByids")]
+        public async Task<ActionResult<ProductsDto>> GetByIds(int id)
+        {
+            var result = await _productsBus.GetByIds(id);
             return Ok(result);
         }
 

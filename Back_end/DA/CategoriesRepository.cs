@@ -1,6 +1,5 @@
 ﻿
 using AutoMapper;
-using Back_end.Model;
 using DAL.Interface;
 using DTO;
 using Microsoft.EntityFrameworkCore;

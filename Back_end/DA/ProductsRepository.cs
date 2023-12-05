@@ -1,6 +1,5 @@
 ﻿
 using AutoMapper;
-using Back_end.Model;
 using DAL.Interface;
 using DTO;
 using Microsoft.EntityFrameworkCore;
@@ -41,6 +40,27 @@ namespace DAL
             };
             return searchResults;
         }
+        public async Task<IQueryable<ProductsDto>> GetByIds(int ids)
+        {
+            var query = from d in _DbContext.Set<Products>().AsQueryable()
+                        join a in _DbContext.Set<Color>() on d.Idcolor equals a.Id
+                        join b in _DbContext.Set<Price>() on d.Id equals b.Idproduct
+                        where d.Id == ids
+                        select new ProductsDto
+                        {
+                            Id = d.Id,
+                            Name = d.Name,
+                            Idcategories = d.Idcategories,
+                            Idproduces = d.Idproduces,
+                            Describe = d.Describe,
+                            NameColor = a.Name,
+                            Price_product = b.Price_product
+                        };
+
+           
+            return query;
+        }
+
         public async Task<UpLoadFile> UploadFile(UpLoadFile product)
         {
             try

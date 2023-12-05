@@ -1,4 +1,4 @@
-﻿using Back_end.Model;
+﻿
 using BUS.Interface;
 using DAL.Interface;
 using DTO;
@@ -27,5 +27,10 @@ namespace BUS
         {
             return await _res.UploadFile(product);
         }
+        public async Task<IQueryable<ProductsDto>> GetByIds(int ids)
+        {
+            return await _res.GetByIds(ids);
+        }
+
     }
 }

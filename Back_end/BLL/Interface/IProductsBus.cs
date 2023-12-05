@@ -1,4 +1,4 @@
-﻿using Back_end.Model;
+﻿using Model;
 using DTO;
 using System;
 using System.Collections.Generic;
@@ -12,6 +12,9 @@ namespace BUS.Interface
     {
         Task<BaseQuerieResponse<ProductsDto>> Search(string keywork, int page, int pageSize);
         Task<UpLoadFile> UploadFile(UpLoadFile product);
+        Task<IQueryable<ProductsDto>> GetByIds(int ids);
+
+
 
 
     }
