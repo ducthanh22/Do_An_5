@@ -11,6 +11,7 @@ using static DTO.RoleDto;
 
 namespace Back_end.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     
@@ -29,7 +30,7 @@ namespace Back_end.Controllers
             var result = await _Bus.Register(user);
             return Ok(result);
         }
-
+        [AllowAnonymous]
         [HttpPost("CreateRole")]
         public async Task<ActionResult<bool>> CreateRoleAsync(CreateRoleDto role)
         {
@@ -37,6 +38,7 @@ namespace Back_end.Controllers
 
             return Ok(result);
         }
+        [AllowAnonymous]
         [HttpPost("Login")]
         public async Task<ActionResult<bool>> Login(UserDto user)
         {

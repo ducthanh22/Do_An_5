@@ -2,8 +2,11 @@ import { Component, ViewChild } from '@angular/core';
 import { CategoriesDto, Paging } from 'src/app/model';
 
 import { CategoriesService } from 'src/app/service';
-import { PrimeIcons, MenuItem } from 'primeng/api';
+// import { PrimeIcons, MenuItem } from 'primeng/api';
 import { Table } from 'primeng/table';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+
+
 
 
 
@@ -13,33 +16,41 @@ import { Table } from 'primeng/table';
   templateUrl: './categories.component.html',
   styleUrls: ['./categories.component.css']
 })
-export class CategoriesComponent  {
+export class CategoriesComponent {
   @ViewChild('dt') table!: Table;
-  Dscategories:any[]=[];
+  Dscategories: any[] = [];
   loading: boolean = true;
   paging!: Paging;
-  
-  keyword:string='';
-  Categories!:CategoriesDto[];
-  datas:CategoriesDto[]=[];
+
+  keyword: string = '';
+  Categories!: CategoriesDto[];
+  datas: CategoriesDto[] = [];
   dataTotalRecords!: number;
-
-   constructor(
-    private categoriesService:CategoriesService,){
-    }
-
-   ngOnInit(){
-    this.LoadCategories();
-    
-   }
-   ngAfterViewInit() {
+  visible: boolean = false;
+  FormCategories!: FormGroup;
+  messageService: any;
+rowHover: any;
+  constructor(
+    private categoriesService: CategoriesService,
+    private fb: FormBuilder) {
   }
-   LoadCategories(){
-    this.categoriesService.getAll().subscribe((data)=>{
-      this.Dscategories=data
+
+  ngOnInit() {
+    this.LoadCategories();
+   
+    this.FormCategories = this.fb.group({
+      name: new FormControl('', Validators.required),
+    });
+    
+  }
+
+  LoadCategories() {
+    this.categoriesService.getAll().subscribe((data) => {
+      this.Dscategories = data
     })
-   }
-   loadListLazy = (event: any) => {
+  }
+
+  loadListLazy = (event: any) => {
     this.loading = true;
     let pageSize = event.rows;
     let pageIndex = event.first / pageSize + 1;
@@ -55,6 +66,7 @@ export class CategoriesComponent  {
       next: (res) => {
         this.datas = res.data;
         this.dataTotalRecords = res.totalFilter;
+        console.log(this.datas)
       },
       error: (e) => {
         this.loading = false;
@@ -79,4 +91,29 @@ export class CategoriesComponent  {
       },
     });
   };
+
+  SaveAdd() {
+    if (this.FormCategories.valid) {
+      const ObjTableSurvey = this.FormCategories.value;
+      this.categoriesService.create(ObjTableSurvey).subscribe({
+        next: (res) => {
+          if (res != null) {
+            this.messageService.add({
+              severity: 'success',
+              summary: 'Thành Công',
+              detail: 'Thêm thành Công !',
+            });
+            this.table.reset();
+            this.FormCategories.reset();
+            this.visible = false;
+          }
+        },
+
+        error: (e) => {
+          // const errorMessage = e.errorMessage;
+          // Utils.messageError(this.messageService, errorMessage);
+        },
+      });
+    }
+  }
 }

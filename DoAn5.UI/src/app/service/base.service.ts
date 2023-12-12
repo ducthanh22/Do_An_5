@@ -3,6 +3,7 @@ import { Observable, first } from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Paging } from '../model/Paging';
 import { BaseQuerieResponse } from '../model/Common/BaseQuerieResponse';
+import { BaseCommandResponse } from '../model/Common/BaseCommandResponse';
 
 
 export class BaseService<T> {
@@ -20,6 +21,11 @@ export class BaseService<T> {
       .set('orderBy', paging.orderBy || ''); // Đảm bảo rằng orderBy không bị undefined
     return this._http
       .get<BaseQuerieResponse<T>>(`${this.actionUrl}/Search`, { params })
+      .pipe(first());
+  }
+  create<T>(data: T): Observable<BaseCommandResponse> {
+    return this._http
+      .post<BaseCommandResponse>(`${this.actionUrl}/create`, data)
       .pipe(first());
   }
 }

@@ -5,11 +5,12 @@ import { AdminRoutingModule } from './admin-routing.module';
 import { CategoriesComponent } from './categories/categories.component';
 import { CategoriesService } from 'src/app/service';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { CalendarModule } from 'primeng/calendar';
 import { ChartModule } from 'primeng/chart';
+import { DialogModule } from 'primeng/dialog';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,10 @@ import { ChartModule } from 'primeng/chart';
     TableModule,
     ButtonModule,
     CalendarModule,
-    ChartModule
+    ChartModule,
+    DialogModule,ReactiveFormsModule
+    
+    
 
   ],
   providers: [
