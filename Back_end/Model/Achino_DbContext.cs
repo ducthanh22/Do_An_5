@@ -17,7 +17,6 @@ namespace Model
         {
         }
         public DbSet<Categories> Categorie{ get; set; }
-        public DbSet<Custommer> Custommer { get; set; }
         public DbSet<Detail_exportbill> Detail_exportbill { get; set; }
         public DbSet<Detail_importbill> Detail_importbill { get; set; }
         public DbSet<Detail_warehouse> Detail_warehouse { get; set; }
@@ -26,27 +25,12 @@ namespace Model
         public DbSet<Price> Price { get; set; }
         public DbSet<Produces> Produces { get; set; }
         public DbSet<Products> Products { get; set; }
-        public DbSet<Staff> Staff { get; set; }
         public DbSet<Warehouse> Warehouse { get; set; }
         public DbSet<Order> Order { get; set; }
-
         public DbSet<Order_detail> Order_detail { get; set; }
-
         public DbSet<User> User { get; set; }
         public DbSet<Role> Role { get; set; }
-
         public DbSet<Color> Color { get; set; }
-
-
-
-
-
-
-
-
-
-
-
-        // Các constructor và cấu hình khác
+        public DbSet<Size> Size { get; set; }
     }
 }

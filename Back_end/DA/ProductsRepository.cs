@@ -43,7 +43,7 @@ namespace DAL
         public async Task<IQueryable<ProductsDto>> GetByIds(int ids)
         {
             var query = from d in _DbContext.Set<Products>().AsQueryable()
-                        join a in _DbContext.Set<Color>() on d.Idcolor equals a.Id
+                        join a in _DbContext.Set<Color>() on d.Id equals a.IdProduct
                         join b in _DbContext.Set<Price>() on d.Id equals b.Idproduct
                         where d.Id == ids
                         select new ProductsDto
@@ -53,7 +53,7 @@ namespace DAL
                             Idcategories = d.Idcategories,
                             Idproduces = d.Idproduces,
                             Describe = d.Describe,
-                            NameColor = a.Name,
+                            NameColor = a.NameColor,
                             Price_product = b.Price_product
                         };
 
@@ -61,58 +61,58 @@ namespace DAL
             return query;
         }
 
-        public async Task<UpLoadFile> UploadFile(UpLoadFile product)
-        {
-            try
-            {
-                // Tạo tên mới cho tệp tin hình ảnh
-                var newFileName = $"{Guid.NewGuid().ToString()}-{product.Img.FileName}";
-                var newFilePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "Images", newFileName);
+        //public async Task<UpLoadFile> UploadFile(UpLoadFile product)
+        //{
+        //    try
+        //    {
+        //        // Tạo tên mới cho tệp tin hình ảnh
+        //        var newFileName = $"{Guid.NewGuid().ToString()}-{product.Img.FileName}";
+        //        var newFilePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "Images", newFileName);
 
-                // Kiểm tra nếu UpfileProduct đã có một hình ảnh
-                if (!string.IsNullOrEmpty(product.Image))
-                {
-                    // Nếu đã có hình ảnh, xóa tệp tin hình ảnh cũ
-                    var oldFilePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "Images", product.Image);
-                    if (File.Exists(oldFilePath))
-                    {
-                        File.Delete(oldFilePath);
-                    }
-                }
-                // Lưu tệp tin hình ảnh mới
-                using (var stream = new FileStream(newFilePath, FileMode.Create))
-                {
-                    await product.Img.CopyToAsync(stream);
-                }
+        //        // Kiểm tra nếu UpfileProduct đã có một hình ảnh
+        //        if (!string.IsNullOrEmpty(product.Image))
+        //        {
+        //            // Nếu đã có hình ảnh, xóa tệp tin hình ảnh cũ
+        //            var oldFilePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "Images", product.Image);
+        //            if (File.Exists(oldFilePath))
+        //            {
+        //                File.Delete(oldFilePath);
+        //            }
+        //        }
+        //        // Lưu tệp tin hình ảnh mới
+        //        using (var stream = new FileStream(newFilePath, FileMode.Create))
+        //        {
+        //            await product.Img.CopyToAsync(stream);
+        //        }
 
-                // Cập nhật thông tin trong đối tượng UpfileProduct
-                product.Image = newFileName;
+        //        // Cập nhật thông tin trong đối tượng UpfileProduct
+        //        product.Image = newFileName;
 
-                // Lấy sản phẩm từ cơ sở dữ liệu dựa trên ID
-                var existingProduct = await _DbContext.Products.FindAsync(product.Id);
+        //        // Lấy sản phẩm từ cơ sở dữ liệu dựa trên ID
+        //        var existingProduct = await _DbContext.Products.FindAsync(product.Id);
 
-                // Nếu sản phẩm được tìm thấy, cập nhật hình ảnh của nó
-                if (existingProduct != null)
-                {
-                    existingProduct.Image = newFileName;
-                    await _DbContext.SaveChangesAsync();
-                }
-                else
-                {
-                    // Xử lý trường hợp không tìm thấy sản phẩm với ID đã chỉ định
-                    // Bạn có thể muốn ném một ngoại lệ hoặc xử lý theo yêu cầu của ứng dụng
-                }
+        //        // Nếu sản phẩm được tìm thấy, cập nhật hình ảnh của nó
+        //        if (existingProduct != null)
+        //        {
+        //            existingProduct.Image = newFileName;
+        //            await _DbContext.SaveChangesAsync();
+        //        }
+        //        else
+        //        {
+        //            // Xử lý trường hợp không tìm thấy sản phẩm với ID đã chỉ định
+        //            // Bạn có thể muốn ném một ngoại lệ hoặc xử lý theo yêu cầu của ứng dụng
+        //        }
 
-                return product;
-            }
-            catch (Exception ex)
-            {
-                // Xử lý ngoại lệ, ghi log, hoặc ném một ngoại lệ cụ thể hơn tùy thuộc vào yêu cầu của ứng dụng
-                throw ex;
-            }
+        //        return product;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        // Xử lý ngoại lệ, ghi log, hoặc ném một ngoại lệ cụ thể hơn tùy thuộc vào yêu cầu của ứng dụng
+        //        throw ex;
+        //    }
 
 
-        }
+        //}
 
     }
 }

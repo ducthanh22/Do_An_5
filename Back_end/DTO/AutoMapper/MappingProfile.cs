@@ -23,7 +23,6 @@ namespace DTO.AutoMapper
 
 
 
-            CreateMap<Custommer, CustommerDto>().ReverseMap();
             CreateMap<Detail_exportbill, Detail_exportbillDto>().ReverseMap();
             CreateMap<Detail_importbill, Detail_importbillDto>().ReverseMap();
             CreateMap<Detail_warehouse, Detail_warehouseDto>().ReverseMap();
@@ -32,7 +31,6 @@ namespace DTO.AutoMapper
             CreateMap<Importbill, ImportbillDto>().ReverseMap();
             CreateMap<Price, PriceDto>().ReverseMap();
             CreateMap<Produces, ProducesDto>().ReverseMap();
-            CreateMap<Staff, StaffDto>().ReverseMap();
             CreateMap<Warehouse, WarehouseDto>().ReverseMap();
             
 

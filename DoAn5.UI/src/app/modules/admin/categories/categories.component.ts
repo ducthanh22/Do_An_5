@@ -1,8 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { CategoriesDto, Paging } from 'src/app/model';
-
 import { CategoriesService } from 'src/app/service';
-// import { PrimeIcons, MenuItem } from 'primeng/api';
 import { Table } from 'primeng/table';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 

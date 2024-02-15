@@ -11,6 +11,11 @@ import { ContactComponent } from './contact/contact.component';
 import { CartComponent } from './cart/cart.component';
 import { DetailproductsComponent } from './detailproducts/detailproducts.component';
 import { PayproductsComponent } from './payproducts/payproducts.component';
+import { CarouselModule } from 'primeng/carousel';
+import { ButtonModule } from 'primeng/button';
+import { TagModule } from 'primeng/tag';
+
+
 
 
 
@@ -29,7 +34,10 @@ import { PayproductsComponent } from './payproducts/payproducts.component';
   ],
   imports: [
     CommonModule,
-    ClientRoutingModule
+    ClientRoutingModule,
+    CarouselModule,
+    ButtonModule,
+    TagModule
   ]
 })
 export class ClientModule { }

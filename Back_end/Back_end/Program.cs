@@ -61,8 +61,6 @@ builder.Services.AddScoped<ICategoriesRepository, CategoriesRepository>();
 builder.Services.AddScoped<IProductsBus, ProductsBus>();
 builder.Services.AddScoped<IProductsRepository, ProductsRepository>();
 
-builder.Services.AddScoped<ICustommerBus, CustommerBus>();
-builder.Services.AddScoped<ICustommerRepository, CustommerRepository>();
 
 builder.Services.AddScoped<IDetail_exportbillBus, Detail_exportbillBus>();
 builder.Services.AddScoped<IDetail_exportbillRepository, Detail_exportbillRepository>();
@@ -84,9 +82,6 @@ builder.Services.AddScoped<IPriceRepository, PriceRepository>();
 
 builder.Services.AddScoped<IProducesBus, ProducesBus>();
 builder.Services.AddScoped<IProducesRepository, ProducesRepository>();
-
-builder.Services.AddScoped<IStaffBus, StaffBus>();
-builder.Services.AddScoped<IStaffRepository, StaffRepository>();
 
 builder.Services.AddScoped<IWarehouseBus, WarehouseBus>();
 builder.Services.AddScoped<IWarehouseRepository, WarehouseRepository>();

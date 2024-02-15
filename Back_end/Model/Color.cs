@@ -9,6 +9,8 @@ namespace Model
 {
     public class Color:Basedb
     {
-        public string Name { get; set; }
+        public int IdProduct { get; set; }
+        public string NameColor { get; set; }
+        public string Image { get; set; }
     }
 }

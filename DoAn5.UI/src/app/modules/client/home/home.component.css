@@ -3,3 +3,26 @@ h5 {
     text-align: center;
     font-weight: bold;
 }
+
+.panner img {
+    position: relative;
+    z-index: 1;
+    max-width: 80%;
+    height: auto;
+    /* Đảm bảo tỷ lệ chiều cao của hình ảnh không bị méo */
+    display: block;
+    /* Loại bỏ khoảng trắng dưới hình ảnh */
+    margin: 0 auto;
+    /* Canh giữa hình ảnh trong phần tử cha */
+    margin-top: 4.5%;
+}
+
+@media (max-width: 768px) {
+    .panner img {
+        margin-top: 17%;
+    }
+}
+@media (max-width: 378px) {
+    .panner img { 
+        margin-top: 30%;
+      }}

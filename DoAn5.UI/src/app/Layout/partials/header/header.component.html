@@ -1,50 +1,16 @@
-<div id="topbar" class="fixed-top d-flex align-items-center ">
-    <!-- <div class="container d-flex align-items-center justify-content-center justify-content-md-between">
-      <div class="contact-info d-flex align-items-center">
-        <i class="bi bi-envelope-fill"></i><a href="mailto:contact@example.com">info@example.com</a>
-        <i class="bi bi-phone-fill phone-icon"></i> +1 5589 55488 55
-      </div>
-      <div class="cta d-none d-md-block">
-        <a href="#about" class="scrollto">Get Started</a>
-      </div>
-    </div>
-  </div> -->
 
-  <!-- ======= Header ======= -->
-  <header id="header" class="fixed-top d-flex align-items-center ">
-    <div class="container d-flex align-items-center justify-content-between">
-
-      <h1 class="logo"><a href="">ACHINO</a></h1>
-      <!-- Uncomment below if you prefer to use an image logo -->
-      <!-- <a href=index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
-      <form class="form_search">
-        <input type="text" class="form-control"  placeholder="Tìm Kiếm...">
-        <button type="submit" class="btn btn-outline-light"><i class="bi bi-search"></i></button>
-      </form>
-
-      <nav id="navbar" class="navbar" (click)="activeNav()">
-        <ul>
-          <li><a class="nav-link scrollto"  href="/client/Home">Trang Chủ</a></li>
-          <li class="has-submenu">
-            <a class="nav-link scrollto" href="#">Danh Mục</a>
-            <ul class="submenu">
-                <li><a class="nav-link scrollto"href="/client/categories">Category 1</a></li>
-                <li><a class="nav-link scrollto" href="/client/categories">Category 2</a></li>
-                <li><a  class="nav-link scrollto"href="/client/categories">Category 3</a></li>
-                <!-- Add more submenu items as needed -->
-            </ul>
-        </li>
-
-
-          <li><a class="nav-link scrollto" href="/client/about">Giới Thiệu</a></li>
-          <li><a class="nav-link scrollto" href="/client/service">Dịch Vụ</a></li>
-          <li><a class="nav-link scrollto" href="/client/blog">Blog</a></li>    
-          <li><a class="nav-link scrollto" href="/client/cart"><i class="bi bi-cart"></i></a></li>     
-          <li><a class="nav-link scrollto" href="/client/contact">Contact</a></li>
-          <li><a class="nav-link scrollto" href="Login">Đăng nhập</a></li>
-        </ul>
-       
-      </nav><!-- .navbar -->
-
-    </div>
-  </header><!-- End Header -->
+<div class="card">
+  <p-menubar [model]="items" class="fixed-menu">
+    <ng-template pTemplate="start">
+      <img src="/./assets/client/assets/img/snapedit_Achino.png" height="45px" width="100%" class="mr-2" />
+    </ng-template>
+    
+    <ng-template pTemplate="end">
+      <ng-container>
+        <input type="text" pInputText placeholder="Search" class="w-full" style="margin-right: 100px;"/>
+        <i class="pi pi-shopping-cart"> Giỏ hàng</i>
+        <i class="pi pi-user"> Đăng nhập</i>
+      </ng-container>
+    </ng-template>
+  </p-menubar>
+</div>

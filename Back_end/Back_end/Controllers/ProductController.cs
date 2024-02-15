@@ -66,12 +66,12 @@ namespace Back_end.Controllers
 
             return Ok(result);
         }
-        [HttpPost("UpLoadFile")]
-        public async Task<IActionResult> UpLoadFile([FromForm] UpLoadFile product)
-        {
-            var result = await _productsBus.UploadFile(product);
+        //[HttpPost("UpLoadFile")]
+        //public async Task<IActionResult> UpLoadFile([FromForm] UpLoadFile product)
+        //{
+        //    var result = await _productsBus.UploadFile(product);
 
-            return Ok(result);
-        }
+        //    return Ok(result);
+        //}
     }
 }

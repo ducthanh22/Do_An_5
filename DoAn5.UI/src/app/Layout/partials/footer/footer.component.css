@@ -1,0 +1,29 @@
+.footer {
+    display: block;
+    justify-content: space-around;
+    align-items: center;
+    padding: 20px;
+    background-color: #f0f0f0;
+    margin: auto; /* Thêm dòng này */
+  }
+  @media screen and (min-width: 980px) {
+    .footer {
+        display: flex;
+    }
+}
+
+.footer_1 {
+    margin-left: 5%;
+    flex: 1;
+}
+
+ul {
+    list-style-type: none;
+}
+
+li {
+    margin-bottom: 10px;
+}
+i{
+    color: #0890ff;
+}

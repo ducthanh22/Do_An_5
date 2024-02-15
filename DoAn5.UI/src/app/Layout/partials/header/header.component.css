@@ -1,50 +1,29 @@
-/* Style the parent item */
-.has-submenu {
-    position: relative;
-}
 
-/* Style the submenu to initially hide */
-.submenu {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background-color: #fff; /* Background color for the submenu */
-    border: 1px solid #ccc; /* Add a border for the submenu */
-    padding: 10px; /* Add padding to the submenu items */
-    z-index: 1; /* Ensure the submenu appears above other content */
-}
 
-/* Style the submenu items */
-.submenu li {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    
-}
+/* :host ::ng-deep được sử dụng để tăng cường ưu tiên */
+/* !important bị ghi đè bởi các quy tắc khác. */
+:host ::ng-deep .p-menubar {
+  background-color: #f0f0f0!important;
+  margin-right: 1% !important;
 
-.submenu li :hover {
-    color: rgb(255, 157, 0);
 }
+/* :host ::ng-deep .p-menuitem-text{
+  color: #fa7500 !important;
+}
+:host ::ng-deep .p-submenu-icon {
+  color: #ffffff !important;
 
-.submenu a {
-    display: block;
-    padding: 8px 16px; /* Adjust padding as needed */
-    text-decoration: none;
-    color: #333; /* Text color for submenu items */
-}
+} */
+  .fixed-menu {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 2;
+    color: #d71919;
+    margin-bottom: 4.5%;
+  }
 
-/* Change submenu appearance when the parent is hovered */
-.has-submenu:hover .submenu {
-    display: block;
-}
-
-.form_search{
-    display: flex;
-}
-.form_search input{
-   border: none;
-}
-.form_search button{
-    border: none;
-}
+  i{
+    margin-right: 70px;
+  }
+  

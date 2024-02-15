@@ -8,7 +8,7 @@ import { ClientRoutingModule } from 'src/app/modules/client/client-routing.modul
 import { LoginComponent } from './login/login.component';
 import { AdminModule } from 'src/app/modules/admin/admin.module';
 import { AdminRoutingModule } from 'src/app/modules/admin/admin-routing.module';
-
+import { InputTextModule } from 'primeng/inputtext';
 
 
 
@@ -26,7 +26,9 @@ import { AdminRoutingModule } from 'src/app/modules/admin/admin-routing.module';
     ClientModule,
     ClientRoutingModule,
     AdminModule,
-    AdminRoutingModule
+    AdminRoutingModule,
+    InputTextModule
+
   ]
 })
 export class TemplateModule { }

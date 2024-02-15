@@ -65,6 +65,10 @@ namespace DAL
                 UserName = user.UserName,
                 Email = user.Email,
                 PasswordHash = user.PasswordHash,
+                CCCD= user.CCCD,
+                Address = user.Address,
+                Status = user.Status,
+                
             };
             var result = await _userManager.CreateAsync(newUser, user.PasswordHash);
             if (result.Succeeded)

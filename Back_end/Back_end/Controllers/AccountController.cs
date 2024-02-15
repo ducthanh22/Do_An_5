@@ -24,6 +24,8 @@ namespace Back_end.Controllers
             _Bus = Bus;
             _mapper = mapper;
         }
+        [AllowAnonymous]
+
         [HttpPost("Register")]
         public async Task<ActionResult<bool>> Register(User user)
         {

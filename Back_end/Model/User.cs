@@ -11,7 +11,9 @@ namespace Model
 {
     public class User:IdentityUser
     {
-       
+        public string Address { get; set; }
+        public string? CCCD { get; set; }
+        public string? Status { get; set; }
         public int? ActiveFlag { get; set; } 
         public int? CreatedBy { get; set; }
         public DateTime? Created { get; set; }
