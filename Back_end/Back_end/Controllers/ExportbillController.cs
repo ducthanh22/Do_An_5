@@ -3,7 +3,7 @@ using DAL.Interface;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Model;
+using DTO;
 
 namespace Back_end.Controllers
 {
@@ -32,14 +32,14 @@ namespace Back_end.Controllers
         }
 
         [HttpPost("create")]
-        public async Task<ActionResult<ExportbillDto>> Create([FromBody] Exportbill dto)
+        public async Task<ActionResult<ExportbillDto>> Create([FromBody] ExportbillDto dto)
         {
             var createdEntity = await _Bus.Create(dto);
 
             return Ok(createdEntity);
         }
         [HttpPut("update")]
-        public async Task<ActionResult<ExportbillDto>> Update([FromBody] Exportbill dto)
+        public async Task<ActionResult<ExportbillDto>> Update([FromBody] ExportbillDto dto)
         {
             var createdEntity = await _Bus.Update(dto);
 

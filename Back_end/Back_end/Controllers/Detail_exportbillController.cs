@@ -3,7 +3,7 @@ using BUS.Interface;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Model;
+using DTO;
 
 namespace Back_end.Controllers
 {

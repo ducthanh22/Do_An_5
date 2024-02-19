@@ -2,11 +2,11 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Model;
+using DTO;
 
 namespace Back_end.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ProducesController : ControllerBase
@@ -31,14 +31,14 @@ namespace Back_end.Controllers
         }
 
         [HttpPost("create")]
-        public async Task<ActionResult<ProducesDto>> Create([FromBody] Produces dto)
+        public async Task<ActionResult<ProducesDto>> Create([FromBody] ProducesDto dto)
         {
             var createdEntity = await _Bus.Create(dto);
 
             return Ok(createdEntity);
         }
         [HttpPut("update")]
-        public async Task<ActionResult<ProducesDto>> Update([FromBody] Produces dto)
+        public async Task<ActionResult<ProducesDto>> Update([FromBody] ProducesDto dto)
         {
             var createdEntity = await _Bus.Update(dto);
 

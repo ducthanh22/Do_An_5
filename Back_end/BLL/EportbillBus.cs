@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace DAL
 {
-    public class EportbillBus : GenericBus<Exportbill>, IExportbillBus
+    public class EportbillBus : GenericBus<ExportbillDto>, IExportbillBus
     {
         public IExportbillRepository _res;
         public EportbillBus(IExportbillRepository res) : base(res)

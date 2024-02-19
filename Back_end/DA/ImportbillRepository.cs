@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace DAL
 {
-    public class ImportbillRepository : GenericRepository<Importbill>, IImportbillRepository
+    public class ImportbillRepository : GenericRepository<ImportbillDto>, IImportbillRepository
     {
         public ImportbillRepository(Achino_DbContext dbContext, IMapper mapper) : base(dbContext, mapper)
         {

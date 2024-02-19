@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Interface
 {
-    public interface IProducesRepository : IGenericRepository<Produces>
+    public interface IProducesRepository : IGenericRepository<ProducesDto>
     {
         Task<BaseQuerieResponse<ProducesDto>> Search(string keywork, int page, int pageSize);
     }

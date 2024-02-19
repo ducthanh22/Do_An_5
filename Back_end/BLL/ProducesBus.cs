@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace DAL
 {
-    public class ProducesBus : GenericBus<Produces>, IProducesBus
+    public class ProducesBus : GenericBus<ProducesDto>, IProducesBus
     {
         public IProducesRepository _res;
         public ProducesBus(IProducesRepository res) : base(res)

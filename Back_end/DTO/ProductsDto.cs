@@ -1,16 +1,24 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using DTO;
+using Microsoft.AspNetCore.Http;
 
-namespace Model
+namespace DTO
 {
-    public class ProductsDto 
+    public class ProductsDto
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public int Idcategories {  get; set; }
-        public int Idproduces { get; set;}
-        public string Describe {  get; set; }
+        public int Idcategories { get; set; }
+        public int Idproduces { get; set; }
+        public string Describe { get; set; }
         public string NameColor { get; set; }
+
+        public int Idproduct { get; set; }
         public int Price_product { get; set; }
+        public string NameSize { get; set; }
+
+        public DateTime Startday { get; set; } = DateTime.Now;
+        public DateTime Endday { get; set; } = DateTime.Now;
+
 
 
     }

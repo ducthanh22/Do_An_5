@@ -12,3 +12,4 @@ D:\Do_An_5\Back_end\Model\obj\Debug\net6.0\refint\Model.dll
 D:\Do_An_5\Back_end\Model\obj\Debug\net6.0\Model.pdb
 D:\Do_An_5\Back_end\Model\obj\Debug\net6.0\Model.genruntimeconfig.cache
 D:\Do_An_5\Back_end\Model\obj\Debug\net6.0\ref\Model.dll
+D:\Do_An_5\Back_end\Model\obj\Debug\net6.0\Model.sourcelink.json

@@ -2,6 +2,7 @@
 using DAL.Interface;
 using Microsoft.EntityFrameworkCore;
 using Model;
+using DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace DAL
 {
-    public class OrderRepository : GenericRepository<Order>, IOrderRepository
+    public class OrderRepository : GenericRepository<OrderDto>, IOrderRepository
     {
         public OrderRepository(Achino_DbContext dbContext, IMapper mapper) : base(dbContext, mapper)
         {

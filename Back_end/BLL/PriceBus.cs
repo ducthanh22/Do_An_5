@@ -21,5 +21,9 @@ namespace DAL
         {
             return await _res.Search(keywork, page, pageSize);
         }
+        public async Task<Price> DeleteIdProduct(int id)
+        {
+            return await _res.DeleteIdProduct(id);
+        }
     }
 }

@@ -10,8 +10,9 @@ D:\Do_An_5\Back_end\DA\obj\Debug\net6.0\DAL.GeneratedMSBuildEditorConfig.editorc
 D:\Do_An_5\Back_end\DA\obj\Debug\net6.0\DAL.AssemblyInfoInputs.cache
 D:\Do_An_5\Back_end\DA\obj\Debug\net6.0\DAL.AssemblyInfo.cs
 D:\Do_An_5\Back_end\DA\obj\Debug\net6.0\DAL.csproj.CoreCompileInputs.cache
-D:\Do_An_5\Back_end\DA\obj\Debug\net6.0\DAL.csproj.CopyComplete
 D:\Do_An_5\Back_end\DA\obj\Debug\net6.0\DAL.dll
 D:\Do_An_5\Back_end\DA\obj\Debug\net6.0\refint\DAL.dll
 D:\Do_An_5\Back_end\DA\obj\Debug\net6.0\DAL.pdb
 D:\Do_An_5\Back_end\DA\obj\Debug\net6.0\ref\DAL.dll
+D:\Do_An_5\Back_end\DA\obj\Debug\net6.0\DAL.sourcelink.json
+D:\Do_An_5\Back_end\DA\obj\Debug\net6.0\DAL.csproj.Up2Date

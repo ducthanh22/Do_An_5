@@ -1,6 +1,6 @@
 ﻿using BUS.Interface;
 using DAL.Interface;
-using Model;
+using DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace BUS
 {
-    public class Order_detailBus : GenericBus<Order_detail>,IOder_detailBus
+    public class Order_detailBus : GenericBus<Order_detailDto>,IOder_detailBus
     {
         public IOrder_detailRepository _res;
         public Order_detailBus(IOrder_detailRepository res) : base(res)

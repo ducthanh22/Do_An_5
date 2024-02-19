@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace DAL
 {
-    public class ImportbillBus : GenericBus<Importbill>, IImportbillBus
+    public class ImportbillBus : GenericBus<ImportbillDto>, IImportbillBus
     {
         public IImportbillRepository _res;
         public ImportbillBus(IImportbillRepository res) : base(res)

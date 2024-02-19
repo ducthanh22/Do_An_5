@@ -12,8 +12,9 @@ D:\Do_An_5\Back_end\BLL\obj\Debug\net6.0\ref\BUS.dll
 D:\Do_An_5\Back_end\BLL\bin\Debug\net6.0\Model.dll
 D:\Do_An_5\Back_end\BLL\bin\Debug\net6.0\Model.pdb
 D:\Do_An_5\Back_end\BLL\obj\Debug\net6.0\BUS.csproj.AssemblyReference.cache
-D:\Do_An_5\Back_end\BLL\obj\Debug\net6.0\BUS.csproj.CopyComplete
 D:\Do_An_5\Back_end\BLL\bin\Debug\net6.0\DTO.dll
 D:\Do_An_5\Back_end\BLL\bin\Debug\net6.0\DTO.pdb
 D:\Do_An_5\Back_end\BLL\bin\Debug\net6.0\DAL.dll
 D:\Do_An_5\Back_end\BLL\bin\Debug\net6.0\DAL.pdb
+D:\Do_An_5\Back_end\BLL\obj\Debug\net6.0\BUS.sourcelink.json
+D:\Do_An_5\Back_end\BLL\obj\Debug\net6.0\BUS.csproj.Up2Date

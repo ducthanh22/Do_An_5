@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Microsoft.Extensions.Logging.EventSource.LoggingEventSource;
 
 namespace DAL
 {
@@ -41,5 +42,17 @@ namespace DAL
             };
             return searchResults;
         }
-    }
+        public async Task<Price> DeleteIdProduct(int id)
+        {
+            var priceToDelete = await _DbContext.Set<Price>().FirstOrDefaultAsync(p => p.Idproduct == id);
+            if (priceToDelete != null)
+            {
+                _DbContext.Set<Price>().Remove(priceToDelete);
+                await _DbContext.SaveChangesAsync();
+            }
+            return priceToDelete;
+        }
+       
+                        
+}
 }

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Interface
 {
-    public interface IExportbillBus :IGenericBUS<Exportbill>
+    public interface IExportbillBus :IGenericBUS<ExportbillDto>
     {
         Task<BaseQuerieResponse<ExportbillDto>> Search(int keywork, int page, int pageSize);
     }

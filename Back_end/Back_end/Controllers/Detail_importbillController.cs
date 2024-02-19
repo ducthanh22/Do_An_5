@@ -2,7 +2,8 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Model;
+using DTO;
+
 
 namespace Back_end.Controllers
 {
@@ -17,7 +18,7 @@ namespace Back_end.Controllers
             _Bus = Bus;
         }
         [HttpGet("GetAll")]
-        public async Task<ActionResult<List<Detail_importbill>>> GetAll()
+        public async Task<ActionResult<List<Detail_importbillDto>>> GetAll()
         {
             var result = await _Bus.GetAll();
             return Ok(result);
@@ -31,14 +32,14 @@ namespace Back_end.Controllers
         }
 
         [HttpPost("create")]
-        public async Task<ActionResult<Detail_importbillDto>> Create([FromBody] Detail_importbill dto)
+        public async Task<ActionResult<Detail_importbillDto>> Create([FromBody] Detail_importbillDto dto)
         {
             var createdEntity = await _Bus.Create(dto);
 
             return Ok(createdEntity);
         }
         [HttpPut("update")]
-        public async Task<ActionResult<Detail_importbillDto>> Update([FromBody] Detail_importbill dto)
+        public async Task<ActionResult<Detail_importbillDto>> Update([FromBody] Detail_importbillDto dto)
         {
             var createdEntity = await _Bus.Update(dto);
 

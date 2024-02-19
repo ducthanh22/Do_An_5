@@ -31,6 +31,19 @@ namespace BUS
         {
             return await _res.GetByIds(ids);
         }
+        public async  Task<List<ProductsDto>> Getalls()
+        {
+            return await _res.Getalls();
+        }
 
+        public async Task<ProductsDto> Creates(ProductsDto entity)
+        {
+            return await _res.Creates(entity);
+        }
+        public async Task<ProductsDto> Updates(ProductsDto entity)
+        {
+            return await _res.Updates(entity);
+
+        }
     }
 }

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Interface
 {
-    public interface IExportbillRepository:IGenericRepository<Exportbill>
+    public interface IExportbillRepository:IGenericRepository<ExportbillDto>
     {
         Task<BaseQuerieResponse<ExportbillDto>> Search(int keywork, int page, int pageSize);
     }

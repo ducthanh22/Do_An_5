@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Model;
+using DTO;
+
 
 
 namespace Back_end.Controllers
@@ -33,14 +35,14 @@ namespace Back_end.Controllers
         }
 
         [HttpPost("create")]
-        public async Task<ActionResult<OrderDto>> Create([FromBody] Order dto)
+        public async Task<ActionResult<OrderDto>> Create([FromBody] OrderDto dto)
         {
             var createdEntity = await _Bus.Create(dto);
 
             return Ok(createdEntity);
         }
         [HttpPut("update")]
-        public async Task<ActionResult<OrderDto>> Update([FromBody] Order dto)
+        public async Task<ActionResult<OrderDto>> Update([FromBody] OrderDto dto)
         {
             var createdEntity = await _Bus.Update(dto);
 

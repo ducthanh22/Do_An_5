@@ -1,4 +1,5 @@
 ﻿using Model;
+using DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BUS.Interface
 {
-    public interface IOrderBus :IGenericBUS<Order>
+    public interface IOrderBus :IGenericBUS<OrderDto>
     {
         Task<CreateOrderDto> CreateOrder(CreateOrderDto entity);
 

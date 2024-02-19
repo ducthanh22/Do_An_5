@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace DAL
 {
-    public class Detail_warehouseBus : GenericBus<Detail_warehouse>, IDetail_warehouseBus
+    public class Detail_warehouseBus : GenericBus<Detail_warehouseDto>, IDetail_warehouseBus
     {
         public IDetail_warehouseRepository _res;
         public Detail_warehouseBus(IDetail_warehouseRepository res) : base(res)

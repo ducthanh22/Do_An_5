@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace DAL
 {
-    public class ProducesRepository : GenericRepository<Produces>, IProducesRepository
+    public class ProducesRepository : GenericRepository<ProducesDto>, IProducesRepository
     {
         public ProducesRepository(Achino_DbContext dbContext, IMapper mapper) : base(dbContext, mapper)
         {
