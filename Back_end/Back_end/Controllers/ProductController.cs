@@ -29,12 +29,12 @@ namespace Back_end.Controllers
             return Ok(result);
         }
 
-        [HttpGet("GetByid")]
-        public async Task<ActionResult<ProductsDto>> Getbyid(int id)
-        {
-            var result = await _productsBus.Getbyid(id);
-            return Ok(result);
-        }
+        //[HttpGet("GetByid")]
+        //public async Task<ActionResult<ProductsDto>> Getbyid(int id)
+        //{
+        //    var result = await _productsBus.Getbyid(id);
+        //    return Ok(result);
+        //}
         [HttpGet("GetByids")]
         public async Task<ActionResult<ProductsDto>> GetByIds(int id)
         {

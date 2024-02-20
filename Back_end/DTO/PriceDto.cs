@@ -9,10 +9,8 @@ namespace DTO
 {
     public class PriceDto : BasedbDto
     {
-        public int Idproduct {  get; set; }
-        public int Price_product {  get; set; }
-        public DateTime Startday { get; set; } = DateTime.Now;
-        public DateTime Endday { get; set; } = DateTime.Now;
+        public int Idproduct { get; set; }
+        public int Price_product { get; set; }
 
     }
 }

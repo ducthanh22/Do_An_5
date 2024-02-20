@@ -9,8 +9,10 @@ using System.Threading.Tasks;
 
 namespace DAL.Interface
 {
-    public interface IProducesRepository : IGenericRepository<ProducesDto>
+    public interface IProducesRepository : IGenericRepository<Produces>
     {
         Task<BaseQuerieResponse<ProducesDto>> Search(string keywork, int page, int pageSize);
+        Task<UpFile> UpImg(UpFile produces);
+
     }
 }

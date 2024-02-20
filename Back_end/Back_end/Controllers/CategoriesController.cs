@@ -25,7 +25,7 @@ namespace Back_end.Controllers
 
         [HttpGet("GetAll")]
         //[HasPermission(new[] { (int)EnumModule.Module.QlDm }, new[] { (int)EnumPermission.Type.Update })]
-        public async Task<ActionResult<List<CategoriesDto>>> GetAll()
+        public async Task<ActionResult<List<Categories>>> GetAll()
         {
             var result= await _categoriesBus.GetAll();
             return Ok(result);
@@ -37,7 +37,7 @@ namespace Back_end.Controllers
         //[Authorize(Roles = "Admin,Customer")]
         //[HasPermission(new[] { (int)EnumModule.Module.QlDm }, new[] { (int)EnumPermission.Type.Update })]
 
-        public async Task<ActionResult<CategoriesDto>> Getbyid(int id)
+        public async Task<ActionResult<Categories>> Getbyid(int id)
         {
             var result = await _categoriesBus.Getbyid(id);
             return Ok(result);

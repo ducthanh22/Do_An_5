@@ -24,7 +24,8 @@ namespace DAL
             {
                 Id_customer = entity.Id_customer,
                 status = entity.status,
-                OrderDate = entity.OrderDate,
+                Price= entity.Price,
+               
             };
 
             var orderEntity = _mapper.Map<Order>(orderDto);

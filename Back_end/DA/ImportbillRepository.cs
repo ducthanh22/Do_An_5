@@ -24,8 +24,7 @@ namespace DAL
                         select new ImportbillDto
                         {
                             Price = d.Price,
-                            Startday = d.Startday,
-                            Endday = d.Endday,
+                           
                             
                         };
 
@@ -50,7 +49,7 @@ namespace DAL
             {
                 Id_customer = entity.Id_customer,
                 status = entity.status,
-                OrderDate = entity.OrderDate,
+                Price = entity.Price,
             };
 
             var orderEntity = _mapper.Map<Order>(orderDto);

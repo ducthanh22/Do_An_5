@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace DAL
 {
-    public class EportbillRepository : GenericRepository<ExportbillDto>, IExportbillRepository
+    public class EportbillRepository : GenericRepository<Exportbill>, IExportbillRepository
     {
         public EportbillRepository(Achino_DbContext dbContext, IMapper mapper) : base(dbContext, mapper)
         {
@@ -25,8 +25,7 @@ namespace DAL
                         select new ExportbillDto
                         {
                             Price=d.Price,
-                            Startday=d.Startday,
-                            Endday=d.Endday,
+                            
 
                            
                         };

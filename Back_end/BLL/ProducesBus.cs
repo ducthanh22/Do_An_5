@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace DAL
 {
-    public class ProducesBus : GenericBus<ProducesDto>, IProducesBus
+    public class ProducesBus : GenericBus<Produces>, IProducesBus
     {
         public IProducesRepository _res;
         public ProducesBus(IProducesRepository res) : base(res)
@@ -21,5 +21,10 @@ namespace DAL
         {
             return await _res.Search(keywork, page, pageSize);
         }
+        public async Task<UpFile> UpImg(UpFile produces)
+        {
+            return await _res.UpImg(produces);
+        }
+        
     }
 }

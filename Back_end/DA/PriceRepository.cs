@@ -25,8 +25,7 @@ namespace DAL
                         select new PriceDto
                         {
                             Price_product=d.Price_product,
-                            Startday=d.Startday,
-                            Endday=d.Endday,
+                           
                         };
 
             var totalCount = await query.LongCountAsync();

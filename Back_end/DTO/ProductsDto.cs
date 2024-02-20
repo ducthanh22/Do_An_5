@@ -16,18 +16,10 @@ namespace DTO
         public int Price_product { get; set; }
         public string NameSize { get; set; }
 
-        public DateTime Startday { get; set; } = DateTime.Now;
-        public DateTime Endday { get; set; } = DateTime.Now;
 
-
+        
 
     }
-    public class UpLoadFile
-    {
-        public int Id { get; set; }
-        public IFormFile Img { get; set; }
-        public string? Image { get; set; }
-
-    }
+    
    
 }

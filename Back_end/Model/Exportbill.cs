@@ -10,7 +10,7 @@ namespace Model
     public class Exportbill : Basedb
     {
         public int Price { get; set; }
-        public DateTime Startday { get; set; }
-        public DateTime Endday { get; set; }
+        public int Status { get; set; }
+        public int IdStaff { get; set; }
     }
 }

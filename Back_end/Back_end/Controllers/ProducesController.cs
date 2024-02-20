@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using DTO;
+using Model;
 
 namespace Back_end.Controllers
 {
@@ -31,14 +32,14 @@ namespace Back_end.Controllers
         }
 
         [HttpPost("create")]
-        public async Task<ActionResult<ProducesDto>> Create([FromBody] ProducesDto dto)
+        public async Task<ActionResult<ProducesDto>> Create([FromBody] Produces dto)
         {
             var createdEntity = await _Bus.Create(dto);
 
             return Ok(createdEntity);
         }
         [HttpPut("update")]
-        public async Task<ActionResult<ProducesDto>> Update([FromBody] ProducesDto dto)
+        public async Task<ActionResult<ProducesDto>> Update([FromBody] Produces dto)
         {
             var createdEntity = await _Bus.Update(dto);
 
@@ -55,6 +56,12 @@ namespace Back_end.Controllers
         {
             var result = await _Bus.Search(keywork, page, pageSize);
 
+            return Ok(result);
+        }
+        [HttpPost("UploadFile")]
+        public async Task<ActionResult<UpFile>>Uploadfile([FromForm]UpFile upFile)
+        {
+            var result = await _Bus.UpImg(upFile);
             return Ok(result);
         }
     }

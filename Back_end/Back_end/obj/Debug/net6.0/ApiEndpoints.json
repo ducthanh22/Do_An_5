@@ -139,7 +139,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.List\u00601[[DTO.CategoriesDto, DTO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.List\u00601[[Model.Categories, Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -165,7 +165,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "DTO.CategoriesDto",
+        "Type": "Model.Categories",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -347,6 +347,42 @@
     "ReturnTypes": [
       {
         "Type": "Model.Color",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Back_end.Controllers.ColorController",
+    "Method": "Upload",
+    "RelativePath": "api/Color/Upload",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "Img",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      },
+      {
+        "Name": "Image",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "DTO.UpLoadFile",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -738,7 +774,7 @@
     "Parameters": [
       {
         "Name": "dto",
-        "Type": "DTO.ExportbillDto",
+        "Type": "Model.Exportbill",
         "IsRequired": true
       }
     ],
@@ -862,7 +898,7 @@
     "Parameters": [
       {
         "Name": "dto",
-        "Type": "DTO.ExportbillDto",
+        "Type": "Model.Exportbill",
         "IsRequired": true
       }
     ],
@@ -1462,7 +1498,7 @@
     "Parameters": [
       {
         "Name": "dto",
-        "Type": "DTO.ProducesDto",
+        "Type": "Model.Produces",
         "IsRequired": true
       }
     ],
@@ -1586,13 +1622,49 @@
     "Parameters": [
       {
         "Name": "dto",
-        "Type": "DTO.ProducesDto",
+        "Type": "Model.Produces",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
         "Type": "DTO.ProducesDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Back_end.Controllers.ProducesController",
+    "Method": "Uploadfile",
+    "RelativePath": "api/Produces/UploadFile",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "Img",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      },
+      {
+        "Name": "Image",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "DTO.UpFile",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -1665,32 +1737,6 @@
     "ReturnTypes": [
       {
         "Type": "System.Collections.Generic.List\u00601[[DTO.ProductsDto, DTO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "Back_end.Controllers.ProductController",
-    "Method": "Getbyid",
-    "RelativePath": "api/Product/GetByid",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": false
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "DTO.ProductsDto",
         "MediaTypes": [
           "text/plain",
           "application/json",

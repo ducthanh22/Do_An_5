@@ -10,8 +10,10 @@ using System.Threading.Tasks;
 
 namespace DAL.Interface
 {
-    public interface IProducesBus : IGenericBUS<ProducesDto>
+    public interface IProducesBus : IGenericBUS<Produces>
     {
         Task<BaseQuerieResponse<ProducesDto>> Search(string keywork, int page, int pageSize);
+        Task<UpFile> UpImg(UpFile produces);
+
     }
 }

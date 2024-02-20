@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace DAL
 {
-    public class ProducesRepository : GenericRepository<ProducesDto>, IProducesRepository
+    public class ProducesRepository : GenericRepository<Produces>, IProducesRepository
     {
         public ProducesRepository(Achino_DbContext dbContext, IMapper mapper) : base(dbContext, mapper)
         {
@@ -42,5 +42,62 @@ namespace DAL
             };
             return searchResults;
         }
+        public async Task<UpFile> UpImg(UpFile produces)
+        {
+            try
+            {
+                var data = await _DbContext.Set<Produces>().FindAsync(produces.Id);
+
+                // Tạo tên mới cho tệp tin hình ảnh
+                var newFileName = $"{Guid.NewGuid().ToString()}-{produces.Img.FileName}";
+                var newFilePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "Img_Brand", newFileName);
+
+                // Kiểm tra nếu UpfileProduct đã có một hình ảnh
+                if (data.Image !="string"&& data.Image!=null)
+                {
+                    // Nếu đã có hình ảnh, xóa tệp tin hình ảnh cũ
+                    var oldFilePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "Img_Brand", data.Image);
+                    if (File.Exists(oldFilePath))
+                    {
+                        File.Delete(oldFilePath);
+                    }
+                }
+                // Lưu tệp tin hình ảnh mới
+                using (var stream = new FileStream(newFilePath, FileMode.Create))
+                {
+                    await produces.Img.CopyToAsync(stream);
+                }
+
+                // Cập nhật thông tin trong đối tượng UpfileProduct
+                produces.Image = newFileName;
+
+                // Lấy sản phẩm từ cơ sở dữ liệu dựa trên ID
+                var existingproduces = await _DbContext.Produces.FindAsync(produces.Id);
+
+                // Nếu sản phẩm được tìm thấy, cập nhật hình ảnh của nó
+                if (existingproduces != null)
+                {
+                    existingproduces.Image = newFileName;
+                    await _DbContext.SaveChangesAsync();
+                }
+                else
+                {
+                    throw new Exception();
+                }
+
+                return produces;
+            }
+            catch (Exception ex)
+            {
+                // Xử lý ngoại lệ, ghi log, hoặc ném một ngoại lệ cụ thể hơn tùy thuộc vào yêu cầu của ứng dụng
+                throw ex;
+            }
+
+
+        }
     }
+
+   
 }
+
+

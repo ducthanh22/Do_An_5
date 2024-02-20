@@ -3,10 +3,12 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Model;
+using DTO;
+
 
 namespace Back_end.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ColorController : ControllerBase
@@ -48,6 +50,13 @@ namespace Back_end.Controllers
         public async Task<ActionResult<Color>> Delete(int id)
         {
             var result = await _Bus.Delete(id);
+            return Ok(result);
+        }
+
+        [HttpPost("Upload")]
+        public async Task<ActionResult<UpLoadFile>> Upload([FromForm] UpLoadFile data)
+        {
+            var result = await _Bus.UploadFile(data);
             return Ok(result);
         }
     }

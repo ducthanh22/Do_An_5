@@ -11,7 +11,8 @@ namespace Model
     {
         
         public int Id_customer {  get; set; }
-        public bool status { get; set; }
-        public DateTime OrderDate { get; set; }
+        public int status { get; set; }
+        public int Price { get; set; }
+
     }
 }
