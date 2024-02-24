@@ -1825,6 +1825,22 @@
     ]
   },
   {
+    "ContainingType": "Back_end.Controllers.SendEmailController",
+    "Method": "SendEmail",
+    "RelativePath": "api/SendEmail/send-email",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "email",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Back_end.Controllers.WarehouseController",
     "Method": "Create",
     "RelativePath": "api/Warehouse/create",

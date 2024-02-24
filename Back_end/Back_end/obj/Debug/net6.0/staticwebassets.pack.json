@@ -5,6 +5,26 @@
       "PackagePath": "staticwebassets\\Images\\ed664ed2-8b21-40b3-8412-29484a104c39-Screenshot 2024-02-19 234208.png"
     },
     {
+      "Id": "D:\\Do_An_5\\Back_end\\Back_end\\wwwroot\\Img_Brand\\46e1b632-6996-41c6-a6d0-268aacf1b974-Screenshot 2024-02-19 234208.png",
+      "PackagePath": "staticwebassets\\Img_Brand\\46e1b632-6996-41c6-a6d0-268aacf1b974-Screenshot 2024-02-19 234208.png"
+    },
+    {
+      "Id": "D:\\Do_An_5\\Back_end\\Back_end\\wwwroot\\Img_Brand\\60ade659-d9c7-4a6f-9eef-b4ad895d40fd-Screenshot 2024-02-19 233825.png",
+      "PackagePath": "staticwebassets\\Img_Brand\\60ade659-d9c7-4a6f-9eef-b4ad895d40fd-Screenshot 2024-02-19 233825.png"
+    },
+    {
+      "Id": "D:\\Do_An_5\\Back_end\\Back_end\\wwwroot\\Img_Brand\\c416f32c-f5ea-4ca8-a3ec-d7744d75f5e1-Screenshot 2024-02-19 234208.png",
+      "PackagePath": "staticwebassets\\Img_Brand\\c416f32c-f5ea-4ca8-a3ec-d7744d75f5e1-Screenshot 2024-02-19 234208.png"
+    },
+    {
+      "Id": "D:\\Do_An_5\\Back_end\\Back_end\\wwwroot\\Temlate_Email\\images\\image-1.png",
+      "PackagePath": "staticwebassets\\Temlate_Email\\images\\image-1.png"
+    },
+    {
+      "Id": "D:\\Do_An_5\\Back_end\\Back_end\\wwwroot\\Temlate_Email\\index.html",
+      "PackagePath": "staticwebassets\\Temlate_Email\\index.html"
+    },
+    {
       "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.Back_end.Microsoft.AspNetCore.StaticWebAssets.props",
       "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
     },

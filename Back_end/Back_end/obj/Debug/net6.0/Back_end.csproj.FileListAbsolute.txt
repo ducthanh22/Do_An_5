@@ -85,3 +85,7 @@ D:\Do_An_5\Back_end\Back_end\bin\Debug\net6.0\Microsoft.AspNetCore.Authenticatio
 D:\Do_An_5\Back_end\Back_end\bin\Debug\net6.0\Back_end.staticwebassets.runtime.json
 D:\Do_An_5\Back_end\Back_end\obj\Debug\net6.0\Back_end.sourcelink.json
 D:\Do_An_5\Back_end\Back_end\obj\Debug\net6.0\Back_end.csproj.Up2Date
+D:\Do_An_5\Back_end\Back_end\bin\Debug\net6.0\MailKit.dll
+D:\Do_An_5\Back_end\Back_end\bin\Debug\net6.0\MimeKit.dll
+D:\Do_An_5\Back_end\Back_end\bin\Debug\net6.0\NETCore.MailKit.dll
+D:\Do_An_5\Back_end\Back_end\bin\Debug\net6.0\BouncyCastle.Crypto.dll

@@ -12,6 +12,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.OpenApi.Models;
+using DTO;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -52,6 +53,8 @@ builder.Services.AddAuthentication(options =>
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.Configure<MailSettings>(builder.Configuration.GetSection("MailSettings"));
 
 
 
@@ -98,6 +101,9 @@ builder.Services.AddScoped<IAccountRepository, AccountRepository>();
 
 builder.Services.AddScoped<IColorBus, ColorBus>();
 builder.Services.AddScoped<IColorRepository, ColorRepository>();
+
+builder.Services.AddScoped<ISendEmailBus, SendEmailBus>();
+builder.Services.AddScoped<ISendEmailRepository, SendEmailRepository>();
 
 builder.Services.AddCors();
 
