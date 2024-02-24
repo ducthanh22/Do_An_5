@@ -25,8 +25,9 @@ namespace DAL
                         {
                             Id = d.Id,
                             Name = d.Name,
-                           Email = d.Email,
+                            Email = d.Email,
                             Address = d.Address,
+                            Image=d.Image
                         };
 
             var totalCount = await query.LongCountAsync();

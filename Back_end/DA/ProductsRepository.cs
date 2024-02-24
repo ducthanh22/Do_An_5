@@ -4,6 +4,7 @@ using DAL.Interface;
 using DTO;
 using Microsoft.EntityFrameworkCore;
 using Model;
+using Org.BouncyCastle.Crypto;
 
 namespace DAL
 {
@@ -15,16 +16,24 @@ namespace DAL
         public async Task<BaseQuerieResponse<ProductsDto>> Search(string keyword, int page, int pageSize)
         {
 
-            var query = from d in _DbContext.Set<Products>().AsQueryable()
-                        where string.IsNullOrEmpty(keyword) || d.Name.Contains(keyword)
+            var query = from d in _DbContext.Set<Products>()
+                        join a in _DbContext.Set<Color>() on d.Id equals a.Id into aGroup
+                        from a in aGroup.DefaultIfEmpty()
+                        join b in _DbContext.Set<Price>() on d.Id equals b.Id into bGroup
+                        from b in bGroup.DefaultIfEmpty()
+                        join e in _DbContext.Set<Size>() on a.Id equals e.Id into eGroup
+                        from e in eGroup.DefaultIfEmpty()
+                        where ( d.Name.Contains(keyword))
                         select new ProductsDto
                         {
                             Id = d.Id,
                             Name = d.Name,
                             Idcategories = d.Idcategories,
                             Idproduces = d.Idproduces,
-                            Describe=d.Describe
-                           
+                            Describe = d.Describe,
+                            NameColor = a != null ? a.NameColor : null,
+                            Price_product = b != null ? b.Price_product : 0,
+                            NameSize = e != null ? e.NameSize : null
                         };
 
             var totalCount = await query.LongCountAsync();

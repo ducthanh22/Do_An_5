@@ -11,6 +11,10 @@ namespace DTO
     {
         public int Idproduct { get; set; }
         public int Price_product { get; set; }
+        public string Name { get; set; }
+        public string Image { get; set; }
+
+
 
     }
 }

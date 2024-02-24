@@ -8,7 +8,7 @@ using Model;
 
 namespace Back_end.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class PriceController : ControllerBase
@@ -53,9 +53,9 @@ namespace Back_end.Controllers
             return Ok(result);
         }
         [HttpGet("Search")]
-        public async Task<IActionResult> Search([FromQuery] int? keywork, [FromQuery] int page = 1, [FromQuery] int pageSize = 10)
+        public async Task<IActionResult> Search([FromQuery] int? min, [FromQuery] int? max, [FromQuery] int page = 1, [FromQuery] int pageSize = 10)
         {
-            var result = await _Bus.Search(keywork, page, pageSize);
+            var result = await _Bus.Search(min, max, page, pageSize);
 
             return Ok(result);
         }

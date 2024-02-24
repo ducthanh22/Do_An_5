@@ -17,15 +17,24 @@ namespace DAL
         public PriceRepository(Achino_DbContext dbContext, IMapper mapper) : base(dbContext, mapper)
         {
         }
-        public async Task<BaseQuerieResponse<PriceDto>> Search(int? keyword, int page, int pageSize)
+        public async Task<BaseQuerieResponse<PriceDto>> Search(int? min, int? max, int page, int pageSize)
         {
 
-            var query = from d in _DbContext.Set<Price>().AsQueryable()
-                        where d.Price_product==keyword
+            var query = from d in _DbContext.Set<Price>()
+                        join a in _DbContext.Set<Products>() on d.Idproduct equals a.Id
+                        join b in _DbContext.Set<Color>() on d.Idproduct equals b.IdProduct
+
+                        where (d.Price_product >= min && d.Price_product <= max)
                         select new PriceDto
                         {
+                            Id = d.Id,
                             Price_product=d.Price_product,
-                           
+                            Idproduct=d.Idproduct,
+                            Image = b.Image,
+                            Name = a.Name,
+                            Created=d.Created,
+                            Modified=d.Modified,
+
                         };
 
             var totalCount = await query.LongCountAsync();
@@ -35,7 +44,7 @@ namespace DAL
             {
                 PageIndex = page,
                 PageSize = pageSize,
-                Keynumber = keyword,
+                Keynumber = max,
                 TotalFilter = totalCount,
                 Data = pageResults
             };

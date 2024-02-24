@@ -17,9 +17,9 @@ namespace DAL
         {
             _res = res;
         }
-        public async Task<BaseQuerieResponse<PriceDto>> Search(int? keywork, int page, int pageSize)
+        public async Task<BaseQuerieResponse<PriceDto>> Search(int? min, int? max, int page, int pageSize)
         {
-            return await _res.Search(keywork, page, pageSize);
+            return await _res.Search( min,max, page, pageSize);
         }
         public async Task<Price> DeleteIdProduct(int id)
         {

@@ -13,6 +13,7 @@ namespace DAL.Interface
     public interface IPriceBus : IGenericBUS<Price>
     {
         Task<Price> DeleteIdProduct(int id);
-        Task<BaseQuerieResponse<PriceDto>> Search(int? keywork, int page, int pageSize);
+        Task<BaseQuerieResponse<PriceDto>> Search(int? min, int? max, int page, int pageSize);
+
     }
 }
