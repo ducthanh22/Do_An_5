@@ -40,5 +40,9 @@ namespace BUS
         {
             return await _accountRepository.ForgotPassword(model);
         }
+        public async Task<string> ResetPassword(ResetPasswordModel model)
+        {
+            return await _accountRepository.ResetPassword(model);
+        }
     }
 }

@@ -17,5 +17,7 @@ namespace DAL.Interface
         Task<bool> Register(User user);
         Task<bool> Login(UserDto user);
         Task<string> ForgotPassword(ForgotPasswordModel model);
+        Task<string> ResetPassword(ResetPasswordModel model);
+
     }
 }

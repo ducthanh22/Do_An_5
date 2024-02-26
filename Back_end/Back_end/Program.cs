@@ -30,6 +30,8 @@ builder.Services.AddDbContext<Achino_DbContext>(options =>
 builder.Services.AddIdentity<User, Role>()
     .AddEntityFrameworkStores<Achino_DbContext>()
     .AddDefaultTokenProviders();
+builder.Services.Configure<DataProtectionTokenProviderOptions>(opt =>
+   opt.TokenLifespan = TimeSpan.FromHours(2));
 
 builder.Services.AddHttpContextAccessor(); // ??ng ký IHttpContextAccessor
 

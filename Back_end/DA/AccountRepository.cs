@@ -16,6 +16,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Security.Policy;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.AspNetCore.Mvc.Routing;
+using System.Net;
 
 namespace DAL
 {
@@ -165,12 +166,13 @@ namespace DAL
             if (user == null || !(await _userManager.IsEmailConfirmedAsync(user)))
             {
                 var token = await _userManager.GeneratePasswordResetTokenAsync(user);
-
-                // Tạo callback URL sử dụng LinkGenerator
-                var callbackUrl = _linkGenerator.GetUriByAction(_httpContextAccessor.HttpContext,
-                    action: "ForgotPassword",
+                var callbackUrl = _linkGenerator.GetUriByAction(
+                    _httpContextAccessor.HttpContext,
+                    action: "ResetPassword",
                     controller: "Account",
-                    values: new { token });
+                    values: new { token  });
+
+
 
                 // Gửi email
                 await _sendEmailRepository.SendEmailAsync(model.Email, "Reset Password",
@@ -178,6 +180,28 @@ namespace DAL
             }
             return "Email sent successfully.";
         }
+        public async Task<string> ResetPassword(ResetPasswordModel model)
+        {
+            var user = await _userManager.FindByEmailAsync(model.Email);
+            if (user != null)
+            {
+                var decodedToken = Uri.UnescapeDataString(model.Token);
+                var result = await _userManager.ResetPasswordAsync(user, decodedToken, model.NewPassword);
+                if (result.Succeeded)
+                {
+                    return "Password reset successfully.";
+                }
+                else
+                {
+                    foreach (var error in result.Errors)
+                    {
+                        return error.Description.ToString();
+                    }
+                }
+            }
+            return "Không tìm thấy người dùng";
+        }
+
 
 
 
