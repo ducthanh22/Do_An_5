@@ -21,5 +21,10 @@ namespace DAL
         {
             return await _res.Search(keywork, page, pageSize);
         }
+       
+        public async Task<CreateExportbillDto> CreateEX(CreateExportbillDto entity)
+        {
+            return await _res.CreateEX(entity);
+        }
     }
 }

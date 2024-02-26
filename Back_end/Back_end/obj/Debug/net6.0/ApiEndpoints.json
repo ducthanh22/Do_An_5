@@ -27,6 +27,32 @@
   },
   {
     "ContainingType": "Back_end.Controllers.AccountController",
+    "Method": "ForgotPassword",
+    "RelativePath": "api/Account/ForgotPassword",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Email",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.String",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Back_end.Controllers.AccountController",
     "Method": "Login",
     "RelativePath": "api/Account/Login",
     "HttpMethod": "POST",
@@ -526,7 +552,7 @@
     "Parameters": [
       {
         "Name": "dto",
-        "Type": "DTO.Detail_importbillDto",
+        "Type": "Model.Detail_importbill",
         "IsRequired": true
       }
     ],
@@ -624,7 +650,7 @@
     "Parameters": [
       {
         "Name": "dto",
-        "Type": "DTO.Detail_importbillDto",
+        "Type": "Model.Detail_importbill",
         "IsRequired": true
       }
     ],
@@ -650,7 +676,7 @@
     "Parameters": [
       {
         "Name": "dto",
-        "Type": "DTO.Detail_warehouseDto",
+        "Type": "Model.Detail_warehouse",
         "IsRequired": true
       }
     ],
@@ -748,7 +774,7 @@
     "Parameters": [
       {
         "Name": "dto",
-        "Type": "DTO.Detail_warehouseDto",
+        "Type": "Model.Detail_warehouse",
         "IsRequired": true
       }
     ],
@@ -924,13 +950,13 @@
     "Parameters": [
       {
         "Name": "dto",
-        "Type": "DTO.ImportbillDto",
+        "Type": "DTO.CreateImportbillDto",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "DTO.ImportbillDto",
+        "Type": "DTO.CreateImportbillDto",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -1048,13 +1074,13 @@
     "Parameters": [
       {
         "Name": "dto",
-        "Type": "DTO.ImportbillDto",
+        "Type": "Model.Importbill",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "DTO.ImportbillDto",
+        "Type": "Model.Importbill",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -1074,13 +1100,13 @@
     "Parameters": [
       {
         "Name": "dto",
-        "Type": "DTO.Order_detailDto",
+        "Type": "Model.Order_detail",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "DTO.Order_detailDto",
+        "Type": "Model.Order_detail",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -1106,7 +1132,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "DTO.Order_detailDto",
+        "Type": "Model.Order_detail",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -1172,13 +1198,13 @@
     "Parameters": [
       {
         "Name": "dto",
-        "Type": "DTO.Order_detailDto",
+        "Type": "Model.Order_detail",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "DTO.Order_detailDto",
+        "Type": "Model.Order_detail",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -1224,13 +1250,13 @@
     "Parameters": [
       {
         "Name": "dto",
-        "Type": "DTO.OrderDto",
+        "Type": "DTO.CreateOrderDto",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "DTO.OrderDto",
+        "Type": "DTO.CreateOrderDto",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -1322,13 +1348,13 @@
     "Parameters": [
       {
         "Name": "dto",
-        "Type": "DTO.OrderDto",
+        "Type": "Model.Order",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "DTO.OrderDto",
+        "Type": "Model.Order",
         "MediaTypes": [
           "text/plain",
           "application/json",

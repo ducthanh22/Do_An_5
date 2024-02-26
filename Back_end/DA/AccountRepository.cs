@@ -11,23 +11,45 @@ using Microsoft.Extensions.Configuration;
 using DTO;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using System.Security.Policy;
+using Microsoft.AspNetCore.Routing;
+using Microsoft.AspNetCore.Mvc.Routing;
 
 namespace DAL
 {
     public class AccountRepository : IAccountRepository
     {
-       
+
         private readonly UserManager<User> _userManager;
         private readonly RoleManager<Role> _roleManager;
         private readonly Achino_DbContext _dbContext;
         private readonly IConfiguration _config;
-        public AccountRepository(UserManager<User> userManager, Achino_DbContext dbContext,IConfiguration config  ,
-            RoleManager<Role> roleManager)
+        private readonly ISendEmailRepository _sendEmailRepository;
+        //private readonly IUrlHelper _urlHelper;
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly LinkGenerator _linkGenerator;
+
+
+        public AccountRepository(
+            UserManager<User> userManager,
+            Achino_DbContext dbContext,
+            IConfiguration config,
+            RoleManager<Role> roleManager,
+            IHttpContextAccessor httpContextAccessor,
+            ISendEmailRepository sendEmailRepository,
+            //IUrlHelper urlHelper,
+            LinkGenerator linkGenerator)
         {
             _userManager = userManager;
             _dbContext = dbContext;
             _config = config;
-            _roleManager = roleManager; 
+            _roleManager = roleManager;
+            _httpContextAccessor = httpContextAccessor;
+            _sendEmailRepository = sendEmailRepository;
+            //_urlHelper = urlHelper;
+            _linkGenerator = linkGenerator;
         }
 
         public async Task<bool> CreateRoleAsync(CreateRoleDto role)
@@ -137,6 +159,29 @@ namespace DAL
                 Token=token,
             };
         }
+        public async Task<string> ForgotPassword(ForgotPasswordModel model)
+        {
+            var user = await _userManager.FindByEmailAsync(model.Email);
+            if (user == null || !(await _userManager.IsEmailConfirmedAsync(user)))
+            {
+                var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+
+                // Tạo callback URL sử dụng LinkGenerator
+                var callbackUrl = _linkGenerator.GetUriByAction(_httpContextAccessor.HttpContext,
+                    action: "ForgotPassword",
+                    controller: "Account",
+                    values: new { token });
+
+                // Gửi email
+                await _sendEmailRepository.SendEmailAsync(model.Email, "Reset Password",
+                    $"Vui lòng đặt lại mật khẩu của bạn bằng cách nhấp vào đây: <a href='{callbackUrl}'>link</a>");
+            }
+            return "Email sent successfully.";
+        }
+
+
+
+
 
     }
 }

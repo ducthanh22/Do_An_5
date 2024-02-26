@@ -3,6 +3,10 @@ h5 {
     text-align: center;
     font-weight: bold;
 }
+h2 {
+    text-align: center;
+    font-family: "Bookman", serif; /* Chỉ định font chữ Bookman */
+}
 
 .panner img {
     position: relative;

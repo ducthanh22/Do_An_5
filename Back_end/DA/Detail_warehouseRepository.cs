@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace DAL
 {
-    public class Detail_warehouseRepository : GenericRepository<Detail_warehouseDto>, IDetail_warehouseRepository
+    public class Detail_warehouseRepository : GenericRepository<Detail_warehouse>, IDetail_warehouseRepository
     {
         public Detail_warehouseRepository(Achino_DbContext dbContext, IMapper mapper) : base(dbContext, mapper)
         {

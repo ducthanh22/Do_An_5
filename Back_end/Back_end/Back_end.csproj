@@ -31,7 +31,6 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\Images\" />
-    <Folder Include="wwwroot\Img_Brand\" />
   </ItemGroup>
 
 </Project>

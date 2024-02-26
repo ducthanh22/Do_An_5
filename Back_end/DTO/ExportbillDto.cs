@@ -13,4 +13,11 @@ namespace DTO
         public int Status { get; set; }
         public int IdStaff { get; set; }
     }
+    public class CreateExportbillDto : BasedbDto
+    {
+        public int Price { get; set; }
+        public int Status { get; set; }
+        public int IdStaff { get; set; }
+        public List<Detail_exportbillDto> Detail_exportbillDto { get; set; }
+    }
 }

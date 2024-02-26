@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace DAL
 {
-    public class ImportbillBus : GenericBus<ImportbillDto>, IImportbillBus
+    public class ImportbillBus : GenericBus<Importbill>, IImportbillBus
     {
         public IImportbillRepository _res;
         public ImportbillBus(IImportbillRepository res) : base(res)
@@ -21,5 +21,10 @@ namespace DAL
         {
             return await _res.Search(keywork, page, pageSize);
         }
+        public async Task<CreateImportbillDto> CreateIm(CreateImportbillDto entity)
+        {
+            return await _res.CreateIm(entity);
+        }
+
     }
 }

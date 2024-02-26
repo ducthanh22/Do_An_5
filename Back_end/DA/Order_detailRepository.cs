@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace DAL
 {
-    public class Order_detailRepository : GenericRepository<Order_detailDto>, IOrder_detailRepository
+    public class Order_detailRepository : GenericRepository<Order_detail>, IOrder_detailRepository
     {
         public Order_detailRepository(Achino_DbContext dbContext, IMapper mapper) : base(dbContext, mapper)
         {

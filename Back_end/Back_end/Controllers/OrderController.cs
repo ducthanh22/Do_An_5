@@ -35,14 +35,14 @@ namespace Back_end.Controllers
         }
 
         [HttpPost("create")]
-        public async Task<ActionResult<OrderDto>> Create([FromBody] OrderDto dto)
+        public async Task<ActionResult<CreateOrderDto>> Create([FromBody] CreateOrderDto dto)
         {
-            var createdEntity = await _Bus.Create(dto);
+            var createdEntity = await _Bus.CreateOrder(dto);
 
             return Ok(createdEntity);
         }
         [HttpPut("update")]
-        public async Task<ActionResult<OrderDto>> Update([FromBody] OrderDto dto)
+        public async Task<ActionResult<Order>> Update([FromBody] Order dto)
         {
             var createdEntity = await _Bus.Update(dto);
 

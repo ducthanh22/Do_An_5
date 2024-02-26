@@ -9,9 +9,10 @@ namespace DTO
 {
     public class Detail_importbillDto : BasedbDto
     {
-        public int Idproduct {  get; set; }
-        public int Price {  get; set; }
-        public int Quantity {  get; set; }
-    
+        public int IdImportbill { get; set; }
+        public int Idproduct { get; set; }
+        public int Price { get; set; }
+        public int Quantity { get; set; }
+
     }
 }

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace BUS
 {
-    public class OrderBus : GenericBus<OrderDto>, IOrderBus
+    public class OrderBus : GenericBus<Order>, IOrderBus
     {
         public IOrderRepository _res;
         public OrderBus(IOrderRepository res) : base(res)

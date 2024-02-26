@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Interface
 {
-    public interface IDetail_warehouseRepository : IGenericRepository<Detail_warehouseDto>
+    public interface IDetail_warehouseRepository : IGenericRepository<Detail_warehouse>
     {
         //Task<IEnumerable<BaseQuerieResponse<Detail_warehouseDto>>> Search(string keywork, int page, int pageSize);
     }

@@ -32,9 +32,13 @@ namespace BUS
         {
             return await _accountRepository.GenerateToken(user);
         }
-        public Task<bool> CreateRoleAsync(CreateRoleDto role)
+        public async Task<bool> CreateRoleAsync(CreateRoleDto role)
         {
-            return _accountRepository.CreateRoleAsync(role);
+            return await _accountRepository.CreateRoleAsync(role);
+        }
+        public async Task<string> ForgotPassword(ForgotPasswordModel model)
+        {
+            return await _accountRepository.ForgotPassword(model);
         }
     }
 }

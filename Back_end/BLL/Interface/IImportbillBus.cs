@@ -10,8 +10,10 @@ using System.Threading.Tasks;
 
 namespace DAL.Interface
 {
-    public  interface IImportbillBus : IGenericBUS<ImportbillDto>
+    public  interface IImportbillBus : IGenericBUS<Importbill>
     {
         Task<BaseQuerieResponse<ImportbillDto>> Search(int keywork, int page, int pageSize);
+        Task<CreateImportbillDto> CreateIm(CreateImportbillDto entity);
+
     }
 }

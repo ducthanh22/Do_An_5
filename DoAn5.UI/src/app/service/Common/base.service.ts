@@ -1,9 +1,9 @@
 
 import { Observable, first } from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Paging } from '../model/Paging';
-import { BaseQuerieResponse } from '../model/Common/BaseQuerieResponse';
-import { BaseCommandResponse } from '../model/Common/BaseCommandResponse';
+import { Paging } from '../../model/Paging';
+import { BaseQuerieResponse } from '../../model/Common/BaseQuerieResponse';
+import { BaseCommandResponse } from '../../model/Common/BaseCommandResponse';
 
 
 export class BaseService<T> {

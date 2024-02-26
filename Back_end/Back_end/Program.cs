@@ -13,6 +13,9 @@ using System.Text;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.OpenApi.Models;
 using DTO;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
+using Microsoft.AspNetCore.Mvc.Routing;
+using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,6 +30,15 @@ builder.Services.AddDbContext<Achino_DbContext>(options =>
 builder.Services.AddIdentity<User, Role>()
     .AddEntityFrameworkStores<Achino_DbContext>()
     .AddDefaultTokenProviders();
+
+builder.Services.AddHttpContextAccessor(); // ??ng ký IHttpContextAccessor
+
+builder.Services.AddSingleton<IActionContextAccessor, ActionContextAccessor>(); // ??ng ký IActionContextAccessor
+
+//builder.Services.AddScoped<IUrlHelper>(x => {
+//    var actionContext = x.GetRequiredService<IActionContextAccessor>().ActionContext;
+//    return new UrlHelper(actionContext);
+//});
 
 
 builder.Services.AddAuthentication(options =>
@@ -75,7 +87,7 @@ builder.Services.AddScoped<IDetail_warehouseBus, Detail_warehouseBus>();
 builder.Services.AddScoped<IDetail_warehouseRepository, Detail_warehouseRepository>();
 
 builder.Services.AddScoped<IExportbillBus, EportbillBus>();
-builder.Services.AddScoped<IExportbillRepository, EportbillRepository>();
+builder.Services.AddScoped<IExportbillRepository, ExportbillRepository>();
 
 builder.Services.AddScoped<IImportbillBus, ImportbillBus>();
 builder.Services.AddScoped<IImportbillRepository, ImportbillRepository>();
@@ -114,10 +126,15 @@ builder.Services.AddAuthorization(options =>
     // Thêm các policy khác n?u c?n thi?t
 });
 
+builder.Services.AddCors(cors => cors.AddPolicy("MyPolicy", builder =>
+{
+    builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+}));
+
 
 builder.Services.AddSwaggerGen(c =>
 {
-    c.SwaggerDoc("v1", new OpenApiInfo { Title = "Your API", Version = "v1" });
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "ACHINO API", Version = "v1" });
     // Thêm c?u hình Swagger ?? yêu c?u xác th?c
     c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
@@ -153,10 +170,11 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+app.UseStaticFiles();
 
 // Add this line to configure CORS
-app.UseCors(options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
-
+//app.UseCors(options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+app.UseCors("MyPolicy");
 
 app.UseHttpsRedirection();
 app.UseAuthentication();

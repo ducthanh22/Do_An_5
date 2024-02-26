@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ProducesService } from 'src/app/service/produces.service';
 
 @Component({
   selector: 'app-home',
@@ -7,7 +8,8 @@ import { Component } from '@angular/core';
 })
 export class HomeComponent {
   responsiveOptions: any[] | undefined;
-  constructor() {}
+  ListProduces:any[]=[]
+  constructor(private ProducesService:ProducesService) {}
 
   ngOnInit() {
       
@@ -29,6 +31,14 @@ export class HomeComponent {
               numScroll: 1
           }
       ];
+      this.GetallProduces()
+  }
+
+  GetallProduces(){
+    this.ProducesService.getAll().subscribe(data=>{
+        this.ListProduces=data;
+    console.log(this.ListProduces)
+    })
   }
 
   

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BUS.Interface
 {
-    public interface IOrderBus :IGenericBUS<OrderDto>
+    public interface IOrderBus :IGenericBUS<Order>
     {
         Task<CreateOrderDto> CreateOrder(CreateOrderDto entity);
 

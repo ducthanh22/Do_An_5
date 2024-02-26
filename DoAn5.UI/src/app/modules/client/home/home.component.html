@@ -1,15 +1,28 @@
 <div class="home">
     <div class="panner">
         <img src="/./assets/client/assets/img/Panner_A.png">
-       </div>
+    </div>
     <div class="sale">
-        <h2 style="text-align: center;color: rgb(191, 10, 10);">Flash Sale</h2>
+        <h2 style="color: rgb(191, 10, 10);">Flash Sale</h2>
     </div>
     <div class="brand">
-        <h2 style="text-align: center;">Thương Hiệu</h2>
+        <h2>Thương Hiệu</h2>
+        <div class="card">
+            <p-carousel [value]="ListProduces" [numVisible]="6" [numScroll]="3" [circular]="false"
+                [responsiveOptions]="responsiveOptions">
+                <ng-template let-x pTemplate="item">
+                    <div class="border-1 surface-border border-round m-2 text-center py-5 px-3"
+                        style="margin-left: 20%;">
+                        <div class="mb-3">
+                            <a href="http://localhost:4200/client/Home"><img src="https://localhost:7058/Img_Brand/{{ x.image }}" [alt]="x.name"style="width: 100px;" /></a>                    
+                        </div>                       
+                    </div>
+                </ng-template>
+            </p-carousel>
+        </div>
     </div>
     <div class="Newproduct">
-        <h2 style="text-align: center;">Sản Phẩm Mới</h2>
+        <h2>Sản Phẩm Mới</h2>
     </div>
 
 </div>

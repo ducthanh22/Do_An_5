@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace DAL
 {
-    public class OrderRepository : GenericRepository<OrderDto>, IOrderRepository
+    public class OrderRepository : GenericRepository<Order>, IOrderRepository
     {
         public OrderRepository(Achino_DbContext dbContext, IMapper mapper) : base(dbContext, mapper)
         {

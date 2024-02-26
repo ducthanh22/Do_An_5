@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace BUS.Interface
 {
-    public interface IDetail_warehouseBus :IGenericBUS<Detail_warehouseDto>
+    public interface IDetail_warehouseBus :IGenericBUS<Detail_warehouse>
     {
         //Task<IEnumerable<BaseQuerieResponse<Detail_warehouseDto>>> Search(string keywork, int page, int pageSize);
     }

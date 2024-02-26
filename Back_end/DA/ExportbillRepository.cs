@@ -11,27 +11,29 @@ using System.Threading.Tasks;
 
 namespace DAL
 {
-    public class ImportbillRepository : GenericRepository<Importbill>, IImportbillRepository
+    public class ExportbillRepository : GenericRepository<Exportbill>, IExportbillRepository
     {
-        public ImportbillRepository(Achino_DbContext dbContext, IMapper mapper) : base(dbContext, mapper)
+        public ExportbillRepository(Achino_DbContext dbContext, IMapper mapper) : base(dbContext, mapper)
         {
         }
-        public async Task<BaseQuerieResponse<ImportbillDto>> Search(int keyword, int page, int pageSize)
+        public async Task<BaseQuerieResponse<ExportbillDto>> Search(int keyword, int page, int pageSize)
         {
-            var query = from d in _DbContext.Set<Importbill>().AsQueryable()
-                        where d.Price==keyword
 
-                        select new ImportbillDto
+            var query = from d in _DbContext.Set<Exportbill>().AsQueryable()
+
+                        where d.Price == keyword
+                        select new ExportbillDto
                         {
-                            Price = d.Price,
-                           
+                            Price=d.Price,
                             
+
+                           
                         };
 
             var totalCount = await query.LongCountAsync();
             var pageResults = await query.Skip((page - 1) * pageSize).Take(pageSize).ToListAsync();
 
-            var searchResults = new BaseQuerieResponse<ImportbillDto>
+            var searchResults = new BaseQuerieResponse<ExportbillDto>
             {
                 PageIndex = page,
                 PageSize = pageSize,
@@ -41,34 +43,33 @@ namespace DAL
             };
             return searchResults;
         }
-
-        public async Task<CreateImportbillDto> CreateIm(CreateImportbillDto entity)
+        public async Task<CreateExportbillDto> CreateEX(CreateExportbillDto entity)
         {
             // Create and save the main order
-            CreateImportbillDto orderDto = new CreateImportbillDto
+            CreateExportbillDto ExportDto = new CreateExportbillDto
             {
                 IdStaff = entity.IdStaff,
                 Status = entity.Status,
                 Price = entity.Price,
             };
 
-            var ImportbillEntity = _mapper.Map<Order>(orderDto);
-            await _DbContext.Order.AddAsync(ImportbillEntity);
+            var ExportbillEntity = _mapper.Map<Order>(ExportDto);
+            await _DbContext.Order.AddAsync(ExportbillEntity);
             await _DbContext.SaveChangesAsync();
 
             // Map and save order details
-            foreach (var item in entity.Detail_importbill)
+            foreach (var item in entity.Detail_exportbillDto)
             {
-                Detail_importbillDto DetailDto = new Detail_importbillDto
+                Detail_exportbillDto DetailDto = new Detail_exportbillDto
                 {
-                    IdImportbill = ImportbillEntity.Id,
+                    IdExportbill = ExportbillEntity.Id,
                     Idproduct = item.Idproduct,
                     Quantity = item.Quantity,
                     Price = item.Price,
                 };
 
-                var DetailEntity = _mapper.Map<Detail_importbill>(DetailDto);
-                await _DbContext.Detail_importbill.AddAsync(DetailEntity);
+                var DetailEntity = _mapper.Map<Detail_exportbill>(DetailDto);
+                await _DbContext.Detail_exportbill.AddAsync(DetailEntity);
                 await _DbContext.SaveChangesAsync();
             }
 

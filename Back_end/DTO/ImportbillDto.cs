@@ -13,4 +13,11 @@ namespace DTO
         public int Status { get; set; }
         public int IdStaff { get; set; }
     }
+    public class CreateImportbillDto : BasedbDto
+    {
+        public int Price { get; set; }
+        public int Status { get; set; }
+        public int IdStaff { get; set; }
+        public List<Detail_importbill> Detail_importbill { get;}
+    }
 }

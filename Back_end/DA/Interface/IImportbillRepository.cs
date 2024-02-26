@@ -9,8 +9,10 @@ using System.Threading.Tasks;
 
 namespace DAL.Interface
 {
-    public interface IImportbillRepository:IGenericRepository<ImportbillDto>
+    public interface IImportbillRepository:IGenericRepository<Importbill>
     {
         Task<BaseQuerieResponse<ImportbillDto>> Search(int keywork, int page, int pageSize);
+        Task<CreateImportbillDto> CreateIm(CreateImportbillDto entity);
+
     }
 }

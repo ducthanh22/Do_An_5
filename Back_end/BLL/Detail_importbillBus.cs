@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace BUS
 {
-    public class Detail_importbillBus : GenericBus<Detail_importbillDto>, IDetail_importbillBus
+    public class Detail_importbillBus : GenericBus<Detail_importbill>, IDetail_importbillBus
     {
         public IDetail_importbillRepository _res;
         public Detail_importbillBus(IDetail_importbillRepository res) : base(res)

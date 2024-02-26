@@ -18,4 +18,16 @@ namespace DTO
         //public string PasswordHash { get; set; }
         public string Token {  get; set; }
     }
+    public class ResetPasswordModel
+    {
+        public string Email { get; set; }
+        public string Token { get; set; }
+        public string NewPassword { get; set; }
+    }
+    public class ForgotPasswordModel
+    {
+        public string Email { get; set; }
+    }
+
+
 }
