@@ -1,0 +1,47 @@
+.contain{
+    background-image:linear-gradient(to right,#607694,#be050be0);
+    height: 100vh;
+    justify-content: center; /* Căn giữa theo chiều ngang */
+    align-items: center;/* Căn giữa theo chiều dọc */
+    display: flex;
+
+
+}
+
+.Login{
+    background-color: aliceblue;
+    width: 30%;
+    height: 80vh;
+    border-radius: 3%;
+    justify-content: center; /* Căn giữa theo chiều ngang */
+
+}
+.enter{
+    display: grid;
+    justify-content: center; /* Căn giữa theo chiều ngang */
+    width: 100%;
+}
+span{
+    margin-top: 10%;
+    display: inline-block;
+    text-align: center;
+}
+.center-text {
+    text-align: center;
+  }
+  
+.icons{
+    display: flex;
+    justify-content: center; /* Căn giữa theo chiều ngang */
+}
+.icons span{
+    width: 20%;
+    font-size: 1.5rem
+}
+.forgot-password {
+    color: #007bff; /* Màu chữ mặc định */
+}
+  .forgot-password:hover {
+    color: #b33300; /* Màu chữ khi di chuột qua */
+    text-decoration: underline; /* Gạch chân văn bản khi di chuột qua */
+  }

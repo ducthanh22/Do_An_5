@@ -9,7 +9,7 @@
       <ng-container>
         <input type="text" pInputText placeholder="Search" class="w-full" style="margin-right: 100px;"/>
         <i class="pi pi-shopping-cart"> Giỏ hàng</i>
-        <i class="pi pi-user"> Đăng nhập</i>
+        <i class="pi pi-user" [routerLink]="['/Login']" routerLinkActive="router-link-active" > Đăng nhập</i>
       </ng-container>
     </ng-template>
   </p-menubar>

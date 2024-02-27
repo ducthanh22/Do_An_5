@@ -3,9 +3,9 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {path:'',redirectTo:'client/Home',pathMatch:'full'},
-
+  { path: 'ResetPassword', redirectTo: 'ResetPassword', pathMatch: 'prefix' },
  
-  // {path:'**',redirectTo:'load/Home',pathMatch:'full'}
+  // {path:'**',redirectTo:'client/Home',pathMatch:'full'}
 ];
 
 @NgModule({

@@ -9,6 +9,9 @@ import { LoginComponent } from './login/login.component';
 import { AdminModule } from 'src/app/modules/admin/admin.module';
 import { AdminRoutingModule } from 'src/app/modules/admin/admin-routing.module';
 import { InputTextModule } from 'primeng/inputtext';
+import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
+import { FormsModule } from '@angular/forms';
+import { ButtonModule } from 'primeng/button';
 
 
 
@@ -18,6 +21,7 @@ import { InputTextModule } from 'primeng/inputtext';
     AdminAdmintemplateComponent,
     ClientClienttemplateComponent,
     LoginComponent,
+    ResetpasswordComponent,
   
   ],
   imports: [
@@ -27,7 +31,9 @@ import { InputTextModule } from 'primeng/inputtext';
     ClientRoutingModule,
     AdminModule,
     AdminRoutingModule,
-    InputTextModule
+    InputTextModule,
+    FormsModule,
+    ButtonModule
 
   ]
 })

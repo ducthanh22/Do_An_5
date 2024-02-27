@@ -109,7 +109,7 @@ namespace DAL
 
         public async Task<bool> Login(UserDto user)
         {
-            var checkUser = await _userManager.FindByNameAsync(user.UserName);
+            var checkUser = await _userManager.FindByEmailAsync(user.Email);
 
             if (checkUser is null)
             {
@@ -120,7 +120,7 @@ namespace DAL
 
         public async Task<GennToken> GenerateToken(UserDto user)
         {
-            var checkUser = await _userManager.FindByNameAsync(user.UserName);
+            var checkUser = await _userManager.FindByEmailAsync(user.Email);
             // Tạo danh sách claims với thông tin cơ bản
             var claims = new List<Claim>
             {
@@ -166,14 +166,16 @@ namespace DAL
             if (user == null || !(await _userManager.IsEmailConfirmedAsync(user)))
             {
                 var token = await _userManager.GeneratePasswordResetTokenAsync(user);
-                var callbackUrl = _linkGenerator.GetUriByAction(
-                    _httpContextAccessor.HttpContext,
-                    action: "ResetPassword",
-                    controller: "Account",
-                    values: new { token  });
+                var newtoken= Uri.EscapeDataString(token);
 
+                var email = await _userManager.GetEmailAsync(user);
 
-
+                //var callbackUrl = _linkGenerator.GetUriByAction(
+                //    _httpContextAccessor.HttpContext,
+                //    action: "ResetPassword",
+                //    controller: "Account",
+                //    values: new { token  });
+                var callbackUrl = "http://localhost:4200/ResetPassword/" + newtoken +"/"+ email;
                 // Gửi email
                 await _sendEmailRepository.SendEmailAsync(model.Email, "Reset Password",
                     $"Vui lòng đặt lại mật khẩu của bạn bằng cách nhấp vào đây: <a href='{callbackUrl}'>link</a>");
