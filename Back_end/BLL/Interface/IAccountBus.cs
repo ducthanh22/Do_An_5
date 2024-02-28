@@ -16,7 +16,7 @@ namespace BUS.Interface
         Task<bool> Register(User user);
         Task<bool> Login(UserDto user);
         Task<bool> CreateRoleAsync(CreateRoleDto role);
-        Task<string> ForgotPassword(ForgotPasswordModel model);
+        Task<ForgotPasswordModel> ForgotPassword(ForgotPasswordModel model);
         Task<string> ResetPassword(ResetPasswordModel model);
 
     }

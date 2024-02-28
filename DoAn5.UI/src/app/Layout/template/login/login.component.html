@@ -18,8 +18,9 @@
         <p-button label="Login"></p-button>
       </span>
     </form>
-    <div class="center-text">
-      <span (click)="ForgotPassword()" class="forgot-password">Quên mật khẩu</span>
+    <div class="center-text" style="display: grid;">
+      <span (click)="ForgotPassword()" class="forgot-password">Đăng kí</span>
+      <span class="forgot-password" [routerLink]="['/FogotPassword']">Quên mật khẩu</span>
     </div>
     
     <div class="icons">

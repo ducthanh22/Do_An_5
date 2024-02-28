@@ -16,7 +16,7 @@ namespace DAL.Interface
         Task<GennToken> GenerateToken(UserDto user);
         Task<bool> Register(User user);
         Task<bool> Login(UserDto user);
-        Task<string> ForgotPassword(ForgotPasswordModel model);
+        Task<ForgotPasswordModel> ForgotPassword(ForgotPasswordModel model);
         Task<string> ResetPassword(ResetPasswordModel model);
 
     }

@@ -128,10 +128,10 @@ builder.Services.AddAuthorization(options =>
     // Thêm các policy khác n?u c?n thi?t
 });
 
-builder.Services.AddCors(cors => cors.AddPolicy("MyPolicy", builder =>
-{
-    builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
-}));
+//builder.Services.AddCors(cors => cors.AddPolicy("MyPolicy", builder =>
+//{
+//    builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+//}));
 
 
 builder.Services.AddSwaggerGen(c =>
@@ -175,8 +175,8 @@ if (app.Environment.IsDevelopment())
 app.UseStaticFiles();
 
 // Add this line to configure CORS
-//app.UseCors(options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
-app.UseCors("MyPolicy");
+app.UseCors(options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+//app.UseCors("MyPolicy");
 
 app.UseHttpsRedirection();
 app.UseAuthentication();

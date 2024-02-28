@@ -58,7 +58,7 @@ namespace Back_end.Controllers
         [AllowAnonymous]
 
         [HttpPost("ForgotPassword")]
-        public async Task<ActionResult<string>> ForgotPassword([FromBody] ForgotPasswordModel user)
+        public async Task<ActionResult<ForgotPasswordModel>> ForgotPassword([FromBody] ForgotPasswordModel user)
         {
             var result = await _Bus.ForgotPassword(user);
 

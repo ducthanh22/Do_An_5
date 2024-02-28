@@ -12,6 +12,10 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
 import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
+import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
+import { InputGroupModule } from 'primeng/inputgroup';
+import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
+import { ToastModule } from 'primeng/toast';
 
 
 
@@ -22,6 +26,7 @@ import { ButtonModule } from 'primeng/button';
     ClientClienttemplateComponent,
     LoginComponent,
     ResetpasswordComponent,
+    ForgotpasswordComponent,
   
   ],
   imports: [
@@ -33,7 +38,10 @@ import { ButtonModule } from 'primeng/button';
     AdminRoutingModule,
     InputTextModule,
     FormsModule,
-    ButtonModule
+    ButtonModule,
+    InputGroupModule ,
+    InputGroupAddonModule,
+    ToastModule
 
   ]
 })

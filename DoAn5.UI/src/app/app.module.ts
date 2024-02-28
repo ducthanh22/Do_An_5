@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TemplateModule } from './Layout/template/template.module';
 import { TemplateRoutingModule } from './Layout/template/template-routing.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 
@@ -15,6 +16,7 @@ import { TemplateRoutingModule } from './Layout/template/template-routing.module
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     TemplateModule,
     TemplateRoutingModule,

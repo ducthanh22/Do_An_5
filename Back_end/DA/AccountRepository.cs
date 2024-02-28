@@ -160,7 +160,7 @@ namespace DAL
                 Token=token,
             };
         }
-        public async Task<string> ForgotPassword(ForgotPasswordModel model)
+        public async Task<ForgotPasswordModel> ForgotPassword(ForgotPasswordModel model)
         {
             var user = await _userManager.FindByEmailAsync(model.Email);
             if (user == null || !(await _userManager.IsEmailConfirmedAsync(user)))
@@ -180,7 +180,7 @@ namespace DAL
                 await _sendEmailRepository.SendEmailAsync(model.Email, "Reset Password",
                     $"Vui lòng đặt lại mật khẩu của bạn bằng cách nhấp vào đây: <a href='{callbackUrl}'>link</a>");
             }
-            return "Email sent successfully.";
+            return new ForgotPasswordModel { Email=user.Email};
         }
         public async Task<string> ResetPassword(ResetPasswordModel model)
         {

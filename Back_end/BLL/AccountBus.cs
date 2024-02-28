@@ -36,7 +36,7 @@ namespace BUS
         {
             return await _accountRepository.CreateRoleAsync(role);
         }
-        public async Task<string> ForgotPassword(ForgotPasswordModel model)
+        public async Task<ForgotPasswordModel> ForgotPassword(ForgotPasswordModel model)
         {
             return await _accountRepository.ForgotPassword(model);
         }
