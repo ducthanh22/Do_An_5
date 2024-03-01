@@ -10,8 +10,8 @@ namespace Model
     public class Products : Basedb
     {
         public string Name { get; set; }
-        public int Idcategories {  get; set; }
-        public int Idproduces { get; set;}
+        public Guid Idcategories {  get; set; }
+        public Guid Idproduces { get; set;}
         public string Describe {  get; set; }
     }
 }

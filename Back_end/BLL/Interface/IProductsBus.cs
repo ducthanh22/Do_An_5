@@ -12,7 +12,7 @@ namespace BUS.Interface
     {
         Task<BaseQuerieResponse<ProductsDto>> Search(string keywork, int page, int pageSize);
         //Task<UpLoadFile> UploadFile(UpLoadFile product);
-        Task<IQueryable<ProductsDto>> GetByIds(int ids);
+        Task<IQueryable<ProductsDto>> GetByIds(Guid ids);
         Task<List<ProductsDto>> Getalls();
         Task<ProductsDto> Creates(ProductsDto entity);
         Task<ProductsDto> Updates(ProductsDto entity);

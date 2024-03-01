@@ -10,10 +10,10 @@ namespace DAL.Interface
     public interface IGenericRepository<T> where T : class
     {
         Task<List<T>> GetAll();
-        Task<T> Getbyid(int id);
+        Task<T> Getbyid(Guid id);
         Task<T> Create(T entity);
         Task<T> Update(T entity);
-        Task<T> Delete(int id);
+        Task<T> Delete(Guid id);
         
     }
 }

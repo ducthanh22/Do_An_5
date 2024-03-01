@@ -9,8 +9,8 @@ namespace Model
 {
     public class Order_detail : Basedb
     {
-        public int Id_Order { get; set; }
-        public int Id_product { get; set; }
+        public Guid Id_Order { get; set; }
+        public Guid Id_product { get; set; }
         public int Quantity { get; set;}
         public int Price { get; set; }
 

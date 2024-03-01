@@ -12,7 +12,7 @@ namespace DAL.Interface
 {
     public interface IPriceBus : IGenericBUS<Price>
     {
-        Task<Price> DeleteIdProduct(int id);
+        Task<Price> DeleteIdProduct(Guid id);
         Task<BaseQuerieResponse<PriceDto>> Search(int? min, int? max, int page, int pageSize);
 
     }

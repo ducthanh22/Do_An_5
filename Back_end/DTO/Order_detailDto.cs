@@ -9,7 +9,7 @@ namespace DTO
 {
     public class Order_detailDto : BasedbDto
     {
-        public int Id_Order { get; set; }
+        public Guid Id_Order { get; set; }
         public int Id_product { get; set; }
         public int Quantity { get; set;}
         public int Price { get; set; }

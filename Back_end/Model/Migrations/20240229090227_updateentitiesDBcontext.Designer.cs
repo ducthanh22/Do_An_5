@@ -12,8 +12,8 @@ using Model;
 namespace Model.Migrations
 {
     [DbContext(typeof(Achino_DbContext))]
-    [Migration("20240220145657_updateentitiesDBcontext3")]
-    partial class updateentitiesDBcontext3
+    [Migration("20240229090227_updateentitiesDBcontext")]
+    partial class updateentitiesDBcontext
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -236,11 +236,9 @@ namespace Model.Migrations
 
             modelBuilder.Entity("Model.Categories", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int?>("ActiveFlag")
                         .HasColumnType("int");
@@ -267,11 +265,9 @@ namespace Model.Migrations
 
             modelBuilder.Entity("Model.Color", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int?>("ActiveFlag")
                         .HasColumnType("int");
@@ -282,8 +278,8 @@ namespace Model.Migrations
                     b.Property<int?>("CreatedBy")
                         .HasColumnType("int");
 
-                    b.Property<int>("IdProduct")
-                        .HasColumnType("int");
+                    b.Property<Guid>("IdProduct")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Image")
                         .IsRequired()
@@ -306,11 +302,9 @@ namespace Model.Migrations
 
             modelBuilder.Entity("Model.Detail_exportbill", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int?>("ActiveFlag")
                         .HasColumnType("int");
@@ -321,11 +315,11 @@ namespace Model.Migrations
                     b.Property<int?>("CreatedBy")
                         .HasColumnType("int");
 
-                    b.Property<int>("IdExportbill")
-                        .HasColumnType("int");
+                    b.Property<Guid>("IdExportbill")
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("Idproduct")
-                        .HasColumnType("int");
+                    b.Property<Guid>("Idproduct")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("Modified")
                         .HasColumnType("datetime2");
@@ -346,11 +340,9 @@ namespace Model.Migrations
 
             modelBuilder.Entity("Model.Detail_importbill", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int?>("ActiveFlag")
                         .HasColumnType("int");
@@ -361,11 +353,11 @@ namespace Model.Migrations
                     b.Property<int?>("CreatedBy")
                         .HasColumnType("int");
 
-                    b.Property<int>("IdImportbillId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("IdImportbillId")
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("Idproduct")
-                        .HasColumnType("int");
+                    b.Property<Guid>("Idproduct")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("Modified")
                         .HasColumnType("datetime2");
@@ -386,11 +378,9 @@ namespace Model.Migrations
 
             modelBuilder.Entity("Model.Detail_warehouse", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int?>("ActiveFlag")
                         .HasColumnType("int");
@@ -401,11 +391,11 @@ namespace Model.Migrations
                     b.Property<int?>("CreatedBy")
                         .HasColumnType("int");
 
-                    b.Property<int>("Idproduct")
-                        .HasColumnType("int");
+                    b.Property<Guid>("Idproduct")
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("Idwarehouse")
-                        .HasColumnType("int");
+                    b.Property<Guid>("Idwarehouse")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("Modified")
                         .HasColumnType("datetime2");
@@ -423,11 +413,9 @@ namespace Model.Migrations
 
             modelBuilder.Entity("Model.Exportbill", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int?>("ActiveFlag")
                         .HasColumnType("int");
@@ -438,8 +426,8 @@ namespace Model.Migrations
                     b.Property<int?>("CreatedBy")
                         .HasColumnType("int");
 
-                    b.Property<int>("IdStaff")
-                        .HasColumnType("int");
+                    b.Property<Guid>("IdStaff")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("Modified")
                         .HasColumnType("datetime2");
@@ -460,11 +448,9 @@ namespace Model.Migrations
 
             modelBuilder.Entity("Model.Importbill", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int?>("ActiveFlag")
                         .HasColumnType("int");
@@ -475,8 +461,8 @@ namespace Model.Migrations
                     b.Property<int?>("CreatedBy")
                         .HasColumnType("int");
 
-                    b.Property<int>("IdStaff")
-                        .HasColumnType("int");
+                    b.Property<Guid>("IdStaff")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("Modified")
                         .HasColumnType("datetime2");
@@ -497,11 +483,9 @@ namespace Model.Migrations
 
             modelBuilder.Entity("Model.Order", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int?>("ActiveFlag")
                         .HasColumnType("int");
@@ -512,8 +496,8 @@ namespace Model.Migrations
                     b.Property<int?>("CreatedBy")
                         .HasColumnType("int");
 
-                    b.Property<int>("Id_customer")
-                        .HasColumnType("int");
+                    b.Property<Guid>("Id_customer")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("Modified")
                         .HasColumnType("datetime2");
@@ -534,11 +518,9 @@ namespace Model.Migrations
 
             modelBuilder.Entity("Model.Order_detail", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int?>("ActiveFlag")
                         .HasColumnType("int");
@@ -549,11 +531,11 @@ namespace Model.Migrations
                     b.Property<int?>("CreatedBy")
                         .HasColumnType("int");
 
-                    b.Property<int>("Id_Order")
-                        .HasColumnType("int");
+                    b.Property<Guid>("Id_Order")
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("Id_product")
-                        .HasColumnType("int");
+                    b.Property<Guid>("Id_product")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("Modified")
                         .HasColumnType("datetime2");
@@ -572,13 +554,11 @@ namespace Model.Migrations
                     b.ToTable("Order_detail");
                 });
 
-            modelBuilder.Entity("Model.Price", b =>
+            modelBuilder.Entity("Model.PaymentTransactions", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int?>("ActiveFlag")
                         .HasColumnType("int");
@@ -589,8 +569,43 @@ namespace Model.Migrations
                     b.Property<int?>("CreatedBy")
                         .HasColumnType("int");
 
-                    b.Property<int>("Idproduct")
+                    b.Property<DateTime?>("Modified")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("ModifiedBy")
                         .HasColumnType("int");
+
+                    b.Property<int>("Money")
+                        .HasColumnType("int");
+
+                    b.Property<Guid>("OrderId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("TransactionStatus")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("PaymentTransactions");
+                });
+
+            modelBuilder.Entity("Model.Price", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int?>("ActiveFlag")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("Created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("CreatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<Guid>("Idproduct")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("Modified")
                         .HasColumnType("datetime2");
@@ -608,11 +623,9 @@ namespace Model.Migrations
 
             modelBuilder.Entity("Model.Produces", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int?>("ActiveFlag")
                         .HasColumnType("int");
@@ -645,8 +658,9 @@ namespace Model.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Phone")
-                        .HasColumnType("int");
+                    b.Property<string>("Phone")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -655,11 +669,9 @@ namespace Model.Migrations
 
             modelBuilder.Entity("Model.Products", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int?>("ActiveFlag")
                         .HasColumnType("int");
@@ -674,11 +686,11 @@ namespace Model.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Idcategories")
-                        .HasColumnType("int");
+                    b.Property<Guid>("Idcategories")
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("Idproduces")
-                        .HasColumnType("int");
+                    b.Property<Guid>("Idproduces")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("Modified")
                         .HasColumnType("datetime2");
@@ -697,11 +709,9 @@ namespace Model.Migrations
 
             modelBuilder.Entity("Model.Size", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int?>("ActiveFlag")
                         .HasColumnType("int");
@@ -712,8 +722,8 @@ namespace Model.Migrations
                     b.Property<int?>("CreatedBy")
                         .HasColumnType("int");
 
-                    b.Property<int>("IdColor")
-                        .HasColumnType("int");
+                    b.Property<Guid>("IdColor")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("Modified")
                         .HasColumnType("datetime2");
@@ -732,11 +742,9 @@ namespace Model.Migrations
 
             modelBuilder.Entity("Model.Warehouse", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int?>("ActiveFlag")
                         .HasColumnType("int");

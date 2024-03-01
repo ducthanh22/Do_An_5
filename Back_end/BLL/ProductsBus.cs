@@ -27,7 +27,7 @@ namespace BUS
         //{
         //    return await _res.UploadFile(product);
         //}
-        public async Task<IQueryable<ProductsDto>> GetByIds(int ids)
+        public async Task<IQueryable<ProductsDto>> GetByIds(Guid ids)
         {
             return await _res.GetByIds(ids);
         }

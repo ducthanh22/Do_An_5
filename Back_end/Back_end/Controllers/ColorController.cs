@@ -26,7 +26,7 @@ namespace Back_end.Controllers
         }
 
         [HttpGet("GetByid")]
-        public async Task<ActionResult<Color>> Getbyid(int id)
+        public async Task<ActionResult<Color>> Getbyid(Guid id)
         {
             var result = await _Bus.Getbyid(id);
             return Ok(result);
@@ -47,7 +47,7 @@ namespace Back_end.Controllers
             return Ok(createdEntity);
         }
         [HttpDelete("Delete")]
-        public async Task<ActionResult<Color>> Delete(int id)
+        public async Task<ActionResult<Color>> Delete(Guid id)
         {
             var result = await _Bus.Delete(id);
             return Ok(result);

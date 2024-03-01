@@ -19,7 +19,7 @@ namespace DTO
     }
     public class UpFile
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
         public IFormFile Img { get; set; }
         public string? Image { get; set; }
 

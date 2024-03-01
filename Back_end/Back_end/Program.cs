@@ -36,6 +36,7 @@ builder.Services.Configure<DataProtectionTokenProviderOptions>(opt =>
 builder.Services.AddHttpContextAccessor(); // ??ng ký IHttpContextAccessor
 
 builder.Services.AddSingleton<IActionContextAccessor, ActionContextAccessor>(); // ??ng ký IActionContextAccessor
+builder.Services.AddSingleton<IPaymentRepository, PaymentRepository>();
 
 //builder.Services.AddScoped<IUrlHelper>(x => {
 //    var actionContext = x.GetRequiredService<IActionContextAccessor>().ActionContext;
@@ -69,6 +70,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.Configure<MailSettings>(builder.Configuration.GetSection("MailSettings"));
+builder.Services.Configure<VnPay>(builder.Configuration.GetSection("VnPay"));
 
 
 
@@ -118,6 +120,9 @@ builder.Services.AddScoped<IColorRepository, ColorRepository>();
 
 builder.Services.AddScoped<ISendEmailBus, SendEmailBus>();
 builder.Services.AddScoped<ISendEmailRepository, SendEmailRepository>();
+
+builder.Services.AddScoped<IPaymentBus, PaymentBus>();
+builder.Services.AddScoped<IPaymentRepository, PaymentRepository>();
 
 builder.Services.AddCors();
 

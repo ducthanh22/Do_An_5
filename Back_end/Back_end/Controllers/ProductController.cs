@@ -36,7 +36,7 @@ namespace Back_end.Controllers
         //    return Ok(result);
         //}
         [HttpGet("GetByids")]
-        public async Task<ActionResult<ProductsDto>> GetByIds(int id)
+        public async Task<ActionResult<ProductsDto>> GetByIds(Guid id)
         {
             var result = await _productsBus.GetByIds(id);
             return Ok(result);
@@ -58,7 +58,7 @@ namespace Back_end.Controllers
             return Ok(createdEntity);
         }
         [HttpDelete("Delete")]
-        public async Task<ActionResult<ProductsDto>> Delete(int id)
+        public async Task<ActionResult<ProductsDto>> Delete(Guid id)
         {
             var result = await _productsBus.Delete(id);
             if (result != null)

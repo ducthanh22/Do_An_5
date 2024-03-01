@@ -12,7 +12,7 @@ namespace DAL.Interface
     public interface IPriceRepository: IGenericRepository<Price>
     {
         Task<BaseQuerieResponse<PriceDto>> Search(int? min,int? max, int page, int pageSize);
-        Task<Price> DeleteIdProduct(int id);
+        Task<Price> DeleteIdProduct(Guid id);
 
 
     }

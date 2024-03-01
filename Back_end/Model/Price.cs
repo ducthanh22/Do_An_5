@@ -9,7 +9,7 @@ namespace Model
 {
     public class Price : Basedb
     {
-        public int Idproduct {  get; set; }
+        public Guid Idproduct {  get; set; }
         public int Price_product {  get; set; }
         
     }

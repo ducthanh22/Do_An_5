@@ -27,7 +27,7 @@ namespace Back_end.Controllers
         }
 
         [HttpGet("GetByid")]
-        public async Task<ActionResult<Detail_warehouseDto>> Getbyid(int id)
+        public async Task<ActionResult<Detail_warehouseDto>> Getbyid(Guid id)
         {
             var result = await _Bus.Getbyid(id);
             return Ok(result);
@@ -48,23 +48,10 @@ namespace Back_end.Controllers
             return Ok(createdEntity);
         }
         [HttpDelete("Delete")]
-        public async Task<ActionResult<Detail_warehouseDto>> Delete(int id)
+        public async Task<ActionResult<Detail_warehouseDto>> Delete(Guid id)
         {
             var result = await _Bus.Delete(id);
             return Ok(result);
         }
-        //[HttpGet("Search")]
-        //public async Task<IActionResult> Search([FromQuery] string keywork, [FromQuery] int page = 1, [FromQuery] int pageSize = 10)
-        //{
-        //    var products = await _Bus.Search(keywork, page, pageSize);
-        //    var result = new
-        //    {
-        //        ItemsPerPage = pageSize,
-        //        CurrentPage = page,
-        //        Products = products
-        //    };
-
-        //    return Ok(result);
-        //}
     }
 }

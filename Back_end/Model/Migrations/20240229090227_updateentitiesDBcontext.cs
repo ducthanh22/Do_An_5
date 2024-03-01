@@ -67,8 +67,7 @@ namespace Model.Migrations
                 name: "Categorie",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ActiveFlag = table.Column<int>(type: "int", nullable: true),
                     CreatedBy = table.Column<int>(type: "int", nullable: true),
@@ -85,9 +84,8 @@ namespace Model.Migrations
                 name: "Color",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    IdProduct = table.Column<int>(type: "int", nullable: false),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    IdProduct = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     NameColor = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Image = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ActiveFlag = table.Column<int>(type: "int", nullable: true),
@@ -105,10 +103,9 @@ namespace Model.Migrations
                 name: "Detail_exportbill",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    IdExportbill = table.Column<int>(type: "int", nullable: false),
-                    Idproduct = table.Column<int>(type: "int", nullable: false),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    IdExportbill = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Idproduct = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Price = table.Column<int>(type: "int", nullable: false),
                     Quantity = table.Column<int>(type: "int", nullable: false),
                     ActiveFlag = table.Column<int>(type: "int", nullable: true),
@@ -126,10 +123,9 @@ namespace Model.Migrations
                 name: "Detail_importbill",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    IdImportbillId = table.Column<int>(type: "int", nullable: false),
-                    Idproduct = table.Column<int>(type: "int", nullable: false),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    IdImportbillId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Idproduct = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Price = table.Column<int>(type: "int", nullable: false),
                     Quantity = table.Column<int>(type: "int", nullable: false),
                     ActiveFlag = table.Column<int>(type: "int", nullable: true),
@@ -147,10 +143,9 @@ namespace Model.Migrations
                 name: "Detail_warehouse",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Idwarehouse = table.Column<int>(type: "int", nullable: false),
-                    Idproduct = table.Column<int>(type: "int", nullable: false),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Idwarehouse = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Idproduct = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Quantity = table.Column<int>(type: "int", nullable: false),
                     ActiveFlag = table.Column<int>(type: "int", nullable: true),
                     CreatedBy = table.Column<int>(type: "int", nullable: true),
@@ -167,11 +162,10 @@ namespace Model.Migrations
                 name: "Exportbill",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Price = table.Column<int>(type: "int", nullable: false),
-                    Startday = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Endday = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Status = table.Column<int>(type: "int", nullable: false),
+                    IdStaff = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     ActiveFlag = table.Column<int>(type: "int", nullable: true),
                     CreatedBy = table.Column<int>(type: "int", nullable: true),
                     Created = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -187,11 +181,10 @@ namespace Model.Migrations
                 name: "Importbill",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Price = table.Column<int>(type: "int", nullable: false),
-                    Startday = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Endday = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Status = table.Column<int>(type: "int", nullable: false),
+                    IdStaff = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     ActiveFlag = table.Column<int>(type: "int", nullable: true),
                     CreatedBy = table.Column<int>(type: "int", nullable: true),
                     Created = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -207,11 +200,10 @@ namespace Model.Migrations
                 name: "Order",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Id_customer = table.Column<int>(type: "int", nullable: false),
-                    status = table.Column<bool>(type: "bit", nullable: false),
-                    OrderDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Id_customer = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    status = table.Column<int>(type: "int", nullable: false),
+                    Price = table.Column<int>(type: "int", nullable: false),
                     ActiveFlag = table.Column<int>(type: "int", nullable: true),
                     CreatedBy = table.Column<int>(type: "int", nullable: true),
                     Created = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -227,10 +219,9 @@ namespace Model.Migrations
                 name: "Order_detail",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Id_Order = table.Column<int>(type: "int", nullable: false),
-                    Id_product = table.Column<int>(type: "int", nullable: false),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Id_Order = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Id_product = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Quantity = table.Column<int>(type: "int", nullable: false),
                     Price = table.Column<int>(type: "int", nullable: false),
                     ActiveFlag = table.Column<int>(type: "int", nullable: true),
@@ -245,15 +236,31 @@ namespace Model.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "PaymentTransactions",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    OrderId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Money = table.Column<int>(type: "int", nullable: false),
+                    TransactionStatus = table.Column<int>(type: "int", nullable: false),
+                    ActiveFlag = table.Column<int>(type: "int", nullable: true),
+                    CreatedBy = table.Column<int>(type: "int", nullable: true),
+                    Created = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    Modified = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PaymentTransactions", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Price",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Idproduct = table.Column<int>(type: "int", nullable: false),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Idproduct = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Price_product = table.Column<int>(type: "int", nullable: false),
-                    Startday = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Endday = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ActiveFlag = table.Column<int>(type: "int", nullable: true),
                     CreatedBy = table.Column<int>(type: "int", nullable: true),
                     Created = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -269,11 +276,12 @@ namespace Model.Migrations
                 name: "Produces",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Phone = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Image = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ActiveFlag = table.Column<int>(type: "int", nullable: true),
                     CreatedBy = table.Column<int>(type: "int", nullable: true),
                     Created = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -289,11 +297,10 @@ namespace Model.Migrations
                 name: "Products",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Idcategories = table.Column<int>(type: "int", nullable: false),
-                    Idproduces = table.Column<int>(type: "int", nullable: false),
+                    Idcategories = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Idproduces = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Describe = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ActiveFlag = table.Column<int>(type: "int", nullable: true),
                     CreatedBy = table.Column<int>(type: "int", nullable: true),
@@ -310,9 +317,8 @@ namespace Model.Migrations
                 name: "Size",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    IdColor = table.Column<int>(type: "int", nullable: false),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    IdColor = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     NameSize = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ActiveFlag = table.Column<int>(type: "int", nullable: true),
                     CreatedBy = table.Column<int>(type: "int", nullable: true),
@@ -329,8 +335,7 @@ namespace Model.Migrations
                 name: "Warehouse",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ActiveFlag = table.Column<int>(type: "int", nullable: true),
@@ -533,6 +538,9 @@ namespace Model.Migrations
 
             migrationBuilder.DropTable(
                 name: "Order_detail");
+
+            migrationBuilder.DropTable(
+                name: "PaymentTransactions");
 
             migrationBuilder.DropTable(
                 name: "Price");

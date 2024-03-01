@@ -30,7 +30,7 @@ namespace DAL
             return result;
         }
 
-        public async Task<T> Getbyid(int id)
+        public async Task<T> Getbyid(Guid id)
         {
             var result = await _DbContext.Set<T>().FindAsync(id); // Assuming _DbContext is of type DbContext
           
@@ -38,8 +38,12 @@ namespace DAL
         }
         public async Task<T> Create(T entity)
         {
-            _DbContext.Set<T>().AddAsync(entity);
-            await _DbContext.SaveChangesAsync();
+            try {
+                _DbContext.Set<T>().AddAsync(entity);
+                await _DbContext.SaveChangesAsync();
+            }
+            catch (Exception e) { Console.WriteLine(e.Message); }
+            
 
             return entity;
         }
@@ -50,7 +54,7 @@ namespace DAL
             await _DbContext.SaveChangesAsync();
             return entity;
         }
-        public async Task<T> Delete(int id)
+        public async Task<T> Delete(Guid id)
         {
             var entity = await _DbContext.Set<T>().FindAsync(id);
             if (entity != null)

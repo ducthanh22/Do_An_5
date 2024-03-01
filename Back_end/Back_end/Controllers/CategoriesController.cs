@@ -37,7 +37,7 @@ namespace Back_end.Controllers
         //[Authorize(Roles = "Admin,Customer")]
         //[HasPermission(new[] { (int)EnumModule.Module.QlDm }, new[] { (int)EnumPermission.Type.Update })]
 
-        public async Task<ActionResult<Categories>> Getbyid(int id)
+        public async Task<ActionResult<Categories>> Getbyid(Guid id)
         {
             var result = await _categoriesBus.Getbyid(id);
             return Ok(result);
@@ -58,7 +58,7 @@ namespace Back_end.Controllers
             return Ok(createdEntity);
         }
         [HttpDelete("Delete")]
-        public async Task<ActionResult<Categories>> Delete(int id)
+        public async Task<ActionResult<Categories>> Delete(Guid id)
         {
             var result = await _categoriesBus.Delete(id);
             return Ok(result);

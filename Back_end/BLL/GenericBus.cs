@@ -26,7 +26,7 @@ namespace BUS
             return await _res.GetAll();
         }
 
-        public async Task<T> Getbyid(int id)
+        public async Task<T> Getbyid(Guid id)
         {
             return await _res.Getbyid(id);
         }
@@ -40,7 +40,7 @@ namespace BUS
             return await _res.Update(entity);
         }
 
-        public async Task<T> Delete(int id)
+        public async Task<T> Delete(Guid id)
         {
             return await _res.Delete(id);
         }

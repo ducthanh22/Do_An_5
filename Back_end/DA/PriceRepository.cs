@@ -50,7 +50,7 @@ namespace DAL
             };
             return searchResults;
         }
-        public async Task<Price> DeleteIdProduct(int id)
+        public async Task<Price> DeleteIdProduct(Guid id)
         {
             var priceToDelete = await _DbContext.Set<Price>().FirstOrDefaultAsync(p => p.Idproduct == id);
             if (priceToDelete != null)

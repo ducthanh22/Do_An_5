@@ -17,11 +17,12 @@ namespace DAL
         {
 
             var query = from d in _DbContext.Set<Products>()
-                        join a in _DbContext.Set<Color>() on d.Id equals a.Id into aGroup
+                        join a in _DbContext.Set<Color>() on d.Id equals a.IdProduct into aGroup
                         from a in aGroup.DefaultIfEmpty()
-                        join b in _DbContext.Set<Price>() on d.Id equals b.Id into bGroup
+                        join b in _DbContext.Set<Price>() on d.Id equals b.Idproduct into bGroup
                         from b in bGroup.DefaultIfEmpty()
-                        join e in _DbContext.Set<Size>() on a.Id equals e.Id into eGroup
+
+                        join e in _DbContext.Set<Size>() on a.Id equals e.IdColor into eGroup
                         from e in eGroup.DefaultIfEmpty()
                         where ( d.Name.Contains(keyword))
                         select new ProductsDto
@@ -33,7 +34,8 @@ namespace DAL
                             Describe = d.Describe,
                             NameColor = a != null ? a.NameColor : null,
                             Price_product = b != null ? b.Price_product : 0,
-                            NameSize = e != null ? e.NameSize : null
+                            NameSize = e != null ? e.NameSize : null,
+                            Image=a.Image
                         };
 
             var totalCount = await query.LongCountAsync();
@@ -52,11 +54,12 @@ namespace DAL
         public async Task<List<ProductsDto>> Getalls()
         {
             var query = from d in _DbContext.Set<Products>()
-                        join a in _DbContext.Set<Color>() on d.Id equals a.Id into aGroup
+                        join a in _DbContext.Set<Color>() on d.Id equals a.IdProduct into aGroup
                         from a in aGroup.DefaultIfEmpty()
-                        join b in _DbContext.Set<Price>() on d.Id equals b.Id into bGroup
+                        join b in _DbContext.Set<Price>() on d.Id equals b.Idproduct into bGroup
                         from b in bGroup.DefaultIfEmpty()
-                        join e in _DbContext.Set<Size>() on a.Id equals e.Id into eGroup
+
+                        join e in _DbContext.Set<Size>() on a.Id equals e.IdColor into eGroup
                         from e in eGroup.DefaultIfEmpty()
                         select new ProductsDto
                         {
@@ -67,21 +70,24 @@ namespace DAL
                             Describe = d.Describe,
                             NameColor = a != null ? a.NameColor : null, // Kiểm tra xem a có tồn tại không trước khi truy cập thuộc tính NameColor
                             Price_product = b != null ? b.Price_product : 0, // Kiểm tra xem b có tồn tại không trước khi truy cập thuộc tính Price_product
-                            NameSize = e != null ? e.NameSize : null // Kiểm tra xem e có tồn tại không trước khi truy cập thuộc tính NameSize
+                            NameSize = e != null ? e.NameSize : null, // Kiểm tra xem e có tồn tại không trước khi truy cập thuộc tính NameSize
+                            Image = a.Image
+
                         };
             return await query.ToListAsync();
         }
 
-        public async Task<IQueryable<ProductsDto>> GetByIds(int ids)
+        public async Task<IQueryable<ProductsDto>> GetByIds(Guid ids)
         {
-            var query = from d in _DbContext.Set<Products>()
-                        join a in _DbContext.Set<Color>() on d.Id equals a.Id into aGroup
-                        from a in aGroup.DefaultIfEmpty()
-                        join b in _DbContext.Set<Price>() on d.Id equals b.Id into bGroup
-                        from b in bGroup.DefaultIfEmpty()
-                        join e in _DbContext.Set<Size>() on a.Id equals e.Id into eGroup
-                        from e in eGroup.DefaultIfEmpty()
-                        where d.Id == ids
+            var query  = from d in _DbContext.Set<Products>()
+                                join a in _DbContext.Set<Color>() on d.Id equals a.IdProduct into aGroup
+                                from a in aGroup.DefaultIfEmpty()
+                                join b in _DbContext.Set<Price>() on d.Id equals b.Idproduct into bGroup
+                                from b in bGroup.DefaultIfEmpty()
+
+                                join e in _DbContext.Set<Size>() on a.Id equals e.IdColor into eGroup
+                                from e in eGroup.DefaultIfEmpty()
+                                where d.Id == ids
                         select new ProductsDto
                         {
                             Id = d.Id,
@@ -91,7 +97,9 @@ namespace DAL
                             Describe = d.Describe,
                             NameColor = a != null ? a.NameColor : null, 
                             Price_product = b != null ? b.Price_product : 0, 
-                            NameSize = e != null ? e.NameSize : null
+                            NameSize = e != null ? e.NameSize : null,
+                            Image = a.Image
+
                         };
 
            

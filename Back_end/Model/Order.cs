@@ -10,7 +10,7 @@ namespace Model
     public class Order: Basedb
     {
         
-        public int Id_customer {  get; set; }
+        public Guid Id_customer {  get; set; }
         public int status { get; set; }
         public int Price { get; set; }
 

@@ -44,7 +44,7 @@ namespace DTO.AutoMapper
             CreateMap<Role, RoleDto>().ReverseMap();
             CreateMap<Claim, CreateRoleDto>().ReverseMap();
             CreateMap<User, GennToken>().ReverseMap();
-
+            CreateMap<PaymentTransactions,PaymentDto>().ReverseMap();
         }
     }
 }
