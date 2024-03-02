@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DTO;
 
-namespace BUS.Interface
+namespace BLL.Interface
 {
     public interface IColorBus :IGenericBUS<Color>
     {

@@ -33,8 +33,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "D:\\Do_An_5\\Back_end\\BLL\\BUS.csproj": {
-                "projectPath": "D:\\Do_An_5\\Back_end\\BLL\\BUS.csproj"
+              "D:\\Do_An_5\\Back_end\\BLL\\BLL.csproj": {
+                "projectPath": "D:\\Do_An_5\\Back_end\\BLL\\BLL.csproj"
               },
               "D:\\Do_An_5\\Back_end\\DA\\DAL.csproj": {
                 "projectPath": "D:\\Do_An_5\\Back_end\\DA\\DAL.csproj"
@@ -129,12 +129,12 @@
         }
       }
     },
-    "D:\\Do_An_5\\Back_end\\BLL\\BUS.csproj": {
+    "D:\\Do_An_5\\Back_end\\BLL\\BLL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Do_An_5\\Back_end\\BLL\\BUS.csproj",
-        "projectName": "BUS",
-        "projectPath": "D:\\Do_An_5\\Back_end\\BLL\\BUS.csproj",
+        "projectUniqueName": "D:\\Do_An_5\\Back_end\\BLL\\BLL.csproj",
+        "projectName": "BLL",
+        "projectPath": "D:\\Do_An_5\\Back_end\\BLL\\BLL.csproj",
         "packagesPath": "C:\\Users\\phith\\.nuget\\packages\\",
         "outputPath": "D:\\Do_An_5\\Back_end\\BLL\\obj\\",
         "projectStyle": "PackageReference",

@@ -1,4 +1,4 @@
-﻿using BUS.Interface;
+﻿using BLL.Interface;
 using DAL;
 using DAL.Interface;
 using DTO;
@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BUS
+namespace BLL
 {
     public class Detail_exportbillBus : GenericBus<Detail_exportbill>, IDetail_exportbillBus
     {

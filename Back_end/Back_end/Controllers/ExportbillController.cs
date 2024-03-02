@@ -1,4 +1,4 @@
-﻿using BUS.Interface;
+﻿using BLL.Interface;
 using DAL.Interface;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;

@@ -3561,9 +3561,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Do_An_5\\Back_end\\BLL\\BUS.csproj",
-      "projectName": "BUS",
-      "projectPath": "D:\\Do_An_5\\Back_end\\BLL\\BUS.csproj",
+      "projectUniqueName": "D:\\Do_An_5\\Back_end\\BLL\\BLL.csproj",
+      "projectName": "BLL",
+      "projectPath": "D:\\Do_An_5\\Back_end\\BLL\\BLL.csproj",
       "packagesPath": "C:\\Users\\phith\\.nuget\\packages\\",
       "outputPath": "D:\\Do_An_5\\Back_end\\BLL\\obj\\",
       "projectStyle": "PackageReference",

@@ -1,5 +1,5 @@
 ﻿using Model;
-using BUS.Interface;
+using BLL.Interface;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

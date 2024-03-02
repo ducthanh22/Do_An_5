@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using DTO;
 using Model;
 
-namespace BUS.Interface
+namespace BLL.Interface
 {
     public interface IOder_detailBus : IGenericBUS<Order_detail>
     {

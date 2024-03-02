@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using static DTO.RoleDto;
 
-namespace BUS.Interface
+namespace BLL.Interface
 {
     public interface IAccountBus
     {

@@ -1571,7 +1571,7 @@
           }
         }
       },
-      "BUS/1.0.0": {
+      "BLL/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
@@ -1582,10 +1582,10 @@
           "NETCore.MailKit": "2.1.0"
         },
         "compile": {
-          "bin/placeholder/BUS.dll": {}
+          "bin/placeholder/BLL.dll": {}
         },
         "runtime": {
-          "bin/placeholder/BUS.dll": {}
+          "bin/placeholder/BLL.dll": {}
         }
       },
       "DAL/1.0.0": {
@@ -4132,10 +4132,10 @@
         "version.txt"
       ]
     },
-    "BUS/1.0.0": {
+    "BLL/1.0.0": {
       "type": "project",
-      "path": "../BLL/BUS.csproj",
-      "msbuildProject": "../BLL/BUS.csproj"
+      "path": "../BLL/BLL.csproj",
+      "msbuildProject": "../BLL/BLL.csproj"
     },
     "DAL/1.0.0": {
       "type": "project",
@@ -4157,7 +4157,7 @@
     "net6.0": [
       "AutoMapper >= 10.1.1",
       "AutoMapper.Extensions.Microsoft.DependencyInjection >= 8.1.1",
-      "BUS >= 1.0.0",
+      "BLL >= 1.0.0",
       "DAL >= 1.0.0",
       "DTO >= 1.0.0",
       "Microsoft.AspNetCore.Authentication.JwtBearer >= 6.0.25",
@@ -4204,8 +4204,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "D:\\Do_An_5\\Back_end\\BLL\\BUS.csproj": {
-              "projectPath": "D:\\Do_An_5\\Back_end\\BLL\\BUS.csproj"
+            "D:\\Do_An_5\\Back_end\\BLL\\BLL.csproj": {
+              "projectPath": "D:\\Do_An_5\\Back_end\\BLL\\BLL.csproj"
             },
             "D:\\Do_An_5\\Back_end\\DA\\DAL.csproj": {
               "projectPath": "D:\\Do_An_5\\Back_end\\DA\\DAL.csproj"

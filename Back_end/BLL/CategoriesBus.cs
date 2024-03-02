@@ -1,5 +1,5 @@
 ﻿using Model;
-using BUS.Interface;
+using BLL.Interface;
 using DAL.Interface;
 using DTO;
 using Microsoft.EntityFrameworkCore;
@@ -11,7 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
-namespace BUS
+namespace BLL
 {
     public class CategoriesBus : GenericBus<Categories>, ICategoriesBus
     {

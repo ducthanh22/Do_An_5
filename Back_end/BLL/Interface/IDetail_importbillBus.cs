@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BUS.Interface
+namespace BLL.Interface
 {
     public interface IDetail_importbillBus : IGenericBUS<Detail_importbill>
     {

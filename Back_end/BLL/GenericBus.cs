@@ -1,4 +1,4 @@
-﻿using BUS.Interface;
+﻿using BLL.Interface;
 using Microsoft.EntityFrameworkCore;
 using Model;
 using System;
@@ -10,7 +10,7 @@ using DAL;
 using DAL.Interface;
 using DTO;
 
-namespace BUS
+namespace BLL
 {
     public class GenericBus<T> : IGenericBUS<T> where T : class
     {

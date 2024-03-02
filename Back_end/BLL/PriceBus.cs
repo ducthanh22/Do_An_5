@@ -1,4 +1,5 @@
-﻿using BUS;
+﻿
+using BLL.Interface;
 using DAL.Interface;
 using DTO;
 using Model;
@@ -8,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAL
+namespace BLL
 {
     public class PriceBus : GenericBus<Price>, IPriceBus
     {

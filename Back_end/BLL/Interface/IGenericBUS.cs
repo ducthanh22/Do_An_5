@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BUS.Interface
+namespace BLL.Interface
 {
     public interface IGenericBUS<T> where T : class
     {

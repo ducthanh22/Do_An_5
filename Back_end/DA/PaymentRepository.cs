@@ -21,7 +21,7 @@ namespace DAL
         public readonly  VnPay _config;
         private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public PaymentRepository(IOptions<VnPay> config, IHttpContextAccessor httpContextAccessor = null)
+        public PaymentRepository(IOptions<VnPay> config, IHttpContextAccessor httpContextAccessor )
         {
             _config = config.Value;
             _httpContextAccessor = httpContextAccessor;

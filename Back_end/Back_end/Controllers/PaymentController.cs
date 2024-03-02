@@ -1,4 +1,4 @@
-﻿using BUS.Interface;
+﻿using BLL.Interface;
 using DTO;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

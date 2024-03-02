@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Model;
 using DTO;
 
-namespace BUS.Interface
+namespace BLL.Interface
 {
     public interface ICategoriesBus : IGenericBUS<Categories>
     {

@@ -1,5 +1,4 @@
-﻿
-using BUS.Interface;
+﻿using BLL.Interface;
 using DTO;
 using Model;
 using System;
@@ -8,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAL.Interface
+namespace BLL.Interface
 {
     public  interface IImportbillBus : IGenericBUS<Importbill>
     {

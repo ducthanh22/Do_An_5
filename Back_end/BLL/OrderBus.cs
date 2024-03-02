@@ -1,4 +1,4 @@
-﻿using BUS.Interface;
+﻿using BLL.Interface;
 using DAL.Interface;
 using Model;
 using DTO;
@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BUS
+namespace BLL
 {
     public class OrderBus : GenericBus<Order>, IOrderBus
     {

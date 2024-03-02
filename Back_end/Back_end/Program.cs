@@ -1,5 +1,5 @@
-using BUS.Interface;
-using BUS;
+using BLL.Interface;
+using BLL;
 using Microsoft.EntityFrameworkCore;
 using Model;
 using DAL;

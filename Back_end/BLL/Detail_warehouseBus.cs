@@ -1,5 +1,4 @@
-﻿using BUS;
-using BUS.Interface;
+﻿using BLL.Interface;
 using DAL.Interface;
 using DTO;
 using Model;
@@ -9,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAL
+namespace BLL
 {
     public class Detail_warehouseBus : GenericBus<Detail_warehouse>, IDetail_warehouseBus
     {

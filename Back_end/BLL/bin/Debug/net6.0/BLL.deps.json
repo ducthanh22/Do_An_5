@@ -6,25 +6,16 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v6.0": {
-      "Back_end/1.0.0": {
+      "BLL/1.0.0": {
         "dependencies": {
           "AutoMapper": "10.1.1",
-          "AutoMapper.Extensions.Microsoft.DependencyInjection": "8.1.1",
-          "BLL": "1.0.0",
           "DAL": "1.0.0",
           "DTO": "1.0.0",
-          "Microsoft.AspNetCore.Authentication.JwtBearer": "6.0.25",
-          "Microsoft.AspNetCore.Cors": "2.1.0",
-          "Microsoft.EntityFrameworkCore": "6.0.24",
-          "Microsoft.EntityFrameworkCore.SqlServer": "6.0.24",
-          "Microsoft.EntityFrameworkCore.Tools": "6.0.24",
-          "Microsoft.Extensions.Configuration.Abstractions": "6.0.0",
           "Model": "1.0.0",
-          "NETCore.MailKit": "2.1.0",
-          "Swashbuckle.AspNetCore": "6.5.0"
+          "NETCore.MailKit": "2.1.0"
         },
         "runtime": {
-          "Back_end.dll": {}
+          "BLL.dll": {}
         }
       },
       "AutoMapper/10.1.1": {
@@ -36,27 +27,6 @@
           "lib/netstandard2.0/AutoMapper.dll": {
             "assemblyVersion": "10.0.0.0",
             "fileVersion": "10.1.1.0"
-          }
-        }
-      },
-      "AutoMapper.Extensions.Microsoft.DependencyInjection/8.1.1": {
-        "dependencies": {
-          "AutoMapper": "10.1.1",
-          "Microsoft.Extensions.DependencyInjection.Abstractions": "6.0.0",
-          "Microsoft.Extensions.Options": "6.0.0"
-        },
-        "runtime": {
-          "lib/netstandard2.0/AutoMapper.Extensions.Microsoft.DependencyInjection.dll": {
-            "assemblyVersion": "8.0.0.0",
-            "fileVersion": "8.1.1.0"
-          }
-        }
-      },
-      "Humanizer.Core/2.8.26": {
-        "runtime": {
-          "lib/netstandard2.0/Humanizer.dll": {
-            "assemblyVersion": "2.8.0.0",
-            "fileVersion": "2.8.26.1919"
           }
         }
       },
@@ -110,15 +80,6 @@
             "assemblyVersion": "6.0.25.0",
             "fileVersion": "6.0.2523.52315"
           }
-        }
-      },
-      "Microsoft.AspNetCore.Cors/2.1.0": {
-        "dependencies": {
-          "Microsoft.AspNetCore.Http.Extensions": "2.1.1",
-          "Microsoft.Extensions.Configuration.Abstractions": "6.0.0",
-          "Microsoft.Extensions.DependencyInjection.Abstractions": "6.0.0",
-          "Microsoft.Extensions.Logging.Abstractions": "6.0.0",
-          "Microsoft.Extensions.Options": "6.0.0"
         }
       },
       "Microsoft.AspNetCore.Cryptography.Internal/6.0.24": {
@@ -306,18 +267,6 @@
         }
       },
       "Microsoft.EntityFrameworkCore.Analyzers/6.0.24": {},
-      "Microsoft.EntityFrameworkCore.Design/6.0.24": {
-        "dependencies": {
-          "Humanizer.Core": "2.8.26",
-          "Microsoft.EntityFrameworkCore.Relational": "6.0.24"
-        },
-        "runtime": {
-          "lib/net6.0/Microsoft.EntityFrameworkCore.Design.dll": {
-            "assemblyVersion": "6.0.24.0",
-            "fileVersion": "6.0.2423.51805"
-          }
-        }
-      },
       "Microsoft.EntityFrameworkCore.Relational/6.0.24": {
         "dependencies": {
           "Microsoft.EntityFrameworkCore": "6.0.24",
@@ -342,12 +291,6 @@
           }
         }
       },
-      "Microsoft.EntityFrameworkCore.Tools/6.0.24": {
-        "dependencies": {
-          "Microsoft.EntityFrameworkCore.Design": "6.0.24"
-        }
-      },
-      "Microsoft.Extensions.ApiDescription.Server/6.0.5": {},
       "Microsoft.Extensions.Caching.Abstractions/6.0.0": {
         "dependencies": {
           "Microsoft.Extensions.Primitives": "6.0.0"
@@ -540,14 +483,6 @@
       },
       "Microsoft.NETCore.Platforms/3.1.0": {},
       "Microsoft.NETCore.Targets/1.1.0": {},
-      "Microsoft.OpenApi/1.2.3": {
-        "runtime": {
-          "lib/netstandard2.0/Microsoft.OpenApi.dll": {
-            "assemblyVersion": "1.2.3.0",
-            "fileVersion": "1.2.3.0"
-          }
-        }
-      },
       "Microsoft.Win32.Registry/4.7.0": {
         "dependencies": {
           "System.Security.AccessControl": "4.7.0",
@@ -602,44 +537,6 @@
           "lib/netstandard2.0/BouncyCastle.Crypto.dll": {
             "assemblyVersion": "1.9.0.0",
             "fileVersion": "1.9.0.1"
-          }
-        }
-      },
-      "Swashbuckle.AspNetCore/6.5.0": {
-        "dependencies": {
-          "Microsoft.Extensions.ApiDescription.Server": "6.0.5",
-          "Swashbuckle.AspNetCore.Swagger": "6.5.0",
-          "Swashbuckle.AspNetCore.SwaggerGen": "6.5.0",
-          "Swashbuckle.AspNetCore.SwaggerUI": "6.5.0"
-        }
-      },
-      "Swashbuckle.AspNetCore.Swagger/6.5.0": {
-        "dependencies": {
-          "Microsoft.OpenApi": "1.2.3"
-        },
-        "runtime": {
-          "lib/net6.0/Swashbuckle.AspNetCore.Swagger.dll": {
-            "assemblyVersion": "6.5.0.0",
-            "fileVersion": "6.5.0.0"
-          }
-        }
-      },
-      "Swashbuckle.AspNetCore.SwaggerGen/6.5.0": {
-        "dependencies": {
-          "Swashbuckle.AspNetCore.Swagger": "6.5.0"
-        },
-        "runtime": {
-          "lib/net6.0/Swashbuckle.AspNetCore.SwaggerGen.dll": {
-            "assemblyVersion": "6.5.0.0",
-            "fileVersion": "6.5.0.0"
-          }
-        }
-      },
-      "Swashbuckle.AspNetCore.SwaggerUI/6.5.0": {
-        "runtime": {
-          "lib/net6.0/Swashbuckle.AspNetCore.SwaggerUI.dll": {
-            "assemblyVersion": "6.5.0.0",
-            "fileVersion": "6.5.0.0"
           }
         }
       },
@@ -818,18 +715,6 @@
           }
         }
       },
-      "BLL/1.0.0": {
-        "dependencies": {
-          "AutoMapper": "10.1.1",
-          "DAL": "1.0.0",
-          "DTO": "1.0.0",
-          "Model": "1.0.0",
-          "NETCore.MailKit": "2.1.0"
-        },
-        "runtime": {
-          "BLL.dll": {}
-        }
-      },
       "DAL/1.0.0": {
         "dependencies": {
           "AutoMapper": "10.1.1",
@@ -872,7 +757,7 @@
     }
   },
   "libraries": {
-    "Back_end/1.0.0": {
+    "BLL/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
@@ -883,20 +768,6 @@
       "sha512": "sha512-uMgbqOdu9ZG5cIOty0C85hzzayBH2i9BthnS5FlMqKtMSHDv4ts81a2jS1VFaDBVhlBeIqJ/kQKjQY95BZde9w==",
       "path": "automapper/10.1.1",
       "hashPath": "automapper.10.1.1.nupkg.sha512"
-    },
-    "AutoMapper.Extensions.Microsoft.DependencyInjection/8.1.1": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-xSWoVzOipuDU4PeZcUfaZQ+xqXU8QmGv5jrdlxt3MYm9xaOmrefqcfzGQ3SQ+D+8wfBa/ZwSuL0qKOVj080inA==",
-      "path": "automapper.extensions.microsoft.dependencyinjection/8.1.1",
-      "hashPath": "automapper.extensions.microsoft.dependencyinjection.8.1.1.nupkg.sha512"
-    },
-    "Humanizer.Core/2.8.26": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-OiKusGL20vby4uDEswj2IgkdchC1yQ6rwbIkZDVBPIR6al2b7n3pC91elBul9q33KaBgRKhbZH3+2Ur4fnWx2A==",
-      "path": "humanizer.core/2.8.26",
-      "hashPath": "humanizer.core.2.8.26.nupkg.sha512"
     },
     "MailKit/3.2.0": {
       "type": "package",
@@ -939,13 +810,6 @@
       "sha512": "sha512-bc7KZZRAHLpeuznhuQWGHW7kNDRvKsUY7fPq9ftOBLR8DUtyTF1amgHxbHKg9sveTGwrJPiBf4b42pVTYlRccg==",
       "path": "microsoft.aspnetcore.authentication.jwtbearer/6.0.25",
       "hashPath": "microsoft.aspnetcore.authentication.jwtbearer.6.0.25.nupkg.sha512"
-    },
-    "Microsoft.AspNetCore.Cors/2.1.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-YOsWdk6cdIWWdXS4kAEtWcIpbjSff56bnLYGAfZuWcYLrvj7+vLgu4hGAFyX8vHg44cqdpnFU3FGPM5TOruW4w==",
-      "path": "microsoft.aspnetcore.cors/2.1.0",
-      "hashPath": "microsoft.aspnetcore.cors.2.1.0.nupkg.sha512"
     },
     "Microsoft.AspNetCore.Cryptography.Internal/6.0.24": {
       "type": "package",
@@ -1080,13 +944,6 @@
       "path": "microsoft.entityframeworkcore.analyzers/6.0.24",
       "hashPath": "microsoft.entityframeworkcore.analyzers.6.0.24.nupkg.sha512"
     },
-    "Microsoft.EntityFrameworkCore.Design/6.0.24": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-2gi7+rd7LJbK5vSxju8WmYiX6BO9HYTzwhqsQpDJ2Yva2HvsJvKfg/GnPGyn5UNXKbJxN7BEuarqcpebGMlhxQ==",
-      "path": "microsoft.entityframeworkcore.design/6.0.24",
-      "hashPath": "microsoft.entityframeworkcore.design.6.0.24.nupkg.sha512"
-    },
     "Microsoft.EntityFrameworkCore.Relational/6.0.24": {
       "type": "package",
       "serviceable": true,
@@ -1100,20 +957,6 @@
       "sha512": "sha512-aKgnw0nOCAAq+ZSBaRiQQnPmiv5kidI+APZCW99pfkzy/TwflImeQLXFgG3+BwEyuqaCpENQH7C3N8IYyvxVRA==",
       "path": "microsoft.entityframeworkcore.sqlserver/6.0.24",
       "hashPath": "microsoft.entityframeworkcore.sqlserver.6.0.24.nupkg.sha512"
-    },
-    "Microsoft.EntityFrameworkCore.Tools/6.0.24": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-iW4JJB+DCfTC4/W6OET6fUQT1zkMtY9gqX/gAu5AHMTpw90TMhLtKEeQS0eeumvkJuNooHJbwX6O4tysefCwNg==",
-      "path": "microsoft.entityframeworkcore.tools/6.0.24",
-      "hashPath": "microsoft.entityframeworkcore.tools.6.0.24.nupkg.sha512"
-    },
-    "Microsoft.Extensions.ApiDescription.Server/6.0.5": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-Ckb5EDBUNJdFWyajfXzUIMRkhf52fHZOQuuZg/oiu8y7zDCVwD0iHhew6MnThjHmevanpxL3f5ci2TtHQEN6bw==",
-      "path": "microsoft.extensions.apidescription.server/6.0.5",
-      "hashPath": "microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512"
     },
     "Microsoft.Extensions.Caching.Abstractions/6.0.0": {
       "type": "package",
@@ -1290,13 +1133,6 @@
       "path": "microsoft.netcore.targets/1.1.0",
       "hashPath": "microsoft.netcore.targets.1.1.0.nupkg.sha512"
     },
-    "Microsoft.OpenApi/1.2.3": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-Nug3rO+7Kl5/SBAadzSMAVgqDlfGjJZ0GenQrLywJ84XGKO0uRqkunz5Wyl0SDwcR71bAATXvSdbdzPrYRYKGw==",
-      "path": "microsoft.openapi/1.2.3",
-      "hashPath": "microsoft.openapi.1.2.3.nupkg.sha512"
-    },
     "Microsoft.Win32.Registry/4.7.0": {
       "type": "package",
       "serviceable": true,
@@ -1331,34 +1167,6 @@
       "sha512": "sha512-eZZBCABzVOek+id9Xy04HhmgykF0wZg9wpByzrWN7q8qEI0Qen9b7tfd7w8VA3dOeesumMG7C5ZPy0jk7PSRHw==",
       "path": "portable.bouncycastle/1.9.0",
       "hashPath": "portable.bouncycastle.1.9.0.nupkg.sha512"
-    },
-    "Swashbuckle.AspNetCore/6.5.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-FK05XokgjgwlCI6wCT+D4/abtQkL1X1/B9Oas6uIwHFmYrIO9WUD5aLC9IzMs9GnHfUXOtXZ2S43gN1mhs5+aA==",
-      "path": "swashbuckle.aspnetcore/6.5.0",
-      "hashPath": "swashbuckle.aspnetcore.6.5.0.nupkg.sha512"
-    },
-    "Swashbuckle.AspNetCore.Swagger/6.5.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-XWmCmqyFmoItXKFsQSwQbEAsjDKcxlNf1l+/Ki42hcb6LjKL8m5Db69OTvz5vLonMSRntYO1XLqz0OP+n3vKnA==",
-      "path": "swashbuckle.aspnetcore.swagger/6.5.0",
-      "hashPath": "swashbuckle.aspnetcore.swagger.6.5.0.nupkg.sha512"
-    },
-    "Swashbuckle.AspNetCore.SwaggerGen/6.5.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-Y/qW8Qdg9OEs7V013tt+94OdPxbRdbhcEbw4NiwGvf4YBcfhL/y7qp/Mjv/cENsQ2L3NqJ2AOu94weBy/h4KvA==",
-      "path": "swashbuckle.aspnetcore.swaggergen/6.5.0",
-      "hashPath": "swashbuckle.aspnetcore.swaggergen.6.5.0.nupkg.sha512"
-    },
-    "Swashbuckle.AspNetCore.SwaggerUI/6.5.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-OvbvxX+wL8skxTBttcBsVxdh73Fag4xwqEU2edh4JMn7Ws/xJHnY/JB1e9RoCb6XpDxUF3hD9A0Z1lEUx40Pfw==",
-      "path": "swashbuckle.aspnetcore.swaggerui/6.5.0",
-      "hashPath": "swashbuckle.aspnetcore.swaggerui.6.5.0.nupkg.sha512"
     },
     "System.Buffers/4.5.0": {
       "type": "package",
@@ -1520,11 +1328,6 @@
       "sha512": "sha512-CeWTdRNfRaSh0pm2gDTJFwVaXfTq6Xwv/sA887iwPTneW7oMtMlpvDIO+U60+3GWTB7Aom6oQwv5VZVUhQRdPQ==",
       "path": "system.windows.extensions/4.7.0",
       "hashPath": "system.windows.extensions.4.7.0.nupkg.sha512"
-    },
-    "BLL/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
     },
     "DAL/1.0.0": {
       "type": "project",

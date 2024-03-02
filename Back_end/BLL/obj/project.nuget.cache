@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "GQsYS85dHA3diR/Un5le5l+aJKTv6xUjmZnSF8OjRt74cnG23PXq6yjeSVLkASlKuiPUlj+RQKrGm885DxpbRA==",
+  "dgSpecHash": "bmMmEPUDR+6Vg98EyXI8GIGkdvVWtARkFh2wTDmNHOkL0PTTS3V0+AgxtwDXIH/EVPT8WwA+mkndkpeaN9h24A==",
   "success": true,
-  "projectFilePath": "D:\\Do_An_5\\Back_end\\BLL\\BUS.csproj",
+  "projectFilePath": "D:\\Do_An_5\\Back_end\\BLL\\BLL.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\phith\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
     "C:\\Users\\phith\\.nuget\\packages\\mailkit\\3.2.0\\mailkit.3.2.0.nupkg.sha512",
