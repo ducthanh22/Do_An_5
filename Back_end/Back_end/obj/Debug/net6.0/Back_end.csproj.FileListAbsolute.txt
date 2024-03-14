@@ -88,3 +88,4 @@ D:\Do_An_5\Back_end\Back_end\bin\Debug\net6.0\NETCore.MailKit.dll
 D:\Do_An_5\Back_end\Back_end\bin\Debug\net6.0\BouncyCastle.Crypto.dll
 D:\Do_An_5\Back_end\Back_end\bin\Debug\net6.0\BLL.dll
 D:\Do_An_5\Back_end\Back_end\bin\Debug\net6.0\BLL.pdb
+D:\Do_An_5\Back_end\Back_end\obj\Debug\net6.0\Back_end.MvcApplicationPartsAssemblyInfo.cs

@@ -4,7 +4,6 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { RouterModule } from '@angular/router';
-import { HeaderadminComponent } from './headeradmin/headeradmin.component';
 import { DropdownModule } from 'primeng/dropdown';
 import { FormsModule } from '@angular/forms';
 // import { BrowserModule } from '@angular/platform-browser';
@@ -12,6 +11,13 @@ import { FormsModule } from '@angular/forms';
 
 import { MenubarModule } from 'primeng/menubar';
 import { InputTextModule } from 'primeng/inputtext';
+import { SidebarModule } from 'primeng/sidebar';
+import { ButtonModule } from 'primeng/button';
+import { ToolbarModule } from 'primeng/toolbar';
+import { SplitButtonModule } from 'primeng/splitbutton';
+import { ToastModule } from 'primeng/toast';
+
+
 
 
 
@@ -20,7 +26,7 @@ import { InputTextModule } from 'primeng/inputtext';
     HeaderComponent,
     FooterComponent,
     SidebarComponent,
-    HeaderadminComponent
+
   ],
   imports: [
     CommonModule,
@@ -28,14 +34,16 @@ import { InputTextModule } from 'primeng/inputtext';
     DropdownModule,
     FormsModule,
     MenubarModule,
-    InputTextModule
-   
+    InputTextModule,
+    SidebarModule,
+    ButtonModule,
+    ToolbarModule,
+    SplitButtonModule,
+    ToastModule
     
-
-
   ],
   exports:[HeaderComponent,
     FooterComponent,
-    SidebarComponent,HeaderadminComponent]
+    SidebarComponent]
 })
 export class PartialsModule { }

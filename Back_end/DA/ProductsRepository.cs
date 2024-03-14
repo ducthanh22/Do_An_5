@@ -24,7 +24,7 @@ namespace DAL
 
                         join e in _DbContext.Set<Size>() on a.Id equals e.IdColor into eGroup
                         from e in eGroup.DefaultIfEmpty()
-                        where ( d.Name.Contains(keyword))
+                        where ( string.IsNullOrEmpty(keyword)|| d.Name.Contains(keyword))
                         select new ProductsDto
                         {
                             Id = d.Id,

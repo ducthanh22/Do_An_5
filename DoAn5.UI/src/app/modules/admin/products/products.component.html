@@ -1,0 +1,127 @@
+<h2> Quản lý sản phẩm</h2>
+
+
+<div class="card">
+    <p-table [value]="ListProducts" [lazy]="true" (onLazyLoad)="loadListLazy($event)" [paginator]="true" [rows]="10"
+        [loading]="loading" [showCurrentPageReport]="true" [tableStyle]="{ 'min-width': '50rem' }"
+        [totalRecords]="Totalcount" [resizableColumns]="true"
+        currentPageReportTemplate="Hiển thị từ {first} đến {last} của {totalRecords} bản ghi" [filterDelay]="0"
+        [rowsPerPageOptions]="[5, 10, 20]">
+        <ng-template pTemplate="caption">
+            <p-button (click)="Add()" icon="pi pi-plus-circle" label="Thêm mới"></p-button>
+            <form class="p-input-icon-left frm" (ngSubmit)="onsubmit()">
+                <i class="pi pi-search"></i>
+                <input type="text" class="p-inputtext" pInputText [(ngModel)]="keyword" placeholder="Tìm kiếm..."
+                    [ngModelOptions]="{standalone: true}" />
+                <!-- <p-button type="submit" icon="pi pi-search"></p-button> -->
+            </form>
+
+
+        </ng-template>
+        <ng-template pTemplate="header">
+            <tr>
+                <th style="width:3%;">STT</th>
+
+                <th style="width:15%;">Mã</th>
+                <th>Ảnh</th>
+                <th>Tên</th>
+                <th>Giá</th>
+                <th>Màu</th>
+                <!-- <th >Size</th> -->
+                <th>Chức năng</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-product let-rowIndex="rowIndex">
+            <tr>
+                <td>{{ rowIndex + 1}}</td>
+
+                <td>{{ product.id }}</td>
+                <td><p-image src="https://localhost:7058/Images/{{ product.image }}"
+                        previewImageSrc="https://localhost:7058/Images/{{ product.image }}" alt="Image" width="100"
+                        [preview]="true"></p-image></td>
+                <!-- <td><img src="https://localhost:7058/Images/{{ product.image }}" [alt]="product.name"style="width: 100px;" /></td> -->
+                <td>{{ product.name }}</td>
+                <td>{{ product.price_product | currency:"VND" }}</td>
+                <td>{{ product.nameColor }}</td>
+                <td>
+                    <i class="pi pi-eye" style="color: slateblue; margin-left: 5%;"></i>
+                    <i class="pi pi-pencil" style="color: rgb(255, 132, 0); margin-left: 5%;"
+                        (click)="Edit(product)"></i>
+                    <i class="pi pi-trash" style="color: red; margin-left: 5%;"></i>
+                </td>
+
+
+
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="paginatorleft">
+            <p-button type="button" icon="pi pi-plus" styleClass="p-button-text"></p-button>
+        </ng-template>
+        <ng-template pTemplate="paginatorright">
+            <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text"></p-button>
+        </ng-template>
+    </p-table>
+</div>
+
+
+
+
+<p-dialog header="Long Content" [(visible)]="visible" [modal]="true" [maximizable]="true"
+    [style]="{width: '40%',height:'90%'}" [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }">
+    <ng-template pTemplate="header">
+        <div class="dialog-header">
+            <span class="font-bold">{{Titile}}</span>
+        </div>
+    </ng-template>
+    <ng-template pTemplate="body">
+        <form [formGroup]="FormProduct" class="full-width-form">
+            <div class="flex card flex justify-content-center">
+                <div class="input-container">
+                    <label for="name">Tên</label>
+                    <div class="dropdown-wrapper">
+                        <input type="text" class="p-inputtext" pInputText formControlName="name"  />
+                    </div>
+                </div>
+                <div class="input-container">
+                    <label for="name">Chọn loại sản phẩm</label>
+                    <div class="dropdown-wrapper">
+                        <p-dropdown [options]="SelectionCategory" formControlName="idcategories" optionLabel="name"optionValue="id"
+                        [filter]="true" filterBy="name" [showClear]="true"[style]="{'minWidth':'100%'}"></p-dropdown>
+                    </div>
+                </div>
+
+                <div class="input-container">
+                    <label for="name">Chọn nhà sản xuất</label>
+                    <div class="dropdown-wrapper">
+                        <p-dropdown [options]="SelectionProduces" formControlName="idproduces" optionLabel="name" optionValue="id"
+                        [filter]="true" filterBy="name" [showClear]="true" [style]="{'minWidth':'100%'}">
+                        <ng-template let-produces pTemplate="item">
+                            <div class="flex align-items-center gap-2">
+                                <img src="https://localhost:7058/Img_Brand/{{ produces.image }}" [class]="'flag flag-' + produces.name" style="width: 30px"/>
+                                <div>{{ produces.name }}</div>
+                            </div>
+                        </ng-template>
+                    </p-dropdown>
+                    </div>
+                </div>
+                <div class="input-container">
+                    <label for="name">Mô tả</label>
+                    <div class="dropdown-wrapper">
+                        <input type="text" class="p-inputtext" pInputText formControlName="describe" />
+                    </div>
+                </div>
+                <div class="input-container">
+                    <label for="name">Giá</label>
+                    <div class="dropdown-wrapper">
+                        <input type="number" class="p-inputtext" pInputText formControlName="price_product"  />
+                    </div>
+                </div>
+            </div>
+        </form>
+    </ng-template>
+    <ng-template pTemplate="footer">
+        <div class="dialog-footer">
+            <p-button icon="pi pi-check" (click)="SubmitBtn()" label="Ok" pAutoFocus [autofocus]="true"></p-button>
+        </div>
+    </ng-template>
+</p-dialog>

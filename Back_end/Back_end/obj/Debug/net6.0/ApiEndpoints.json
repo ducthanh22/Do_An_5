@@ -1842,7 +1842,7 @@
   {
     "ContainingType": "Back_end.Controllers.ProductController",
     "Method": "GetByIds",
-    "RelativePath": "api/Product/GetByids",
+    "RelativePath": "api/Product/GetByid",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -1874,12 +1874,12 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "keywork",
+        "Name": "keyword",
         "Type": "System.String",
         "IsRequired": false
       },
       {
-        "Name": "page",
+        "Name": "pageIndex",
         "Type": "System.Int32",
         "IsRequired": false
       },

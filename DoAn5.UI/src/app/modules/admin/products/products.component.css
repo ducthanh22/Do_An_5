@@ -1,0 +1,47 @@
+.frm{
+float: right ;
+margin-right: 5%;
+}
+.card{
+margin-top: 1%;
+
+}
+.dialog-header {
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.dialog-header .font-bold {
+    font-weight: bold;
+}
+
+.flex {
+    display: grid;
+}
+
+.input-container,
+.dropdown-container {
+    grid: 1;
+    margin-right: 10px;
+}
+
+.input-container input,
+.dropdown-container p-dropdown {
+    width: 100%;
+}
+
+.full-width-form {
+    width: 100%;
+}
+
+.dialog-footer {
+    display: flex;
+    justify-content: flex-end;
+    padding: 1rem;
+}
+.dropdown-wrapper {
+    flex: 1;
+    margin-top: 8px; /* Điều chỉnh khoảng cách giữa nhãn và dropdown */
+}
+

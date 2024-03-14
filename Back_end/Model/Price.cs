@@ -10,7 +10,7 @@ namespace Model
     public class Price : Basedb
     {
         public Guid Idproduct {  get; set; }
-        public int Price_product {  get; set; }
+        public int ?Price_product {  get; set; }
         
     }
 }

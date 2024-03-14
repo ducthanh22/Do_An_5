@@ -56,9 +56,9 @@ rowHover: any;
       pageIndex: pageIndex,
       pageSize: pageSize,
       keyword: this.keyword,
-      orderBy: event.sortField
-        ? `${event.sortField} ${event.sortOrder === 1 ? 'asc' : 'desc'}`
-        : '',
+      // orderBy: event.sortField
+      //   ? `${event.sortField} ${event.sortOrder === 1 ? 'asc' : 'desc'}`
+      //   : '',
     };
     this.categoriesService.Search(this.paging).subscribe({
       next: (res) => {

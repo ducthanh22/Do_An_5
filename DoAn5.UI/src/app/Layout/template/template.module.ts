@@ -43,6 +43,7 @@ import { ToastModule } from 'primeng/toast';
     InputGroupAddonModule,
     ToastModule
 
-  ]
+  ],
+  
 })
 export class TemplateModule { }

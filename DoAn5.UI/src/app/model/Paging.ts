@@ -1,6 +1,7 @@
 export interface Paging {
+    keyword: string ;
     pageIndex: number;
     pageSize: number;
-    keyword: string | null;
-    orderBy: string | null;
+   
+    // orderBy: string ;
 }

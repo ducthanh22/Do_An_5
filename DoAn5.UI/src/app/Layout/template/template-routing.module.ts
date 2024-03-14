@@ -9,7 +9,7 @@ import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.compone
 
 
 const routes: Routes = [
-  // {path:'client',component:ClientClienttemplateComponent},
+  {path:'client',component:ClientClienttemplateComponent},
   { path: 'admin', component: AdminAdmintemplateComponent,title:'Admin' },
   {
     path: '',
@@ -34,11 +34,12 @@ const routes: Routes = [
           
         ],
       },
+      
       {
         path: '',
         component: AdminAdmintemplateComponent,
         data: {
-          title: 'Client',
+          title: 'Admin',
         },
         children: [
           {

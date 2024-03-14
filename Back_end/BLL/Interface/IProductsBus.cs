@@ -10,7 +10,7 @@ namespace BLL.Interface
 {
     public interface IProductsBus : IGenericBUS<Products>
     {
-        Task<BaseQuerieResponse<ProductsDto>> Search(string keywork, int page, int pageSize);
+        Task<BaseQuerieResponse<ProductsDto>> Search(string keyword, int page, int pageSize);
         //Task<UpLoadFile> UploadFile(UpLoadFile product);
         Task<IQueryable<ProductsDto>> GetByIds(Guid ids);
         Task<List<ProductsDto>> Getalls();

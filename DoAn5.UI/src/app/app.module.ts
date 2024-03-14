@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { TemplateModule } from './Layout/template/template.module';
 import { TemplateRoutingModule } from './Layout/template/template-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MessageService } from 'primeng/api';
 
 
 
@@ -22,7 +23,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     TemplateRoutingModule,
    
   ],
-  providers: [],
+  providers: [MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

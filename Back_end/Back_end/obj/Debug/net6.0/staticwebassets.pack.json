@@ -1,64 +1,12 @@
 {
   "Files": [
     {
-      "Id": "D:\\Do_An_5\\Back_end\\Back_end\\wwwroot\\Images\\22050cf3-34ea-44d3-a441-b1d07ee217c6-Aristino.jpg",
-      "PackagePath": "staticwebassets\\Images\\22050cf3-34ea-44d3-a441-b1d07ee217c6-Aristino.jpg"
+      "Id": "D:\\Do_An_5\\Back_end\\Back_end\\wwwroot\\Images\\a91216de-57c5-4033-b48b-4580ebcfa7ab-hinh-nen-dektop-cute-mien-phi-800x450.jpg",
+      "PackagePath": "staticwebassets\\Images\\a91216de-57c5-4033-b48b-4580ebcfa7ab-hinh-nen-dektop-cute-mien-phi-800x450.jpg"
     },
     {
       "Id": "D:\\Do_An_5\\Back_end\\Back_end\\wwwroot\\Images\\ed664ed2-8b21-40b3-8412-29484a104c39-Screenshot 2024-02-19 234208.png",
       "PackagePath": "staticwebassets\\Images\\ed664ed2-8b21-40b3-8412-29484a104c39-Screenshot 2024-02-19 234208.png"
-    },
-    {
-      "Id": "D:\\Do_An_5\\Back_end\\Back_end\\wwwroot\\Img_Brand\\1197bf03-05d0-4a17-a057-7b13506b0233-H&M.png",
-      "PackagePath": "staticwebassets\\Img_Brand\\1197bf03-05d0-4a17-a057-7b13506b0233-H&M.png"
-    },
-    {
-      "Id": "D:\\Do_An_5\\Back_end\\Back_end\\wwwroot\\Img_Brand\\3189444a-c0f2-44ca-aec2-5fb8e2993dd1-CK.png",
-      "PackagePath": "staticwebassets\\Img_Brand\\3189444a-c0f2-44ca-aec2-5fb8e2993dd1-CK.png"
-    },
-    {
-      "Id": "D:\\Do_An_5\\Back_end\\Back_end\\wwwroot\\Img_Brand\\46e1b632-6996-41c6-a6d0-268aacf1b974-Screenshot 2024-02-19 234208.png",
-      "PackagePath": "staticwebassets\\Img_Brand\\46e1b632-6996-41c6-a6d0-268aacf1b974-Screenshot 2024-02-19 234208.png"
-    },
-    {
-      "Id": "D:\\Do_An_5\\Back_end\\Back_end\\wwwroot\\Img_Brand\\4d42d7d7-15eb-4ddd-adc2-866a46a4c6aa-gucci.png",
-      "PackagePath": "staticwebassets\\Img_Brand\\4d42d7d7-15eb-4ddd-adc2-866a46a4c6aa-gucci.png"
-    },
-    {
-      "Id": "D:\\Do_An_5\\Back_end\\Back_end\\wwwroot\\Img_Brand\\60ade659-d9c7-4a6f-9eef-b4ad895d40fd-Screenshot 2024-02-19 233825.png",
-      "PackagePath": "staticwebassets\\Img_Brand\\60ade659-d9c7-4a6f-9eef-b4ad895d40fd-Screenshot 2024-02-19 233825.png"
-    },
-    {
-      "Id": "D:\\Do_An_5\\Back_end\\Back_end\\wwwroot\\Img_Brand\\7e8b3a90-3cfd-4afb-b8de-caf5f9d7d806-D&G.png",
-      "PackagePath": "staticwebassets\\Img_Brand\\7e8b3a90-3cfd-4afb-b8de-caf5f9d7d806-D&G.png"
-    },
-    {
-      "Id": "D:\\Do_An_5\\Back_end\\Back_end\\wwwroot\\Img_Brand\\8ec2c541-ea01-47da-a8e0-2665fa0adcf9-LV.jpg",
-      "PackagePath": "staticwebassets\\Img_Brand\\8ec2c541-ea01-47da-a8e0-2665fa0adcf9-LV.jpg"
-    },
-    {
-      "Id": "D:\\Do_An_5\\Back_end\\Back_end\\wwwroot\\Img_Brand\\b245c82e-b908-4a87-aeb0-32b2233bf89f-chanel.png",
-      "PackagePath": "staticwebassets\\Img_Brand\\b245c82e-b908-4a87-aeb0-32b2233bf89f-chanel.png"
-    },
-    {
-      "Id": "D:\\Do_An_5\\Back_end\\Back_end\\wwwroot\\Img_Brand\\c2399df4-988b-421f-95a9-7de1a22f9de1-Nem.jpg",
-      "PackagePath": "staticwebassets\\Img_Brand\\c2399df4-988b-421f-95a9-7de1a22f9de1-Nem.jpg"
-    },
-    {
-      "Id": "D:\\Do_An_5\\Back_end\\Back_end\\wwwroot\\Img_Brand\\c416f32c-f5ea-4ca8-a3ec-d7744d75f5e1-Screenshot 2024-02-19 234208.png",
-      "PackagePath": "staticwebassets\\Img_Brand\\c416f32c-f5ea-4ca8-a3ec-d7744d75f5e1-Screenshot 2024-02-19 234208.png"
-    },
-    {
-      "Id": "D:\\Do_An_5\\Back_end\\Back_end\\wwwroot\\Img_Brand\\d109921e-8221-4bc7-8c1b-a694cea9fb0a-Nem.jpg",
-      "PackagePath": "staticwebassets\\Img_Brand\\d109921e-8221-4bc7-8c1b-a694cea9fb0a-Nem.jpg"
-    },
-    {
-      "Id": "D:\\Do_An_5\\Back_end\\Back_end\\wwwroot\\Img_Brand\\ef58f194-9406-47ef-a015-cafa80dd34e0-Aristino.jpg",
-      "PackagePath": "staticwebassets\\Img_Brand\\ef58f194-9406-47ef-a015-cafa80dd34e0-Aristino.jpg"
-    },
-    {
-      "Id": "D:\\Do_An_5\\Back_end\\Back_end\\wwwroot\\Img_Brand\\fc893004-3457-447c-949e-cd09d49b7e5d-adidas.png",
-      "PackagePath": "staticwebassets\\Img_Brand\\fc893004-3457-447c-949e-cd09d49b7e5d-adidas.png"
     },
     {
       "Id": "D:\\Do_An_5\\Back_end\\Back_end\\wwwroot\\Temlate_Email\\images\\image-1.png",

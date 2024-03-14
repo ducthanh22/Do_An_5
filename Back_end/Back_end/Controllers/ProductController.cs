@@ -35,7 +35,7 @@ namespace Back_end.Controllers
         //    var result = await _productsBus.Getbyid(id);
         //    return Ok(result);
         //}
-        [HttpGet("GetByids")]
+        [HttpGet("GetByid")]
         public async Task<ActionResult<ProductsDto>> GetByIds(Guid id)
         {
             var result = await _productsBus.GetByIds(id);
@@ -69,9 +69,9 @@ namespace Back_end.Controllers
         }
 
         [HttpGet("Search")]
-        public async Task<IActionResult> Search([FromQuery] string? keywork, [FromQuery] int page = 1, [FromQuery] int pageSize = 10)
+        public async Task<IActionResult> Search([FromQuery] string? keyword, [FromQuery] int pageIndex, [FromQuery] int pageSize)
         {
-            var result = await _productsBus.Search(keywork, page, pageSize);
+            var result = await _productsBus.Search(keyword, pageIndex, pageSize);
 
             return Ok(result);
         }

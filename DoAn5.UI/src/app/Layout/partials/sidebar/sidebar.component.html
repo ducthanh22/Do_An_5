@@ -1,52 +1,24 @@
-<aside id="sidebar" class="sidebar" >
-
-        <ul class="sidebar-nav" id="sidebar-nav">
-      
-          <li class="nav-item py-sm-0">
-            <a class="nav-link " href="/admin/dashboard">
-              <i class="bi bi-grid"></i>
-              <span>Thống kê</span>
-            </a>
-          </li>
-          <li class="nav-item py-sm-0">
-            <a class="nav-link "href="/admin/categories_admin" >
-              <i class="bi bi-envelope"></i>
-              <span>Danh mục</span>
-            </a>
-          </li>
-          <li class="nav-item py-sm-0">
-            <a class="nav-link "href="/admin/categories_admin" >
-              <i class="bi bi-envelope"></i>
-              <span>Sản phẩm</span>
-            </a>
-          </li>
-          <li class="nav-item py-sm-0">
-            <a class="nav-link "href="/admin/categories_admin" >
-              <i class="bi bi-envelope"></i>
-              <span>Giá</span>
-            </a>
-          </li>
-          <li class="nav-item py-sm-0">
-            <a class="nav-link "href="/admin/categories_admin" >
-              <i class="bi bi-envelope"></i>
-              <span>Hóa đơn nhập</span>
-            </a>
-          </li>
-          <li class="nav-item py-sm-0">
-            <a class="nav-link "href="/admin/categories_admin" >
-              <i class="bi bi-envelope"></i>
-              <span>Hóa đơn bán</span>
-            </a>
-          </li>
-          <li class="nav-item py-sm-0">
-            <a class="nav-link "href="/admin/categories_admin" >
-              <i class="bi bi-envelope"></i>
-              <span>Kho</span>
-            </a>
-          </li>
-      
-      
-      
-        </ul>
-      
-      </aside><!-- End Sidebar-->
+<p-toast></p-toast>
+<p-toolbar>
+  <div class="p-toolbar-group-start">
+    <p-button (click)="sidebarVisible = true" icon="pi pi-align-justify"[text]="true" [raised]="true" severity="secondary"></p-button>
+  </div>
+  <div class="p-toolbar-group-center">
+      <span class="p-input-icon-left">
+        <img src="/./assets/client/assets/img/snapedit_Achino.png" height="45px" width="100%" class="mr-2" />
+      </span>
+  </div>
+  <div class="p-toolbar-group-end">
+      <p-splitButton [label]="label" icon="pi pi-user" [model]="items" styleClass="p-button-text p-button-secondary mr-2 mb-2"></p-splitButton>
+  </div>
+</p-toolbar>
+<p-sidebar [(visible)]="sidebarVisible">
+  <ng-template pTemplate="header"><img src="/./assets/client/assets/img/snapedit_Achino.png" height="100%" width="50%" class="mr-2" style="margin-left: 20%;" />
+  </ng-template>
+  <ng-template pTemplate="content">
+      <li><a><i class="pi pi-home "></i> Dashboard</a></li>
+      <li><a><i class="pi pi-home "></i> Quản lý sản phẩm</a></li>
+      <li><a><i class="pi pi-home "></i> Quản lý đơn hàng</a></li>
+  </ng-template>
+  <ng-template pTemplate="footer">Footer Content</ng-template>
+</p-sidebar>
