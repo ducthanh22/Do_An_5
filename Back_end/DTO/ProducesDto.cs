@@ -15,11 +15,12 @@ namespace DTO
         public string Email { get; set; }
         public string Phone { get; set; }
         public string Image { get; set; } = "";
+        public List<ColorDto> Colors { get; set; }
 
     }
     public class UpFile
     {
-        public string Id { get; set; }
+        public Guid Id { get; set; }
         public IFormFile Img { get; set; }
         public string? Image { get; set; }
 

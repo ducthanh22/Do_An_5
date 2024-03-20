@@ -276,13 +276,6 @@ namespace Model.Migrations
                     b.Property<int?>("CreatedBy")
                         .HasColumnType("int");
 
-                    b.Property<Guid>("IdProduct")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Image")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime?>("Modified")
                         .HasColumnType("datetime2");
 
@@ -611,7 +604,7 @@ namespace Model.Migrations
                     b.Property<int?>("ModifiedBy")
                         .HasColumnType("int");
 
-                    b.Property<int>("Price_product")
+                    b.Property<int?>("Price_product")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -687,8 +680,18 @@ namespace Model.Migrations
                     b.Property<Guid>("Idcategories")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid>("Idcolor")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<Guid>("Idproduces")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("Idsize")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Image")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("Modified")
                         .HasColumnType("datetime2");
@@ -719,9 +722,6 @@ namespace Model.Migrations
 
                     b.Property<int?>("CreatedBy")
                         .HasColumnType("int");
-
-                    b.Property<Guid>("IdColor")
-                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("Modified")
                         .HasColumnType("datetime2");

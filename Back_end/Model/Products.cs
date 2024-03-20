@@ -13,5 +13,9 @@ namespace Model
         public Guid Idcategories {  get; set; }
         public Guid Idproduces { get; set;}
         public string Describe {  get; set; }
+        public string Image { get; set; }
+        public Guid Idcolor { get; set; }
+        public Guid Idsize { get; set; }
+
     }
 }

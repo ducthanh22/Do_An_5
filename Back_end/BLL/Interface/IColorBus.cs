@@ -10,7 +10,6 @@ namespace BLL.Interface
 {
     public interface IColorBus :IGenericBUS<Color>
     {
-        Task<UpLoadFile> UploadFile(UpLoadFile color);
 
     }
 }

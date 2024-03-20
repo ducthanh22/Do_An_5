@@ -123,6 +123,8 @@ builder.Services.AddScoped<ISendEmailRepository, SendEmailRepository>();
 
 builder.Services.AddScoped<IPaymentBus, PaymentBus>();
 builder.Services.AddScoped<IPaymentRepository, PaymentRepository>();
+builder.Services.AddScoped<ISizeBus, SizeBus>();
+builder.Services.AddScoped<ISizeRepository, SizeRepository>();
 
 builder.Services.AddCors();
 

@@ -22,7 +22,6 @@ namespace DAL
 
             var query = from d in _DbContext.Set<Price>()
                         join a in _DbContext.Set<Products>() on d.Idproduct equals a.Id
-                        join b in _DbContext.Set<Color>() on d.Idproduct equals b.IdProduct
 
                         where (d.Price_product >= min && d.Price_product <= max)
                         select new PriceDto
@@ -30,7 +29,7 @@ namespace DAL
                             Id = d.Id,
                             Price_product=d.Price_product,
                             Idproduct=d.Idproduct,
-                            Image = b.Image,
+                            Image = a.Image,
                             Name = a.Name,
                             Created=d.Created,
                             Modified=d.Modified,

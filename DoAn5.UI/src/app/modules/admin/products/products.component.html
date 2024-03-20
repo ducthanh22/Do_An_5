@@ -1,6 +1,6 @@
 <h2> Quản lý sản phẩm</h2>
 
-
+<p-confirmDialog></p-confirmDialog>
 <div class="card">
     <p-table [value]="ListProducts" [lazy]="true" (onLazyLoad)="loadListLazy($event)" [paginator]="true" [rows]="10"
         [loading]="loading" [showCurrentPageReport]="true" [tableStyle]="{ 'min-width': '50rem' }"
@@ -27,7 +27,9 @@
                 <th>Tên</th>
                 <th>Giá</th>
                 <th>Màu</th>
-                <!-- <th >Size</th> -->
+                <th >Size</th>
+                <th >Mô tả</th>
+
                 <th>Chức năng</th>
             </tr>
         </ng-template>
@@ -42,12 +44,15 @@
                 <!-- <td><img src="https://localhost:7058/Images/{{ product.image }}" [alt]="product.name"style="width: 100px;" /></td> -->
                 <td>{{ product.name }}</td>
                 <td>{{ product.price_product | currency:"VND" }}</td>
-                <td>{{ product.nameColor }}</td>
+                <td>{{ product.namecolor }}</td>
+                <td>{{ product.namesize }}</td>
+                <td [innerHTML]="product.describe"></td>
                 <td>
                     <i class="pi pi-eye" style="color: slateblue; margin-left: 5%;"></i>
                     <i class="pi pi-pencil" style="color: rgb(255, 132, 0); margin-left: 5%;"
                         (click)="Edit(product)"></i>
-                    <i class="pi pi-trash" style="color: red; margin-left: 5%;"></i>
+                    <i class="pi pi-trash" style="color: red; margin-left: 5%;"
+                        (click)="confirm($event,product.id )"></i>
                 </td>
 
 
@@ -79,49 +84,86 @@
                 <div class="input-container">
                     <label for="name">Tên</label>
                     <div class="dropdown-wrapper">
-                        <input type="text" class="p-inputtext" pInputText formControlName="name"  />
+                        <input type="text" class="p-inputtext" pInputText formControlName="name" />
                     </div>
                 </div>
                 <div class="input-container">
                     <label for="name">Chọn loại sản phẩm</label>
                     <div class="dropdown-wrapper">
-                        <p-dropdown [options]="SelectionCategory" formControlName="idcategories" optionLabel="name"optionValue="id"
-                        [filter]="true" filterBy="name" [showClear]="true"[style]="{'minWidth':'100%'}"></p-dropdown>
+                        <p-dropdown [options]="SelectionCategory" formControlName="idcategories" optionLabel="name"
+                            optionValue="id" [filter]="true" filterBy="name" [showClear]="true"
+                            [style]="{'minWidth':'100%'}"></p-dropdown>
                     </div>
                 </div>
 
                 <div class="input-container">
                     <label for="name">Chọn nhà sản xuất</label>
                     <div class="dropdown-wrapper">
-                        <p-dropdown [options]="SelectionProduces" formControlName="idproduces" optionLabel="name" optionValue="id"
-                        [filter]="true" filterBy="name" [showClear]="true" [style]="{'minWidth':'100%'}">
-                        <ng-template let-produces pTemplate="item">
-                            <div class="flex align-items-center gap-2">
-                                <img src="https://localhost:7058/Img_Brand/{{ produces.image }}" [class]="'flag flag-' + produces.name" style="width: 30px"/>
-                                <div>{{ produces.name }}</div>
-                            </div>
-                        </ng-template>
-                    </p-dropdown>
+                        <p-dropdown [options]="SelectionProduces" formControlName="idproduces" optionLabel="name"
+                            optionValue="id" [filter]="true" filterBy="name" [showClear]="true"
+                            [style]="{'minWidth':'100%'}">
+                            <ng-template let-produces pTemplate="item">
+                                <div class="flex align-items-center gap-2">
+                                    <img src="https://localhost:7058/Img_Brand/{{ produces.image }}"
+                                        [class]="'flag flag-' + produces.name" style="width: 30px" />
+                                    <div>{{ produces.name }}</div>
+                                </div>
+                            </ng-template>
+                        </p-dropdown>
+                    </div>
+                </div>
+                <div class="input-container">
+                    <label for="name">Chọn màu</label>
+                    <div class="dropdown-wrapper">
+                        <p-dropdown [options]="SelectColor" formControlName="idcolor" optionLabel="nameColor"
+                            optionValue="id" [filter]="true" filterBy="nameColor" [showClear]="true"
+                            [style]="{'minWidth':'100%'}"></p-dropdown>
+                    </div>
+                </div>
+                <div class="input-container">
+                    <label for="name">Chọn size</label>
+                    <div class="dropdown-wrapper">
+                        <p-dropdown [options]="SelectSize" formControlName="idsize" optionLabel="nameSize"
+                            optionValue="id" [filter]="true" filterBy="nameSize" [showClear]="true"
+                            [style]="{'minWidth':'100%'}"></p-dropdown>
                     </div>
                 </div>
                 <div class="input-container">
                     <label for="name">Mô tả</label>
                     <div class="dropdown-wrapper">
-                        <input type="text" class="p-inputtext" pInputText formControlName="describe" />
+                        <p-editor formControlName="describe" [style]="{ height: '320px' }"></p-editor>
+                        <!-- <input type="text" class="p-inputtext" pInputText formControlName="describe" /> -->
                     </div>
                 </div>
                 <div class="input-container">
                     <label for="name">Giá</label>
                     <div class="dropdown-wrapper">
-                        <input type="number" class="p-inputtext" pInputText formControlName="price_product"  />
+                        <input type="number" class="p-inputtext" pInputText formControlName="price_product" />
                     </div>
                 </div>
+
             </div>
+        </form>
+        <form [formGroup]="formUpload" class="full-width-form">
+            <div class="card flex justify-content-center">
+                <label for="name">Ảnh</label>
+                <p-fileUpload name="demo[]" url="https://www.primefaces.org/cdn/api/upload.php"
+                    (onUpload)="onUpload($event)" [multiple]="true" accept="image/*" [maxFileSize]="1000000">
+                    <ng-template pTemplate="content">
+                        <ul *ngIf="uploadedFiles.length">
+                            <li *ngFor="let file of uploadedFiles">{{ file.name }} - {{ file.size }} bytes</li>
+                        </ul>
+                    </ng-template>
+                </p-fileUpload>
+            </div>
+
         </form>
     </ng-template>
     <ng-template pTemplate="footer">
         <div class="dialog-footer">
-            <p-button icon="pi pi-check" (click)="SubmitBtn()" label="Ok" pAutoFocus [autofocus]="true"></p-button>
+            <p-button icon="pi pi-check" *ngIf="FormProduct.valid " (click)="SubmitBtn()" label="Lưu" pAutoFocus [autofocus]="true"></p-button>
+            <p-button icon="pi pi-check" (click)="close()"  label="Đóng"severity="danger" ></p-button>
+
         </div>
     </ng-template>
 </p-dialog>

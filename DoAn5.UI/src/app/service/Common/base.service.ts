@@ -13,7 +13,7 @@ export class BaseService<T> {
   getAll(): Observable<T[]> {
     return this._http.get<T[]>(`${this.actionUrl}/GetAll`).pipe(first());
   }
-  getbyid(id : number): Observable<T[]> {
+  getbyid(id : string): Observable<T[]> {
     return this._http.get<T[]>(`${this.actionUrl}/GetByid/${id}`).pipe(first());
   }
   Search(paging: Paging): Observable<BaseQuerieResponse<T>> {
@@ -33,7 +33,10 @@ export class BaseService<T> {
   }
   Update<T>(data: T): Observable<BaseCommandResponse> {
     return this._http
-      .post<BaseCommandResponse>(`${this.actionUrl}/update`, data)
+      .put<BaseCommandResponse>(`${this.actionUrl}/update`, data)
       .pipe(first());
+  }
+  Delete(id : string): Observable<T[]> {
+    return this._http.delete<T[]>(`${this.actionUrl}/Delete/${id}`).pipe(first());
   }
 }

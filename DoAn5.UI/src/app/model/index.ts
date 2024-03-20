@@ -4,5 +4,8 @@ export *from "./Categories"
 export*from"./Paging"
 export *from "./Produces"
 export *from "./account"
-export *from "./product"
+export { ProductsDto,UpLoadFile } from "./product";
+export{ColorDto,SizeDto} from "./color"
+
+
 

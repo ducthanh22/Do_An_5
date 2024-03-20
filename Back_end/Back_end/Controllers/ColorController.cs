@@ -53,11 +53,6 @@ namespace Back_end.Controllers
             return Ok(result);
         }
 
-        [HttpPost("Upload")]
-        public async Task<ActionResult<UpLoadFile>> Upload([FromForm] UpLoadFile data)
-        {
-            var result = await _Bus.UploadFile(data);
-            return Ok(result);
-        }
+       
     }
 }

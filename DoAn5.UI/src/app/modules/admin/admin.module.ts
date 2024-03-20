@@ -15,6 +15,12 @@ import { InputGroupModule } from 'primeng/inputgroup';
 import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { ImageModule } from 'primeng/image';
 import { DropdownModule } from 'primeng/dropdown';
+import { EditorModule } from 'primeng/editor';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ConfirmationService } from 'primeng/api';
+
+import { FileUploadModule } from 'primeng/fileupload';
+
 @NgModule({
   declarations: [
     DashboardComponent,
@@ -36,13 +42,14 @@ import { DropdownModule } from 'primeng/dropdown';
     InputGroupModule,
     InputGroupAddonModule,
     ImageModule,
-    DropdownModule
+    DropdownModule,
+    EditorModule,
+    ConfirmDialogModule,
+    FileUploadModule
     
     
-
   ],
-  providers: [ 
-  ],
+  providers: [ConfirmationService],
  
 })
 export class AdminModule { }

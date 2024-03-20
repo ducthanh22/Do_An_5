@@ -19,7 +19,7 @@ namespace BLL
         {
             _res = res;
         }
-        public async Task<BaseQuerieResponse<ProductsDto>> Search(string keywork, int page, int pageSize)
+        public async Task<BaseQuerieResponse<GetProductsDto>> Search(string keywork, int page, int pageSize)
         {
             return await _res.Search(keywork, page, pageSize);
         }
@@ -27,11 +27,11 @@ namespace BLL
         //{
         //    return await _res.UploadFile(product);
         //}
-        public async Task<IQueryable<ProductsDto>> GetByIds(Guid ids)
+        public async Task<IQueryable<GetProductsDto>> GetByIds(Guid ids)
         {
             return await _res.GetByIds(ids);
         }
-        public async  Task<List<ProductsDto>> Getalls()
+        public async  Task<List<GetProductsDto>> Getalls()
         {
             return await _res.Getalls();
         }
@@ -45,5 +45,10 @@ namespace BLL
             return await _res.Updates(entity);
 
         }
+       public async Task<UpLoadFile> UploadFile(UpLoadFile img)
+        {
+            return await _res.UploadFile(img);
+        }
+
     }
 }

@@ -3,6 +3,9 @@
 @import "primeng/resources/primeng.css";
 @import "primeicons/primeicons.css";
 
+@import url(../node_modules//quill/dist/quill.snow.css);
+@import url(../node_modules//quill/dist/quill.core.css);
+
 .bt{
     height: 60%;
     margin-top: 23px;

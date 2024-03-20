@@ -23,7 +23,7 @@ namespace Back_end.Controllers
         }
 
         [HttpGet("GetAll")]
-        public async Task<ActionResult<List<ProductsDto>>> GetAll()
+        public async Task<ActionResult<List<GetProductsDto>>> GetAll()
         {
             var result = await _productsBus.Getalls();
             return Ok(result);
@@ -36,7 +36,7 @@ namespace Back_end.Controllers
         //    return Ok(result);
         //}
         [HttpGet("GetByid")]
-        public async Task<ActionResult<ProductsDto>> GetByIds(Guid id)
+        public async Task<ActionResult<GetProductsDto>> GetByIds(Guid id)
         {
             var result = await _productsBus.GetByIds(id);
             return Ok(result);
@@ -57,7 +57,7 @@ namespace Back_end.Controllers
             var createdEntity = await _productsBus.Updates(dto);
             return Ok(createdEntity);
         }
-        [HttpDelete("Delete")]
+        [HttpDelete("Delete/{id}")]
         public async Task<ActionResult<ProductsDto>> Delete(Guid id)
         {
             var result = await _productsBus.Delete(id);
@@ -75,12 +75,13 @@ namespace Back_end.Controllers
 
             return Ok(result);
         }
-        //[HttpPost("UpLoadFile")]
-        //public async Task<IActionResult> UpLoadFile([FromForm] UpLoadFile product)
-        //{
-        //    var result = await _productsBus.UploadFile(product);
 
-        //    return Ok(result);
-        //}
+        [HttpPost("UpLoadFile")]
+        public async Task<IActionResult> UpLoadFile([FromForm] UpLoadFile product)
+        {
+            var result = await _productsBus.UploadFile(product);
+
+            return Ok(result);
+        }
     }
 }

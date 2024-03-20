@@ -409,42 +409,6 @@
     ]
   },
   {
-    "ContainingType": "Back_end.Controllers.ColorController",
-    "Method": "Upload",
-    "RelativePath": "api/Color/Upload",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "Id",
-        "Type": "System.Guid",
-        "IsRequired": false
-      },
-      {
-        "Name": "Img",
-        "Type": "Microsoft.AspNetCore.Http.IFormFile",
-        "IsRequired": false
-      },
-      {
-        "Name": "Image",
-        "Type": "System.String",
-        "IsRequired": false
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "DTO.UpLoadFile",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
     "ContainingType": "Back_end.Controllers.Detail_exportbillController",
     "Method": "Create",
     "RelativePath": "api/Detail_exportbill/create",
@@ -1741,7 +1705,7 @@
     "Parameters": [
       {
         "Name": "Id",
-        "Type": "System.String",
+        "Type": "System.Guid",
         "IsRequired": false
       },
       {
@@ -1796,7 +1760,7 @@
   {
     "ContainingType": "Back_end.Controllers.ProductController",
     "Method": "Delete",
-    "RelativePath": "api/Product/Delete",
+    "RelativePath": "api/Product/Delete/{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -1804,7 +1768,7 @@
       {
         "Name": "id",
         "Type": "System.Guid",
-        "IsRequired": false
+        "IsRequired": true
       }
     ],
     "ReturnTypes": [
@@ -1829,7 +1793,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.List\u00601[[DTO.ProductsDto, DTO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.List\u00601[[DTO.GetProductsDto, DTO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -1855,7 +1819,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "DTO.ProductsDto",
+        "Type": "DTO.GetProductsDto",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -1918,6 +1882,32 @@
     ]
   },
   {
+    "ContainingType": "Back_end.Controllers.ProductController",
+    "Method": "UpLoadFile",
+    "RelativePath": "api/Product/UpLoadFile",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Id",
+        "Type": "System.Guid",
+        "IsRequired": false
+      },
+      {
+        "Name": "Img",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      },
+      {
+        "Name": "Image",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Back_end.Controllers.SendEmailController",
     "Method": "SendEmail",
     "RelativePath": "api/SendEmail/send-email",
@@ -1937,6 +1927,130 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Back_end.Controllers.SizeController",
+    "Method": "Create",
+    "RelativePath": "api/Size/create",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "Model.Size",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Model.Size",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Back_end.Controllers.SizeController",
+    "Method": "Delete",
+    "RelativePath": "api/Size/Delete",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Model.Size",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Back_end.Controllers.SizeController",
+    "Method": "GetAll",
+    "RelativePath": "api/Size/GetAll",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[Model.Size, Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Back_end.Controllers.SizeController",
+    "Method": "Getbyid",
+    "RelativePath": "api/Size/GetByid",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Model.Size",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Back_end.Controllers.SizeController",
+    "Method": "Update",
+    "RelativePath": "api/Size/update",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "Model.Size",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Model.Size",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "Back_end.Controllers.WarehouseController",

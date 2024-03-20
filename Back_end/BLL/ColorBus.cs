@@ -17,10 +17,6 @@ namespace BLL
         {
             _res = res;
         }
-        public async Task<UpLoadFile> UploadFile(UpLoadFile color)
-        {
-            return await _res.UploadFile(color);
-        }
       
     }
 }

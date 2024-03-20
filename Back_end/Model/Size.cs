@@ -8,8 +8,6 @@ namespace Model
 {
     public class Size:Basedb
     {
-        public Guid IdColor {  get; set; }
-
         public string NameSize { get; set; }
     }
 }
