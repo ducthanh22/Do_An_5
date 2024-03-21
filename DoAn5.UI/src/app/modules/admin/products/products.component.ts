@@ -181,6 +181,8 @@ export class ProductsComponent {
                   this.MessageSV.add({ severity: 'success', summary: 'Success', detail: 'Thêm thành công' })
                   this.FormProduct.reset();
                   this.uploadedFiles=[];
+                  this.selectedFile= null;
+
                   this.visible = false;
                   this.onsubmit()
                 }
@@ -212,6 +214,8 @@ export class ProductsComponent {
                   this.MessageSV.add({ severity: 'warn', summary: 'Waning', detail: 'Sửa thành công' })
                   this.visible = false;
                   this.uploadedFiles=[];
+                  this.selectedFile= null;
+
                   this.onsubmit()
                 }
               }

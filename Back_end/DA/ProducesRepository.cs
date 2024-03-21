@@ -27,6 +27,7 @@ namespace DAL
                             Name = d.Name,
                             Email = d.Email,
                             Address = d.Address,
+                            Phone=d.Phone,
                             Image=d.Image
                         };
 

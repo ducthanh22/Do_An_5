@@ -1,8 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
 import { CategoriesDto, Paging } from 'src/app/model';
 import { CategoriesService } from 'src/app/service';
-import { Table } from 'primeng/table';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ConfirmationService, MessageService } from 'primeng/api';
 
 
 
@@ -15,39 +15,43 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
   styleUrls: ['./categories.component.css']
 })
 export class CategoriesComponent {
-  @ViewChild('dt') table!: Table;
   Dscategories: any[] = [];
   loading: boolean = true;
   paging!: Paging;
-
+  Titile: string = ''
   keyword: string = '';
   Categories!: CategoriesDto[];
   datas: CategoriesDto[] = [];
-  dataTotalRecords!: number;
+  Totalcount!: number;
   visible: boolean = false;
   FormCategories!: FormGroup;
   messageService: any;
-rowHover: any;
+  rowHover: any;
+  showSub!: boolean;
+  Getid!: number;
+  uploadedFiles: any[] = [];
+  selectedFile!: File | null;
+  formData: FormData = new FormData();
+
+
   constructor(
     private categoriesService: CategoriesService,
-    private fb: FormBuilder) {
+    private fb: FormBuilder, private MessageSV: MessageService,private confirmationService:ConfirmationService) {
   }
 
   ngOnInit() {
     this.LoadCategories();
-   
+
     this.FormCategories = this.fb.group({
       name: new FormControl('', Validators.required),
     });
-    
-  }
 
+  }
   LoadCategories() {
     this.categoriesService.getAll().subscribe((data) => {
       this.Dscategories = data
     })
   }
-
   loadListLazy = (event: any) => {
     this.loading = true;
     let pageSize = event.rows;
@@ -56,14 +60,11 @@ rowHover: any;
       pageIndex: pageIndex,
       pageSize: pageSize,
       keyword: this.keyword,
-      // orderBy: event.sortField
-      //   ? `${event.sortField} ${event.sortOrder === 1 ? 'asc' : 'desc'}`
-      //   : '',
     };
     this.categoriesService.Search(this.paging).subscribe({
       next: (res) => {
         this.datas = res.data;
-        this.dataTotalRecords = res.totalFilter;
+        this.Totalcount = res.totalFilter;
         console.log(this.datas)
       },
       error: (e) => {
@@ -74,12 +75,12 @@ rowHover: any;
       },
     });
   };
-  onSubmitSearch = () => {
+  onsubmit () {
     this.paging.keyword = this.keyword;
     this.categoriesService.Search(this.paging).subscribe({
       next: (res) => {
         this.datas = res.data;
-        this.dataTotalRecords = res.totalFilter;
+        this.Totalcount = res.totalFilter;
       },
       error: (e) => {
         this.loading = false;
@@ -90,28 +91,85 @@ rowHover: any;
     });
   };
 
+  Add() {
+    this.FormCategories.reset();
+    this.visible = true;
+    this.Titile = "Thêm mới";
+    this.showSub = true;
+
+  }
+  SubmitBtn() {
+    if (this.showSub != null) {
+      this.showSub == true ? this.SaveAdd() : this.SaveEdit()
+    }
+  }
+  Edit(data: any) {
+    this.visible = true;
+    this.Titile = "Sửa";
+    this.showSub = false;
+    this.FormCategories.controls['name'].setValue(data.name);
+    this.Getid = data.id
+  }
+
+  close() {
+    this.visible = false;
+    this.uploadedFiles = [];
+  }
+  
+
   SaveAdd() {
-    if (this.FormCategories.valid) {
-      const ObjTableSurvey = this.FormCategories.value;
-      this.categoriesService.create(ObjTableSurvey).subscribe({
-        next: (res) => {
-          if (res != null) {
-            this.messageService.add({
-              severity: 'success',
-              summary: 'Thành Công',
-              detail: 'Thêm thành Công !',
-            });
-            this.table.reset();
+    if (this.FormCategories) {
+      this.categoriesService.create(this.FormCategories.value).subscribe({
+        next: res => {
+          if (res) {
+            this.MessageSV.add({ severity: 'success', summary: 'Success', detail: 'Thêm thành công' })
             this.FormCategories.reset();
             this.visible = false;
+            this.onsubmit()
           }
-        },
-
-        error: (e) => {
-          // const errorMessage = e.errorMessage;
-          // Utils.messageError(this.messageService, errorMessage);
-        },
-      });
+        }
+      })
     }
+  }
+  SaveEdit() {
+    if (this.FormCategories) {
+      this.FormCategories.value["id"] = this.Getid
+      this.categoriesService.Update(this.FormCategories.value).subscribe({
+        next: res => {
+          if (res) {
+            this.MessageSV.add({ severity: 'warn', summary: 'Waning', detail: 'Sửa thành công' })
+            this.FormCategories.reset();
+            this.visible = false;
+            this.onsubmit()
+          }
+        }
+      })
+    }
+    else {
+      this.MessageSV.add({ severity: 'error', summary: 'Lỗi', detail: 'Vui lòng điền đủ thông tin và Upload Ảnh' })
+    }
+  }
+  confirm(event: Event, data: string) {
+    this.confirmationService.confirm({
+      target: event.target as EventTarget,
+      message: `Bạn có muốn xóa mã ${data}?`,
+      icon: 'pi pi-info-circle',
+      acceptButtonStyleClass: 'p-button-danger p-button-sm',
+      accept: () => {
+        if (data) {
+          this.categoriesService.Delete(data).subscribe({
+            next: res => {
+              if (res) {
+                this.MessageSV.add({ severity: 'error', summary: 'Error', detail: 'Xóa thành công' })
+                this.onsubmit();
+              }
+            }
+          })
+        }
+      },
+      reject: () => {
+        this.MessageSV.add({ severity: 'error', summary: 'Rejected', detail: 'You have rejected', life: 3000 });
+      }
+    });
   }
 }

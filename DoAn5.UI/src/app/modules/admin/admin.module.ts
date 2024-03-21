@@ -20,12 +20,14 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService } from 'primeng/api';
 
 import { FileUploadModule } from 'primeng/fileupload';
+import { ProduceComponent } from './produce/produce.component';
 
 @NgModule({
   declarations: [
     DashboardComponent,
     CategoriesComponent,
     ProductsComponent,
+    ProduceComponent,
   
   
   ],

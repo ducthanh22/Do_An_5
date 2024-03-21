@@ -16,9 +16,11 @@
   <ng-template pTemplate="header"><img src="/./assets/client/assets/img/snapedit_Achino.png" height="100%" width="50%" class="mr-2" style="margin-left: 20%;" />
   </ng-template>
   <ng-template pTemplate="content">
-      <li><a><i class="pi pi-home "></i> Dashboard</a></li>
-      <li><a><i class="pi pi-home "></i> Quản lý sản phẩm</a></li>
-      <li><a><i class="pi pi-home "></i> Quản lý đơn hàng</a></li>
+      <li [routerLink]="'/admin/products'"><a><i class="pi pi-home "></i> Dashboard</a></li>
+      <li [routerLink]="'/admin/categories_admin'"><a><i class="pi pi-home "></i> Quản lý loại sản phẩm</a></li>
+      <li [routerLink]="'/admin/produces'"><a><i class="pi pi-home "></i> Quản lý nhà sản xuất</a></li>
+
+      <li [routerLink]="'/admin/products'"><a><i class="pi pi-home "></i> Quản lý sản phẩm</a></li>
   </ng-template>
   <ng-template pTemplate="footer">Footer Content</ng-template>
 </p-sidebar>

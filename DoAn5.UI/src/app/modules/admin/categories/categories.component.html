@@ -1,0 +1,83 @@
+<h2 style="text-align: center;"> Quản lý loại sản phẩm</h2>
+
+<p-confirmDialog></p-confirmDialog>
+<div class="card">
+    <p-table [value]="datas" [lazy]="true" (onLazyLoad)="loadListLazy($event)" [paginator]="true" [rows]="10"
+    [scrollable]="true" scrollHeight="400px"
+        [loading]="loading" [showCurrentPageReport]="true" [tableStyle]="{ 'min-width': '50rem' }"
+        [totalRecords]="Totalcount" [resizableColumns]="true"
+        currentPageReportTemplate="Hiển thị từ {first} đến {last} của {totalRecords} bản ghi" [filterDelay]="0"
+        [rowsPerPageOptions]="[5, 10, 20]">
+        <ng-template pTemplate="caption">
+            <p-button (click)="Add()" icon="pi pi-plus-circle" label="Thêm mới"></p-button>
+            <form class="p-input-icon-left frm" (ngSubmit)="onsubmit()">
+                <i class="pi pi-search"></i>
+                <input type="text" class="p-inputtext" pInputText [(ngModel)]="keyword" placeholder="Tìm kiếm..."
+                    [ngModelOptions]="{standalone: true}" />
+                <!-- <p-button type="submit" icon="pi pi-search"></p-button> -->
+            </form>
+        </ng-template>
+        <ng-template pTemplate="header">
+            <tr>
+                <th style="text-align: center;">STT</th>
+                <th style="width: 40%;text-align: center;">Mã</th>
+                <th style="text-align: center;">Tên</th>
+                <th style="text-align: center;">Chức năng</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-category let-rowIndex="rowIndex">
+            <tr>
+                <td style="text-align: center;">{{ rowIndex + 1}}</td>
+                <td style="text-align: center;">{{ category.id }}</td>
+                <td style="text-align: center;">{{ category.name }}</td>
+                <td style="text-align: center;">
+                    <i class="pi pi-eye" style="color: slateblue; margin-left: 5%;"></i>
+                    <i class="pi pi-pencil" style="color: rgb(255, 132, 0); margin-left: 5%;"
+                        (click)="Edit(category)"></i>
+                    <i class="pi pi-trash" style="color: red; margin-left: 5%;"
+                        (click)="confirm($event,category.id )"></i>
+                </td>
+
+
+
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="paginatorleft">
+            <p-button type="button" icon="pi pi-plus" styleClass="p-button-text"></p-button>
+        </ng-template>
+        <ng-template pTemplate="paginatorright">
+            <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text"></p-button>
+        </ng-template>
+    </p-table>
+</div>
+
+
+
+
+<p-dialog header="Long Content" [(visible)]="visible" [modal]="true" [maximizable]="true"
+    [style]="{width: '40%',height:'50%'}" [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }">
+    <ng-template pTemplate="header">
+        <div class="dialog-header">
+            <span class="font-bold">{{Titile}}</span>
+        </div>
+    </ng-template>
+    <ng-template pTemplate="body">
+        <form [formGroup]="FormCategories" class="full-width-form">
+            <div class="flex card flex justify-content-center">
+                <div class="input-container">
+                    <label for="name">Tên</label>
+                    <div class="dropdown-wrapper">
+                        <input type="text" class="p-inputtext" pInputText formControlName="name" />
+                    </div>
+                </div>
+            </div>
+        </form>
+    </ng-template>
+    <ng-template pTemplate="footer">
+        <div class="dialog-footer">
+            <p-button icon="pi pi-check" *ngIf="FormCategories.valid " (click)="SubmitBtn()" label="Lưu" pAutoFocus [autofocus]="true"></p-button>
+            <p-button icon="pi pi-check" (click)="close()"  label="Đóng"severity="danger" ></p-button>
+
+        </div>
+    </ng-template>
+</p-dialog>

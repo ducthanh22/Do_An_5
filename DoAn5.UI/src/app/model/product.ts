@@ -13,8 +13,8 @@ export interface ProductsDto extends BasedbDto {
     price_product: number | null;
 }
 
-export interface UpLoadFile {
-    id: string;
-    img: any;
-    image: string | null;
-}
+// export interface UpLoadFile {
+//     id: string;
+//     img: any;
+//     image: string | null;
+// }

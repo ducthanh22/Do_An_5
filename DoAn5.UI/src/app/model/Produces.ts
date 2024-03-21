@@ -9,8 +9,3 @@ export interface Produces extends BasedbDto {
     image: string;
 }
 
-export interface UpFile {
-    id: string;
-    img: any;
-    image: string | null;
-}

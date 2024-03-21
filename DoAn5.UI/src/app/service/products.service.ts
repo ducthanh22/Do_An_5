@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BaseService } from './Common/base.service';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environment/environment';
-import { ProductsDto, UpLoadFile } from '../model';
+import { ProductsDto } from '../model';
 import { Observable, first } from 'rxjs';
 import { BaseCommandResponse } from '../model/Common/BaseCommandResponse';
 
