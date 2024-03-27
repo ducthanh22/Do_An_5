@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
+import { ProductsDto } from 'src/app/model';
 import { ProducesService } from 'src/app/service/produces.service';
+import { ProductsService } from 'src/app/service/products.service';
 
 @Component({
   selector: 'app-home',
@@ -8,8 +10,10 @@ import { ProducesService } from 'src/app/service/produces.service';
 })
 export class HomeComponent {
   responsiveOptions: any[] | undefined;
-  ListProduces:any[]=[]
-  constructor(private ProducesService:ProducesService) {}
+  ListProduces:any[]=[];
+  products:ProductsDto[]=[];
+  layout: 'grid' | 'list' = 'grid'
+  constructor(private ProducesService:ProducesService, private productService:ProductsService) {}
 
   ngOnInit() {
       
@@ -31,14 +35,22 @@ export class HomeComponent {
               numScroll: 1
           }
       ];
-      this.GetallProduces()
+      this.GetallProduces();
+      this.Getproductnew();
+      
   }
 
   GetallProduces(){
     this.ProducesService.getAll().subscribe(data=>{
         this.ListProduces=data;
-    console.log(this.ListProduces)
+
     })
+  }
+  Getproductnew(){
+    this.productService.Getproductnew().subscribe(data=>{
+      this.products= data.slice(0, 8);
+      console.log(this.products)
+    });
   }
 
   

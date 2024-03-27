@@ -15,7 +15,6 @@ namespace Model
         public string Describe {  get; set; }
         public string Image { get; set; }
         public Guid Idcolor { get; set; }
-        public Guid Idsize { get; set; }
 
     }
 }

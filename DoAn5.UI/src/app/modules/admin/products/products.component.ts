@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { CategoriesDto, ColorDto, Paging, Produces, ProductsDto, SizeDto } from 'src/app/model';
 import { CategoriesService } from 'src/app/service';
@@ -32,14 +32,15 @@ export class ProductsComponent {
   formData: FormData = new FormData();
   selectedFile!: File | null;
   uploadedFiles: any[] = [];
-  SelectSize!:SizeDto[]
+  SelectSize!: SizeDto[]
+  getSize!: any[]
   constructor(private ProductSV: ProductsService, private FB: FormBuilder, private MessageSV: MessageService,
     private CategorySV: CategoriesService, private changeDetector: ChangeDetectorRef, private confirmationService: ConfirmationService,
-    private ProducesSv: ProducesService, private ColorSV: ColorService, private SizeSV: SizeService) { }
+    private ProducesSv: ProducesService, private ColorSV: ColorService, private SizeSV: SizeService) {
+  }
   ngOnInit() {
     this.GetCategory();
     this.Getproduces(); this.Getcolor();
-    this. GetSize();
     this.FormProduct = this.FB.group({
       name: new FormControl("", Validators.required),
       idcategories: new FormControl("", Validators.required),
@@ -47,9 +48,8 @@ export class ProductsComponent {
       describe: new FormControl("", Validators.required),
       image: new FormControl("",),
       idcolor: new FormControl("", Validators.required),
-      idsize: new FormControl(""),
       price_product: new FormControl("", Validators.required),
-
+      listsize: this.FB.array([])
     })
 
     this.formUpload = this.FB.group({
@@ -57,6 +57,36 @@ export class ProductsComponent {
       img: [''],
       image: [''],
     })
+  }
+ 
+  addSize() {
+    const sizeFormGroup = this.FB.group({
+      // id: [''],
+      // Idproduct: [''],
+      NameSize: ['', Validators.required]
+    });
+    this.listsize.push(sizeFormGroup);
+  }
+
+  // Hàm xóa một item từ listsize
+  removeSize(index: number,data:any) {
+    if (this.listsize.length > 1) {
+      this.listsize.removeAt(index);
+    }
+    if(data !=null){
+      this.SizeSV.Delete(data).subscribe({
+        next: (res) => {
+          this.MessageSV.add({ severity: 'error', summary: 'Error', detail: 'Xóa thành công' })     
+        },
+      })
+    }
+  }
+  get listsize(): FormArray {
+    return this.FormProduct.get('listsize') as FormArray;
+  }
+  resetListSize() {
+    const listSizeArray = this.FormProduct.get('listsize') as FormArray;
+    listSizeArray.clear();
   }
   ngAfterContentChecked(): void {
     this.changeDetector.detectChanges();
@@ -74,12 +104,6 @@ export class ProductsComponent {
   Getcolor() {
     this.ColorSV.getAll().subscribe(data => {
       this.SelectColor = data;
-    })
-  }
-  GetSize() {
-    this.SizeSV.getAll().subscribe(data => {
-      this.SelectSize = data;
-      console.log( this.SelectSize )
     })
   }
 
@@ -134,15 +158,25 @@ export class ProductsComponent {
     this.visible = true;
     this.Titile = "Sửa";
     this.showSub = false;
+    this.Getid = data.id;
+    this.getSize = data.listSize;
+    this.getSize.forEach(size => {
+      const sizeFormGroup = this.FB.group({
+        id: [size.id],
+        Idproduct: [size.idproduct],
+        NameSize: [size.nameSize]
+      });;
+      this.listsize.push(sizeFormGroup);
+    });
+
     this.FormProduct.controls['name'].setValue(data.name);
     this.FormProduct.controls['idcategories'].setValue(data.idcategories);
     this.FormProduct.controls['idproduces'].setValue(data.idproduces);
     this.FormProduct.controls['describe'].setValue(data.describe);
     this.FormProduct.controls['price_product'].setValue(data.price_product);
     this.FormProduct.controls['idcolor'].setValue(data.idcolor);
-    this.FormProduct.controls['idsize'].setValue(data.idsize);
-    // this.FormProduct.controls['image'].setValue(data.image);
-    this.Getid = data.id
+    this.FormProduct.controls['image'].setValue(data.image);
+
   }
   SubmitBtn() {
     if (this.showSub != null) {
@@ -150,22 +184,25 @@ export class ProductsComponent {
     }
   }
 
-  close(){
-    this.visible=false;
-    this.uploadedFiles=[];
+  close() {
+    this.visible = false;
+    this.uploadedFiles = [];
+    this.FormProduct.reset();
+    this.resetListSize();
+    this.onsubmit()
   }
   onUpload(event: any): void {
     const files = event.files;
     if (files.length > 0) {
       this.selectedFile = files[0]; // Gán giá trị của file vào biến file
-      for(let file of files) {
+      for (let file of files) {
         this.uploadedFiles.push(file);
-    }
+      }
     }
   }
-  
+
   SaveAdd() {
-    if (this.FormProduct&& this.selectedFile !=undefined) {
+    if (this.FormProduct && this.selectedFile != undefined) {
       this.FormProduct.controls['image'].setValue("string");
       this.ProductSV.create(this.FormProduct.value).subscribe({
         next: res => {
@@ -173,15 +210,16 @@ export class ProductsComponent {
             const updatedData = this.formUpload.value;
             this.formData = new FormData();
             this.formData.append('id', res.id);
-            this.formData.append('img',  this.selectedFile || '')
+            this.formData.append('img', this.selectedFile || '')
             this.formData.append('image', updatedData.image);
             this.ProductSV.Upload(this.formData).subscribe({
               next: res => {
                 if (res) {
                   this.MessageSV.add({ severity: 'success', summary: 'Success', detail: 'Thêm thành công' })
                   this.FormProduct.reset();
-                  this.uploadedFiles=[];
-                  this.selectedFile= null;
+                  this.uploadedFiles = [];
+                  this.selectedFile = null;
+                  this.resetListSize()
 
                   this.visible = false;
                   this.onsubmit()
@@ -193,39 +231,41 @@ export class ProductsComponent {
         }
       })
     }
-    else{
+    else {
       this.MessageSV.add({ severity: 'error', summary: 'Lỗi', detail: 'Vui lòng điền đủ thông tin và Upload Ảnh' })
     }
   }
   SaveEdit() {
-    if (this.FormProduct && this.selectedFile !=undefined) {
+    if (this.FormProduct && this.selectedFile != undefined) {
       this.FormProduct.value["id"] = this.Getid
       this.ProductSV.Update(this.FormProduct.value).subscribe({
         next: res => {
           if (res) {
             const updatedData = this.formUpload.value;
             this.formData = new FormData();
-            this.formData.append('id',this.Getid);
-            this.formData.append('img',  this.selectedFile || '')
+            this.formData.append('id', this.Getid);
+            this.formData.append('img', this.selectedFile || '')
             this.formData.append('image', updatedData.image);
             this.ProductSV.Upload(this.formData).subscribe({
               next: res => {
                 if (res) {
-                  this.MessageSV.add({ severity: 'warn', summary: 'Waning', detail: 'Sửa thành công' })
-                  this.visible = false;
-                  this.uploadedFiles=[];
-                  this.selectedFile= null;
+                  this.MessageSV.add({ severity: 'warn', summary: 'Waning', detail: 'Sửa thành công' });
+                  this.FormProduct.reset();
+                  this.resetListSize()
 
+                  this.visible = false;
+                  this.uploadedFiles = [];
+                  this.selectedFile = null;
                   this.onsubmit()
                 }
               }
             })
-          
+
           }
         }
       })
     }
-    else{
+    else {
       this.MessageSV.add({ severity: 'error', summary: 'Lỗi', detail: 'Vui lòng điền đủ thông tin và Upload Ảnh' })
     }
   }

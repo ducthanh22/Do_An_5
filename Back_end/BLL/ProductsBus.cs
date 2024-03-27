@@ -23,10 +23,7 @@ namespace BLL
         {
             return await _res.Search(keywork, page, pageSize);
         }
-        //public async Task<UpLoadFile> UploadFile(UpLoadFile product)
-        //{
-        //    return await _res.UploadFile(product);
-        //}
+      
         public async Task<IQueryable<GetProductsDto>> GetByIds(Guid ids)
         {
             return await _res.GetByIds(ids);
@@ -34,6 +31,10 @@ namespace BLL
         public async  Task<List<GetProductsDto>> Getalls()
         {
             return await _res.Getalls();
+        }
+        public async Task<List<GetProductsDto>> GetProductNew()
+        {
+            return await _res.GetProductNew();
         }
 
         public async Task<ProductsDto> Creates(ProductsDto entity)

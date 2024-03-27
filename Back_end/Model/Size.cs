@@ -8,6 +8,8 @@ namespace Model
 {
     public class Size:Basedb
     {
+        public Guid Idproduct { get; set; }
+
         public string NameSize { get; set; }
     }
 }

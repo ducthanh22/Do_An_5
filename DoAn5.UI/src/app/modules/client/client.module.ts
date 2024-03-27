@@ -14,9 +14,11 @@ import { PayproductsComponent } from './payproducts/payproducts.component';
 import { CarouselModule } from 'primeng/carousel';
 import { ButtonModule } from 'primeng/button';
 import { TagModule } from 'primeng/tag';
-
-
-
+import { DataViewModule } from 'primeng/dataview';
+import { DropdownModule } from 'primeng/dropdown';
+import { ImageModule } from 'primeng/image';
+import { MessagesModule } from 'primeng/messages';
+import { ToastModule } from 'primeng/toast';
 
 
 @NgModule({
@@ -26,18 +28,22 @@ import { TagModule } from 'primeng/tag';
     CategoriesComponent,
     HomeComponent,
     BlogComponent,
-    
     ContactComponent,
-          CartComponent,
-          DetailproductsComponent,
-          PayproductsComponent
+    CartComponent,
+    DetailproductsComponent,
+    PayproductsComponent
   ],
   imports: [
     CommonModule,
     ClientRoutingModule,
     CarouselModule,
     ButtonModule,
-    TagModule
+    TagModule,
+    DataViewModule,
+    DropdownModule,
+    ImageModule,
+    MessagesModule,
+    ToastModule
   ]
 })
 export class ClientModule { }

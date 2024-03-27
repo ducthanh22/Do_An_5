@@ -11,6 +11,7 @@ namespace DTO
     {
         public int Idwarehouse {  get; set; }
         public int Idproduct { get; set; }
+        public Guid Idsize { get; set; }
         public int Quantity { get; set; }
     }
 }

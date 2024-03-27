@@ -32,7 +32,9 @@ namespace DTO.AutoMapper
             CreateMap<Price, PriceDto>().ReverseMap();
             CreateMap<Produces, ProducesDto>().ReverseMap();
             CreateMap<Warehouse, WarehouseDto>().ReverseMap();
-            
+            CreateMap<Size, SizeDto>().ReverseMap();
+
+
 
 
             CreateMap<Order, CreateOrderDto>().ReverseMap();

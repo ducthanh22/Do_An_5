@@ -312,6 +312,9 @@ namespace Model.Migrations
                     b.Property<Guid>("Idproduct")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid>("Idsize")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<DateTime?>("Modified")
                         .HasColumnType("datetime2");
 
@@ -350,6 +353,9 @@ namespace Model.Migrations
                     b.Property<Guid>("Idproduct")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid>("Idsize")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<DateTime?>("Modified")
                         .HasColumnType("datetime2");
 
@@ -383,6 +389,9 @@ namespace Model.Migrations
                         .HasColumnType("int");
 
                     b.Property<Guid>("Idproduct")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("Idsize")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("Idwarehouse")
@@ -526,6 +535,9 @@ namespace Model.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("Id_product")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("Idsize")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("Modified")
@@ -686,9 +698,6 @@ namespace Model.Migrations
                     b.Property<Guid>("Idproduces")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("Idsize")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("Image")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -722,6 +731,9 @@ namespace Model.Migrations
 
                     b.Property<int?>("CreatedBy")
                         .HasColumnType("int");
+
+                    b.Property<Guid>("Idproduct")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("Modified")
                         .HasColumnType("datetime2");

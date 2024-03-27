@@ -1,65 +1,61 @@
- <!-- ======= Portfolio Details Section ======= -->
- <section id="portfolio-details" class="portfolio-details">
-    <div class="container">
+<p-toast></p-toast>
+<div class="container" *ngIf="data && data.length > 0">
+  <div class="top">
+    <div class="card flex justify-content-center">
+      <img [src]="'https://localhost:7058/Images/' + data[0].image" alt="Image" class="full-image">
+    </div>
 
-      <div class="row gy-4">
-
-        <div class="col-lg-8">
-          <div class="portfolio-details-slider swiper">
-            <div class="swiper-wrapper align-items-center">
-
-              <div class="swiper-slide">
-                <img src="./assets/client/assets/img/portfolio/a4.png" alt="">
-              </div>
-
-              <div class="swiper-slide">
-                <img src="./assets/client/assets/img/portfolio/a4.png" alt="">
-              </div>
-
-              <div class="swiper-slide">
-                <img src="./assets/client/assets/img/portfolio/a4.png" alt="">
-              </div>
-
+    <div class="select">
+      <p-toast></p-toast>
+      <h3>{{data[0].name}}</h3>
+      <div class="product_infomatiom">
+        <div class="price">
+          <h3 style="color:rgb(193, 19, 19) ;">{{data[0].price_product |currency:'VND'}}</h3>
+        </div>
+        <div class="color">
+          <div style="width: 20%;">
+            <h4>Màu sắc</h4>
+          </div>
+          <div class="s1">
+            <div class="namecolor">{{data[0].namecolor}}</div>
+          </div>
+        </div>
+        <div class="Size">
+          <div style="width: 20%;">
+            <h4>Kích thước</h4>
+          </div>
+          <div class="s1"*ngIf="data[0].listSize && data[0].listSize.length">
+            <div class="namesize" *ngFor="let x of data[0].listSize" 
+                 [class.selected]="x === Size"
+                 (click)="selectSize(x)">{{x?.nameSize}}
             </div>
-            <div class="swiper-pagination"></div>
           </div>
+          
         </div>
-
-        <div class="col-lg-4">
-          <div class="portfolio-info">
-            <h3>Combo Bộ Quần Áo Hè Thun Nam Áo Tay Ngắn Cổ Tròn Loang Màu FNGLA Phối Quần Short Đùi Zenkocs3 MEN TOP 204 + SHORTS 050</h3>
-            <ul>
-              <li><strong>Loại Sản Phẩm</strong>: Web design</li>
-              <li><strong>Màu Sắc</strong>: ASU Company</li>
-              <li><strong>Size</strong>: 01 March, 2020</li>
-              <li><strong>Giá</strong>: 01 March, 2020</li>
-              <li><strong>Project URL</strong>: <a href="#">www.example.com</a></li>
-            </ul>
-            <button class="btn btn-warning" type="button"><i class="bi bi-plus-lg"></i>Thêm vào giỏ hàng</button>
-          </div>
-          <div class="portfolio-description">
-            <h2>Mô tả</h2>
-            <p>
-              Sản phẩm: bộ quần áo nam
-
-Chất liệu: Vải mềm mại, thoáng mát dễ thấm hút mồ hôi
-
-Kiểu dáng đơn giản nhưng không kém phần thời trang, phong cách
-
-Phù hợp mặc nhà, khi đi chơi, du lịch, dạo phố cùng bạn bè…
-
-Size S: cho người từ 50kg trở xuống tùy chiều cao
-
-Size M: cho người từ 55kg trở xuống tùy chiều cao
-
-Size L: cho người từ 60kg trở xuống tùy chiều cao
-
-Size XL: Dành cho người từ 65kg trở xuống tùy chiều cao
-            </p>
-          </div>
+        <p-button label="Thêm vào giỏ hàng" severity="danger" (click)="addtocart(data)"><i class="pi pi-shopping-cart"></i></p-button>
+        <div class="sevice">
+          <div class="freeship"><span><i class="pi pi-truck "></i> Miễn phí vận chuyển</span> </div>
+          <div class="trasport"><span><i class="pi pi-clock "></i> Giao hàng nhanh</span> </div>
+          <div class="change"><span> <i class="pi pi-arrow-right-arrow-left "></i> Miễn phí đổi trả</span> </div>
         </div>
-
       </div>
+    </div>
+  </div>
+  <div class="body">
+    <span style="font-weight: bold; font-size: large;">Mô tả:</span>
+    <span [innerHTML]="data[0]?.describe"></span>
+    <div class="Instruct">
+      <div class="img1"> 
+        <h4>Hướng dẫn bảo quản</h4>
+        <img src="/./assets/client/assets/img/huongdanbaoquan.jpg" alt="Image" class="full-image"/></div>
+      <div class="img1">
+        <h4>Tại sao nên chọn ACHINO</h4>
+         <img src="/./assets/client/assets/img/Nenchon.jpg" alt="Image"class="full-image"/></div>
+
 
     </div>
-  </section><!-- End Portfolio Details Section -->
+
+
+
+  </div>
+</div>

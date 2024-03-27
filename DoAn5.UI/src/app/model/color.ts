@@ -5,6 +5,7 @@ export interface ColorDto extends BasedbDto {
 }
 
 export interface SizeDto extends BasedbDto {
+    idproduct:string;
     nameSize: string;
 }
 

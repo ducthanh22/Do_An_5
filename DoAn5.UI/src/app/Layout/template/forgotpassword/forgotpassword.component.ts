@@ -22,9 +22,13 @@ export class ForgotpasswordComponent {
     if(this.Fogot.email!=null){
       this.Account.FogotPassWord(this.Fogot).subscribe({
         next:(value)=> {
-          if(value!=null){
+          if(value==this.Fogot.email){
             this.loading = false
             this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Vui lòng kiểm tra email' });
+          }
+          else{
+            this.loading = false
+            this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Email không tồn tại' });
           }
         },
         error:(e)=>{

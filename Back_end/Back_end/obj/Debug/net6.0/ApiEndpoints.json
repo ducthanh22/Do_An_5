@@ -1806,7 +1806,7 @@
   {
     "ContainingType": "Back_end.Controllers.ProductController",
     "Method": "GetByIds",
-    "RelativePath": "api/Product/GetByid",
+    "RelativePath": "api/Product/GetByid/{id}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -1814,12 +1814,32 @@
       {
         "Name": "id",
         "Type": "System.Guid",
-        "IsRequired": false
+        "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
         "Type": "DTO.GetProductsDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Back_end.Controllers.ProductController",
+    "Method": "GetProductNew",
+    "RelativePath": "api/Product/GetProductNew",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[DTO.GetProductsDto, DTO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -1957,7 +1977,7 @@
   {
     "ContainingType": "Back_end.Controllers.SizeController",
     "Method": "Delete",
-    "RelativePath": "api/Size/Delete",
+    "RelativePath": "api/Size/Delete/{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -1965,7 +1985,7 @@
       {
         "Name": "id",
         "Type": "System.Guid",
-        "IsRequired": false
+        "IsRequired": true
       }
     ],
     "ReturnTypes": [

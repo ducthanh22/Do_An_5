@@ -163,7 +163,7 @@ namespace DAL
         public async Task<ForgotPasswordModel> ForgotPassword(ForgotPasswordModel model)
         {
             var user = await _userManager.FindByEmailAsync(model.Email);
-            if (user == null || !(await _userManager.IsEmailConfirmedAsync(user)))
+            if (user != null )
             {
                 var token = await _userManager.GeneratePasswordResetTokenAsync(user);
                 var newtoken= Uri.EscapeDataString(token);
@@ -179,6 +179,9 @@ namespace DAL
                 // Gửi email
                 await _sendEmailRepository.SendEmailAsync(model.Email, "Reset Password",
                     $"Vui lòng đặt lại mật khẩu của bạn bằng cách nhấp vào đây: <a href='{callbackUrl}'>link</a>");
+            }
+            else {
+                return new ForgotPasswordModel { Email = "Email không tồn tại" };
             }
             return new ForgotPasswordModel { Email=user.Email};
         }

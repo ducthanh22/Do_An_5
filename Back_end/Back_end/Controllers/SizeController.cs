@@ -42,7 +42,7 @@ namespace Back_end.Controllers
 
             return Ok(createdEntity);
         }
-        [HttpDelete("Delete")]
+        [HttpDelete("Delete/{id}")]
         public async Task<ActionResult<Size>> Delete(Guid id)
         {
             var result = await _Bus.Delete(id);

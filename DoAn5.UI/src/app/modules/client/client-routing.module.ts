@@ -48,7 +48,7 @@ const routes: Routes = [
       },
      {path:'cart',component:CartComponent,title:'Cart'},
 
-     {path:'detail',component:DetailproductsComponent,title:'Detail'},
+     {path:'detail/:id',component:DetailproductsComponent,title:'Detail'},
      {path:'pay',component:PayproductsComponent,title:'Pay'}
     
   

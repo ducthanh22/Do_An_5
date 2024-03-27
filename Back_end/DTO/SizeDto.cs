@@ -8,6 +8,8 @@ namespace DTO
 {
     public class SizeDto : BasedbDto
     {
+        public Guid Idproduct { get; set; }
+
         public string NameSize { get; set; }
     }
 }

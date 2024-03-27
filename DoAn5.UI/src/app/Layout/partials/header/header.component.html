@@ -2,13 +2,13 @@
 <div class="card">
   <p-menubar [model]="items" class="fixed-menu">
     <ng-template pTemplate="start">
-      <img src="/./assets/client/assets/img/snapedit_Achino.png" height="45px" width="100%" class="mr-2" />
+      <img src="/./assets/client/assets/img/snapedit_Achino.png" height="45px" width="100%" class="mr-2" [routerLink]="['']" />
     </ng-template>
     
     <ng-template pTemplate="end">
       <ng-container>
         <input type="text" pInputText placeholder="Search" class="w-full" style="margin-right: 100px;"/>
-        <i class="pi pi-shopping-cart"> Giỏ hàng</i>
+        <i class="pi pi-shopping-bag"> Giỏ hàng</i>
         <i class="pi pi-user" [routerLink]="['/Login']" routerLinkActive="router-link-active" > Đăng nhập</i>
       </ng-container>
     </ng-template>

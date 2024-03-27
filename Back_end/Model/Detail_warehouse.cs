@@ -11,6 +11,7 @@ namespace Model
     {
         public Guid Idwarehouse {  get; set; }
         public Guid Idproduct { get; set; }
+        public Guid Idsize { get; set; }
         public int Quantity { get; set; }
     }
 }

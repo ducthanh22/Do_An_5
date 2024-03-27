@@ -22,7 +22,6 @@ namespace DTO
         public int status { get; set; }
         public int Price { get; set; }
         public List<Order_detailDto> OrderList { get; set; }
-        //public List<CustommerDto> CustomerList { get; set; }
 
     }
 }

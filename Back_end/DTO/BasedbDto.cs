@@ -5,7 +5,7 @@ namespace DTO
     public class BasedbDto
     {
         [Key]
-        public new Guid Id { get; set; }
+        public Guid Id { get; set; }
         public int? ActiveFlag { get; set; }
         public int? CreatedBy { get; set; }
         public DateTime? Created { get; set; } 

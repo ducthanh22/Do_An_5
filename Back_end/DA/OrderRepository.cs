@@ -39,6 +39,7 @@ namespace DAL
                 {
                     Id_Order = orderEntity.Id, 
                     Id_product = item.Id_product,
+                    Idsize=item.Idsize,
                     Quantity = item.Quantity,
                     Price = item.Price,
                 };

@@ -24,8 +24,7 @@ namespace DAL
                         select new WarehouseDto
                         {
                             Id = d.Id,
-                            Name = d.Name,
-                            
+                            Name = d.Name,              
                             Address = d.Address,
                         };
 

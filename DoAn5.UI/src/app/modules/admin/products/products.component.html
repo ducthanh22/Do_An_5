@@ -27,7 +27,7 @@
                 <th>Tên</th>
                 <th>Giá</th>
                 <th>Màu</th>
-                <th >Size</th>
+               
                 <th >Mô tả</th>
 
                 <th>Chức năng</th>
@@ -36,7 +36,6 @@
         <ng-template pTemplate="body" let-product let-rowIndex="rowIndex">
             <tr>
                 <td>{{ rowIndex + 1}}</td>
-
                 <td>{{ product.id }}</td>
                 <td><p-image src="https://localhost:7058/Images/{{ product.image }}"
                         previewImageSrc="https://localhost:7058/Images/{{ product.image }}" alt="Image" width="100"
@@ -45,7 +44,7 @@
                 <td>{{ product.name }}</td>
                 <td>{{ product.price_product | currency:"VND" }}</td>
                 <td>{{ product.namecolor }}</td>
-                <td>{{ product.namesize }}</td>
+                
                 <td [innerHTML]="product.describe"></td>
                 <td>
                     <i class="pi pi-eye" style="color: slateblue; margin-left: 5%;"></i>
@@ -120,13 +119,28 @@
                             [style]="{'minWidth':'100%'}"></p-dropdown>
                     </div>
                 </div>
-                <div class="input-container">
-                    <label for="name">Chọn size</label>
-                    <div class="dropdown-wrapper">
-                        <p-dropdown [options]="SelectSize" formControlName="idsize" optionLabel="nameSize"
-                            optionValue="id" [filter]="true" filterBy="nameSize" [showClear]="true"
-                            [style]="{'minWidth':'100%'}"></p-dropdown>
-                    </div>
+                <div class="input-container" style="margin-top: 2%;">
+                    <p-table [value]="listsize.controls">
+                        <ng-template pTemplate="header">
+                            <tr> 
+                                <th>Name Size</th>
+                                <th>Actions</th>
+                                <th *ngIf="listsize.length==0"> <p-button (click)="addSize()" icon="pi pi-plus-circle" label="Thêm"></p-button></th>
+
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" pTemplate="body" let-size let-i="rowIndex">
+                            <tr [formGroup]="size" >
+                                <td>
+                                  <input type="text" class="p-inputtext" pInputText  formControlName="NameSize">
+                                </td>
+                                <td>
+                                    <i class="pi pi-plus-circle"style="color: green" (click)="addSize()"></i>
+                                    <i class="pi pi-trash"style="color: red;margin-left: 20%"(click)="removeSize(i,size.controls.id.value)"></i>
+                                </td>
+                              </tr>
+                        </ng-template>
+                    </p-table>
                 </div>
                 <div class="input-container">
                     <label for="name">Mô tả</label>

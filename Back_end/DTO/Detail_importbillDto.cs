@@ -11,6 +11,8 @@ namespace DTO
     {
         public Guid IdImportbill { get; set; }
         public Guid Idproduct { get; set; }
+        public Guid Idsize { get; set; }
+
         public int Price { get; set; }
         public int Quantity { get; set; }
 

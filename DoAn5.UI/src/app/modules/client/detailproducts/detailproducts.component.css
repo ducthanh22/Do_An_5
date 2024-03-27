@@ -1,0 +1,117 @@
+.container{
+    display: grid;
+}
+.top{
+    display: flex;
+    margin-top: 5%;
+}
+.card{
+    width: 35%;
+    margin-left: 8%;
+}
+.select{
+    margin-left: 5%;
+    width: 50%;
+
+}
+.Size{
+    display: flex;
+    margin-bottom: 5%;
+}
+
+.color{
+    display: flex;
+
+    align-items: center;
+}
+.namecolor{
+    border-radius: 4px;
+    display: inline-block;
+    padding: 10px 20px;
+    color: rgb(73, 71, 71);
+    text-align: center;
+    text-decoration: none;
+    border: 1px solid rgb(73, 71, 71);
+
+}
+.namesize{
+    border-radius: 4px;
+    display: inline-block;
+    padding: 10px 20px;
+    color: rgb(73, 71, 71);
+    text-align: center;
+    text-decoration: none;
+    border: 1px solid rgb(73, 71, 71);
+    height: 70%;
+    margin-right: 4%;
+    
+}
+.s1{
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+.full-image {
+    width: 100%;
+    height: auto;
+  }
+
+  .sevice{
+    display: flex;
+    margin-top: 5%;
+  }
+  .freeship{
+    border-radius: 4px;
+    display: inline-block;
+    padding: 10px 20px;
+    color: rgb(193, 19, 19);
+    text-align: center;
+    text-decoration: none;
+    border: 1px solid rgb(144, 142, 142);
+
+    margin-right: 5%;
+  }
+  .trasport{
+    border-radius: 4px;
+    display: inline-block;
+    padding: 10px 20px;
+    color: rgb(193, 19, 19);
+
+    text-align: center;
+    text-decoration: none;
+    border: 1px solid rgb(144, 142, 142);
+    margin-right: 5%;
+  }
+  .change{
+    border-radius: 4px;
+    display: inline-block;
+    padding: 10px 20px;
+    color: rgb(193, 19, 19);
+
+    text-align: center;
+    text-decoration: none;
+    border: 1px solid rgb(144, 142, 142);
+
+    margin-right: 5%;
+  }
+  .body{
+    margin-left: 8%;
+    max-width: 85%;
+  }
+  .Instruct{
+    display: flex;
+    height: 50%;
+  }
+  .img1{
+    width: 80%;
+    margin-right: 10%;
+  }
+
+  .selected {
+    background-color: rgb(193, 19, 19); /* Thiết lập màu đỏ cho phần tử được chọn */
+    color: white;
+    font-weight: bold;
+  }
+  
+  
+  

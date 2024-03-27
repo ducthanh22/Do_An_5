@@ -1,4 +1,5 @@
 import { BasedbDto } from "./Common/BaseDto";
+import { SizeDto } from "./color";
 
 
 
@@ -9,12 +10,19 @@ export interface ProductsDto extends BasedbDto {
     describe: string;
     image: string;
     idcolor: string;
-    idsize: string;
     price_product: number | null;
+    listsize: SizeDto[]
 }
-
-// export interface UpLoadFile {
-//     id: string;
-//     img: any;
-//     image: string | null;
-// }
+export interface GetProductsDto extends BasedbDto {
+    name: string;
+    idcategories: string;
+    namecategory: string;
+    nameProduces: string;
+    idproduces: string;
+    describe: string;
+    image: string;
+    namecolor: string;
+    price_product: number | null;
+    idcolor: string;
+    listSize: SizeDto[];
+}

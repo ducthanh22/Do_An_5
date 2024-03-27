@@ -3,9 +3,11 @@ h5 {
     text-align: center;
     font-weight: bold;
 }
+
 h2 {
     text-align: center;
-    font-family: "Bookman", serif; /* Chỉ định font chữ Bookman */
+    font-family: "Bookman", serif;
+    /* Chỉ định font chữ Bookman */
 }
 
 .panner img {
@@ -26,7 +28,103 @@ h2 {
         margin-top: 17%;
     }
 }
+
 @media (max-width: 378px) {
-    .panner img { 
+    .panner img {
         margin-top: 30%;
-      }}
+    }
+}
+
+/* Style for the product list item */
+.product-item {
+    display: flex;
+    width: 100%;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    /* Add a border between products */
+}
+
+.product-image {
+    width: 150px;
+    height: 100px;
+    margin-right: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+.product-price{
+    flex: 1; 
+    color: rgb(191, 10, 10);
+    display: flex; /* Sử dụng flexbox để căn giữa */
+  justify-content: center; /* Căn giữa theo chiều ngang */
+  align-items: center;
+}
+.product-details {
+    margin-left: 20px;
+    width: 50%;
+    display: grid;
+}
+.product-name{
+    font-weight: bold;
+  cursor: pointer;
+
+}
+
+.grid {
+    display: grid; /* Sử dụng CSS Grid */
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* Tạo các cột với độ rộng tối thiểu là 250px và linh hoạt theo kích thước của container */
+    gap: 20px; /* Khoảng cách giữa các phần tử */
+    margin-top: 2%;
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+  
+  .grid-item {
+    border: 1px solid #ccc; /* Đường viền cho mỗi phần tử */
+    padding: 10px; /* Khoảng cách bên trong mỗi phần tử */
+    border-radius: 5%;
+  }
+  
+  .grid-image{
+    width: 100%; /* Ảnh không vượt quá chiều rộng của phần tử */
+    height: 200px;
+    margin-right: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .grid-details {
+    margin-top: 10px; /* Khoảng cách từ ảnh đến các chi tiết sản phẩm */
+  }
+  
+  .grid-name {
+    font-weight: bold;
+  font-size: 15px;
+  cursor: pointer;
+
+  }
+  
+  .grid-category {
+    margin-top: 5px;
+    color: #666;
+  font-size: 15px;
+
+    
+  }
+  
+  .grid-price {
+    margin-top: 5px;
+    display: flex;
+  }
+  
+  .product-cart-button {
+    margin-top: 10px;
+  }
+  .gspan{
+    flex: 1;
+    color: rgb(191, 10, 10);
+    display: flex;
+    justify-content: center; 
+  align-items: center;
+  font-size: 15px;
+  font-weight: bold;
+  }

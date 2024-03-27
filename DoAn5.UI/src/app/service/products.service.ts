@@ -18,4 +18,22 @@ export class ProductsService extends BaseService<ProductsDto>{
       .post<BaseCommandResponse>(`${environment.apiUrl}/Product/UploadFile`, data)
       .pipe(first());
   }
+  Getproductnew():Observable<ProductsDto[]>{
+    return this._http.get<ProductsDto[]>(`${environment.apiUrl}/Product/GetProductNew`)
+    .pipe(first());
+  }
+
+
+  GetCart(){
+    let jsonCart =sessionStorage.getItem('cart');
+    if(jsonCart){
+      return JSON.parse(jsonCart)
+    }else{
+      return []
+    }
+  }
+  saveCart(cart:any){
+    let jsonCart = JSON.stringify(cart);
+    sessionStorage.setItem('cart',jsonCart)
+  }
 }

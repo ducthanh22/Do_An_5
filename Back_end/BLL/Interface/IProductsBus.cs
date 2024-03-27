@@ -17,6 +17,8 @@ namespace BLL.Interface
         Task<List<GetProductsDto>> Getalls();
         Task<ProductsDto> Creates(ProductsDto entity);
         Task<ProductsDto> Updates(ProductsDto entity);
+        Task<List<GetProductsDto>> GetProductNew();
+
 
 
 

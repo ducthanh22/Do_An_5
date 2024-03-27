@@ -3,7 +3,9 @@ using AutoMapper;
 using DAL.Interface;
 using DTO;
 using Microsoft.EntityFrameworkCore;
+using MimeKit;
 using Model;
+using Org.BouncyCastle.Asn1.Ocsp;
 using Org.BouncyCastle.Crypto;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
@@ -16,16 +18,17 @@ namespace DAL
         }
         public async Task<BaseQuerieResponse<GetProductsDto>> Search(string keyword, int page, int pageSize)
         {
-
             var query = from d in _DbContext.Set<Products>()
-                        join a in _DbContext.Set<Size>() on d.Idsize equals a.Id
-                        join c in _DbContext.Set<Color>() on d.Idcolor equals c.Id
 
+                        join c in _DbContext.Set<Color>() on d.Idcolor equals c.Id
                         join b in _DbContext.Set<Price>() on d.Id equals b.Idproduct into bGroup
                         from b in bGroup.DefaultIfEmpty()
+                        join e in _DbContext.Set<Categories>() on d.Idcategories equals e.Id
+                        join g in _DbContext.Set<Produces>() on d.Idproduces equals g.Id
                         where ( string.IsNullOrEmpty(keyword)|| d.Name.Contains(keyword))
                         select new GetProductsDto
                         {
+
                             Id = d.Id,
                             Name = d.Name,
                             Idcategories = d.Idcategories,
@@ -33,10 +36,18 @@ namespace DAL
                             Describe = d.Describe,
                             namecolor = c.NameColor,
                             Price_product = b.Price_product,
-                            namesize = a.NameSize,
                             Image = d.Image,
-                            Idcolor=d.Idcolor,
-                            Idsize=d.Idsize
+                            Idcolor = d.Idcolor,
+                            Namecategory = e.Name,
+                            NameProduces = g.Name,
+                            Created = d.Created,
+                            ListSize = _DbContext.Size.Where(a => a.Idproduct == d.Id).Select(m => new SizeDto
+                            {
+                                Id = m.Id,
+                                Idproduct = m.Idproduct,
+                                NameSize = m.NameSize
+                            }).ToList()
+
                         };
 
             var totalCount = await query.LongCountAsync();
@@ -57,13 +68,15 @@ namespace DAL
             try
             {
                 var query = from d in _DbContext.Set<Products>()
-                            join a in _DbContext.Set<Size>() on d.Idsize equals a.Id
+                            
                             join c in _DbContext.Set<Color>() on d.Idcolor equals c.Id
                             join b in _DbContext.Set<Price>() on d.Id equals b.Idproduct into bGroup
                             from b in bGroup.DefaultIfEmpty()
-                            
+                            join e in _DbContext.Set<Categories>() on d.Idcategories equals e.Id
+                            join g in _DbContext.Set<Produces>() on d.Idproduces equals g.Id
                             select new GetProductsDto
                             {
+
                                 Id = d.Id,
                                 Name = d.Name,
                                 Idcategories = d.Idcategories,
@@ -71,10 +84,17 @@ namespace DAL
                                 Describe = d.Describe,
                                 namecolor = c.NameColor,
                                 Price_product = b.Price_product,
-                                namesize = a.NameSize,
                                 Image = d.Image,
                                 Idcolor = d.Idcolor,
-                                Idsize = d.Idsize
+                                Namecategory = e.Name,
+                                NameProduces = g.Name,
+                                Created = d.Created,
+                                ListSize = _DbContext.Size.Where(a => a.Idproduct == d.Id).Select(m => new SizeDto
+                                {
+                                    Id = m.Id,
+                                    Idproduct = m.Idproduct,
+                                    NameSize = m.NameSize
+                                }).ToList()
 
                             };
                 return await query.ToListAsync();
@@ -92,14 +112,16 @@ namespace DAL
         public async Task<IQueryable<GetProductsDto>> GetByIds(Guid ids)
         {
             var query  = from d in _DbContext.Set<Products>()
-                         join a in _DbContext.Set<Size>() on d.Idsize equals a.Id
+                         
                          join c in _DbContext.Set<Color>() on d.Idcolor equals c.Id
                          join b in _DbContext.Set<Price>() on d.Id equals b.Idproduct into bGroup
                          from b in bGroup.DefaultIfEmpty()
-
+                         join e in _DbContext.Set<Categories>() on d.Idcategories equals e.Id
+                         join g in _DbContext.Set<Produces>() on d.Idproduces equals g.Id
                          where d.Id == ids
                         select new GetProductsDto
                         {
+
                             Id = d.Id,
                             Name = d.Name,
                             Idcategories = d.Idcategories,
@@ -107,14 +129,60 @@ namespace DAL
                             Describe = d.Describe,
                             namecolor = c.NameColor,
                             Price_product = b.Price_product,
-                            namesize = a.NameSize,
                             Image = d.Image,
                             Idcolor = d.Idcolor,
-                            Idsize = d.Idsize
+                            Namecategory = e.Name,
+                            NameProduces = g.Name,
+                            Created = d.Created,
+                            ListSize = _DbContext.Size.Where(a => a.Idproduct == d.Id).Select(m => new SizeDto
+                            {
+                                Id = m.Id,
+                                Idproduct = m.Idproduct,
+                                NameSize = m.NameSize
+                            }).ToList()
                         };
 
            
             return query;
+        }
+        public async Task<List<GetProductsDto>> GetProductNew()
+        {
+
+            var query = (from d in _DbContext.Set<Products>()
+                       
+                         join c in _DbContext.Set<Color>() on d.Idcolor equals c.Id
+                         join b in _DbContext.Set<Price>() on d.Id equals b.Idproduct into bGroup
+                         from b in bGroup.DefaultIfEmpty()
+                         join e in _DbContext.Set<Categories>() on d.Idcategories equals e.Id
+                         join g in _DbContext.Set<Produces>() on d.Idproduces equals g.Id
+
+                         orderby d.Created descending
+                         select new GetProductsDto
+                         {
+
+                             Id = d.Id,
+                             Name = d.Name,
+                             Idcategories = d.Idcategories,
+                             Idproduces = d.Idproduces,
+                             Describe = d.Describe,
+                             namecolor = c.NameColor,
+                             Price_product = b.Price_product,
+                             Image = d.Image,
+                             Idcolor = d.Idcolor,
+                             Namecategory = e.Name,
+                             NameProduces = g.Name,
+                             Created = d.Created,
+                             ListSize = _DbContext.Size.Where(a=>a.Idproduct== d.Id).Select(m=>new SizeDto
+                             {
+                                 Id=m.Id,
+                                 Idproduct=m.Idproduct,
+                                 NameSize=m.NameSize
+                             }).ToList()
+                         }).Take(8);
+
+
+
+            return await query.ToListAsync();
         }
         public async Task<ProductsDto> Creates(ProductsDto entity)
         {
@@ -125,21 +193,34 @@ namespace DAL
                 Idcategories = entity.Idcategories,
                 Idproduces = entity.Idproduces,
                 Idcolor = entity.Idcolor,
-                Idsize = entity.Idsize,
                 Image=entity.Image,
                 Created = DateTime.Now,
             };
             _DbContext.Set<Products>().Add(product);
             await _DbContext.SaveChangesAsync();
+            entity.Id = product.Id;
             var price = new Price
             {
-                Idproduct = product.Id,
+                Idproduct = entity.Id,
                 Price_product = entity.Price_product,
                 Created = DateTime.Now,
             };
             _DbContext.Set<Price>().Add(price);
             await _DbContext.SaveChangesAsync();
-            entity.Id = product.Id;
+            foreach (var item in entity.ListSize)
+            {
+                SizeDto sizeDto = new SizeDto
+                {
+                   Idproduct = product.Id,
+                   NameSize = item.NameSize,
+                   
+                };
+
+                var SizeEntity = _mapper.Map<Size>(sizeDto);
+                await _DbContext.Size.AddAsync(SizeEntity);
+                await _DbContext.SaveChangesAsync();
+            }
+           
             return entity;
         }
         public async Task<ProductsDto> Updates(ProductsDto entity)
@@ -153,22 +234,43 @@ namespace DAL
                 product.Idcategories = entity.Idcategories;
                 product.Idproduces = entity.Idproduces;
                 product.Idcolor = entity.Idcolor;
-                product.Idsize = entity.Idsize;
                 product.Modified = DateTime.Now;
-                // Cập nhật đối tượng Products
                 _DbContext.Set<Products>().Update(product);
                 await _DbContext.SaveChangesAsync();
             }
-            // Tìm thấy đối tượng Price dựa trên ID sản phẩm liên quan
             var price = await _DbContext.Set<Price>().FirstOrDefaultAsync(p => p.Idproduct == entity.Id);
             if (price != null)
             {
                 // Cập nhật giá cho đối tượng Price
                 price.Price_product = entity.Price_product;
                 price.Modified = DateTime.Now;
-                // Cập nhật đối tượng Price
                 _DbContext.Set<Price>().Update(price);
                 await _DbContext.SaveChangesAsync();
+            }
+            foreach (var item in entity.ListSize)
+            {
+                SizeDto sizeDto = new SizeDto
+                {
+                    Id = item.Id,
+                    Idproduct = entity.Id,
+                    NameSize = item.NameSize,
+
+                };
+                var SizeEntity = _mapper.Map<Size>(sizeDto);
+                var existingSize = await _DbContext.Size.FirstOrDefaultAsync(s => s.Id== item.Id && s.Idproduct== item.Idproduct );
+                if (existingSize != null)
+                {
+                    existingSize.NameSize=item.NameSize;
+                     _DbContext.Size.Update(existingSize);
+                    await _DbContext.SaveChangesAsync();
+                }
+                else
+                {
+                    _DbContext.Size.Add(SizeEntity);
+                    await _DbContext.SaveChangesAsync();
+                }
+
+
             }
             return entity;
         }

@@ -2,9 +2,7 @@
     <div class="panner">
         <img src="/./assets/client/assets/img/Panner_A.png">
     </div>
-    <div class="sale">
-        <h2 style="color: rgb(191, 10, 10);">Flash Sale</h2>
-    </div>
+    
     <div class="brand">
         <h2>Thương Hiệu</h2>
         <div class="card">
@@ -21,8 +19,64 @@
             </p-carousel>
         </div>
     </div>
+    <div class="sale">
+        <h2 style="color: rgb(191, 10, 10);">Flash Sale</h2>
+    </div>
     <div class="Newproduct">
         <h2>Sản Phẩm Mới</h2>
+      
+<div class="card">
+    <p-dataView #dv [value]="products" [layout]="layout" [rows]="8" [paginator]="true" >
+        <ng-template pTemplate="header">
+            <div class="flex justify-content-end">
+                <p-dataViewLayoutOptions layout="list"></p-dataViewLayoutOptions>
+            </div>
+        </ng-template>
+        <ng-template let-product pTemplate="list" let-products>
+            <div class="list">
+                <div class="col-12" *ngFor="let product of products; let first = first">
+                    <div class="product-item" [ngClass]="{ 'border-top-1 surface-border': !first }">
+                        <img class="product-image" [src]="'https://localhost:7058/Images/' + product.image" [alt]="product.name" />
+                        <div class="product-details">
+                            <div class="product-name" [routerLink]="['/client','detail', product.id]">{{ product.name }}</div>
+
+                            <div class="product-category">
+                                <i class="pi pi-tag"></i>
+                                <span style="margin-left: 2%;">{{product.namecategory }}</span>
+                            </div>
+                        </div>
+                        <div class="product-price">
+                            <span>{{ product.price_product | currency:'VND' }}</span>
+                        </div>
+                        <button pButton icon="pi pi-shopping-cart" class="product-cart-button"></button>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+        
+        <ng-template let-product pTemplate="grid" let-products>
+            <div class="grid ">
+                <div class="col-12" *ngFor="let product of products; let first = first">
+                    <div class="grid-item" [ngClass]="{ 'border-top-1 surface-border': !first }">
+                        <img class="grid-image" [src]="'https://localhost:7058/Images/' + product.image" [alt]="product.name" />
+                        <div class="grid-details">
+                            <div class="grid-name"[routerLink]="['/client/detail', product.id]">{{ product.name }}</div>
+                            <div class="grid-category">
+                                <i class="pi pi-tag"></i>
+                                <span style="margin-left: 2%;">{{product.namecategory }}</span>
+                            </div>
+                        </div>
+                        <div class="grid-price">
+                            <span class="gspan">{{ product.price_product | currency:'VND' }}</span>
+                            <button pButton icon="pi pi-shopping-cart" class="product-cart-button"></button>
+                        </div>
+                       
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+    </p-dataView>
+</div>
     </div>
 
 </div>
