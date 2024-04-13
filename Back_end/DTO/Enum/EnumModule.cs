@@ -16,7 +16,7 @@ namespace DTO.Enum
             [Description("Categories management ")]
             QlDm = 2,
             [Description("Product management")]
-            QlDv = 3,
+            QlPr = 3,
             [Description("Import bill management")]
             QlHdn = 4,
             [Description("Export bill management")]

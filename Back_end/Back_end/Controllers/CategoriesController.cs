@@ -24,7 +24,7 @@ namespace Back_end.Controllers
         }
 
         [HttpGet("GetAll")]
-        //[HasPermission(new[] { (int)EnumModule.Module.QlDm }, new[] { (int)EnumPermission.Type.Update })]
+        [HasPermission(new[] { (int)EnumModule.Module.QlDm }, new[] { (int)EnumPermission.Type.Read })]
         public async Task<ActionResult<List<Categories>>> GetAll()
         {
             var result= await _categoriesBus.GetAll();
@@ -35,7 +35,7 @@ namespace Back_end.Controllers
         //[Authorize(Policy = "AdminRole")]
         //[Authorize(Policy = "CustomerRole")]
         //[Authorize(Roles = "Admin,Customer")]
-        //[HasPermission(new[] { (int)EnumModule.Module.QlDm }, new[] { (int)EnumPermission.Type.Update })]
+        [HasPermission(new[] { (int)EnumModule.Module.QlDm }, new[] { (int)EnumPermission.Type.Read })]
 
         public async Task<ActionResult<Categories>> Getbyid(Guid id)
         {
@@ -44,6 +44,8 @@ namespace Back_end.Controllers
         }
 
         [HttpPost("create")]
+        [HasPermission(new[] { (int)EnumModule.Module.QlDm }, new[] { (int)EnumPermission.Type.Create })]
+
         public async Task<ActionResult<CategoriesDto>> Create([FromBody] Categories dto)
         {
             var createdEntity = await _categoriesBus.Create(dto);
@@ -51,6 +53,8 @@ namespace Back_end.Controllers
             return Ok(createdEntity);
         }
         [HttpPut("update")]
+        [HasPermission(new[] { (int)EnumModule.Module.QlDm }, new[] { (int)EnumPermission.Type.Update })]
+
         public async Task<ActionResult<CategoriesDto>> Update([FromBody] Categories dto)
         {
             var createdEntity = await _categoriesBus.Update(dto);
@@ -58,6 +62,8 @@ namespace Back_end.Controllers
             return Ok(createdEntity);
         }
         [HttpDelete("Delete")]
+        [HasPermission(new[] { (int)EnumModule.Module.QlDm }, new[] { (int)EnumPermission.Type.Deleted })]
+
         public async Task<ActionResult<Categories>> Delete(Guid id)
         {
             var result = await _categoriesBus.Delete(id);
@@ -65,6 +71,8 @@ namespace Back_end.Controllers
         }
 
         [HttpGet("Search")]
+        [HasPermission(new[] { (int)EnumModule.Module.QlDm }, new[] { (int)EnumPermission.Type.Read })]
+
         public async Task<IActionResult> Search([FromQuery] Paging paging)
         {
             var result = await _categoriesBus.Search(paging);

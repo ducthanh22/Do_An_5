@@ -5,6 +5,7 @@ import { AdminAdmintemplateComponent } from './admin-admintemplate/admin-adminte
 import { LoginComponent } from './login/login.component';
 import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
 import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
+import { RegisterComponent } from './register/register.component';
 
 
 
@@ -60,6 +61,8 @@ const routes: Routes = [
   {path:'Login',component:LoginComponent,title:'Đăng nhập'},
   {path:'ResetPassword/:token/:email',component:ResetpasswordComponent,title:'Đổi mật khẩu'},
   {path:'FogotPassword',component:ForgotpasswordComponent,title:'Quên mật khẩu'},
+  {path:'Register',component:RegisterComponent,title:'Đăng kí'},
+
 
 
 

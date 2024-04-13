@@ -1,34 +1,39 @@
-<h1 style="margin-left: 2em; font-weight: 50;">Giỏ hàng</h1>
-<div style="width: 90%; margin-left: 5%;">
-    <table class="table">
-        <thead>
-            <tr>
-                <th style="padding-left: 2em;">Hình ảnh</th>
-                <th>Tên sản phẩm</th>
-                <th>Số lượng</th>
-                <th>Giá tiền</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr >
-                <td class="img"><img style="width: 30%;" src="./assets/client/assets/img/portfolio/a4.png" /></td>
-                <td class="name">Combo Bộ Quần Áo Hè Thun Nam Áo Tay Ngắn Cổ Tròn Loang Màu FNGLA Phối Quần Short Đùi Zenkocs3 MEN </td>
-                <td class="quantity">1</td>
-                <td class="price">234,000đđ</td>
-                <td class="xoa"><i class="fa fa-trash"></i></td>
-            </tr>
-            <tr >
-                <td class="img"><img style="width: 30%;" src="./assets/client/assets/img/portfolio/a3.png" /></td>
-                <td class="name">Combo Bộ Quần Áo sơ mi Nam  FNGLA Phối Quần Âu Zenkocs3 MEN </td>
-                <td class="quantity">1</td>
-                <td class="price">234,000đđ</td>
-                <td class="xoa"><i class="fa fa-trash"></i></td>
-            </tr>
-        </tbody>
-    </table>
+<div class="card xl:flex xl:justify-content-center" *ngIf="Carts && Carts.length>0">
+    <p-orderList [value]="Carts" [listStyle]="{ height: '25rem' }" header="Giỏ hàng">
+        <ng-template let-product let-index="index" pTemplate="item">
+            <div class="flex ">
+                <img [src]="'https://localhost:7058/Images/' + product.data[0].image" [alt]="product.data[0].name"
+                    width="100px" />
+                <div class="name">
+                    <span>{{ product.data[0].name }}</span>
+                    <div>
+                        <i class="pi pi-tag text-sm"></i>
+                        <span>{{ product.data[0].namecategory }}</span>
+                    </div>
+                    <div>
+                        <span>Size : {{ product.size.nameSize }}</span>
+                    </div>
+                </div>
+                <div class="quantity">
+                    <p-inputNumber [(ngModel)]="product.quantity"
+                        (ngModelChange)="updateQuantity($event, product,index)" [showButtons]="true"
+                        buttonLayout="horizontal" inputId="horizontal" spinnerMode="horizontal" [step]="1"
+                        decrementButtonClass="p-button-danger" incrementButtonClass="p-button-success"
+                        incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus" [min]="1"
+                        [max]="999"></p-inputNumber>
+                </div>
+                <span class="price">{{ totalPrice(index)| currency:'VND' }}</span>
+                <span class="pi pi-trash price" style="font-size: 1rem;" (click)="deleteCart(index)"></span>
+            </div>
+        </ng-template>
+    </p-orderList>
+    <br>
+    <p-button label="Thanh Toán" [rounded]="true" severity="danger" class="bt" (onClick)="OpenPay()"></p-button>
 </div>
-<div style="margin-left: 60%;">
-    <button style="border: none; font-weight: bold; font-size: 1.3em; border-radius: 5px; width: 34%; height: 3em; background-color: #01a14b; color: aliceblue;">Cập nhật</button>
-    <button onclick="navigate('/pay')" style="border: none; margin-left: 2em; font-weight: bold; font-size: 1.3em; border-radius: 5px; width: 34%; height: 3em; background-color: #01a14b; color: aliceblue;">Thanh toán</button>
+<br>
+
+<div class="NotCart" *ngIf="Carts&&Carts.length<=0">
+    <span class="textcart">Giỏ hàng của bạn đang trống</span>
+    <p-button label="Tiếp tục mua hàng" [rounded]="true" severity="danger" class="bt" (onClick)="OpenPay()"></p-button>
+
 </div>

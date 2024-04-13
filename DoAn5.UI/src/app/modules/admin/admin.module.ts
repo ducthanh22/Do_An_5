@@ -21,6 +21,7 @@ import { ConfirmationService } from 'primeng/api';
 
 import { FileUploadModule } from 'primeng/fileupload';
 import { ProduceComponent } from './produce/produce.component';
+import { ToastModule } from 'primeng/toast';
 
 @NgModule({
   declarations: [
@@ -47,8 +48,8 @@ import { ProduceComponent } from './produce/produce.component';
     DropdownModule,
     EditorModule,
     ConfirmDialogModule,
-    FileUploadModule
-    
+    FileUploadModule,
+    ToastModule
     
   ],
   providers: [ConfirmationService],

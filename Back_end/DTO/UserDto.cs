@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -28,6 +29,17 @@ namespace DTO
     {
         public string Email { get; set; }
     }
-
+    public class CreateUserDto : IdentityUser
+    {
+        public string Address { get; set; }
+        public string? CCCD { get; set; }
+        public string? Status { get; set; }
+        public int? ActiveFlag { get; set; }
+        public int? CreatedBy { get; set; }
+        public string roleName {  get; set; }
+        public DateTime? Created { get; set; }
+        public int? ModifiedBy { get; set; }
+        public DateTime? Modified { get; set; }
+    }
 
 }

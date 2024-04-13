@@ -12,27 +12,20 @@ using DTO;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using System.Security.Policy;
 using Microsoft.AspNetCore.Routing;
-using Microsoft.AspNetCore.Mvc.Routing;
-using System.Net;
+
 
 namespace DAL
 {
     public class AccountRepository : IAccountRepository
     {
-
         private readonly UserManager<User> _userManager;
         private readonly RoleManager<Role> _roleManager;
         private readonly Achino_DbContext _dbContext;
         private readonly IConfiguration _config;
         private readonly ISendEmailRepository _sendEmailRepository;
-        //private readonly IUrlHelper _urlHelper;
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly LinkGenerator _linkGenerator;
-
-
         public AccountRepository(
             UserManager<User> userManager,
             Achino_DbContext dbContext,
@@ -40,7 +33,6 @@ namespace DAL
             RoleManager<Role> roleManager,
             IHttpContextAccessor httpContextAccessor,
             ISendEmailRepository sendEmailRepository,
-            //IUrlHelper urlHelper,
             LinkGenerator linkGenerator)
         {
             _userManager = userManager;
@@ -49,7 +41,6 @@ namespace DAL
             _roleManager = roleManager;
             _httpContextAccessor = httpContextAccessor;
             _sendEmailRepository = sendEmailRepository;
-            //_urlHelper = urlHelper;
             _linkGenerator = linkGenerator;
         }
 
@@ -64,7 +55,6 @@ namespace DAL
                 {
                     Name = role.Role.Name,
                 };
-
                 // Create the role
                 var result = await _roleManager.CreateAsync(roleCreate);
                 if (result.Succeeded)
@@ -81,30 +71,38 @@ namespace DAL
         }
 
 
-        public async Task<bool> Register(User user)
+        public async Task<bool> Register(CreateUserDto user)
         {
-            var newUser = new User
+            var Check = await _userManager.FindByEmailAsync(user.Email);
+            if(Check == null )
             {
-                UserName = user.UserName,
-                Email = user.Email,
-                PasswordHash = user.PasswordHash,
-                CCCD= user.CCCD,
-                Address = user.Address,
-                Status = user.Status,
-                
-            };
-            var result = await _userManager.CreateAsync(newUser, user.PasswordHash);
-            if (result.Succeeded)
-            {
-                await _userManager.AddToRoleAsync(newUser, "Staff");
-                await _dbContext.SaveChangesAsync();
-                return true;
-            }
+                var newUser = new User
+                {
+                    UserName = user.UserName,
+                    Email = user.Email,
+                    PasswordHash = user.PasswordHash,
+                    CCCD = user.CCCD,
+                    Address = user.Address,
+                    Status = user.Status,
 
+                };
+                var result = await _userManager.CreateAsync(newUser, user.PasswordHash);
+                if (result.Succeeded)
+                {
+                    await _userManager.AddToRoleAsync(newUser, user.roleName);
+                    await _dbContext.SaveChangesAsync();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
             else
             {
                 return false;
             }
+
         }
 
         public async Task<bool> Login(UserDto user)
@@ -127,6 +125,8 @@ namespace DAL
                 new Claim("Username", checkUser.UserName),
                 new Claim("Id", checkUser.Id),
                 new Claim("Email", checkUser.Email),
+                new Claim("status", checkUser.Status),
+
             };
             var roles = await _userManager.GetRolesAsync(checkUser);
             // Thêm các claims về vai trò vào danh sách claims

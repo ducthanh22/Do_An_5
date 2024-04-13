@@ -19,3 +19,15 @@ export interface ResetPasswordModel {
 export interface ForgotPasswordModel {
     email: string;
 }
+
+
+
+export interface User  {
+    address: string;
+    status: string | null;
+    activeFlag: number | null;
+    email: string;
+    passwordHash: string;
+    phoneNumber: string;
+    cccd: string;
+}

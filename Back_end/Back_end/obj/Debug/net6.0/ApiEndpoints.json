@@ -87,7 +87,7 @@
     "Parameters": [
       {
         "Name": "user",
-        "Type": "Model.User",
+        "Type": "DTO.CreateUserDto",
         "IsRequired": true
       }
     ],

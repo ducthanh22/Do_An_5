@@ -5,10 +5,12 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using DAL.Interface;
 using DTO;
+using Back_end.Attribute;
+using DTO.Enum;
 
 namespace Back_end.Controllers
 {
-    //[Authorize]
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ProductController : ControllerBase
@@ -23,6 +25,8 @@ namespace Back_end.Controllers
         }
 
         [HttpGet("GetAll")]
+        [HasPermission(new[] { (int)EnumModule.Module.QlPr }, new[] { (int)EnumPermission.Type.Read })]
+
         public async Task<ActionResult<List<GetProductsDto>>> GetAll()
         {
             var result = await _productsBus.Getalls();
@@ -30,12 +34,16 @@ namespace Back_end.Controllers
         }
 
         [HttpGet("GetProductNew")]
+        [AllowAnonymous]
+
         public async Task<ActionResult<List<GetProductsDto>>> GetProductNew()
         {
             var result = await _productsBus.GetProductNew();
             return Ok(result);
         }
         [HttpGet("GetByid/{id}")]
+        [AllowAnonymous]
+
         public async Task<ActionResult<GetProductsDto>> GetByIds(Guid id)
         {
             var result = await _productsBus.GetByIds(id);
@@ -43,6 +51,8 @@ namespace Back_end.Controllers
         }
 
         [HttpPost("create")]
+        [HasPermission(new[] { (int)EnumModule.Module.QlPr }, new[] { (int)EnumPermission.Type.Create })]
+
         public async Task<ActionResult<ProductsDto>> Create([FromBody] ProductsDto dto)
         {
             var createdEntity = await _productsBus.Creates(dto);
@@ -52,12 +62,16 @@ namespace Back_end.Controllers
         }
 
         [HttpPut("update")]
+        [HasPermission(new[] { (int)EnumModule.Module.QlPr }, new[] { (int)EnumPermission.Type.Update })]
+
         public async Task<ActionResult<ProductsDto>> Update([FromBody] ProductsDto dto)
         {
             var createdEntity = await _productsBus.Updates(dto);
             return Ok(createdEntity);
         }
         [HttpDelete("Delete/{id}")]
+        [HasPermission(new[] { (int)EnumModule.Module.QlPr }, new[] { (int)EnumPermission.Type.Deleted })]
+
         public async Task<ActionResult<ProductsDto>> Delete(Guid id)
         {
             var result = await _productsBus.Delete(id);
@@ -69,6 +83,8 @@ namespace Back_end.Controllers
         }
 
         [HttpGet("Search")]
+        [HasPermission(new[] { (int)EnumModule.Module.QlPr }, new[] { (int)EnumPermission.Type.Read })]
+
         public async Task<IActionResult> Search([FromQuery] string? keyword, [FromQuery] int pageIndex, [FromQuery] int pageSize)
         {
             var result = await _productsBus.Search(keyword, pageIndex, pageSize);
@@ -77,6 +93,8 @@ namespace Back_end.Controllers
         }
 
         [HttpPost("UpLoadFile")]
+        [HasPermission(new[] { (int)EnumModule.Module.QlPr }, new[] { (int)EnumPermission.Type.Create})]
+
         public async Task<IActionResult> UpLoadFile([FromForm] UpLoadFile product)
         {
             var result = await _productsBus.UploadFile(product);

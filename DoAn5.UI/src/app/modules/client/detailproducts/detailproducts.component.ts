@@ -19,7 +19,7 @@ export class DetailproductsComponent {
     this.Carts = this.productService.GetCart();
     this.route.params.subscribe((params) => {
       if (params['id']) {
-        this.id = params['id'];  // Chuyển đổi id từ chuỗi sang số
+        this.id = params['id'];
       }
       this.getbyid(this.id);
     });
@@ -29,7 +29,6 @@ export class DetailproductsComponent {
       next: (res) => {
         if (res) {
           this.data = res;
-          console.log(this.data);
         }
       }
     })
@@ -38,7 +37,6 @@ export class DetailproductsComponent {
     this.Size =[]
     this.Size = data;
   }
-
   addtocart(data: any) {
     if (this.Size) {
       let idx = this.Carts.findIndex((item: any) => {
@@ -59,13 +57,8 @@ export class DetailproductsComponent {
       this.MessageSV.add({ severity: 'success', summary: 'Thành công', detail: 'Thêm giỏ hàng thành công' })
     }
     else{
-      this.MessageSV.add({ severity: 'error', summary: 'Lỗi', detail: 'Vui lòng chọn size' })
+      this.MessageSV.add({ severity: 'warn', summary: 'Cảnh báo', detail: 'Vui lòng chọn kích thước' })
 
     }
-
-
-
   }
-
-
 }

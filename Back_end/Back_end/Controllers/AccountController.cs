@@ -27,7 +27,7 @@ namespace Back_end.Controllers
         [AllowAnonymous]
 
         [HttpPost("Register")]
-        public async Task<ActionResult<bool>> Register(User user)
+        public async Task<ActionResult<bool>> Register(CreateUserDto user)
         {
             var result = await _Bus.Register(user);
             return Ok(result);

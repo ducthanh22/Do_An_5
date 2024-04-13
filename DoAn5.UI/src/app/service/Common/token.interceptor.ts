@@ -15,14 +15,12 @@ export class TokenInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     const token = localStorage.getItem('Token');
     if (token) {
-      // Thêm token vào header nếu có
       request = request.clone({
         setHeaders: {
           Authorization: `Bearer ${token}`,
         },
       });
     }
-
     return next.handle(request);
   }
 }

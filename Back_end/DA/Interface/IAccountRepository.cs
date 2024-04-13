@@ -15,7 +15,7 @@ namespace DAL.Interface
     {
         Task<bool> CreateRoleAsync(CreateRoleDto role);
         Task<GennToken> GenerateToken(UserDto user);
-        Task<bool> Register(User user);
+        Task<bool> Register(CreateUserDto user);
         Task<bool> Login(UserDto user);
         Task<ForgotPasswordModel> ForgotPassword(ForgotPasswordModel model);
         Task<string> ResetPassword(ResetPasswordModel model);

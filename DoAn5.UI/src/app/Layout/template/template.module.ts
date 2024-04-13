@@ -10,12 +10,13 @@ import { AdminModule } from 'src/app/modules/admin/admin.module';
 import { AdminRoutingModule } from 'src/app/modules/admin/admin-routing.module';
 import { InputTextModule } from 'primeng/inputtext';
 import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
 import { InputGroupModule } from 'primeng/inputgroup';
 import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { ToastModule } from 'primeng/toast';
+import { RegisterComponent } from './register/register.component';
 
 
 
@@ -27,6 +28,7 @@ import { ToastModule } from 'primeng/toast';
     LoginComponent,
     ResetpasswordComponent,
     ForgotpasswordComponent,
+    RegisterComponent,
   
   ],
   imports: [
@@ -41,7 +43,9 @@ import { ToastModule } from 'primeng/toast';
     ButtonModule,
     InputGroupModule ,
     InputGroupAddonModule,
-    ToastModule
+    ToastModule,
+    ReactiveFormsModule,
+
 
   ],
   

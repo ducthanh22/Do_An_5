@@ -19,8 +19,9 @@ import { DropdownModule } from 'primeng/dropdown';
 import { ImageModule } from 'primeng/image';
 import { MessagesModule } from 'primeng/messages';
 import { ToastModule } from 'primeng/toast';
-
-
+import { OrderListModule } from 'primeng/orderlist';
+import { InputNumberModule } from 'primeng/inputnumber';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AboutComponent,
@@ -43,7 +44,11 @@ import { ToastModule } from 'primeng/toast';
     DropdownModule,
     ImageModule,
     MessagesModule,
-    ToastModule
+    ToastModule,
+    OrderListModule,
+    InputNumberModule,
+    ReactiveFormsModule,
+    FormsModule
   ]
 })
 export class ClientModule { }

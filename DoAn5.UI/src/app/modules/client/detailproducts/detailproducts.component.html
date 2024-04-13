@@ -1,12 +1,10 @@
-<p-toast></p-toast>
+
 <div class="container" *ngIf="data && data.length > 0">
   <div class="top">
     <div class="card flex justify-content-center">
       <img [src]="'https://localhost:7058/Images/' + data[0].image" alt="Image" class="full-image">
     </div>
-
     <div class="select">
-      <p-toast></p-toast>
       <h3>{{data[0].name}}</h3>
       <div class="product_infomatiom">
         <div class="price">
@@ -51,11 +49,6 @@
       <div class="img1">
         <h4>Tại sao nên chọn ACHINO</h4>
          <img src="/./assets/client/assets/img/Nenchon.jpg" alt="Image"class="full-image"/></div>
-
-
     </div>
-
-
-
   </div>
 </div>

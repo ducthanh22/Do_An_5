@@ -2,20 +2,34 @@
     width: 100%;
     height: auto;
     padding-left: 5%;
-    border-bottom: 0.5px solid gray;
+    padding-top: 7%;
+    /* border-bottom: 0.5px solid gray; */
    
 }
 .pay-right{
     width: 100%;
     height: auto;
     padding-left: 5%;
-    
-    padding-top: 7%;
-    background-color: #fafafa;
-    .product{
-        width: 80%;
-        height: 20%;
-        margin-top: 1.5em;
-        display: flex;
-    }
+    padding-top: 25%;
+    /* background-color: #fafafa;    */
 }
+
+.flex {
+    display: flex;
+    align-items: center;
+}
+
+.name {
+    margin-left: 5%;
+}
+
+.quantity {
+    margin-left: 5%;
+}
+
+.price {
+    margin-left: 5%;
+    color: rgb(193, 19, 19);
+    font-weight: bold;
+}
+

@@ -7,7 +7,8 @@ import { TemplateModule } from './Layout/template/template.module';
 import { TemplateRoutingModule } from './Layout/template/template-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MessageService } from 'primeng/api';
-
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { TokenInterceptor } from './service/Common/token.interceptor'; 
 
 
 @NgModule({
@@ -23,7 +24,11 @@ import { MessageService } from 'primeng/api';
     TemplateRoutingModule,
    
   ],
-  providers: [MessageService],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: TokenInterceptor,
+    multi: true,
+  },MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

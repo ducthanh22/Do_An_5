@@ -16,6 +16,8 @@ import { ButtonModule } from 'primeng/button';
 import { ToolbarModule } from 'primeng/toolbar';
 import { SplitButtonModule } from 'primeng/splitbutton';
 import { ToastModule } from 'primeng/toast';
+import { MenuModule } from 'primeng/menu';
+
 
 
 
@@ -39,7 +41,8 @@ import { ToastModule } from 'primeng/toast';
     ButtonModule,
     ToolbarModule,
     SplitButtonModule,
-    ToastModule
+    ToastModule,
+    MenuModule
     
   ],
   exports:[HeaderComponent,

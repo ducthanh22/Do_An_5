@@ -1,36 +1,39 @@
-.table{
-    tbody{
-        tr{
-            .img{
-                padding-left: 2em;
-                width: 25%;
-                
-            }
-            .name{
-                font-size:2em;
-                width:35%;
-                padding-top: 1em;
-                color: #555555;
-                font-weight: 50;
-                
-            }
-            .quantity{
-                font-size:2em; width: 20%;
-                padding-top: 1em;
-                color: #555555;
-                font-weight: 50;
-            }
-            .price{
-                font-size: 2em;
-                color: #555555;padding-top: 1em;
-                font-weight: 50;
-            }
-            .xoa{
-                font-size: 2em;
-                color: #555555;padding-top: 1em;
-                font-weight: 50;
-            }
+.flex {
+    display: flex;
+    align-items: center;
+}
 
-        }
-    }
+.name {
+    margin-left: 5%;
+}
+
+.quantity {
+    margin-left: 5%;
+}
+
+.price {
+    margin-left: 5%;
+    color: rgb(193, 19, 19);
+    font-weight: bold;
+}
+
+:host ::ng-deep .p-inputnumber-input {
+    width: 70px !important;
+}
+
+.bt {
+    margin-left: 42%;
+}
+.card{
+     margin-top: 5%;
+}
+.NotCart {
+    margin-top: 5%;
+    height: 350px;
+    display: grid;
+}
+
+.textcart {
+    margin-left: 41%;
+    margin-top: 5%;
 }

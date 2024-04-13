@@ -7,6 +7,7 @@ export *from "./account"
 export* from "./product";
 export*from "./color"
 export* from "./order"
+export*from "./account"
 
 
 

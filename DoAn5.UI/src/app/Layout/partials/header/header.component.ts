@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { MenuItem } from 'primeng/api';
+import { MenuItem, MessageService } from 'primeng/api';
+import { AccountService } from 'src/app/service/account.service';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -7,9 +8,36 @@ import { MenuItem } from 'primeng/api';
 })
 export class HeaderComponent {
   items: MenuItem[] | undefined;
-  constructor() { }
+  itemAccount:MenuItem[] | undefined;
+  informationToken!:any;
+  isSubMenuOpen: boolean = false;
+  menuItems: MenuItem[] = [];
+  showMenu: boolean = false;
+  constructor(private AcountService:AccountService,private messageService:MessageService) { }
 
   ngOnInit() {
+    this.informationToken= this.AcountService.decodeToken();
+    this.itemAccount = [
+        {
+            label: 'Options',
+            items: [
+                {
+                    label: 'Update',
+                    icon: 'pi pi-refresh',
+                    command: () => {
+                        this.update();
+                    }
+                },
+                {
+                    label: 'Đăng Xuất',
+                    icon: 'pi pi-times',
+                    command: () => {
+                        this.delete();
+                    }
+                }
+            ]
+        } 
+    ];
 
     this.items = [
       {
@@ -153,8 +181,23 @@ export class HeaderComponent {
       }
     });
   }
-  
- 
+  showName(){
+    if(this.informationToken){
+        return this.informationToken.Username  
+    }
+    return " Đăng Nhập"
+  } 
 
+  update() {
+    this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Data Updated' });
+}
+
+delete() {
+    const token = localStorage.getItem('Token');
+    if(token !=null){
+        localStorage.removeItem('Token');
+        window.location.reload()
+    }
+}
 
 }
