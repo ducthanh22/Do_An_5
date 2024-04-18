@@ -61,7 +61,7 @@ namespace DAL
       
             string paymentUrl = vnpay.CreateRequestUrl(vnp_Url, vnp_HashSecret);
 
-            return  await   Task.FromResult(paymentUrl);
+            return  paymentUrl;
         }
         public async Task<PaymentRespone> GetPaymentResponse(string query)
         {
@@ -78,7 +78,7 @@ namespace DAL
                 // Gán các thuộc tính khác tương tự ở đây nếu cần
             };
 
-            return  await Task.FromResult(paymentResponse);
+            return paymentResponse;
         }
 
 

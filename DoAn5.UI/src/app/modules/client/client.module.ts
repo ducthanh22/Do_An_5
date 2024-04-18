@@ -22,6 +22,7 @@ import { ToastModule } from 'primeng/toast';
 import { OrderListModule } from 'primeng/orderlist';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { InputTextModule } from 'primeng/inputtext';
 @NgModule({
   declarations: [
     AboutComponent,
@@ -48,7 +49,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     OrderListModule,
     InputNumberModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    InputTextModule
   ]
 })
 export class ClientModule { }

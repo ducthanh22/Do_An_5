@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
+import { Route, Router } from '@angular/router';
 import { MenuItem, MessageService } from 'primeng/api';
+import { Subscription } from 'rxjs';
 import { AccountService } from 'src/app/service/account.service';
+import { ProducesService } from 'src/app/service/produces.service';
+import { ProductsService } from 'src/app/service/products.service';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -13,10 +17,16 @@ export class HeaderComponent {
   isSubMenuOpen: boolean = false;
   menuItems: MenuItem[] = [];
   showMenu: boolean = false;
-  constructor(private AcountService:AccountService,private messageService:MessageService) { }
+  Carts:any
+  cartUpdateSubscription!: Subscription;
+  constructor(private AcountService:AccountService,private messageService:MessageService,private router:Router,private productService:ProductsService) { }
 
   ngOnInit() {
     this.informationToken= this.AcountService.decodeToken();
+    this.Carts = this.productService.GetCart();
+    this.cartUpdateSubscription = this.productService.cartUpdated.subscribe(() => {
+        this.Carts = this.productService.GetCart();
+      });
     this.itemAccount = [
         {
             label: 'Options',
@@ -163,24 +173,13 @@ export class HeaderComponent {
       }
   ];
 
-    this.activeNav();
-   
+  }
+  ngOnDestroy() {
+    if (this.cartUpdateSubscription) {
+      this.cartUpdateSubscription.unsubscribe();
+    }
   }
 
-  activeNav() {
-    const current =  window.location.pathname;
-    const links = document.querySelectorAll("li a.nav-link");
-    // let hrefs: any[] = [];
-    links.forEach(link => {
-      const href = link.getAttribute("href");
-      if (href == current) {
-        link.classList.add("active");
-      }
-      else {
-        link.classList.remove("active");
-      }
-    });
-  }
   showName(){
     if(this.informationToken){
         return this.informationToken.Username  
@@ -196,7 +195,8 @@ delete() {
     const token = localStorage.getItem('Token');
     if(token !=null){
         localStorage.removeItem('Token');
-        window.location.reload()
+        // window.location.reload();
+        window.location.href = '/client/Home';
     }
 }
 

@@ -11,5 +11,7 @@ namespace DAL.Interface
     public interface IOrderRepository : IGenericRepository<Order>
     {
         Task<CreateOrderDto> CreateOrder(CreateOrderDto entity);
+        Task<List<OrderDto>> GetbyCustomer(Guid id);
+
     }
 }

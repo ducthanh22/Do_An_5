@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable ,EventEmitter } from '@angular/core';
 import { BaseService } from './Common/base.service';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environment/environment';
@@ -10,6 +10,7 @@ import { BaseCommandResponse } from '../model/Common/BaseCommandResponse';
   providedIn: 'root'
 })
 export class ProductsService extends BaseService<ProductsDto>{
+  cartUpdated = new EventEmitter<void>();
   constructor(http: HttpClient) {
     super(http, `${environment.apiUrl}/Product`);
   }
@@ -34,6 +35,7 @@ export class ProductsService extends BaseService<ProductsDto>{
   }
   saveCart(cart:any){
     let jsonCart = JSON.stringify(cart);
-    sessionStorage.setItem('cart',jsonCart)
+    sessionStorage.setItem('cart',jsonCart);
+    this.cartUpdated.emit(); 
   }
 }

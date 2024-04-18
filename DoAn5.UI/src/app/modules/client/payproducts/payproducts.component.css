@@ -33,3 +33,18 @@
     font-weight: bold;
 }
 
+.input-container,
+.dropdown-container {
+    grid: 1;
+    margin-right: 10px;
+    margin-bottom: 30px;
+}
+
+.input-container input,
+.dropdown-container p-dropdown {
+    width: 100%;
+}
+.bt {
+    margin-left: 42%;
+    
+}

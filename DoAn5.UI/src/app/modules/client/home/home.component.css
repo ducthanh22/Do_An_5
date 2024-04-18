@@ -45,7 +45,7 @@ h2 {
 }
 
 .product-image {
-    width: 150px;
+    width: 100px;
     height: 100px;
     margin-right: 20px;
     border-radius: 5px;
@@ -71,7 +71,7 @@ h2 {
 
 .grid {
     display: grid; /* Sử dụng CSS Grid */
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* Tạo các cột với độ rộng tối thiểu là 250px và linh hoạt theo kích thước của container */
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); /* Tạo các cột với độ rộng tối thiểu là 250px và linh hoạt theo kích thước của container */
     gap: 20px; /* Khoảng cách giữa các phần tử */
     margin-top: 2%;
     margin-left: 5%;
@@ -79,17 +79,20 @@ h2 {
   }
   
   .grid-item {
-    border: 1px solid #ccc; /* Đường viền cho mỗi phần tử */
+    
     padding: 10px; /* Khoảng cách bên trong mỗi phần tử */
     border-radius: 5%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
   }
   
   .grid-image{
-    width: 100%; /* Ảnh không vượt quá chiều rộng của phần tử */
+    width: 80%; /* Ảnh không vượt quá chiều rộng của phần tử */
     height: 200px;
     margin-right: 20px;
     border-radius: 5px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    /* box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); */
+    margin-left: 10%;
   }
   
   .grid-details {

@@ -8,8 +8,10 @@
         <img src="/./assets/client/assets/img/snapedit_Achino.png" height="45px" width="100%" class="mr-2" />
       </span>
   </div>
-  <div class="p-toolbar-group-end">
-      <p-splitButton [label]="label" icon="pi pi-user" [model]="items" styleClass="p-button-text p-button-secondary mr-2 mb-2"></p-splitButton>
+  <div class="p-toolbar-group-end" >
+    <p-splitButton [label]="label" icon="pi pi-user" [model]="items" styleClass="p-button-text p-button-secondary mr-2 mb-2" *ngIf="showName()!=' Đăng Nhập'"></p-splitButton>
+    <p-splitButton [label]="label" icon="pi pi-user" [routerLink]="['/Login']" styleClass="p-button-text p-button-secondary mr-2 mb-2" *ngIf="showName()==' Đăng Nhập'"></p-splitButton>
+
   </div>
 </p-toolbar>
 <p-sidebar [(visible)]="sidebarVisible">

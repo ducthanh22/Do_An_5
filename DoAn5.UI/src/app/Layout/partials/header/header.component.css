@@ -26,4 +26,20 @@
   i{
     margin-right: 70px;
   }
-  
+  .cart-badge {
+    position: relative;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    top: -8px;
+    left: -88px;
+}
+
+

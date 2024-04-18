@@ -1,5 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
+import { AccountService } from 'src/app/service/account.service';
 import { OrderService } from 'src/app/service/order.service';
 import { ProductsService } from 'src/app/service/products.service';
 
@@ -11,22 +13,22 @@ import { ProductsService } from 'src/app/service/products.service';
 export class CartComponent {
   Carts!: any[];
   quantity!: number
+  informationToken:any
   constructor(private productService: ProductsService, private orderService:OrderService,
-    private router:Router
+    private router:Router,private AcountService:AccountService,private MessageSV:MessageService
   ) { }
   ngOnInit() {
     this.Carts = this.productService.GetCart();
+    this.informationToken= this.AcountService.decodeToken();
+    console.log(this.informationToken)
+
   }
 
-  saveCart(){
-    let jsonCart = JSON.stringify(this.Carts);
-    sessionStorage.setItem('cart', jsonCart)
-    
-  }
+
   updateQuantity(newQuantity: number, product: any, index: number) {
     product.quantity = newQuantity;
     this.Carts[index].quantity = product.quantity;
-    this.saveCart();
+    this.productService.saveCart(this.Carts);
   }
   totalPrice(index: number){
     let total=  this.Carts[index].data[0].price_product * this.Carts[index].quantity
@@ -35,18 +37,16 @@ export class CartComponent {
   deleteCart(index: number){
     if (index >= 0 && index < this.Carts.length) {
       this.Carts.splice(index);
-      this.saveCart();
+      this.productService.saveCart(this.Carts);
     }
   }
   OpenPay(){
-    if(this.Carts && this.Carts.length>0){
-      this.router.navigate(['/client/pay']);
+    if(this.informationToken){
+      this.Carts && this.Carts.length>0?this.router.navigate(['/client/pay']):this.router.navigate(['/client/Home'])
     }
     else{
-      this.router.navigate(['/client/Home']);
-
+      this.MessageSV.add({ severity: 'warn', summary: 'Cảnh báo', detail: 'Vui lòng đăng nhập' })
     }
-    
   }
   create(){
 

@@ -14,6 +14,7 @@ export class DetailproductsComponent {
   data!: any
   Carts!: any[];
   Size!: any;
+  
   constructor(private route: ActivatedRoute, private productService: ProductsService, private MessageSV:MessageService) { }
   ngOnInit() {
     this.Carts = this.productService.GetCart();
@@ -52,8 +53,7 @@ export class DetailproductsComponent {
         };
         this.Carts.push(cartItem)
       }
-      let jsonCart = JSON.stringify(this.Carts);
-      sessionStorage.setItem('cart', jsonCart);
+   this.productService.saveCart(this.Carts)
       this.MessageSV.add({ severity: 'success', summary: 'Thành công', detail: 'Thêm giỏ hàng thành công' })
     }
     else{

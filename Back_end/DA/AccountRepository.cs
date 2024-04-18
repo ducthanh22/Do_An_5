@@ -84,7 +84,7 @@ namespace DAL
                     CCCD = user.CCCD,
                     Address = user.Address,
                     Status = user.Status,
-
+                    PhoneNumber=user.PhoneNumber,
                 };
                 var result = await _userManager.CreateAsync(newUser, user.PasswordHash);
                 if (result.Succeeded)
@@ -125,8 +125,9 @@ namespace DAL
                 new Claim("Username", checkUser.UserName),
                 new Claim("Id", checkUser.Id),
                 new Claim("Email", checkUser.Email),
+                new Claim("Address", checkUser.Address),
+                new Claim("Phone", checkUser.PhoneNumber),
                 new Claim("status", checkUser.Status),
-
             };
             var roles = await _userManager.GetRolesAsync(checkUser);
             // Thêm các claims về vai trò vào danh sách claims

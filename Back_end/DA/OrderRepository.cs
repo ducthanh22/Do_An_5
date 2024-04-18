@@ -17,6 +17,23 @@ namespace DAL
         public OrderRepository(Achino_DbContext dbContext, IMapper mapper) : base(dbContext, mapper)
         {
         }
+        public async Task<List<OrderDto>> GetbyCustomer(Guid id)
+        {
+            var query = from a in _DbContext.Order
+                        where (a.Id_customer ==id)
+                        select new OrderDto
+                        {
+                            Id =a.Id,
+                            Id_customer = a.Id_customer,
+                            Price = a.Price,
+                            Payment=a.Payment,
+                            status=a.status,
+                            Address=a.Address
+                        };
+
+            return await query.ToListAsync();
+        }
+
         public async Task<CreateOrderDto> CreateOrder(CreateOrderDto entity)
         {
             // Create and save the main order
@@ -25,13 +42,13 @@ namespace DAL
                 Id_customer = entity.Id_customer,
                 status = entity.status,
                 Price= entity.Price,
-               
+                Address=entity.Address,
+                Payment=entity.Payment,
             };
-
             var orderEntity = _mapper.Map<Order>(orderDto);
             await _DbContext.Order.AddAsync(orderEntity);
             await _DbContext.SaveChangesAsync();
-
+            entity.Id = orderEntity.Id;
             // Map and save order details
             foreach (var item in entity.OrderList)
             {
@@ -43,13 +60,10 @@ namespace DAL
                     Quantity = item.Quantity,
                     Price = item.Price,
                 };
-
                 var orderDetailEntity = _mapper.Map<Order_detail>(orderDetailDto);
                 await _DbContext.Order_detail.AddAsync(orderDetailEntity);
                 await _DbContext.SaveChangesAsync();
-            }
-            
-
+            }     
             return entity;
         }
 

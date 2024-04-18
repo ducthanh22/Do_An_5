@@ -16,8 +16,6 @@ export class HomeComponent {
   constructor(private ProducesService:ProducesService, private productService:ProductsService) {}
 
   ngOnInit() {
-      
-
       this.responsiveOptions = [
           {
               breakpoint: '1199px',

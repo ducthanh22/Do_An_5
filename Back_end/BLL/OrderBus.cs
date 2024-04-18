@@ -18,7 +18,12 @@ namespace BLL
             _res = res;
         }
 
+        
+        public async Task<List<OrderDto>> GetbyCustomer(Guid id)
+        {
+            return await _res.GetbyCustomer(id);
 
+        }
         public async Task<CreateOrderDto> CreateOrder(CreateOrderDto entity)
         {
             return await _res.CreateOrder(entity);

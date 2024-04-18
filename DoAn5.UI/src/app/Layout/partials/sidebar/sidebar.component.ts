@@ -1,6 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { MenuItem, MessageService } from 'primeng/api';
 import { Sidebar } from 'primeng/sidebar';
+import { AccountService } from 'src/app/service/account.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -8,36 +9,36 @@ import { Sidebar } from 'primeng/sidebar';
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent {
-  // @ViewChild('sidebarRef') sidebarRef!: Sidebar;
 
-  // closeCallback(e: any): void {
-  //     this.sidebarRef.close(e);
-  // }
 
   sidebarVisible: boolean = false;
   items: MenuItem[];
-  label:string="Phí Đức Thanh"
+  label!:string
+  informationToken!:any;
 
-  constructor(private messageService: MessageService) {
+
+  constructor(private messageService: MessageService, private AcountService:AccountService) {
       this.items = [
           {
-              label: 'Update',
+              label: 'Thông Tin Tài Khoản',
               icon: 'pi pi-refresh',
               command: () => {
                   this.update();
               }
           },
           {
-              label: 'Delete',
+              label: 'Đăng Xuất',
               icon: 'pi pi-times',
               command: () => {
                   this.delete();
               }
           },
-          { label: 'Angular.io', icon: 'pi pi-info', url: 'http://angular.io' },
-          { separator: true },
-          { label: 'Installation', icon: 'pi pi-cog', routerLink: ['/installation'] }
       ];
+  }
+  ngOnInit(){
+    this.informationToken= this.AcountService.decodeToken();
+    this.showName();
+
   }
 
   save(severity: string) {
@@ -49,8 +50,18 @@ export class SidebarComponent {
   }
 
   delete() {
-      this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Data Deleted' });
-  }
-  
+    const token = localStorage.getItem('Token');
+    if(token !=null){
+        localStorage.removeItem('Token');
+        window.location.reload()
+    }
+}
+showName(){
+    if(this.informationToken){
+        this.label=this.informationToken.Username  
+        return this.label  
+    }
+    return  this.label=" Đăng Nhập"
+  } 
 
 }

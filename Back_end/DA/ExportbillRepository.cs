@@ -25,9 +25,6 @@ namespace DAL
                         select new ExportbillDto
                         {
                             Price=d.Price,
-                            
-
-                           
                         };
 
             var totalCount = await query.LongCountAsync();

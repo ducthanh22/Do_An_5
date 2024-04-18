@@ -149,13 +149,11 @@ namespace DAL
         {
 
             var query = (from d in _DbContext.Set<Products>()
-                       
                          join c in _DbContext.Set<Color>() on d.Idcolor equals c.Id
                          join b in _DbContext.Set<Price>() on d.Id equals b.Idproduct into bGroup
                          from b in bGroup.DefaultIfEmpty()
                          join e in _DbContext.Set<Categories>() on d.Idcategories equals e.Id
                          join g in _DbContext.Set<Produces>() on d.Idproduces equals g.Id
-
                          orderby d.Created descending
                          select new GetProductsDto
                          {

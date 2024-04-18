@@ -11,6 +11,8 @@ namespace BLL.Interface
     public interface IOrderBus :IGenericBUS<Order>
     {
         Task<CreateOrderDto> CreateOrder(CreateOrderDto entity);
+        Task<List<OrderDto>> GetbyCustomer(Guid id);
+
 
     }
 }

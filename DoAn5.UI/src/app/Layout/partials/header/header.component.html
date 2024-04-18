@@ -8,7 +8,12 @@
     <ng-template pTemplate="end">
       <ng-container>
         <input type="text" pInputText placeholder="Search" class="w-full" style="margin-right: 100px;"/>
-        <i class="pi pi-shopping-bag" [routerLink]="['/client','cart']"> Giỏ hàng</i>
+        <!-- <i class="pi pi-shopping-bag" [routerLink]="['/client','cart']"> Giỏ hàng</i> -->
+        <i class="pi pi-shopping-bag" [routerLink]="['/client','cart']">
+          Giỏ hàng
+          <span class="cart-badge"*ngIf="Carts.length>0">{{ Carts.length }}</span>
+      </i>
+      
         <i class="pi pi-user" [routerLink]="['/Login']" routerLinkActive="router-link-active" *ngIf="showName()==' Đăng Nhập'" > {{showName()}}</i>
 
         <i class="pi pi-user" (click)="menu.toggle($event)" icon="pi pi-bars" label="Show"*ngIf="showName()!=' Đăng Nhập'" >{{showName()}}</i>

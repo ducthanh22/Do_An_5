@@ -220,7 +220,6 @@ export class ProductsComponent {
                   this.uploadedFiles = [];
                   this.selectedFile = null;
                   this.resetListSize()
-
                   this.visible = false;
                   this.onsubmit()
                 }

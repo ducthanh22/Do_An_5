@@ -58,7 +58,7 @@
             <div class="grid ">
                 <div class="col-12" *ngFor="let product of products; let first = first">
                     <div class="grid-item" [ngClass]="{ 'border-top-1 surface-border': !first }">
-                        <img class="grid-image" [src]="'https://localhost:7058/Images/' + product.image" [alt]="product.name" />
+                        <img class="grid-image" [src]="'https://localhost:7058/Images/' + product.image" [alt]="product.name" [routerLink]="['/client/detail', product.id]"/>
                         <div class="grid-details">
                             <div class="grid-name"[routerLink]="['/client/detail', product.id]">{{ product.name }}</div>
                             <div class="grid-category">

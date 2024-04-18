@@ -14,6 +14,9 @@ export class TokenInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
     const token = localStorage.getItem('Token');
+    if (request.url === 'https://www.primefaces.org/cdn/api/upload.php') {
+      return next.handle(request);
+    }
     if (token) {
       request = request.clone({
         setHeaders: {

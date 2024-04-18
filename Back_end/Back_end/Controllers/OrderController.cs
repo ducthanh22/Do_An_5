@@ -33,6 +33,13 @@ namespace Back_end.Controllers
             var result = await _Bus.Getbyid(id);
             return Ok(result);
         }
+        [HttpGet("GetByCustomer")]
+        public async Task<ActionResult<List<OrderDto>>> GetbyCustomerGet(Guid id)
+        {
+            var result = await _Bus.GetbyCustomer(id);
+
+            return Ok(result);
+        }
 
         [HttpPost("create")]
         public async Task<ActionResult<CreateOrderDto>> Create([FromBody] CreateOrderDto dto)

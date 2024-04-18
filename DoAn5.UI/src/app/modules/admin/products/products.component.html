@@ -90,7 +90,7 @@
                     <label for="name">Chọn loại sản phẩm</label>
                     <div class="dropdown-wrapper">
                         <p-dropdown [options]="SelectionCategory" formControlName="idcategories" optionLabel="name"
-                            optionValue="id" [filter]="true" filterBy="name" [showClear]="true"
+                            optionValue="id" [filter]="true" filterBy="name" [showClear]="true" appendTo="body"
                             [style]="{'minWidth':'100%'}"></p-dropdown>
                     </div>
                 </div>
@@ -98,7 +98,7 @@
                 <div class="input-container">
                     <label for="name">Chọn nhà sản xuất</label>
                     <div class="dropdown-wrapper">
-                        <p-dropdown [options]="SelectionProduces" formControlName="idproduces" optionLabel="name"
+                        <p-dropdown [options]="SelectionProduces" formControlName="idproduces" optionLabel="name"appendTo="body"
                             optionValue="id" [filter]="true" filterBy="name" [showClear]="true"
                             [style]="{'minWidth':'100%'}">
                             <ng-template let-produces pTemplate="item">
@@ -116,7 +116,7 @@
                     <div class="dropdown-wrapper">
                         <p-dropdown [options]="SelectColor" formControlName="idcolor" optionLabel="nameColor"
                             optionValue="id" [filter]="true" filterBy="nameColor" [showClear]="true"
-                            [style]="{'minWidth':'100%'}"></p-dropdown>
+                            [style]="{'minWidth':'100%'}" appendTo="body"></p-dropdown>
                     </div>
                 </div>
                 <div class="input-container" style="margin-top: 2%;">

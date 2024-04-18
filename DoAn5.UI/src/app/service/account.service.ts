@@ -26,7 +26,8 @@ export class AccountService {
   decodeToken() {
     const token = localStorage.getItem('Token');
     if (!token) {
-      throw new Error('Token is not present in localStorage');
+      // throw new Error('Token is not present in localStorage');
+      return null;
     }
     const tokenParts = token.split('.');
     if (tokenParts.length !== 3) {
