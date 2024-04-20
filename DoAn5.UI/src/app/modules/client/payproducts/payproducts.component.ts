@@ -21,12 +21,12 @@ export class PayproductsComponent {
   FormPay!: FormGroup
   informationAccount: any
   formData: FormData = new FormData();
-  datapayment: PaymentDto={orderId: '',money: 0,transactionStatus: 0};
-  GetId_order:string=''
+  datapayment: PaymentDto = { orderId: '', money: 0, transactionStatus: 0 };
+  GetId_order: string = ''
 
   constructor(private productService: ProductsService, private fb: FormBuilder, private AccountService: AccountService,
     private OrderService: OrderService, private MessageSV: MessageService, private EmailService: SendEmailService, private PaymentService: PaymentService,
-    private route:ActivatedRoute
+    private route: ActivatedRoute
   ) { }
   ngOnInit() {
     this.Carts = this.productService.GetCart();
@@ -75,26 +75,32 @@ export class PayproductsComponent {
       this.OrderService.create(order).subscribe({
         next: (res) => {
           if (res != null) {
-            if(this.FormPay.value.selectPay.code=='VNPAY'){
+            if (this.FormPay.value.selectPay.code == 'VNPAY') {
               this.datapayment.orderId = res.id,
-              this.GetId_order=res.id,
-              this.datapayment.money = this.getTotalPrice(),
-              this.datapayment.transactionStatus = 0,
-              this.PaymentService.CreatURL(this.datapayment).subscribe({
-                next: (url) => {
-                  console.log(url); 
-                  window.open(url, '_blank');
-                }
-              });
+                this.GetId_order = res.id,
+                this.datapayment.money = this.getTotalPrice(),
+                this.datapayment.transactionStatus = 0,
+                this.PaymentService.CreatURL(this.datapayment).subscribe({
+                  next: (url) => {
+                    console.log(url);
+                    window.open(url, '_blank');
+                  }
+                });
             }
-            else{
+            else {
               const orderDto: OrderDto = {
-                id:res.id,
+                id: res.id,
                 id_customer: this.informationAccount.Id,
                 status: 1,
                 price: this.getTotalPrice(),
                 address: this.FormPay.value.Address,
-                payment: this.FormPay.value.selectPay.name}
+                payment: this.FormPay.value.selectPay.name,
+                activeFlag: null,
+            createdBy: null,
+            created: null,
+            modifiedBy: null,
+            modified: null,
+              }
               this.OrderService.Update(orderDto).subscribe({})
               this.FormPay.reset();
               this.Carts = []
@@ -120,28 +126,34 @@ export class PayproductsComponent {
     const params = this.route.snapshot.queryParams;
     this.PaymentService.Callback(params).subscribe({
       next: (res) => {
-        if(res.vnp_TransactionStatus=='00'){
+        if (res.vnp_TransactionStatus == '00') {
           debugger
           const order: OrderDto = {
-            id:res.vnp_TxnRef,
+            id: res.vnp_TxnRef,
             id_customer: this.informationAccount.Id,
             status: 2,
             price: res.vnp_Amount,
             address: this.FormPay.value.Address,
-            payment: this.FormPay.value.selectPay.name}
-            this.OrderService.Update(order).subscribe({})
+            payment: this.FormPay.value.selectPay.name,
+            activeFlag: null,
+            createdBy: null,
+            created: null,
+            modifiedBy: null,
+            modified: new Date().toString(),
+          }
+          this.OrderService.Update(order).subscribe({})
           this.FormPay.reset();
-              this.Carts = []
-              this.productService.saveCart(this.Carts);
-              this.MessageSV.add({ severity: 'success', summary: 'Success', detail: 'Đặt hàng thành công' })
-              this.formData = new FormData();
-              this.formData.append('email', this.informationAccount.Email);
-              this.formData.append('donhang', res.id)
-              this.EmailService.SendEmail(this.formData).subscribe({
-                next: (response) => {
-                  console.log(response);
-                },
-              })
+          this.Carts = []
+          this.productService.saveCart(this.Carts);
+          this.MessageSV.add({ severity: 'success', summary: 'Success', detail: 'Đặt hàng thành công' })
+          this.formData = new FormData();
+          this.formData.append('email', this.informationAccount.Email);
+          this.formData.append('donhang', res.id)
+          this.EmailService.SendEmail(this.formData).subscribe({
+            next: (response) => {
+              console.log(response);
+            },
+          })
         }
       },
       error: (error) => {

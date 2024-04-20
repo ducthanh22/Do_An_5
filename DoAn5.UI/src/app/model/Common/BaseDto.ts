@@ -4,4 +4,5 @@ export interface BasedbDto {
     createdBy: number | null;
     created: string | null;
     modifiedBy: number | null;
+    modified: string | null;
 }

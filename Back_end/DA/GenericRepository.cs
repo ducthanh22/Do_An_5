@@ -50,6 +50,7 @@ namespace DAL
 
         public async Task<T> Update(T entity)
         {
+
             _DbContext.Entry(entity).State = EntityState.Modified;
             await _DbContext.SaveChangesAsync();
             return entity;

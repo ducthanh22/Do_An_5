@@ -33,6 +33,8 @@ namespace Model
         public DbSet<Color> Color { get; set; }
         public DbSet<Size> Size { get; set; }
         public DbSet<PaymentTransactions> PaymentTransactions { get; set; }
+        public DbSet<Rating> Rating { get; set; }
+
 
     }
 }

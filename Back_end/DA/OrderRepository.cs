@@ -44,6 +44,8 @@ namespace DAL
                 Price= entity.Price,
                 Address=entity.Address,
                 Payment=entity.Payment,
+                Created = DateTime.Now,
+
             };
             var orderEntity = _mapper.Map<Order>(orderDto);
             await _DbContext.Order.AddAsync(orderEntity);
@@ -59,6 +61,7 @@ namespace DAL
                     Idsize=item.Idsize,
                     Quantity = item.Quantity,
                     Price = item.Price,
+                    Created=DateTime.Now,
                 };
                 var orderDetailEntity = _mapper.Map<Order_detail>(orderDetailDto);
                 await _DbContext.Order_detail.AddAsync(orderDetailEntity);

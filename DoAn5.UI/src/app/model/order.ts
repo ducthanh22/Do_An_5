@@ -1,8 +1,7 @@
 import { BasedbDto } from "./Common/BaseDto";
 
 
-export interface OrderDto  {
-     id:string;
+export interface OrderDto extends BasedbDto  {
     id_customer: string;
     status: number;
     price: number;

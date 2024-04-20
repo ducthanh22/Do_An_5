@@ -7,10 +7,10 @@ namespace DTO
         [Key]
         public Guid Id { get; set; }
         public int? ActiveFlag { get; set; }
-        public int? CreatedBy { get; set; }
-        public DateTime? Created { get; set; } =DateTime.Now;
-        public int? ModifiedBy { get; set; } 
-        public DateTime? Modified { get; set; } 
+        public Guid? CreatedBy { get; set; }
+        public DateTime? Created { get; set; }= DateTime.Now;
+        public Guid? ModifiedBy { get; set; }
+        public DateTime? Modified { get; set; }
 
 
     }
