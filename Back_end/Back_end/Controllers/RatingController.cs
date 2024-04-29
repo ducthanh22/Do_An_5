@@ -1,63 +1,63 @@
 ﻿using BLL.Interface;
+using DTO;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using DTO;
 using Model;
-
 
 namespace Back_end.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [Route("api/[controller]")]
     [ApiController]
-    public class PriceController : ControllerBase
+    public class RatingController : ControllerBase
     {
-        public IPriceBus _Bus;
-        public PriceController(IPriceBus Bus)
+        public IRatingBus _Bus;
+        public RatingController(IRatingBus Bus)
         {
             _Bus = Bus;
         }
         [HttpGet("GetAll")]
-        public async Task<ActionResult<List<PriceDto>>> GetAll()
+        public async Task<ActionResult<List<Rating>>> GetAll()
         {
             var result = await _Bus.GetAll();
             return Ok(result);
         }
 
         [HttpGet("GetByid")]
-        public async Task<ActionResult<PriceDto>> Getbyid(Guid id)
+        public async Task<ActionResult<Rating>> Getbyid(Guid id)
         {
             var result = await _Bus.Getbyid(id);
             return Ok(result);
         }
+        [HttpGet("GetByProduct")]
+        public async Task<IActionResult> Search([FromQuery] Guid id, [FromQuery] int page = 1, [FromQuery] int pageSize = 10)
+        {
+            var result = await _Bus.GetByProduct(id, page, pageSize);
+
+            return Ok(result);
+        }
 
         [HttpPost("create")]
-        public async Task<ActionResult<PriceDto>> Create([FromBody] Price dto)
+        public async Task<ActionResult<Rating>> Create([FromBody] Rating dto)
         {
             var createdEntity = await _Bus.Create(dto);
 
             return Ok(createdEntity);
         }
         [HttpPut("update")]
-        public async Task<ActionResult<PriceDto>> Update([FromBody] Price dto)
+        public async Task<ActionResult<Rating>> Update([FromBody] Rating dto)
         {
             var createdEntity = await _Bus.Update(dto);
 
             return Ok(createdEntity);
         }
         [HttpDelete("Delete")]
-        public async Task<ActionResult<PriceDto>> Delete(Guid id)
+        public async Task<ActionResult<Rating>> Delete(Guid id)
         {
             var result = await _Bus.Delete(id);
             return Ok(result);
         }
-        [HttpGet("Search")]
-        public async Task<IActionResult> Search([FromQuery] int? min, [FromQuery] int? max, [FromQuery] int page = 1, [FromQuery] int pageSize = 10)
-        {
-            var result = await _Bus.Search(min, max, page, pageSize);
-
-            return Ok(result);
-        }
+      
     }
 }

@@ -12,6 +12,8 @@ namespace BLL.Interface
     {
         Task<CreateOrderDto> CreateOrder(CreateOrderDto entity);
         Task<List<OrderDto>> GetbyCustomer(Guid id);
+        Task<List<GetorderDto>> GetOrderProduct(Guid id, int status);
+
 
 
     }

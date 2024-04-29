@@ -32,11 +32,16 @@ export class HeaderComponent {
             label: 'Options',
             items: [
                 {
-                    label: 'Update',
-                    icon: 'pi pi-refresh',
+                    label: 'Thông Tin',
+                    icon: 'pi pi-user',
                     command: () => {
                         this.update();
                     }
+                },
+                {
+                    label: 'Đơn Hàng',
+                    icon: 'pi pi-shopping-bag',
+                    routerLink: 'client/mycart'
                 },
                 {
                     label: 'Đăng Xuất',

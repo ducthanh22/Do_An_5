@@ -4,6 +4,7 @@ import { MessageService } from 'primeng/api';
 import { ProductsDto } from 'src/app/model';
 import { ProductsService } from 'src/app/service/products.service';
 
+
 @Component({
   selector: 'app-detailproducts',
   templateUrl: './detailproducts.component.html',
@@ -14,7 +15,11 @@ export class DetailproductsComponent {
   data!: any
   Carts!: any[];
   Size!: any;
-  
+  value:number=5;
+
+  first: number = 0;
+
+    rows: number = 10;
   constructor(private route: ActivatedRoute, private productService: ProductsService, private MessageSV:MessageService) { }
   ngOnInit() {
     this.Carts = this.productService.GetCart();
@@ -61,4 +66,8 @@ export class DetailproductsComponent {
 
     }
   }
+  onPageChange(event: any) {
+    this.first = event.first;
+    this.rows = event.rows;
+}
 }

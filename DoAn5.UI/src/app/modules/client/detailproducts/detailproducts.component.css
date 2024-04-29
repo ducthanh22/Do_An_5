@@ -108,5 +108,26 @@
     font-weight: bold;
   }
   
-  
+  .Rating {
+    padding: 10px;
+    margin-bottom: 20px;
+    margin-left: 8%;
+    max-width: 85%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+  }
+  .Comment{
+    display: grid;
+    border-top: 1px solid #c1b7b7;
+    margin-top: 5px;
+    border-bottom: 1px solid #c1b7b7;
+  }
+  .Comment > span{
+    margin-bottom: 10px;
+    margin-top: 10px;
+  }
+  .buy{
+    margin-bottom: 5%;
+  }
+ 
   

@@ -65,11 +65,5 @@ namespace DAL
             }     
             return entity;
         }
-
-       
-
-
-
-
     }
 }

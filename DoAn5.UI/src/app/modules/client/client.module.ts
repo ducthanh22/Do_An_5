@@ -23,6 +23,11 @@ import { OrderListModule } from 'primeng/orderlist';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
+import { RatingModule } from 'primeng/rating';
+import { PaginatorModule } from 'primeng/paginator';
+import { MycartComponent } from './mycart/mycart.component';
+import { StepsModule } from 'primeng/steps';
+import { TreeTableModule } from 'primeng/treetable';
 @NgModule({
   declarations: [
     AboutComponent,
@@ -33,7 +38,8 @@ import { InputTextModule } from 'primeng/inputtext';
     ContactComponent,
     CartComponent,
     DetailproductsComponent,
-    PayproductsComponent
+    PayproductsComponent,
+    MycartComponent
   ],
   imports: [
     CommonModule,
@@ -50,7 +56,11 @@ import { InputTextModule } from 'primeng/inputtext';
     InputNumberModule,
     ReactiveFormsModule,
     FormsModule,
-    InputTextModule
+    InputTextModule,
+    RatingModule,
+    PaginatorModule,
+    StepsModule,
+    TreeTableModule
   ]
 })
 export class ClientModule { }

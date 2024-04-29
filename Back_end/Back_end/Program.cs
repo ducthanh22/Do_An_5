@@ -126,6 +126,9 @@ builder.Services.AddScoped<IPaymentRepository, PaymentRepository>();
 builder.Services.AddScoped<ISizeBus, SizeBus>();
 builder.Services.AddScoped<ISizeRepository, SizeRepository>();
 
+builder.Services.AddScoped<IRatingBus, RatingBus>();
+builder.Services.AddScoped<IRatingRepository, RatingRepository>();
+
 builder.Services.AddCors();
 
 builder.Services.AddAuthorization(options =>

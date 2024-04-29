@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "t8dWk18V9HCJjNKMs76FNbxuJD9ltRdELskmw+sxvQ4=",
+  "Hash": "4Cjkd+XywCSBPtcHA3oNmZHiJZpYOc6bnZKp+ZAxNJA=",
   "Source": "Back_end",
   "BasePath": "_content/Back_end",
   "Mode": "Default",
@@ -16,6 +16,25 @@
     }
   ],
   "Assets": [
+    {
+      "Identity": "D:\\Do_An_5\\Back_end\\Back_end\\wwwroot\\Images\\72ebb5b7-66a0-4bd3-bfcf-c1aeb3c78bf0-polo_den.jpg",
+      "SourceId": "Back_end",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Do_An_5\\Back_end\\Back_end\\wwwroot\\",
+      "BasePath": "_content/Back_end",
+      "RelativePath": "Images/72ebb5b7-66a0-4bd3-bfcf-c1aeb3c78bf0-polo_den.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\72ebb5b7-66a0-4bd3-bfcf-c1aeb3c78bf0-polo_den.jpg"
+    },
     {
       "Identity": "D:\\Do_An_5\\Back_end\\Back_end\\wwwroot\\Images\\7401a77f-143d-4982-b66b-e345c7e3f324-APC24067.jpg",
       "SourceId": "Back_end",

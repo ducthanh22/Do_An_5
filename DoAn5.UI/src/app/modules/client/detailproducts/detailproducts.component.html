@@ -1,4 +1,3 @@
-
 <div class="container" *ngIf="data && data.length > 0">
   <div class="top">
     <div class="card flex justify-content-center">
@@ -22,15 +21,15 @@
           <div style="width: 20%;">
             <h4>Kích thước</h4>
           </div>
-          <div class="s1"*ngIf="data[0].listSize && data[0].listSize.length">
-            <div class="namesize" *ngFor="let x of data[0].listSize" 
-                 [class.selected]="x === Size"
-                 (click)="selectSize(x)">{{x?.nameSize}}
+          <div class="s1" *ngIf="data[0].listSize && data[0].listSize.length">
+            <div class="namesize" *ngFor="let x of data[0].listSize" [class.selected]="x === Size"
+              (click)="selectSize(x)">{{x?.nameSize}}
             </div>
           </div>
-          
         </div>
-        <p-button label="Thêm vào giỏ hàng" severity="danger" (click)="addtocart(data)"><i class="pi pi-shopping-cart"></i></p-button>
+        <div class="buy"><span>Đã Bán: 500 sản phẩm</span></div>
+        <p-button label="Thêm vào giỏ hàng" severity="danger" (click)="addtocart(data)"><i
+            class="pi pi-shopping-cart"></i></p-button>
         <div class="sevice">
           <div class="freeship"><span><i class="pi pi-truck "></i> Miễn phí vận chuyển</span> </div>
           <div class="trasport"><span><i class="pi pi-clock "></i> Giao hàng nhanh</span> </div>
@@ -43,12 +42,27 @@
     <span style="font-weight: bold; font-size: large;">Mô tả:</span>
     <span [innerHTML]="data[0]?.describe"></span>
     <div class="Instruct">
-      <div class="img1"> 
+      <div class="img1">
         <h4>Hướng dẫn bảo quản</h4>
-        <img src="/./assets/client/assets/img/huongdanbaoquan.jpg" alt="Image" class="full-image"/></div>
+        <img src="/./assets/client/assets/img/huongdanbaoquan.jpg" alt="Image" class="full-image" />
+      </div>
       <div class="img1">
         <h4>Tại sao nên chọn ACHINO</h4>
-         <img src="/./assets/client/assets/img/Nenchon.jpg" alt="Image"class="full-image"/></div>
+        <img src="/./assets/client/assets/img/Nenchon.jpg" alt="Image" class="full-image" />
+      </div>
     </div>
+  </div>
+  <div class="Rating">
+    <Span style="font-weight:bold;">Đánh Giá Sản Phẩm</Span>
+
+    <div class="Comment">
+      <Span> <i class="pi pi-user"></i>Phi_Thanh</Span>
+      <p-rating [(ngModel)]="value" [readonly]="true" [cancel]="false"></p-rating>
+      <Span>Chất lượng sản phẩm tuyệt vời, giao hàng nhanh</Span>
+    </div>
+    
+    <p-paginator (onPageChange)="onPageChange($event)" [first]="first" [rows]="rows" [totalRecords]="120"
+      [rowsPerPageOptions]="[10, 20, 30]"></p-paginator>
+  
   </div>
 </div>

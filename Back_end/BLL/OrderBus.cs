@@ -28,5 +28,10 @@ namespace BLL
         {
             return await _res.CreateOrder(entity);
         }
+        public async Task<List<GetorderDto>> GetOrderProduct(Guid id, int status)
+        {
+            return await _res.GetOrderProduct(id, status);
+        }
+       
     }
 }

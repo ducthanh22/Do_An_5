@@ -1,6 +1,10 @@
 {
   "Files": [
     {
+      "Id": "D:\\Do_An_5\\Back_end\\Back_end\\wwwroot\\Images\\72ebb5b7-66a0-4bd3-bfcf-c1aeb3c78bf0-polo_den.jpg",
+      "PackagePath": "staticwebassets\\Images\\72ebb5b7-66a0-4bd3-bfcf-c1aeb3c78bf0-polo_den.jpg"
+    },
+    {
       "Id": "D:\\Do_An_5\\Back_end\\Back_end\\wwwroot\\Images\\7401a77f-143d-4982-b66b-e345c7e3f324-APC24067.jpg",
       "PackagePath": "staticwebassets\\Images\\7401a77f-143d-4982-b66b-e345c7e3f324-APC24067.jpg"
     },

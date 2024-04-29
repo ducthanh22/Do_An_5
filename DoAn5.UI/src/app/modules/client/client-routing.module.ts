@@ -9,6 +9,7 @@ import { ContactComponent } from './contact/contact.component';
 import { CartComponent } from './cart/cart.component';
 import { DetailproductsComponent } from './detailproducts/detailproducts.component';
 import { PayproductsComponent } from './payproducts/payproducts.component';
+import { MycartComponent } from './mycart/mycart.component';
 
 
 const routes: Routes = [
@@ -47,7 +48,7 @@ const routes: Routes = [
         title: 'Contact',
       },
      {path:'cart',component:CartComponent,title:'Cart'},
-
+     {path:'mycart',component:MycartComponent,title:'MyCart'},
      {path:'detail/:id',component:DetailproductsComponent,title:'Detail'},
      {path:'pay',component:PayproductsComponent,title:'Pay'}
     
