@@ -6,25 +6,39 @@
 </div>
 
 
-<!-- <div class="cartdetail">
-    <p-treeTable [value]="files" [scrollable]="true" [tableStyle]="{'min-width':'50rem'}">
+<div class="cartdetail" *ngIf="files.length>0">
+    <p-table  [value]="files" [scrollable]="true"  scrollHeight="230px" [tableStyle]="{'min-width':'50rem'}" 
+    [paginator]="true"
+    [rows]="5"
+    [showCurrentPageReport]="true"
+    [tableStyle]="{ 'min-width': '50rem' }"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    [rowsPerPageOptions]="[5, 10, 20]">
         <ng-template pTemplate="header">
             <tr>
                 <th>Mã đơn hàng</th>
-                <th>Ảnh</th>
-                <th>Số lượng</th>
+                <th>Địa chỉ</th>
+                <th>Ngày tạo</th>
+                <th>Thanh toán</th>
                 <th>Giá</th>
+                <th></th>
             </tr>
         </ng-template>
-        <ng-template pTemplate="body" let-rowNode let-rowData="rowData">
-            <tr [ttRow]="rowNode">
-                <td>
-                    <p-treeTableToggler [rowNode]="rowNode"></p-treeTableToggler>
-                    {{ rowData.name }}
-                </td>
-                <td>{{ rowData.size }}</td>
-                <td>{{ rowData.type }}</td>
+        <ng-template pTemplate="body" let-rowData >
+            <tr >
+                <td>{{rowData.id}}</td>
+                <td>{{rowData.address}}</td>
+                <td>{{rowData.created | date:'dd/MM/yyyy HH:mm:ss'}}</td>
+                <td>{{rowData.payment}}</td>
+                <td style="color: rgb(191, 10, 10);">{{rowData.price | currency:'VND'}}</td>
+                <td ><i class="pi pi-eye" style="color: slateblue"></i></td>
+
             </tr>
         </ng-template>
-    </p-treeTable>
-</div> -->
+    </p-table >
+</div>
+
+
+<div class="NotCart" *ngIf="files&&files.length<=0">
+    <span class="textcart">Hiện tại chưa có đơn hàng</span>
+</div>

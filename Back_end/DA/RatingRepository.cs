@@ -20,7 +20,9 @@ namespace DAL
         public async Task<BaseQuerieResponse<RatingDto>> GetByProduct(Guid id , int page, int pageSize)
         {
             var query = from a in _DbContext.Rating
+                        join b in _DbContext.User on a.Id_customer equals b.Id
                         where a.Id_product == id
+
                         select new RatingDto
                         {
                             Id = a.Id,
@@ -29,7 +31,8 @@ namespace DAL
                             Id_Order = a.Id_Order,
                             Comment = a.Comment,
                             Evaluate = a.Evaluate,
-                            Status = a.Status
+                            Status = a.Status,
+                            Username = b.UserName
                         };
             var totalCount = await query.LongCountAsync();
             var pageResults = await query.Skip((page - 1) * pageSize).Take(pageSize).ToListAsync();

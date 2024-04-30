@@ -5,5 +5,16 @@
     margin-top: 2%;
     width: 90%;
     margin-left: 5%;
+    height: 300px;
 
+}
+.NotCart {
+    margin-bottom: 5%;
+    height: 250px;
+    display: grid;
+}
+
+.textcart {
+    margin-left: 41%;
+    margin-top: 5%;
 }

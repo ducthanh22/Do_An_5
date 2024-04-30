@@ -31,7 +31,7 @@ namespace Back_end.Controllers
             return Ok(result);
         }
         [HttpGet("GetByProduct")]
-        public async Task<IActionResult> Search([FromQuery] Guid id, [FromQuery] int page = 1, [FromQuery] int pageSize = 10)
+        public async Task<IActionResult> Search([FromQuery] Guid id, [FromQuery] int page , [FromQuery] int pageSize)
         {
             var result = await _Bus.GetByProduct(id, page, pageSize);
 

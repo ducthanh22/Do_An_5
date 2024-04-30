@@ -20,8 +20,6 @@ export class CartComponent {
   ngOnInit() {
     this.Carts = this.productService.GetCart();
     this.informationToken= this.AcountService.decodeToken();
-    console.log(this.informationToken)
-
   }
 
 

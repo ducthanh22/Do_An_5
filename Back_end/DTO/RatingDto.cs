@@ -10,9 +10,11 @@ namespace DTO
     {
         public Guid Id_Order { get; set; }
         public Guid Id_product { get; set; }
-        public Guid Id_customer { get; set; }
+        public string Id_customer { get; set; }
         public int Evaluate { get; set; }
         public string Comment { get; set; }
         public int Status { get; set; }
+        public string Username { get; set; }
+
     }
 }

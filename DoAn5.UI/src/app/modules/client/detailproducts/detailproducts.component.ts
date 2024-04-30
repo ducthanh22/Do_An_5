@@ -2,7 +2,10 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { ProductsDto } from 'src/app/model';
+import { GetRatingDto } from 'src/app/model/rating';
+import { AccountService } from 'src/app/service/account.service';
 import { ProductsService } from 'src/app/service/products.service';
+import { RatingService } from 'src/app/service/rating.service';
 
 
 @Component({
@@ -15,19 +18,23 @@ export class DetailproductsComponent {
   data!: any
   Carts!: any[];
   Size!: any;
-  value:number=5;
-
+  value: number = 5;
   first: number = 0;
-
-    rows: number = 10;
-  constructor(private route: ActivatedRoute, private productService: ProductsService, private MessageSV:MessageService) { }
+  rows: number = 10;
+  datas: GetRatingDto[] = [];
+  Totalcount!: number;
+  informationToken: any
+  constructor(private route: ActivatedRoute, private productService: ProductsService, private MessageSV: MessageService,
+    private RatingService: RatingService, private AcountService: AccountService) { }
   ngOnInit() {
+    this.informationToken = this.AcountService.decodeToken();
     this.Carts = this.productService.GetCart();
     this.route.params.subscribe((params) => {
       if (params['id']) {
         this.id = params['id'];
       }
       this.getbyid(this.id);
+      this.GetRating(this.id,1,10)
     });
   }
   getbyid(id: string) {
@@ -40,7 +47,7 @@ export class DetailproductsComponent {
     })
   }
   selectSize(data: any) {
-    this.Size =[]
+    this.Size = []
     this.Size = data;
   }
   addtocart(data: any) {
@@ -52,22 +59,38 @@ export class DetailproductsComponent {
         this.Carts[idx].quantity += 1;
       } else {
         let cartItem: any = {
-          data ,
-          size:this.Size,
+          data,
+          size: this.Size,
           quantity: 1,
         };
         this.Carts.push(cartItem)
       }
-   this.productService.saveCart(this.Carts)
+      this.productService.saveCart(this.Carts)
       this.MessageSV.add({ severity: 'success', summary: 'Thành công', detail: 'Thêm giỏ hàng thành công' })
     }
-    else{
+    else {
       this.MessageSV.add({ severity: 'warn', summary: 'Cảnh báo', detail: 'Vui lòng chọn kích thước' })
 
     }
   }
+
+  GetRating(id: string,page:number,pageSize:number) {
+    this.RatingService.GetByProduct(id, page, pageSize).subscribe({
+      next: (value) => { 
+        if (value) {
+          this.datas = value.data;
+          this.Totalcount = value.totalFilter;
+          console.log(value)
+        }
+      },
+    });
+  }
+  
+
   onPageChange(event: any) {
+    console.log(event)
     this.first = event.first;
     this.rows = event.rows;
-}
+    this. GetRating(this.id, this.first+1,this.rows) 
+  }
 }

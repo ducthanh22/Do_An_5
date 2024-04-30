@@ -41,7 +41,7 @@ namespace DAL
             var query = from a in _DbContext.Order
                         join b in _DbContext.Order_detail on a.Id equals b.Id_Order 
                         join c in _DbContext.Products on b.Id_product equals c.Id 
-                        where (a.Id == id && a.status == status)
+                        where (a.Id_customer == id && a.status == status)
                         group new { c, b } by new { a.Id, a.Id_customer, a.Price, a.Address, a.Payment, a.status } into g
                         select new GetorderDto
                         {
@@ -56,6 +56,7 @@ namespace DAL
                             {
                                 Id_product = x.c.Id,
                                 Image = x.c.Image,
+                                Product_name = x.c.Name,
                                 Quantity = x.b.Quantity,
                                 Price = x.b.Price
                             }).ToList()

@@ -52,17 +52,15 @@
       </div>
     </div>
   </div>
-  <div class="Rating">
+  <div class="Rating" >
     <Span style="font-weight:bold;">Đánh Giá Sản Phẩm</Span>
-
-    <div class="Comment">
-      <Span> <i class="pi pi-user"></i>Phi_Thanh</Span>
-      <p-rating [(ngModel)]="value" [readonly]="true" [cancel]="false"></p-rating>
-      <Span>Chất lượng sản phẩm tuyệt vời, giao hàng nhanh</Span>
+    <div class="Comment" *ngFor="let x of datas">
+      <Span> <i class="pi pi-user"></i>{{x.username}}</Span>
+      <p-rating [(ngModel)]="x.evaluate" [readonly]="true" [cancel]="false"></p-rating>
+      <Span>{{x.comment}}</Span>
     </div>
-    
-    <p-paginator (onPageChange)="onPageChange($event)" [first]="first" [rows]="rows" [totalRecords]="120"
-      [rowsPerPageOptions]="[10, 20, 30]"></p-paginator>
+    <p-paginator (onPageChange)="onPageChange($event)" [first]="first" [rows]="rows" [totalRecords]="Totalcount"
+      [rowsPerPageOptions]="[5, 10, 20]"></p-paginator>
   
   </div>
 </div>

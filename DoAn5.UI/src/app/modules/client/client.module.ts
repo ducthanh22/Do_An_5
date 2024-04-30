@@ -28,6 +28,7 @@ import { PaginatorModule } from 'primeng/paginator';
 import { MycartComponent } from './mycart/mycart.component';
 import { StepsModule } from 'primeng/steps';
 import { TreeTableModule } from 'primeng/treetable';
+import { TableModule } from 'primeng/table';
 @NgModule({
   declarations: [
     AboutComponent,
@@ -60,7 +61,8 @@ import { TreeTableModule } from 'primeng/treetable';
     RatingModule,
     PaginatorModule,
     StepsModule,
-    TreeTableModule
+    TreeTableModule,
+    TableModule
   ]
 })
 export class ClientModule { }
