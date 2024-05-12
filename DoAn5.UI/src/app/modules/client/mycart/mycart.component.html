@@ -1,19 +1,15 @@
-
-
 <div class="card">
     <p-toast></p-toast>
-    <p-steps [model]="items" [readonly]="false" [activeIndex]="activeIndex" (activeIndexChange)="onActiveIndexChange($event)"></p-steps>
+    <p-steps [model]="items" [readonly]="false" [activeIndex]="activeIndex"
+        (activeIndexChange)="onActiveIndexChange($event)"></p-steps>
 </div>
 
 
-<div class="cartdetail" *ngIf="files.length>0">
-    <p-table  [value]="files" [scrollable]="true"  scrollHeight="230px" [tableStyle]="{'min-width':'50rem'}" 
-    [paginator]="true"
-    [rows]="5"
-    [showCurrentPageReport]="true"
-    [tableStyle]="{ 'min-width': '50rem' }"
-    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-    [rowsPerPageOptions]="[5, 10, 20]">
+<div class="cartdetail" *ngIf="files?.length>0">
+    <p-table [value]="files" [scrollable]="true" scrollHeight="230px" [tableStyle]="{'min-width':'50rem'}"
+        [paginator]="true" [rows]="5" [showCurrentPageReport]="true" [tableStyle]="{ 'min-width': '50rem' }"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+        [rowsPerPageOptions]="[5, 10, 20]">
         <ng-template pTemplate="header">
             <tr>
                 <th>Mã đơn hàng</th>
@@ -24,21 +20,56 @@
                 <th></th>
             </tr>
         </ng-template>
-        <ng-template pTemplate="body" let-rowData >
-            <tr >
+        <ng-template pTemplate="body" let-rowData>
+            <tr>
                 <td>{{rowData.id}}</td>
                 <td>{{rowData.address}}</td>
-                <td>{{rowData.created | date:'dd/MM/yyyy HH:mm:ss'}}</td>
+                <td>{{rowData.created | date:'dd/MM/yyyy '}}</td>
                 <td>{{rowData.payment}}</td>
                 <td style="color: rgb(191, 10, 10);">{{rowData.price | currency:'VND'}}</td>
-                <td ><i class="pi pi-eye" style="color: slateblue"></i></td>
-
+                <td *ngIf="rowData.status != 4 "><i class="pi pi-eye" style="color: slateblue"></i></td>
+                <td *ngIf="rowData.status==4" (click)="Rating(rowData)"><i class="pi pi-pencil"
+                        style="color: slateblue"></i></td>
             </tr>
         </ng-template>
-    </p-table >
+    </p-table>
 </div>
 
 
 <div class="NotCart" *ngIf="files&&files.length<=0">
     <span class="textcart">Hiện tại chưa có đơn hàng</span>
 </div>
+
+
+
+
+<div class="card flex justify-content-center">
+    <p-dialog header="Đánh Giá Sản Phẩm" [modal]="true" [(visible)]="visible" [style]="{ width: '50rem' }">
+
+        <div class="flex align-items-center gap-3 mb-5" *ngFor="let x of data_evaluate?.orderProductList">
+            <div class="Product">  
+                <div class="product_image">
+                    <p-image [src]="'https://localhost:7058/Images/' + x.image" alt="Image" width="120" />
+                </div>
+                <div class="product_infomatiom">
+                    <span class="float-Product">
+                        {{x.product_name}}</span>        
+                </div>
+            </div>
+            <div class="evaluate">
+                <label for="float-evaluate">Chất lượng sản phẩm:</label>
+                <p-rating [(ngModel)]="x.evaluate" />
+            </div>
+            <div class="Comment">
+                <label for="float-input">Nội dung: </label>
+                <textarea id="float-input" rows="3" cols="80" [(ngModel)]="x.comment"  pInputTextarea></textarea>
+            </div>
+           
+        </div>
+
+        <div class="flex justify-content-end gap-2">
+            <p-button (click)="SaveRating()" label="Lưu đánh giá"/>
+        </div>
+    </p-dialog>
+</div>
+

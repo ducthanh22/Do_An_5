@@ -34,6 +34,7 @@ namespace Model
         public DbSet<Size> Size { get; set; }
         public DbSet<PaymentTransactions> PaymentTransactions { get; set; }
         public DbSet<Rating> Rating { get; set; }
+        public DbSet<Sale> Sale { get; set; }
 
 
     }

@@ -42,6 +42,7 @@ export class DetailproductsComponent {
       next: (res) => {
         if (res) {
           this.data = res;
+          console.log(this.data)
         }
       }
     })
@@ -51,6 +52,10 @@ export class DetailproductsComponent {
     this.Size = data;
   }
   addtocart(data: any) {
+    if(data[0].activeSale == 1 && data.length > 0){
+      data[0].price_product=data[0].salePrice
+      console.log('data',data)
+    }
     if (this.Size) {
       let idx = this.Carts.findIndex((item: any) => {
         return item.data[0].id == data[0].id && item.size.id == this.Size.id

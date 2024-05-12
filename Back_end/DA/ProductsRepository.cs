@@ -118,10 +118,10 @@ namespace DAL
                          from b in bGroup.DefaultIfEmpty()
                          join e in _DbContext.Set<Categories>() on d.Idcategories equals e.Id
                          join g in _DbContext.Set<Produces>() on d.Idproduces equals g.Id
+                         join h in _DbContext.Sale on d.Id equals h.IdProduct
                          where d.Id == ids
                         select new GetProductsDto
                         {
-
                             Id = d.Id,
                             Name = d.Name,
                             Idcategories = d.Idcategories,
@@ -133,6 +133,9 @@ namespace DAL
                             Idcolor = d.Idcolor,
                             Namecategory = e.Name,
                             NameProduces = g.Name,
+                            SalePrice = h.SalePrice,
+                            percent = h.percent,
+                            ActiveSale = h.ActiveFlag,
                             Created = d.Created,
                             ListSize = _DbContext.Size.Where(a => a.Idproduct == d.Id).Select(m => new SizeDto
                             {
@@ -145,6 +148,48 @@ namespace DAL
            
             return query;
         }
+        public async Task<List<GetProductsDto>> GetProductSale()
+        {
+
+            var query = (from d in _DbContext.Set<Products>()
+                         join c in _DbContext.Set<Color>() on d.Idcolor equals c.Id
+                         join b in _DbContext.Set<Price>() on d.Id equals b.Idproduct into bGroup
+                         from b in bGroup.DefaultIfEmpty()
+                         join e in _DbContext.Set<Categories>() on d.Idcategories equals e.Id
+                         join g in _DbContext.Set<Produces>() on d.Idproduces equals g.Id
+                         join h in _DbContext.Sale on d.Id equals h.IdProduct
+                         where h.ActiveFlag==1
+                         select new GetProductsDto
+                         {
+
+                             Id = d.Id,
+                             Name = d.Name,
+                             Idcategories = d.Idcategories,
+                             Idproduces = d.Idproduces,
+                             Describe = d.Describe,
+                             namecolor = c.NameColor,
+                             Price_product = b.Price_product,
+                             Image = d.Image,
+                             Idcolor = d.Idcolor,
+                             Namecategory = e.Name,
+                             NameProduces = g.Name,
+                             SalePrice = h.SalePrice,
+                             percent = h.percent,
+                             ActiveSale = h.ActiveFlag,
+                             Created = d.Created,
+                             ListSize = _DbContext.Size.Where(a => a.Idproduct == d.Id).Select(m => new SizeDto
+                             {
+                                 Id = m.Id,
+                                 Idproduct = m.Idproduct,
+                                 NameSize = m.NameSize
+                             }).ToList()
+                         });
+
+
+
+            return await query.ToListAsync();
+        }
+
         public async Task<List<GetProductsDto>> GetProductNew()
         {
 
@@ -154,6 +199,7 @@ namespace DAL
                          from b in bGroup.DefaultIfEmpty()
                          join e in _DbContext.Set<Categories>() on d.Idcategories equals e.Id
                          join g in _DbContext.Set<Produces>() on d.Idproduces equals g.Id
+                         join h in _DbContext.Sale on d.Id equals h.IdProduct
                          orderby d.Created descending
                          select new GetProductsDto
                          {
@@ -169,6 +215,9 @@ namespace DAL
                              Idcolor = d.Idcolor,
                              Namecategory = e.Name,
                              NameProduces = g.Name,
+                             SalePrice=h.SalePrice,
+                             percent=h.percent,
+                             ActiveSale=h.ActiveFlag,
                              Created = d.Created,
                              ListSize = _DbContext.Size.Where(a=>a.Idproduct== d.Id).Select(m=>new SizeDto
                              {

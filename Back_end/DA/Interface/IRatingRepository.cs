@@ -11,5 +11,7 @@ namespace DAL.Interface
     public interface IRatingRepository : IGenericRepository<Rating>
     {
         Task<BaseQuerieResponse<RatingDto>> GetByProduct(Guid id, int page, int pageSize);
+        Task<CreateRatingDto> CreateS(CreateRatingDto entities);
+
     }
 }

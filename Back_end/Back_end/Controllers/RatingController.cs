@@ -39,9 +39,9 @@ namespace Back_end.Controllers
         }
 
         [HttpPost("create")]
-        public async Task<ActionResult<Rating>> Create([FromBody] Rating dto)
+        public async Task<ActionResult<CreateRatingDto>> Create([FromBody] CreateRatingDto dto)
         {
-            var createdEntity = await _Bus.Create(dto);
+            var createdEntity = await _Bus.CreateS(dto);
 
             return Ok(createdEntity);
         }
@@ -58,6 +58,6 @@ namespace Back_end.Controllers
             var result = await _Bus.Delete(id);
             return Ok(result);
         }
-      
+        
     }
 }

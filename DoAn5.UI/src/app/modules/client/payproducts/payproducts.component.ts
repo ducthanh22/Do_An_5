@@ -9,6 +9,7 @@ import { AccountService } from 'src/app/service/account.service';
 import { OrderService } from 'src/app/service/order.service';
 import { ProductsService } from 'src/app/service/products.service';
 import { SendEmailService } from 'src/app/service/sendEmail.service';
+import { format } from 'date-fns';
 
 @Component({
   selector: 'app-payproducts',
@@ -23,7 +24,7 @@ export class PayproductsComponent {
   formData: FormData = new FormData();
   datapayment: PaymentDto = { orderId: '', money: 0, transactionStatus: 0 };
   GetId_order: string = ''
-
+  order: any
   constructor(private productService: ProductsService, private fb: FormBuilder, private AccountService: AccountService,
     private OrderService: OrderService, private MessageSV: MessageService, private EmailService: SendEmailService, private PaymentService: PaymentService,
     private route: ActivatedRoute
@@ -82,8 +83,9 @@ export class PayproductsComponent {
                 this.datapayment.transactionStatus = 0,
                 this.PaymentService.CreatURL(this.datapayment).subscribe({
                   next: (url) => {
-                    console.log(url);
-                    window.open(url, '_blank');
+                    // window.open(url, '_blank');
+                    window.open(url, '_self');
+
                   }
                 });
             }
@@ -95,11 +97,11 @@ export class PayproductsComponent {
                 price: this.getTotalPrice(),
                 address: this.FormPay.value.Address,
                 payment: this.FormPay.value.selectPay.name,
+                created: format(new Date(), "yyyy-MM-dd'T'HH:mm:ss.SSS"),
                 activeFlag: null,
-            createdBy: null,
-            created: null,
-            modifiedBy: null,
-            modified: null,
+                createdBy: null,
+                modifiedBy: null,
+                modified: null,
               }
               this.OrderService.Update(orderDto).subscribe({})
               this.FormPay.reset();
@@ -127,33 +129,47 @@ export class PayproductsComponent {
     this.PaymentService.Callback(params).subscribe({
       next: (res) => {
         if (res.vnp_TransactionStatus == '00') {
-          debugger
-          const order: OrderDto = {
-            id: res.vnp_TxnRef,
-            id_customer: this.informationAccount.Id,
-            status: 2,
-            price: res.vnp_Amount,
-            address: this.FormPay.value.Address,
-            payment: this.FormPay.value.selectPay.name,
-            activeFlag: null,
-            createdBy: null,
-            created: null,
-            modifiedBy: null,
-            modified: new Date().toString(),
-          }
-          this.OrderService.Update(order).subscribe({})
-          this.FormPay.reset();
-          this.Carts = []
-          this.productService.saveCart(this.Carts);
-          this.MessageSV.add({ severity: 'success', summary: 'Success', detail: 'Đặt hàng thành công' })
-          this.formData = new FormData();
-          this.formData.append('email', this.informationAccount.Email);
-          this.formData.append('donhang', res.id)
-          this.EmailService.SendEmail(this.formData).subscribe({
-            next: (response) => {
-              console.log(response);
-            },
+          this.OrderService.getbyid(res.vnp_TxnRef).subscribe({
+            next: (value) => {
+              if (value) {
+                this.order = value;
+                const order: OrderDto = {
+                  id: res.vnp_TxnRef,
+                  id_customer: this.informationAccount.Id,
+                  status: 2,
+                  price: res.vnp_Amount,
+                  address: this.FormPay.value.Address,
+                  payment: this.order.payment,
+                  activeFlag: null,
+                  createdBy: null,
+                  created: format(this.order?.created, "yyyy-MM-dd'T'HH:mm:ss.SSS"),
+                  modifiedBy: null,
+                  modified: format(new Date(), "yyyy-MM-dd'T'HH:mm:ss.SSS")
+                }
+                this.OrderService.Update(order).subscribe({
+                  next: (value) => {
+                    if (value) {
+
+                    }
+                  }
+                })
+                this.FormPay.reset();
+                this.Carts = []
+                this.productService.saveCart(this.Carts);
+                this.MessageSV.add({ severity: 'success', summary: 'Success', detail: 'Đặt hàng thành công' })
+                this.formData = new FormData();
+                this.formData.append('email', this.informationAccount.Email);
+                this.formData.append('donhang', res.id)
+                this.EmailService.SendEmail(this.formData).subscribe({
+                  next: (response) => {
+                    console.log(response);
+                  },
+                })
+
+              }
+            }
           })
+
         }
       },
       error: (error) => {

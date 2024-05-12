@@ -129,5 +129,7 @@
   .buy{
     margin-bottom: 5%;
   }
- 
+ .price{
+  display: flex;
+ }
   

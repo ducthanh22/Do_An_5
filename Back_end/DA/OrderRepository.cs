@@ -22,6 +22,8 @@ namespace DAL
         {
             var query = from a in _DbContext.Order
                         where (a.Id_customer ==id)
+                        orderby a.Created descending
+
                         select new OrderDto
                         {
                             Id =a.Id,
@@ -42,7 +44,8 @@ namespace DAL
                         join b in _DbContext.Order_detail on a.Id equals b.Id_Order 
                         join c in _DbContext.Products on b.Id_product equals c.Id 
                         where (a.Id_customer == id && a.status == status)
-                        group new { c, b } by new { a.Id, a.Id_customer, a.Price, a.Address, a.Payment, a.status } into g
+                        group new { c, b } by new { a.Id, a.Id_customer, a.Price, a.Address, a.Payment, a.status ,a.Created} into g
+                        orderby g.Key.Created descending
                         select new GetorderDto
                         {
                             Id = g.Key.Id,
@@ -52,6 +55,7 @@ namespace DAL
                             Payment = g.Key.Payment,
                             Status = g.Key.status,
                             Quantity= g.Count(),
+                            Created= g.Key.Created,
                             OrderProductList = g.Select(x => new Order_productDto
                             {
                                 Id_product = x.c.Id,

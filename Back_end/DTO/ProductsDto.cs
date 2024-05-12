@@ -11,7 +11,7 @@ namespace DTO
         public string Describe { get; set; }
         public string Image { get; set; }
         public Guid Idcolor { get; set; }
-        public int? Price_product { get; set; }
+        public int Price_product { get; set; }
         public List<SizeDto> ListSize { get; set; }
     }
     public class GetProductsDto : BasedbDto
@@ -28,6 +28,10 @@ namespace DTO
        
         public int? Price_product { get; set; }
         public Guid Idcolor { get; set; }
+        public int SalePrice { get; set; }
+        public int percent { get; set; }
+        public int? ActiveSale { get; set; }
+
         public List<SizeDto> ListSize { get; set; }
 
     }

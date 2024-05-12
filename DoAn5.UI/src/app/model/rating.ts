@@ -1,6 +1,6 @@
 import { BasedbDto } from "./Common/BaseDto";
 
-export interface RatingDto extends BasedbDto {
+export interface RatingDto  {
     id_Order: string;
     id_product: string;
     id_customer: string;
@@ -17,4 +17,7 @@ export interface GetRatingDto extends BasedbDto {
     comment: string;
     status: number;
     username: string
+}
+export interface CreateRatingDto {
+    listRating: RatingDto[];
 }

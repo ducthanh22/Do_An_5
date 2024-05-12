@@ -29,6 +29,10 @@ import { MycartComponent } from './mycart/mycart.component';
 import { StepsModule } from 'primeng/steps';
 import { TreeTableModule } from 'primeng/treetable';
 import { TableModule } from 'primeng/table';
+import { DialogModule } from 'primeng/dialog';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { BadgeModule } from 'primeng/badge';
+
 @NgModule({
   declarations: [
     AboutComponent,
@@ -62,7 +66,10 @@ import { TableModule } from 'primeng/table';
     PaginatorModule,
     StepsModule,
     TreeTableModule,
-    TableModule
+    TableModule,
+    DialogModule,
+    InputTextareaModule,
+    BadgeModule
   ]
 })
 export class ClientModule { }

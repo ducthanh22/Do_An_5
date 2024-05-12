@@ -27,7 +27,7 @@ namespace Back_end.Controllers
             return Ok(result);
         }
 
-        [HttpGet("GetByid")]
+        [HttpGet("GetByid/{id}")]
         public async Task<ActionResult<OrderDto>> Getbyid(Guid id)
         {
             var result = await _Bus.Getbyid(id);

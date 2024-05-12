@@ -21,5 +21,11 @@ namespace BLL
         {
             return await _res.GetByProduct(id, page, pageSize);
         }
+       
+        public async Task<CreateRatingDto> CreateS(CreateRatingDto entities)
+        {
+            return await _res.CreateS(entities);
+        }
+       
     }
 }

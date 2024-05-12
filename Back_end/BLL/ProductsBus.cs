@@ -36,6 +36,10 @@ namespace BLL
         {
             return await _res.GetProductNew();
         }
+        public async Task<List<GetProductsDto>> GetProductSale()
+        {
+            return await _res.GetProductSale();
+        }
 
         public async Task<ProductsDto> Creates(ProductsDto entity)
         {

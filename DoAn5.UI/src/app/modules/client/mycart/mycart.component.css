@@ -18,3 +18,28 @@
     margin-left: 41%;
     margin-top: 5%;
 }
+
+.p-float-label{
+    margin-top: 3%;
+}
+
+.evaluate , .Product{
+    display: flex;
+}
+
+label {
+    margin-right: 50px;
+}
+.float-Product{
+    margin-bottom: 50px;
+}
+
+.product_image{
+    width: 20%;
+}
+.product_infomatiom{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}

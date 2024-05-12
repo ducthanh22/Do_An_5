@@ -129,6 +129,10 @@ builder.Services.AddScoped<ISizeRepository, SizeRepository>();
 builder.Services.AddScoped<IRatingBus, RatingBus>();
 builder.Services.AddScoped<IRatingRepository, RatingRepository>();
 
+builder.Services.AddScoped<ISaleBus, SaleBus>();
+builder.Services.AddScoped<ISaleRepository, SaleRepository>();
+
+
 builder.Services.AddCors();
 
 builder.Services.AddAuthorization(options =>

@@ -2,7 +2,7 @@ import { Injectable ,EventEmitter } from '@angular/core';
 import { BaseService } from './Common/base.service';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environment/environment';
-import { ProductsDto } from '../model';
+import { GetProductsDto, ProductsDto } from '../model';
 import { Observable, first } from 'rxjs';
 import { BaseCommandResponse } from '../model/Common/BaseCommandResponse';
 
@@ -19,10 +19,15 @@ export class ProductsService extends BaseService<ProductsDto>{
       .post<BaseCommandResponse>(`${environment.apiUrl}/Product/UploadFile`, data)
       .pipe(first());
   }
-  Getproductnew():Observable<ProductsDto[]>{
-    return this._http.get<ProductsDto[]>(`${environment.apiUrl}/Product/GetProductNew`)
+  Getproductnew():Observable<GetProductsDto[]>{
+    return this._http.get<GetProductsDto[]>(`${environment.apiUrl}/Product/GetProductNew`)
     .pipe(first());
   }
+  GetproductSale():Observable<GetProductsDto[]>{
+    return this._http.get<GetProductsDto[]>(`${environment.apiUrl}/Product/GetProductSale`)
+    .pipe(first());
+  }
+
 
 
   GetCart(){

@@ -24,5 +24,8 @@ export interface GetProductsDto extends BasedbDto {
     namecolor: string;
     price_product: number | null;
     idcolor: string;
+    salePrice: number;
+    percent: number;
+    activeSale: number | null;
     listSize: SizeDto[];
 }

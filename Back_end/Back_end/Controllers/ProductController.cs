@@ -41,6 +41,14 @@ namespace Back_end.Controllers
             var result = await _productsBus.GetProductNew();
             return Ok(result);
         }
+        [HttpGet("GetProductSale")]
+        [AllowAnonymous]
+
+        public async Task<ActionResult<List<GetProductsDto>>> GetProductSale()
+        {
+            var result = await _productsBus.GetProductSale();
+            return Ok(result);
+        }
         [HttpGet("GetByid/{id}")]
         [AllowAnonymous]
 

@@ -1331,7 +1331,7 @@
   {
     "ContainingType": "Back_end.Controllers.OrderController",
     "Method": "Getbyid",
-    "RelativePath": "api/Order/GetByid",
+    "RelativePath": "api/Order/GetByid/{id}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -1339,7 +1339,7 @@
       {
         "Name": "id",
         "Type": "System.Guid",
-        "IsRequired": false
+        "IsRequired": true
       }
     ],
     "ReturnTypes": [
@@ -1908,6 +1908,26 @@
   },
   {
     "ContainingType": "Back_end.Controllers.ProductController",
+    "Method": "GetProductSale",
+    "RelativePath": "api/Product/GetProductSale",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[DTO.GetProductsDto, DTO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Back_end.Controllers.ProductController",
     "Method": "Search",
     "RelativePath": "api/Product/Search",
     "HttpMethod": "GET",
@@ -1994,13 +2014,13 @@
     "Parameters": [
       {
         "Name": "dto",
-        "Type": "Model.Rating",
+        "Type": "DTO.CreateRatingDto",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "Model.Rating",
+        "Type": "DTO.CreateRatingDto",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -2133,6 +2153,160 @@
         "StatusCode": 200
       }
     ]
+  },
+  {
+    "ContainingType": "Back_end.Controllers.SaleController",
+    "Method": "Create",
+    "RelativePath": "api/Sale/create",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "Model.Sale",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Model.Sale",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Back_end.Controllers.SaleController",
+    "Method": "Delete",
+    "RelativePath": "api/Sale/Delete",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Model.Sale",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Back_end.Controllers.SaleController",
+    "Method": "GetAll",
+    "RelativePath": "api/Sale/GetAll",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[Model.Sale, Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Back_end.Controllers.SaleController",
+    "Method": "Getbyid",
+    "RelativePath": "api/Sale/GetByid",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Model.Sale",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Back_end.Controllers.SaleController",
+    "Method": "GetSale",
+    "RelativePath": "api/Sale/GetSale",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[DTO.GetSaleDto, DTO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Back_end.Controllers.SaleController",
+    "Method": "Update",
+    "RelativePath": "api/Sale/update",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "Model.Sale",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Model.Sale",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Back_end.Controllers.SaleController",
+    "Method": "UpdateSalesPrices",
+    "RelativePath": "api/Sale/UpdateSalesPrices",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
   },
   {
     "ContainingType": "Back_end.Controllers.SendEmailController",

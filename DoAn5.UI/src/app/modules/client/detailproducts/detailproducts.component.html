@@ -6,8 +6,12 @@
     <div class="select">
       <h3>{{data[0].name}}</h3>
       <div class="product_infomatiom">
-        <div class="price">
-          <h3 style="color:rgb(193, 19, 19) ;">{{data[0].price_product |currency:'VND'}}</h3>
+        <div class="price" *ngIf="data[0].activeSale==0">
+          <span style="color:rgb(193, 19, 19);font-size: larger;font-weight: bold;">{{data[0].price_product |currency:'VND'}}</span>
+        </div>
+        <div class="price"*ngIf="data[0].activeSale==1">
+          <div><span style="color:rgb(193, 19, 19);font-size: larger;font-weight: bold;">{{data[0].salePrice |currency:'VND'}}</span></div>
+          <div style="margin-left: 10%;">  <span style="font-size: larger;" pBadge  [value]="data[0].percent + '%'"  severity="danger" ><del>{{data[0].price_product |currency:'VND'}}</del></span></div>
         </div>
         <div class="color">
           <div style="width: 20%;">

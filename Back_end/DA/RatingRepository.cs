@@ -47,6 +47,28 @@ namespace DAL
             return searchResults;
 
         }
-        
+        public async Task<CreateRatingDto> CreateS(CreateRatingDto entities)
+        {
+            foreach (var item in entities.ListRating)
+            {
+                Rating ratingDto = new Rating
+                {
+                    Id_Order = item.Id_Order,
+                    Id_customer= item.Id_customer,
+                    Id_product= item.Id_product,
+                    Evaluate=item.Evaluate, 
+                    Status = item.Status,
+                    Comment = item.Comment,
+                    Created = DateTime.Now,
+                };
+
+                await _DbContext.Rating.AddAsync(ratingDto);
+                await _DbContext.SaveChangesAsync();
+            }
+
+            return entities;
+        }
+       
+
     }
 }

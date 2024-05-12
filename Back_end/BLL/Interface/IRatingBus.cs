@@ -11,6 +11,8 @@ namespace BLL.Interface
     public interface IRatingBus :IGenericBUS<Rating>
     {
         Task<BaseQuerieResponse<RatingDto>> GetByProduct(Guid id, int page, int pageSize);
+        Task<CreateRatingDto> CreateS(CreateRatingDto entities);
+
 
     }
 }
