@@ -1,4 +1,4 @@
-<h2 style="text-align: center;"> Quản lý danh mục</h2>
+<h2 style="text-align: center;"> Quản lý loại sản phẩm</h2>
 
 <p-confirmDialog></p-confirmDialog>
 <div class="card">
@@ -68,6 +68,14 @@
                     <label for="name">Tên</label>
                     <div class="dropdown-wrapper">
                         <input type="text" class="p-inputtext" pInputText formControlName="name" />
+                    </div>
+                </div>
+                <div class="input-container">
+                    <label for="name">Chọn loại sản phẩm</label>
+                    <div class="dropdown-wrapper">
+                        <p-dropdown [options]="Dscategories" formControlName="idcategories" optionLabel="name"
+                            optionValue="id" [filter]="true" filterBy="name" [showClear]="true" appendTo="body"
+                            [style]="{'minWidth':'100%'}"></p-dropdown>
                     </div>
                 </div>
             </div>

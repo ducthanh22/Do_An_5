@@ -1,32 +1,32 @@
-<div class="container" *ngIf="data && data.length > 0">
+<div class="container" *ngIf="data">
   <div class="top">
     <div class="card flex justify-content-center">
-      <img [src]="'https://localhost:7058/Images/' + data[0].image" alt="Image" class="full-image">
+      <img [src]="'https://localhost:7058/Images/' + data.image" alt="Image" class="full-image">
     </div>
     <div class="select">
-      <h3>{{data[0].name}}</h3>
+      <h3>{{data.name}}</h3>
       <div class="product_infomatiom">
-        <div class="price" *ngIf="data[0].activeSale==0">
-          <span style="color:rgb(193, 19, 19);font-size: larger;font-weight: bold;">{{data[0].price_product |currency:'VND'}}</span>
+        <div class="price" *ngIf="data?.activeSale==0 || data?.activeSale== null">
+          <span style="color:rgb(193, 19, 19);font-size: larger;font-weight: bold;">{{data?.price_product |currency:'VND'}}</span>
         </div>
-        <div class="price"*ngIf="data[0].activeSale==1">
-          <div><span style="color:rgb(193, 19, 19);font-size: larger;font-weight: bold;">{{data[0].salePrice |currency:'VND'}}</span></div>
-          <div style="margin-left: 10%;">  <span style="font-size: larger;" pBadge  [value]="data[0].percent + '%'"  severity="danger" ><del>{{data[0].price_product |currency:'VND'}}</del></span></div>
+        <div class="price"*ngIf="data?.activeSale==1">
+          <div><span style="color:rgb(193, 19, 19);font-size: larger;font-weight: bold;">{{data?.salePrice |currency:'VND'}}</span></div>
+          <div style="margin-left: 10%;">  <span style="font-size: larger;" pBadge  [value]="data?.percent + '%'"  severity="danger" ><del>{{data?.price_product |currency:'VND'}}</del></span></div>
         </div>
         <div class="color">
           <div style="width: 20%;">
             <h4>Màu sắc</h4>
           </div>
           <div class="s1">
-            <div class="namecolor">{{data[0].namecolor}}</div>
+            <div class="namecolor">{{data.namecolor}}</div>
           </div>
         </div>
         <div class="Size">
           <div style="width: 20%;">
             <h4>Kích thước</h4>
           </div>
-          <div class="s1" *ngIf="data[0].listSize && data[0].listSize.length">
-            <div class="namesize" *ngFor="let x of data[0].listSize" [class.selected]="x === Size"
+          <div class="s1" *ngIf="data.listSize && data.listSize.length>0">
+            <div class="namesize" *ngFor="let x of data.listSize" [class.selected]="x === Size"
               (click)="selectSize(x)">{{x?.nameSize}}
             </div>
           </div>
@@ -44,7 +44,7 @@
   </div>
   <div class="body">
     <span style="font-weight: bold; font-size: large;">Mô tả:</span>
-    <span [innerHTML]="data[0]?.describe"></span>
+    <span [innerHTML]="data?.describe"></span>
     <div class="Instruct">
       <div class="img1">
         <h4>Hướng dẫn bảo quản</h4>

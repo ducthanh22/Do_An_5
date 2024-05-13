@@ -46,13 +46,13 @@ export class PayproductsComponent {
     })
   }
   totalPrice(index: number) {
-    let total = this.Carts[index].data[0].price_product * this.Carts[index].quantity
+    let total = this.Carts[index].data.price_product * this.Carts[index].quantity
     return total
   }
   getTotalPrice(): number {
     let total: number = 0;
     this.Carts.forEach((item: any) => {
-      total += item.data[0].price_product * item.quantity;
+      total += item.data.price_product * item.quantity;
     });
     return total;
   }
@@ -67,10 +67,10 @@ export class PayproductsComponent {
         payment: this.FormPay.value.selectPay.name,
         orderList: this.Carts.map((item: any) => ({
           // id_Order: undefined,
-          id_product: item.data[0].id,
+          id_product: item.data.id,
           idsize: item.size.id,
           quantity: item.quantity,
-          price: item.data[0].price_product,
+          price: item.data.price_product,
         }))
       };
       this.OrderService.create(order).subscribe({

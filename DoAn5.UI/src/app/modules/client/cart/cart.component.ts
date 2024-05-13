@@ -29,7 +29,7 @@ export class CartComponent {
     this.productService.saveCart(this.Carts);
   }
   totalPrice(index: number){
-    let total=  this.Carts[index].data[0].price_product * this.Carts[index].quantity
+    let total=  this.Carts[index].data.price_product * this.Carts[index].quantity
     return total
   }
   deleteCart(index: number){

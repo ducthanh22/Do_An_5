@@ -3,6 +3,7 @@ import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@ang
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { CategoriesDto, ColorDto, Paging, Produces, ProductsDto, SizeDto } from 'src/app/model';
 import { CategoriesService } from 'src/app/service';
+import { Product_TypeService } from 'src/app/service/Product_type.service';
 import { ColorService } from 'src/app/service/color.service';
 import { ProducesService } from 'src/app/service/produces.service';
 import { ProductsService } from 'src/app/service/products.service';
@@ -36,7 +37,7 @@ export class ProductsComponent {
   getSize!: any[]
   constructor(private ProductSV: ProductsService, private FB: FormBuilder, private MessageSV: MessageService,
     private CategorySV: CategoriesService, private changeDetector: ChangeDetectorRef, private confirmationService: ConfirmationService,
-    private ProducesSv: ProducesService, private ColorSV: ColorService, private SizeSV: SizeService) {
+    private ProducesSv: ProducesService, private ColorSV: ColorService, private SizeSV: SizeService, private Product_typeService:Product_TypeService) {
   }
   ngOnInit() {
     this.GetCategory();
@@ -88,11 +89,11 @@ export class ProductsComponent {
     const listSizeArray = this.FormProduct.get('listsize') as FormArray;
     listSizeArray.clear();
   }
-  ngAfterContentChecked(): void {
+  ngAfterContentChecked() {
     this.changeDetector.detectChanges();
   }
   GetCategory() {
-    this.CategorySV.getAll().subscribe(data => {
+    this.Product_typeService.getAll().subscribe(data => {
       this.SelectionCategory = data;
     })
   }

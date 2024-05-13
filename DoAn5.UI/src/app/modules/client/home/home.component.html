@@ -95,7 +95,7 @@
                                         <span style="margin-left: 2%;">{{product.namecategory }}</span>
                                     </div>
                                 </div>
-                                <div class="grid-price" *ngIf="product.activeSale ==0">
+                                <div class="grid-price" *ngIf="product.activeSale ==0 || product.activeSale==null">
                                     <span class="gspan">{{ product.price_product | currency:'VND' }}</span>
                                     <button pButton icon="pi pi-shopping-cart" class="product-cart-button"></button>
                                 </div>

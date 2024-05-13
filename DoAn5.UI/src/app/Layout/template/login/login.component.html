@@ -11,8 +11,13 @@
           placeholder="Email" />
       </span>
       <span>
-        <input type="password" pInputText formControlName="passwordHash"
-          placeholder="Password" />
+        <p-inputGroup>
+          <input [type]="passwordFieldType" pInputText placeholder="Mật khẩu"  formControlName="passwordHash"/>
+          <button type="button" pButton icon="pi pi-eye-slash" (click)="togglePasswordVisibility()" *ngIf="showPassword ==true"></button>
+          <button type="button" pButton icon="pi pi-eye"  (click)="togglePasswordVisibility()"*ngIf="showPassword ==false"></button>
+          </p-inputGroup>
+        <!-- <input type="password" pInputText formControlName="passwordHash"
+          placeholder="Password" /> -->
       </span>
       <span>
         <p-button (onClick)="login()" label="Login"></p-button>

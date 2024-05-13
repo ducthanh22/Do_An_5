@@ -22,6 +22,7 @@ import { ConfirmationService } from 'primeng/api';
 import { FileUploadModule } from 'primeng/fileupload';
 import { ProduceComponent } from './produce/produce.component';
 import { ToastModule } from 'primeng/toast';
+import { ProductTypeComponent } from './product-type/product-type.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { ToastModule } from 'primeng/toast';
     CategoriesComponent,
     ProductsComponent,
     ProduceComponent,
+    ProductTypeComponent,
   
   
   ],

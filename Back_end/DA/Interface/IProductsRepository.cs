@@ -12,7 +12,7 @@ namespace DAL.Interface
     {
         Task<BaseQuerieResponse<GetProductsDto>> Search(string keywork, int page, int pageSize);
         Task<UpLoadFile> UploadFile(UpLoadFile img);
-        Task<IQueryable<GetProductsDto>>GetByIds(Guid ids);
+        Task<GetProductsDto>GetByIds(Guid ids);
         Task<List<GetProductsDto>> Getalls();
         Task<ProductsDto> Creates(ProductsDto entity);
         Task<ProductsDto> Updates(ProductsDto entity);

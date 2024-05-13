@@ -40,13 +40,13 @@
     <p-orderList [value]="Carts" [listStyle]="{ height: '25rem' }" header="Sản Phẩm">
       <ng-template let-product let-index="index" pTemplate="item">
         <div class="flex ">
-          <img [src]="'https://localhost:7058/Images/' + product.data[0].image" [alt]="product.data[0].name"
+          <img [src]="'https://localhost:7058/Images/' + product.data.image" [alt]="product.data.name"
             width="100px" />
           <div class="name">
-            <span>{{ product.data[0].name }}</span>
+            <span>{{ product.data.name }}</span>
             <div>
               <i class="pi pi-tag text-sm"></i>
-              <span>{{ product.data[0].namecategory }}</span>
+              <span>{{ product.data.namecategory }}</span>
             </div>
             <div>
               <span>Size : {{ product.size.nameSize }}</span>
@@ -55,7 +55,7 @@
           <div class="quantity">
             <span>{{ product.quantity}}</span>
           </div>
-          <span class="price">{{ product.data[0].price_product| currency:'VND' }}</span>
+          <span class="price">{{ product.data.price_product| currency:'VND' }}</span>
         </div>
       </ng-template>
     </p-orderList>

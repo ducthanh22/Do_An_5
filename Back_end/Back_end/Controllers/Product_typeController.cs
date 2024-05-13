@@ -1,68 +1,62 @@
 ﻿using Back_end.Attribute;
-using BLL.Interface;
-using DTO;
-using Model;
 using DTO.Enum;
-using Microsoft.AspNetCore.Authorization;
+using DTO;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Model;
+using BLL.Interface;
 
 namespace Back_end.Controllers
 {
-    //[Authorize]
     [Route("api/[controller]")]
     [ApiController]
-    
-
-    public class CategoriesController : ControllerBase
+    public class Product_typeController : ControllerBase
     {
-        private ICategoriesBus _categoriesBus;
-
-        public CategoriesController(ICategoriesBus categoriesBus)
+        public readonly IProduct_typeBus _Bus;
+        public Product_typeController(IProduct_typeBus Bus)
         {
-            _categoriesBus = categoriesBus;
+            _Bus = Bus;
         }
-
         [HttpGet("GetAll")]
         [HasPermission(new[] { (int)EnumModule.Module.QlDm }, new[] { (int)EnumPermission.Type.Read })]
-        public async Task<ActionResult<List<Categories>>> GetAll()
+        public async Task<ActionResult<List<Product_type>>> GetAll()
         {
-            var result= await _categoriesBus.GetAll();
+            var result = await _Bus.GetAll();
             return Ok(result);
         }
 
         [HttpGet("GetByid")]
         [HasPermission(new[] { (int)EnumModule.Module.QlDm }, new[] { (int)EnumPermission.Type.Read })]
-        public async Task<ActionResult<Categories>> Getbyid(Guid id)
+        public async Task<ActionResult<Product_typeDto>> Getbyid(Guid id)
         {
-            var result = await _categoriesBus.Getbyid(id);
+            var result = await _Bus.Getbyid(id);
             return Ok(result);
         }
 
         [HttpPost("create")]
         [HasPermission(new[] { (int)EnumModule.Module.QlDm }, new[] { (int)EnumPermission.Type.Create })]
 
-        public async Task<ActionResult<CategoriesDto>> Create([FromBody] Categories dto)
+        public async Task<ActionResult<Product_typeDto>> Create([FromBody] Product_type dto)
         {
-            var createdEntity = await _categoriesBus.Create(dto);
+            var createdEntity = await _Bus.Create(dto);
 
             return Ok(createdEntity);
         }
         [HttpPut("update")]
         [HasPermission(new[] { (int)EnumModule.Module.QlDm }, new[] { (int)EnumPermission.Type.Update })]
 
-        public async Task<ActionResult<CategoriesDto>> Update([FromBody] Categories dto)
+        public async Task<ActionResult<Product_typeDto>> Update([FromBody] Product_type dto)
         {
-            var createdEntity = await _categoriesBus.Update(dto);
+            var createdEntity = await _Bus.Update(dto);
 
             return Ok(createdEntity);
         }
         [HttpDelete("Delete")]
         [HasPermission(new[] { (int)EnumModule.Module.QlDm }, new[] { (int)EnumPermission.Type.Deleted })]
 
-        public async Task<ActionResult<Categories>> Delete(Guid id)
+        public async Task<ActionResult<Product_type>> Delete(Guid id)
         {
-            var result = await _categoriesBus.Delete(id);
+            var result = await _Bus.Delete(id);
             return Ok(result);
         }
 
@@ -71,11 +65,10 @@ namespace Back_end.Controllers
 
         public async Task<IActionResult> Search([FromQuery] Paging paging)
         {
-            var result = await _categoriesBus.Search(paging);
-          
+            var result = await _Bus.Search(paging);
+
 
             return Ok(result);
         }
-
     }
 }

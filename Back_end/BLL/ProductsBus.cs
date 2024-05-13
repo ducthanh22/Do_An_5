@@ -24,7 +24,7 @@ namespace BLL
             return await _res.Search(keywork, page, pageSize);
         }
       
-        public async Task<IQueryable<GetProductsDto>> GetByIds(Guid ids)
+        public async Task<GetProductsDto> GetByIds(Guid ids)
         {
             return await _res.GetByIds(ids);
         }

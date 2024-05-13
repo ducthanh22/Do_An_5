@@ -20,7 +20,8 @@ export class DetailproductsComponent {
   Size!: any;
   value: number = 5;
   first: number = 0;
-  rows: number = 10;
+  rows: number = 5;
+  page!:number;
   datas: GetRatingDto[] = [];
   Totalcount!: number;
   informationToken: any
@@ -52,13 +53,13 @@ export class DetailproductsComponent {
     this.Size = data;
   }
   addtocart(data: any) {
-    if(data[0].activeSale == 1 && data.length > 0){
-      data[0].price_product=data[0].salePrice
+    if(data.activeSale == 1 && data.length > 0){
+      data.price_product=data[0].salePrice
       console.log('data',data)
     }
     if (this.Size) {
       let idx = this.Carts.findIndex((item: any) => {
-        return item.data[0].id == data[0].id && item.size.id == this.Size.id
+        return item.data.id == data.id && item.size.id == this.Size.id
       });
       if (idx >= 0) {
         this.Carts[idx].quantity += 1;
@@ -85,7 +86,6 @@ export class DetailproductsComponent {
         if (value) {
           this.datas = value.data;
           this.Totalcount = value.totalFilter;
-          console.log(value)
         }
       },
     });
@@ -96,6 +96,7 @@ export class DetailproductsComponent {
     console.log(event)
     this.first = event.first;
     this.rows = event.rows;
-    this. GetRating(this.id, this.first+1,this.rows) 
+    this.page = event.page;
+    this. GetRating(this.id, this.page+1,this.rows) 
   }
 }

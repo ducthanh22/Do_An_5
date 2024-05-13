@@ -3,11 +3,9 @@ using AutoMapper;
 using DAL.Interface;
 using DTO;
 using Microsoft.EntityFrameworkCore;
-using MimeKit;
 using Model;
-using Org.BouncyCastle.Asn1.Ocsp;
-using Org.BouncyCastle.Crypto;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
+
+
 
 namespace DAL
 {
@@ -19,11 +17,10 @@ namespace DAL
         public async Task<BaseQuerieResponse<GetProductsDto>> Search(string keyword, int page, int pageSize)
         {
             var query = from d in _DbContext.Set<Products>()
-
                         join c in _DbContext.Set<Color>() on d.Idcolor equals c.Id
                         join b in _DbContext.Set<Price>() on d.Id equals b.Idproduct into bGroup
                         from b in bGroup.DefaultIfEmpty()
-                        join e in _DbContext.Set<Categories>() on d.Idcategories equals e.Id
+                        join e in _DbContext.Set<Product_type>() on d.Idcategories equals e.Id
                         join g in _DbContext.Set<Produces>() on d.Idproduces equals g.Id
                         where ( string.IsNullOrEmpty(keyword)|| d.Name.Contains(keyword))
                         select new GetProductsDto
@@ -72,7 +69,8 @@ namespace DAL
                             join c in _DbContext.Set<Color>() on d.Idcolor equals c.Id
                             join b in _DbContext.Set<Price>() on d.Id equals b.Idproduct into bGroup
                             from b in bGroup.DefaultIfEmpty()
-                            join e in _DbContext.Set<Categories>() on d.Idcategories equals e.Id
+                            join e in _DbContext.Set<Product_type>() on d.Idcategories equals e.Id
+
                             join g in _DbContext.Set<Produces>() on d.Idproduces equals g.Id
                             select new GetProductsDto
                             {
@@ -109,45 +107,55 @@ namespace DAL
 
         }
 
-        public async Task<IQueryable<GetProductsDto>> GetByIds(Guid ids)
+        public async Task<GetProductsDto> GetByIds(Guid ids)
         {
-            var query  = from d in _DbContext.Set<Products>()
-                         
-                         join c in _DbContext.Set<Color>() on d.Idcolor equals c.Id
-                         join b in _DbContext.Set<Price>() on d.Id equals b.Idproduct into bGroup
-                         from b in bGroup.DefaultIfEmpty()
-                         join e in _DbContext.Set<Categories>() on d.Idcategories equals e.Id
-                         join g in _DbContext.Set<Produces>() on d.Idproduces equals g.Id
-                         join h in _DbContext.Sale on d.Id equals h.IdProduct
-                         where d.Id == ids
-                        select new GetProductsDto
-                        {
-                            Id = d.Id,
-                            Name = d.Name,
-                            Idcategories = d.Idcategories,
-                            Idproduces = d.Idproduces,
-                            Describe = d.Describe,
-                            namecolor = c.NameColor,
-                            Price_product = b.Price_product,
-                            Image = d.Image,
-                            Idcolor = d.Idcolor,
-                            Namecategory = e.Name,
-                            NameProduces = g.Name,
-                            SalePrice = h.SalePrice,
-                            percent = h.percent,
-                            ActiveSale = h.ActiveFlag,
-                            Created = d.Created,
-                            ListSize = _DbContext.Size.Where(a => a.Idproduct == d.Id).Select(m => new SizeDto
-                            {
-                                Id = m.Id,
-                                Idproduct = m.Idproduct,
-                                NameSize = m.NameSize
-                            }).ToList()
-                        };
-
-           
-            return query;
+            try
+            {
+                var query = (from d in _DbContext.Set<Products>()
+                             join c in _DbContext.Set<Color>() on d.Idcolor equals c.Id
+                             join b in _DbContext.Set<Price>() on d.Id equals b.Idproduct into bGroup
+                             from b in bGroup.DefaultIfEmpty()
+                             join e in _DbContext.Set<Product_type>() on d.Idcategories equals e.Id
+                             join g in _DbContext.Set<Produces>() on d.Idproduces equals g.Id
+                             join h in _DbContext.Sale on d.Id equals h.IdProduct into hGroup
+                             from h in hGroup.DefaultIfEmpty()
+                             where d.Id == ids
+                             select new GetProductsDto
+                             {
+                                 Id = d.Id,
+                                 Name = d.Name,
+                                 Idcategories = d.Idcategories,
+                                 Idproduces = d.Idproduces,
+                                 Describe = d.Describe,
+                                 namecolor = c.NameColor,
+                                 Price_product = b.Price_product,
+                                 Image = d.Image,
+                                 Idcolor = d.Idcolor,
+                                 Namecategory = e.Name,
+                                 NameProduces = g.Name,
+                                 SalePrice = h.SalePrice,
+                                 percent = h.percent,
+                                 ActiveSale = h.ActiveFlag,
+                                 Created = d.Created,
+                                 ListSize = _DbContext.Size.Where(a => a.Idproduct == d.Id).Select(m => new SizeDto
+                                 {
+                                     Id = m.Id,
+                                     Idproduct = m.Idproduct,
+                                     NameSize = m.NameSize
+                                 }).ToList()
+                             }).AsQueryable();  // Đảm bảo truy vấn là IQueryable
+                var result = await query.ToListAsync();
+                //trả về mục đầu tiên (hoặc mặc định) từ danh sách
+                return result.FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                // Xử lý hoặc ghi log lỗi ở đây
+                Console.WriteLine("Lỗi trong phương thức Getalls: " + ex.Message);
+                throw; // Rethrow ngoại lệ để bảo toàn thông tin lỗi và đưa ra cho lớp gọi xử lý tiếp
+            }
         }
+
         public async Task<List<GetProductsDto>> GetProductSale()
         {
 
@@ -155,10 +163,12 @@ namespace DAL
                          join c in _DbContext.Set<Color>() on d.Idcolor equals c.Id
                          join b in _DbContext.Set<Price>() on d.Id equals b.Idproduct into bGroup
                          from b in bGroup.DefaultIfEmpty()
-                         join e in _DbContext.Set<Categories>() on d.Idcategories equals e.Id
+                         join e in _DbContext.Set<Product_type>() on d.Idcategories equals e.Id
+
                          join g in _DbContext.Set<Produces>() on d.Idproduces equals g.Id
-                         join h in _DbContext.Sale on d.Id equals h.IdProduct
-                         where h.ActiveFlag==1
+                         join h in _DbContext.Sale on d.Id equals h.IdProduct into hGroup
+                             from h in hGroup.DefaultIfEmpty()
+                             where h.ActiveFlag==1
                          select new GetProductsDto
                          {
 
@@ -192,14 +202,16 @@ namespace DAL
 
         public async Task<List<GetProductsDto>> GetProductNew()
         {
-
+            try { 
             var query = (from d in _DbContext.Set<Products>()
                          join c in _DbContext.Set<Color>() on d.Idcolor equals c.Id
                          join b in _DbContext.Set<Price>() on d.Id equals b.Idproduct into bGroup
                          from b in bGroup.DefaultIfEmpty()
-                         join e in _DbContext.Set<Categories>() on d.Idcategories equals e.Id
+                         join e in _DbContext.Set<Product_type>() on d.Idcategories equals e.Id
+
                          join g in _DbContext.Set<Produces>() on d.Idproduces equals g.Id
-                         join h in _DbContext.Sale on d.Id equals h.IdProduct
+                         join h in _DbContext.Sale on d.Id equals h.IdProduct into hGroup
+                         from h in hGroup.DefaultIfEmpty()
                          orderby d.Created descending
                          select new GetProductsDto
                          {
@@ -215,9 +227,9 @@ namespace DAL
                              Idcolor = d.Idcolor,
                              Namecategory = e.Name,
                              NameProduces = g.Name,
-                             SalePrice=h.SalePrice,
-                             percent=h.percent,
-                             ActiveSale=h.ActiveFlag,
+                             SalePrice = (h != null) ? h.SalePrice : null, 
+                             percent = (h != null) ? h.percent : null, 
+                             ActiveSale = (h != null) ? h.ActiveFlag : null,
                              Created = d.Created,
                              ListSize = _DbContext.Size.Where(a=>a.Idproduct== d.Id).Select(m=>new SizeDto
                              {
@@ -230,6 +242,13 @@ namespace DAL
 
 
             return await query.ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                // Xử lý hoặc ghi log lỗi ở đây
+                Console.WriteLine("Lỗi trong phương thức Getalls: " + ex.Message);
+                throw; // Rethrow ngoại lệ để bảo toàn thông tin lỗi và đưa ra cho lớp gọi xử lý tiếp
+            }
         }
         public async Task<ProductsDto> Creates(ProductsDto entity)
         {

@@ -132,6 +132,8 @@ builder.Services.AddScoped<IRatingRepository, RatingRepository>();
 builder.Services.AddScoped<ISaleBus, SaleBus>();
 builder.Services.AddScoped<ISaleRepository, SaleRepository>();
 
+builder.Services.AddScoped<IProduct_typeBus, Product_typeBus>();
+builder.Services.AddScoped<IProduct_typeRepository, Product_typeRepository>();
 
 builder.Services.AddCors();
 

@@ -46,3 +46,7 @@ span{
     color: #b33300; /* Màu chữ khi di chuột qua */
     text-decoration: underline; /* Gạch chân văn bản khi di chuột qua */
   }
+  .p-inputtext {
+    margin: 0;
+    padding: 5% 8%;
+}

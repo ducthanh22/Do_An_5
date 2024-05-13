@@ -28,8 +28,8 @@ namespace DTO
        
         public int? Price_product { get; set; }
         public Guid Idcolor { get; set; }
-        public int SalePrice { get; set; }
-        public int percent { get; set; }
+        public int? SalePrice { get; set; }
+        public int? percent { get; set; }
         public int? ActiveSale { get; set; }
 
         public List<SizeDto> ListSize { get; set; }

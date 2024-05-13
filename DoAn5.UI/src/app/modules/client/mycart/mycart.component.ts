@@ -70,7 +70,6 @@ export class MycartComponent {
       next: (res) => {
         if (res) {
           this.files = res
-          console.log(this.files)
         }
 
       }

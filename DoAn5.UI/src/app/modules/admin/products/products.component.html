@@ -42,7 +42,7 @@
                         [preview]="true"></p-image></td>
                 <!-- <td><img src="https://localhost:7058/Images/{{ product.image }}" [alt]="product.name"style="width: 100px;" /></td> -->
                 <td>{{ product.name }}</td>
-                <td>{{ product.price_product | currency:"VND" }}</td>
+                <td style="color: rgb(191, 10, 10);;">{{ product.price_product | currency:"VND" }}</td>
                 <td>{{ product.namecolor }}</td>
                 
                 <td [innerHTML]="product.describe"></td>

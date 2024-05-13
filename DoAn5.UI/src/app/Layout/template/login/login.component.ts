@@ -13,6 +13,9 @@ export class LoginComponent {
   value: string='' ;
   password: string='' ;
   FormLogin!:FormGroup
+  passwordFieldType: string = 'password';
+  showPassword: boolean = false;
+
   constructor(private AccountService:AccountService, private fb:FormBuilder,
     private router: Router){}
   ngOnInit(){
@@ -47,5 +50,9 @@ login() {
       },
     });
   }
+}
+togglePasswordVisibility(): void {
+  this.showPassword = !this.showPassword;
+  this.passwordFieldType = this.showPassword ? 'text' : 'password';
 }
 }
