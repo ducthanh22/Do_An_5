@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Subscription, interval } from 'rxjs';
-import { GetProductsDto, ProductsDto } from 'src/app/model';
+import { GetProductsDto, ProductsDto, bestSellingProducts } from 'src/app/model';
 import { AccountService } from 'src/app/service/account.service';
 import { ProducesService } from 'src/app/service/produces.service';
 import { ProductsService } from 'src/app/service/products.service';
@@ -21,6 +21,7 @@ export class HomeComponent {
   datasale!:any
   subscription!: Subscription;
   informationToken:any;
+  bestSellingProducts!:bestSellingProducts[]
   constructor(private ProducesService:ProducesService, private productService:ProductsService,private SaleService : SaleService,private AcountService:AccountService) {}
 
   ngOnInit() {
@@ -47,6 +48,7 @@ export class HomeComponent {
       this.Getproductnew();
       this.startUpdateSalesPrices();
       this.GetproductSale();
+      this.GetBestSellingProducts()
   }
   resetAcount(){
     if(this.informationToken && this.informationToken.status !=1  ){
@@ -82,6 +84,12 @@ export class HomeComponent {
       this.productsSale= data;
     });
   }
+  GetBestSellingProducts(){
+    this.productService.GetBestSellingProducts().subscribe(data=>{
+      this.bestSellingProducts= data;
+    });
+  }
+
 
   
 }

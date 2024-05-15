@@ -54,6 +54,9 @@ namespace BLL
         {
             return await _res.UploadFile(img);
         }
-
+        public async Task<List<bestSellingProducts>> GetBestSellingProducts()
+        {
+            return await _res.GetBestSellingProducts();
+        }
     }
 }

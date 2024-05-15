@@ -116,7 +116,7 @@
         <h2>Sản phẩm bán chạy</h2>
 
         <div class="card">
-            <p-dataView #dv [value]="products" [layout]="layout" [rows]="8" [paginator]="true">
+            <p-dataView #dv [value]="bestSellingProducts" [layout]="layout" [rows]="8" [paginator]="true">
                 <ng-template pTemplate="header">
                     <div class="flex justify-content-end">
                         <p-dataViewLayoutOptions layout="list"></p-dataViewLayoutOptions>
@@ -160,11 +160,11 @@
                                         <span style="margin-left: 2%;">{{product.namecategory }}</span>
                                     </div>
                                 </div>
-                                <div class="grid-price" *ngIf="product.activeSale ==0 || product.activeSale==null">
+                                <div class="grid-price" *ngIf="product.activeFlag ==0 || product.activeFlag==null">
                                     <span class="gspan">{{ product.price_product | currency:'VND' }}</span>
                                     <button pButton icon="pi pi-shopping-cart" class="product-cart-button"></button>
                                 </div>
-                                <div class="grid-price" *ngIf="product.activeSale ==1">
+                                <div class="grid-price" *ngIf="product.activeFlag ==1">
                                     <div class="salespan1" pBadge [value]="product.percent + '%'" severity="danger">
                                         <Del>{{ product.price_product | currency:'VND' }}</Del></div>
                                     <div class="salespan">{{ product.salePrice | currency:'VND' }}</div>

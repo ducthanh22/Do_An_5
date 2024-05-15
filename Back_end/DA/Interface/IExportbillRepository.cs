@@ -11,7 +11,7 @@ namespace DAL.Interface
 {
     public interface IExportbillRepository:IGenericRepository<Exportbill>
     {
-        Task<BaseQuerieResponse<ExportbillDto>> Search(int keywork, int page, int pageSize);
+        Task<BaseQuerieResponse<ExportbillDto>> Search(string keywork, int page, int pageSize);
         Task<CreateExportbillDto> CreateEX(CreateExportbillDto entity);
 
     }

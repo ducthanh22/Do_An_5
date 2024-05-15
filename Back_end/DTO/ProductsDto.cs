@@ -41,6 +41,20 @@ namespace DTO
         public IFormFile Img { get; set; }
         public string? Image { get; set; }
 
+    } 
+    public class bestSellingProducts
+    {
+        public Guid Id { get; set; }
+        public string Image { get; set; }
+        public int? Price_product { get; set; }
+        public int? SalePrice { get; set; }
+        public string Name { get; set; }
+        public int TotalQuantity { get; set; }
+        public int? ActiveFlag { get; set; }
+        public int? percent { get; set; }
+
+
+
     }
 
 }

@@ -29,3 +29,12 @@ export interface GetProductsDto extends BasedbDto {
     activeSale: number | null;
     listSize: SizeDto[];
 }
+export interface bestSellingProducts {
+    id: string;
+    image: string;
+    price_product: number | null;
+    salePrice: number | null;
+    name: string;
+    totalQuantity: number;
+    activeFlag: number | null;
+}

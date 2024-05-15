@@ -4,6 +4,7 @@ using DAL.Interface;
 using DTO;
 using Microsoft.EntityFrameworkCore;
 using Model;
+using static System.Net.Mime.MediaTypeNames;
 
 
 
@@ -200,6 +201,33 @@ namespace DAL
             return await query.ToListAsync();
         }
 
+        public async Task<List<bestSellingProducts>> GetBestSellingProducts()
+        {
+            var query = from a in _DbContext.Products
+                        join b in _DbContext.Detail_exportbill on a.Id equals b.Idproduct
+                        join c in _DbContext.Sale on a.Id equals c.IdProduct into cGroup
+                        from c  in cGroup.DefaultIfEmpty()
+                        join d in _DbContext.Price on a.Id equals d.Idproduct
+                        group b by new { a.Id, a.Name, a.Image, d.Price_product, c.SalePrice ,c.ActiveFlag, c.percent } into g
+                        select new bestSellingProducts
+                        {
+                            Id = g.Key.Id,
+                            Name = g.Key.Name,
+                            Image = g.Key.Image,
+                            Price_product = g.Key.Price_product,
+                            SalePrice = (g.Key.SalePrice != null) ? g.Key.SalePrice : null,
+                            ActiveFlag = (g.Key.ActiveFlag != null) ? g.Key.ActiveFlag : null,
+                            percent = (g.Key.percent != null) ? g.Key.percent : null,
+
+                            TotalQuantity = g.Sum(x => x.Quantity)
+                        };
+
+            var bestSellingProducts = await query.OrderByDescending(p => p.TotalQuantity).ToListAsync();
+
+            return bestSellingProducts;
+        }
+
+
         public async Task<List<GetProductsDto>> GetProductNew()
         {
             try { 
@@ -237,7 +265,7 @@ namespace DAL
                                  Idproduct=m.Idproduct,
                                  NameSize=m.NameSize
                              }).ToList()
-                         }).Take(8);
+                         });
 
 
 

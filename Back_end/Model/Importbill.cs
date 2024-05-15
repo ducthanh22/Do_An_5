@@ -11,6 +11,6 @@ namespace Model
     {
         public int Price { get; set; }
         public int Status { get; set; }
-        public Guid IdStaff { get; set; }
+        public string IdStaff { get; set; }
     }
 }

@@ -82,7 +82,7 @@ namespace DAL
                         join c in _DbContext.Products on b.Id_product equals c.Id
                         join d in _DbContext.User on a.Id_customer equals d.Id
                         join e in _DbContext.Size on c.Id equals e.Idproduct
-                        where (a.Id == id )
+                        where (a.Id == id && b.Idsize==e.Id )
                         group new { c, b ,e} by new { a.Id, a.Id_customer, a.Price, a.Address, a.Payment, a.status, a.Created, d.UserName, d.Email, d.PhoneNumber } into g
                         orderby g.Key.Created descending
                         select new GetorderDto

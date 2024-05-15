@@ -18,7 +18,7 @@ namespace DAL.Interface
         Task<ProductsDto> Updates(ProductsDto entity);
         Task<List<GetProductsDto>> GetProductNew();
         Task<List<GetProductsDto>> GetProductSale();
-
+        Task<List<bestSellingProducts>> GetBestSellingProducts();
 
     }
 }

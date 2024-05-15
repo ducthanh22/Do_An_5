@@ -914,7 +914,7 @@
     "Parameters": [
       {
         "Name": "keywork",
-        "Type": "System.Int32",
+        "Type": "System.String",
         "IsRequired": false
       },
       {
@@ -2063,6 +2063,26 @@
     "ReturnTypes": [
       {
         "Type": "System.Collections.Generic.List\u00601[[DTO.GetProductsDto, DTO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Back_end.Controllers.ProductController",
+    "Method": "GetBestSellingProducts",
+    "RelativePath": "api/Product/GetBestSellingProducts",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[DTO.bestSellingProducts, DTO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
