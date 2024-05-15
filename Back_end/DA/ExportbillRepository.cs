@@ -48,13 +48,13 @@ namespace DAL
                 IdStaff = entity.IdStaff,
                 Status = entity.Status,
                 Price = entity.Price,
+                Created = DateTime.Now
             };
 
-            var ExportbillEntity = _mapper.Map<Order>(ExportDto);
-            await _DbContext.Order.AddAsync(ExportbillEntity);
+            var ExportbillEntity = _mapper.Map<Exportbill>(ExportDto);
+            await _DbContext.Exportbill.AddAsync(ExportbillEntity);
             await _DbContext.SaveChangesAsync();
 
-            // Map and save order details
             foreach (var item in entity.Detail_exportbillDto)
             {
                 Detail_exportbillDto DetailDto = new Detail_exportbillDto
@@ -63,6 +63,9 @@ namespace DAL
                     Idproduct = item.Idproduct,
                     Quantity = item.Quantity,
                     Price = item.Price,
+                    Idsize=item.Idsize,
+                    Created = DateTime.Now
+
                 };
 
                 var DetailEntity = _mapper.Map<Detail_exportbill>(DetailDto);

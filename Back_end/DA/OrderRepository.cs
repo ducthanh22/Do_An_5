@@ -81,8 +81,9 @@ namespace DAL
                         join b in _DbContext.Order_detail on a.Id equals b.Id_Order
                         join c in _DbContext.Products on b.Id_product equals c.Id
                         join d in _DbContext.User on a.Id_customer equals d.Id
+                        join e in _DbContext.Size on c.Id equals e.Idproduct
                         where (a.Id == id )
-                        group new { c, b } by new { a.Id, a.Id_customer, a.Price, a.Address, a.Payment, a.status, a.Created, d.UserName, d.Email, d.PhoneNumber } into g
+                        group new { c, b ,e} by new { a.Id, a.Id_customer, a.Price, a.Address, a.Payment, a.status, a.Created, d.UserName, d.Email, d.PhoneNumber } into g
                         orderby g.Key.Created descending
                         select new GetorderDto
                         {
@@ -103,7 +104,8 @@ namespace DAL
                                 Image = x.c.Image,
                                 Product_name = x.c.Name,
                                 Quantity = x.b.Quantity,
-                                Price = x.b.Price
+                                Price = x.b.Price,
+                                Id_size=x.e.Id,
                             }).ToList()
                         };
 
@@ -125,6 +127,7 @@ namespace DAL
                             status=d.status,
                             Address= d.Address,
                             Username=a.UserName,
+                            Created=d.Created,
 
                         };
 

@@ -18,9 +18,9 @@ namespace BLL
         {
             _res = res;
         }
-        //public async Task<BaseQuerieResponse<Detail_exportbillDto>> Search(string keywork, int page, int pageSize)
-        //{
-        //    return await _res.Search(keywork, page, pageSize);
-        //}
+        public async Task<countProduct> CountProduct(Guid id)
+        {
+            return await _res.CountProduct(id);
+        }
     }
 }

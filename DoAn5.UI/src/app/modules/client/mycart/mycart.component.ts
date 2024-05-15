@@ -8,6 +8,8 @@ import { AccountService } from 'src/app/service/account.service';
 import { OrderService } from 'src/app/service/order.service';
 import { RatingService } from 'src/app/service/rating.service';
 import { format } from 'date-fns';
+import { exportBillService } from 'src/app/service/Exportbill.service';
+import { CreateExportbillDto } from 'src/app/model/exportBill';
 @Component({
   selector: 'app-mycart',
   templateUrl: './mycart.component.html',
@@ -22,12 +24,12 @@ export class MycartComponent {
   informationToken: any
   visible: boolean = false
   evaluate: number = 0;
-  data_evaluate: any
-  createRating!: CreateRatingDto
-  order:any
-
+  data_evaluate: any;
+  createRating!: CreateRatingDto;
+  order: any;
+  active!: number
   constructor(public messageService: MessageService, private OrderService: OrderService, private AcountService: AccountService,
-    private router: Router, private RatingService: RatingService) { }
+    private router: Router, private RatingService: RatingService,private exportBillService:exportBillService) { }
 
   ngOnInit() {
     this.informationToken = this.AcountService.decodeToken();
@@ -43,7 +45,7 @@ export class MycartComponent {
         command: () => { this.GetOrderProduct(2); }
       },
       {
-        label: 'Chờ giao hàng',
+        label: 'Đang giao hàng',
         command: () => { this.GetOrderProduct(3); }
       },
       {
@@ -93,39 +95,102 @@ export class MycartComponent {
       }))
     }
     this.RatingService.CreateS(this.createRating).subscribe({
+      next: (res) => {
+        if (res) {
+          this.OrderService.getbyid(res.listRating[0].id_Order).subscribe({
+            next: (res) => {
+              if (res) {
+                this.order = res;
+                const order: OrderDto = {
+                  id: this.order[0].id,
+                  id_customer: this.order[0].id_customer,
+                  status: 5,
+                  price: this.order[0].price,
+                  address: this.order[0].address,
+                  payment: this.order[0].payment,
+                  activeFlag: 1,
+                  createdBy: null,
+                  created: format(this.order[0].created, "yyyy-MM-dd'T'HH:mm:ss.SSS"),
+                  modifiedBy: null,
+                  modified: format(new Date(), "yyyy-MM-dd'T'HH:mm:ss.SSS")
+                }
+                this.OrderService.Update(order).subscribe({
+                  next: (res) => {
+                    if (res) {
+                            this.GetOrderProduct(4);
+                            this.visible = false
+                            this.messageService.add({ severity: 'success', summary: 'Thành công', detail: 'Đánh giá thành công' })
+                          }
+                        }
+                      })
+                    }
+                  }
+                })
+              }
+            }
+          })
+        }
+      
+    
+
+  
+
+
+  Update(data: any, status: number) {
+    status == 7 ? this.active = 0 : this.active = 1
+    const order: OrderDto = {
+      id: data.id,
+      id_customer: data.id_customer,
+      status: status,
+      price: data.price,
+      address: data.address,
+      payment: data.payment,
+      activeFlag: this.active,
+      createdBy: null,
+      created: format(data.created, "yyyy-MM-dd'T'HH:mm:ss.SSS"),
+      modifiedBy: null,
+      modified: format(new Date(), "yyyy-MM-dd'T'HH:mm:ss.SSS")
+    }
+    this.OrderService.Update(order).subscribe({
       next: (value) => {
         if (value) {
-          this.messageService.add({ severity: 'success', summary: 'Thành công', detail: 'Đánh giá thành công' })
-         
-          for (let x of value.listRating){
-            this.OrderService.getbyid(x.id_Order).subscribe({
-              next:(value)=>{
-                this.order=value
+          this.OrderService.getbyid(data.id).subscribe({
+            next:(res)=>{
+              if(res){
+                this.order=res;
+                const exportBill : CreateExportbillDto={
+                             
+                  price: this.order[0].price,
+                  status: 0,
+                  idStaff: this.order[0].id_customer,
+                  detail_exportbillDto:this.order[0].orderProductList.map((item: any) => ({
+                    // id_Order: undefined,
+                    Idproduct: item.id_product,
+                    idsize: item.id_size,
+                    quantity: item.quantity,
+                    price: item.price,
+                  }))
+                }
+                this.exportBillService.create(exportBill).subscribe({
+                  next:(res)=>{
+                    if(res){
+                      this.GetOrderProduct(3);
+                      this.visible = false
+                      this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Đã nhận hàng thành công' })
+                    }
+                  }
+                })
               }
-            })
-            const order: OrderDto = {
-              id: x.id_Order,
-              id_customer: x.id_customer,
-              status: 5,
-              price: this.data_evaluate.price,
-              address: this.data_evaluate.address,
-              payment: this.data_evaluate.payment,
-              activeFlag: null,
-              createdBy: null,
-              created: format(this.order?.created, "yyyy-MM-dd'T'HH:mm:ss.SSS"),
-              modifiedBy: null,
-              modified: format(new Date(), "yyyy-MM-dd'T'HH:mm:ss.SSS")
             }
-            this.OrderService.Update(order).subscribe(data=>{
-              const a =data
-            })
-          }
+          })
         }
-        this.GetOrderProduct(4);
-        this.visible=false
-      },
+      }
     })
+   
+
   }
+
+
   OpenPay() {
     if (this.informationToken) {
       this.files && this.files.length > 0 ? this.router.navigate(['/client/pay']) : this.router.navigate(['/client/Home'])

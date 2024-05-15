@@ -51,6 +51,12 @@ namespace Back_end.Controllers
             var result = await _Bus.Delete(id);
             return Ok(result);
         }
-        
+        [HttpGet("CountProduct/{id}")]
+        public async Task<ActionResult<countProduct>> CountProduct(Guid id)
+        {
+            var result = await _Bus.CountProduct(id);
+            return Ok(result);
+        }
+
     }
 }

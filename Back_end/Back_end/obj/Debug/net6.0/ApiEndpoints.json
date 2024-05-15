@@ -410,6 +410,32 @@
   },
   {
     "ContainingType": "Back_end.Controllers.Detail_exportbillController",
+    "Method": "CountProduct",
+    "RelativePath": "api/Detail_exportbill/CountProduct/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "DTO.countProduct",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Back_end.Controllers.Detail_exportbillController",
     "Method": "Create",
     "RelativePath": "api/Detail_exportbill/create",
     "HttpMethod": "POST",
@@ -790,13 +816,13 @@
     "Parameters": [
       {
         "Name": "dto",
-        "Type": "Model.Exportbill",
+        "Type": "DTO.CreateExportbillDto",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "DTO.ExportbillDto",
+        "Type": "DTO.CreateExportbillDto",
         "MediaTypes": [
           "text/plain",
           "application/json",

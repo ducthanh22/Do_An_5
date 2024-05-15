@@ -2,7 +2,9 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { ProductsDto } from 'src/app/model';
+import { countProduct } from 'src/app/model/exportBill';
 import { GetRatingDto } from 'src/app/model/rating';
+import { exportBillService } from 'src/app/service/Exportbill.service';
 import { AccountService } from 'src/app/service/account.service';
 import { ProductsService } from 'src/app/service/products.service';
 import { RatingService } from 'src/app/service/rating.service';
@@ -24,9 +26,11 @@ export class DetailproductsComponent {
   page!:number;
   datas: GetRatingDto[] = [];
   Totalcount!: number;
-  informationToken: any
+  informationToken: any;
+  countProduct!:countProduct;
+
   constructor(private route: ActivatedRoute, private productService: ProductsService, private MessageSV: MessageService,
-    private RatingService: RatingService, private AcountService: AccountService) { }
+    private RatingService: RatingService, private AcountService: AccountService, private exportBillService :exportBillService) { }
   ngOnInit() {
     this.informationToken = this.AcountService.decodeToken();
     this.Carts = this.productService.GetCart();
@@ -36,7 +40,17 @@ export class DetailproductsComponent {
       }
       this.getbyid(this.id);
       this.GetRating(this.id,1,10)
+      this.CountProduct(this.id)
     });
+  }
+  CountProduct(id:string){
+    this.exportBillService.countProduct(id).subscribe({
+      next:(res)=>{
+        if(res){
+          this.countProduct=res;
+        }
+      }
+    })
   }
   getbyid(id: string) {
     this.productService.getbyid(this.id).subscribe({

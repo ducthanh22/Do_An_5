@@ -11,7 +11,7 @@ namespace BLL.Interface
 {
     public interface IDetail_exportbillBus : IGenericBUS<Detail_exportbill>
     {
-        //Task<BaseQuerieResponse<Detail_exportbillDto>> Search(string keywork, int page, int pageSize);
+        Task<countProduct> CountProduct(Guid id);
 
     }
 }

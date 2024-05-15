@@ -1,5 +1,5 @@
 export interface BasedbDto {
-    id: string;
+    id: string | null;
     activeFlag: number | null;
     createdBy: number | null;
     created: string | null;

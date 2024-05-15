@@ -8,7 +8,7 @@ namespace DTO
         public Guid Id { get; set; }
         public int? ActiveFlag { get; set; }
         public Guid? CreatedBy { get; set; }
-        public DateTime? Created { get; set; }= DateTime.Now;
+        public DateTime? Created { get; set; }
         public Guid? ModifiedBy { get; set; }
         public DateTime? Modified { get; set; }
 

@@ -34,9 +34,9 @@ namespace Back_end.Controllers
         }
 
         [HttpPost("create")]
-        public async Task<ActionResult<ExportbillDto>> Create([FromBody] Exportbill dto)
+        public async Task<ActionResult<CreateExportbillDto>> Create([FromBody] CreateExportbillDto dto)
         {
-            var createdEntity = await _Bus.Create(dto);
+            var createdEntity = await _Bus.CreateEX(dto);
 
             return Ok(createdEntity);
         }

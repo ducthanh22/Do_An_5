@@ -16,4 +16,10 @@ namespace DTO
         public int Price { get; set; }
         public int Quantity { get; set; }
     }
+    public class countProduct
+    {
+        public Guid Idproduct { get; set;}
+        public int TotalQuantity { get; set; }
+
+    }
 }

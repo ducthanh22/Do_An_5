@@ -48,6 +48,9 @@ namespace DTO.AutoMapper
             CreateMap<User, GennToken>().ReverseMap();
             CreateMap<PaymentTransactions,PaymentDto>().ReverseMap();
             CreateMap<Rating, RatingDto>().ReverseMap();
+            CreateMap<Exportbill, CreateExportbillDto>().ReverseMap();
+            CreateMap<Detail_exportbill, CreateExportbillDto>().ReverseMap();
+
 
         }
     }
