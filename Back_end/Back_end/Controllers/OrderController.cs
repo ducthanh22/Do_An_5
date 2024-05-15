@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Model;
 using DTO;
+using Back_end.Attribute;
+using DTO.Enum;
 
 
 
@@ -30,18 +32,18 @@ namespace Back_end.Controllers
         [HttpGet("GetByid/{id}")]
         public async Task<ActionResult<OrderDto>> Getbyid(Guid id)
         {
-            var result = await _Bus.Getbyid(id);
+            var result = await _Bus.Getbyids(id);
             return Ok(result);
         }
         [HttpGet("GetByCustomer")]
-        public async Task<ActionResult<List<OrderDto>>> GetbyCustomerGet(Guid id)
+        public async Task<ActionResult<List<OrderDto>>> GetbyCustomerGet(string id)
         {
             var result = await _Bus.GetbyCustomer(id);
 
             return Ok(result);
         }
         [HttpGet("GetOrderProduct")]
-        public async Task<ActionResult<List<GetorderDto>>> GetOrderProduct(Guid id, int status)
+        public async Task<ActionResult<List<GetorderDto>>> GetOrderProduct(string id, int status)
         {
             var result = await _Bus.GetOrderProduct(id, status);
 
@@ -68,13 +70,17 @@ namespace Back_end.Controllers
             var result = await _Bus.Delete(id);
             return Ok(result);
         }
+        [HttpGet("Search")]
+        //[HasPermission(new[] { (int)EnumModule.Module.QlDh }, new[] { (int)EnumPermission.Type.Read })]
 
-        [HttpPost("CrateOrder")]
-        public async Task<ActionResult<CreateOrderDto>> CreateOrder([FromBody] CreateOrderDto entity)
+        public async Task<IActionResult> Search([FromQuery] Paging paging)
         {
-            var result = await _Bus.CreateOrder(entity);
+            var result = await _Bus.Search(paging);
+
+
             return Ok(result);
         }
-        
+
+
     }
 }

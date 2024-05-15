@@ -40,5 +40,20 @@ namespace DAL
             };
             return searchResults;
         }
+        public async Task<List<Product_typeDto>> GetByCategory( Guid id)
+        {
+             var query = from a in _DbContext.Product_type
+                         join b in _DbContext.Categorie on a.Idcategories equals b.Id
+                         where a.Idcategories==id
+                         select new Product_typeDto
+                         {
+                             Id = a.Id,
+                             Name = a.Name,
+                             Idcategories = b.Id
+                         };
+
+            return await query.ToListAsync();
+
+        }
     }
 }

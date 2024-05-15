@@ -137,12 +137,12 @@ export class PayproductsComponent {
                   id: res.vnp_TxnRef,
                   id_customer: this.informationAccount.Id,
                   status: 2,
-                  price: res.vnp_Amount,
+                  price: this.order[0]?.price,
                   address: this.FormPay.value.Address,
-                  payment: this.order.payment,
+                  payment: this.order[0]?.payment,
                   activeFlag: null,
                   createdBy: null,
-                  created: format(this.order?.created, "yyyy-MM-dd'T'HH:mm:ss.SSS"),
+                  created: format(this.order[0]?.created, "yyyy-MM-dd'T'HH:mm:ss.SSS"),
                   modifiedBy: null,
                   modified: format(new Date(), "yyyy-MM-dd'T'HH:mm:ss.SSS")
                 }

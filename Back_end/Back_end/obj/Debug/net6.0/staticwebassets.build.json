@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "4Cjkd+XywCSBPtcHA3oNmZHiJZpYOc6bnZKp+ZAxNJA=",
+  "Hash": "XzCJQaJrhu5goc47v+MYdbQZt+GoUaqRDqefCBsTu/M=",
   "Source": "Back_end",
   "BasePath": "_content/Back_end",
   "Mode": "Default",
@@ -17,12 +17,12 @@
   ],
   "Assets": [
     {
-      "Identity": "D:\\Do_An_5\\Back_end\\Back_end\\wwwroot\\Images\\72ebb5b7-66a0-4bd3-bfcf-c1aeb3c78bf0-polo_den.jpg",
+      "Identity": "D:\\Do_An_5\\Back_end\\Back_end\\wwwroot\\Images\\02486a53-11a0-425c-8cc1-f22a21ff2e39-APC24067.jpg",
       "SourceId": "Back_end",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\Do_An_5\\Back_end\\Back_end\\wwwroot\\",
       "BasePath": "_content/Back_end",
-      "RelativePath": "Images/72ebb5b7-66a0-4bd3-bfcf-c1aeb3c78bf0-polo_den.jpg",
+      "RelativePath": "Images/02486a53-11a0-425c-8cc1-f22a21ff2e39-APC24067.jpg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -33,15 +33,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\Images\\72ebb5b7-66a0-4bd3-bfcf-c1aeb3c78bf0-polo_den.jpg"
+      "OriginalItemSpec": "wwwroot\\Images\\02486a53-11a0-425c-8cc1-f22a21ff2e39-APC24067.jpg"
     },
     {
-      "Identity": "D:\\Do_An_5\\Back_end\\Back_end\\wwwroot\\Images\\7401a77f-143d-4982-b66b-e345c7e3f324-APC24067.jpg",
+      "Identity": "D:\\Do_An_5\\Back_end\\Back_end\\wwwroot\\Images\\9e1e93a7-2e45-4abf-a86e-9cc123811619-IAIk3zbeifxTNhcFUhOdyQj5uQUvCjMDaM1nMkHz.jpg",
       "SourceId": "Back_end",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\Do_An_5\\Back_end\\Back_end\\wwwroot\\",
       "BasePath": "_content/Back_end",
-      "RelativePath": "Images/7401a77f-143d-4982-b66b-e345c7e3f324-APC24067.jpg",
+      "RelativePath": "Images/9e1e93a7-2e45-4abf-a86e-9cc123811619-IAIk3zbeifxTNhcFUhOdyQj5uQUvCjMDaM1nMkHz.jpg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -52,7 +52,26 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\Images\\7401a77f-143d-4982-b66b-e345c7e3f324-APC24067.jpg"
+      "OriginalItemSpec": "wwwroot\\Images\\9e1e93a7-2e45-4abf-a86e-9cc123811619-IAIk3zbeifxTNhcFUhOdyQj5uQUvCjMDaM1nMkHz.jpg"
+    },
+    {
+      "Identity": "D:\\Do_An_5\\Back_end\\Back_end\\wwwroot\\Images\\da2a4f96-5557-4435-a6aa-0ae1b89a001f-polo_den.jpg",
+      "SourceId": "Back_end",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Do_An_5\\Back_end\\Back_end\\wwwroot\\",
+      "BasePath": "_content/Back_end",
+      "RelativePath": "Images/da2a4f96-5557-4435-a6aa-0ae1b89a001f-polo_den.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\da2a4f96-5557-4435-a6aa-0ae1b89a001f-polo_den.jpg"
     },
     {
       "Identity": "D:\\Do_An_5\\Back_end\\Back_end\\wwwroot\\Img_Brand\\016c577a-d5ed-4439-b9c2-6765145780f3-LV.jpg",

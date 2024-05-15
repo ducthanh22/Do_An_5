@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-
 using DAL.Interface;
 using Microsoft.EntityFrameworkCore;
 using Model;

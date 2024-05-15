@@ -23,6 +23,7 @@ import { FileUploadModule } from 'primeng/fileupload';
 import { ProduceComponent } from './produce/produce.component';
 import { ToastModule } from 'primeng/toast';
 import { ProductTypeComponent } from './product-type/product-type.component';
+import { OrderComponent } from './order/order.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { ProductTypeComponent } from './product-type/product-type.component';
     ProductsComponent,
     ProduceComponent,
     ProductTypeComponent,
+    OrderComponent,
   
   
   ],

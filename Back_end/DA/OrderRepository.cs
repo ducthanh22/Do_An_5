@@ -10,6 +10,7 @@ using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 using static System.Net.Mime.MediaTypeNames;
+using static Microsoft.Extensions.Logging.EventSource.LoggingEventSource;
 
 namespace DAL
 {
@@ -18,7 +19,7 @@ namespace DAL
         public OrderRepository(Achino_DbContext dbContext, IMapper mapper) : base(dbContext, mapper)
         {
         }
-        public async Task<List<OrderDto>> GetbyCustomer(Guid id)
+        public async Task<List<OrderDto>> GetbyCustomer(string id)
         {
             var query = from a in _DbContext.Order
                         where (a.Id_customer ==id)
@@ -37,14 +38,15 @@ namespace DAL
             return await query.ToListAsync();
         }
 
-        public async Task<List<GetorderDto>> GetOrderProduct(Guid id, int status)
+        public async Task<List<GetorderDto>> GetOrderProduct(string id, int status)
         {
 
             var query = from a in _DbContext.Order
                         join b in _DbContext.Order_detail on a.Id equals b.Id_Order 
                         join c in _DbContext.Products on b.Id_product equals c.Id 
+                        join d in _DbContext.User on a.Id_customer equals d.Id
                         where (a.Id_customer == id && a.status == status)
-                        group new { c, b } by new { a.Id, a.Id_customer, a.Price, a.Address, a.Payment, a.status ,a.Created} into g
+                        group new { c, b} by new { a.Id, a.Id_customer, a.Price, a.Address, a.Payment, a.status ,a.Created, d.UserName,d.Email,d.PhoneNumber} into g
                         orderby g.Key.Created descending
                         select new GetorderDto
                         {
@@ -55,6 +57,9 @@ namespace DAL
                             Payment = g.Key.Payment,
                             Status = g.Key.status,
                             Quantity= g.Count(),
+                            Username=g.Key.UserName,
+                            Phone=g.Key.PhoneNumber,
+                            Email=g.Key.Email,
                             Created= g.Key.Created,
                             OrderProductList = g.Select(x => new Order_productDto
                             {
@@ -68,6 +73,73 @@ namespace DAL
 
 
             return await query.ToListAsync();
+        }
+        public async Task<List<GetorderDto>> Getbyids(Guid id)
+        {
+
+            var query = from a in _DbContext.Order
+                        join b in _DbContext.Order_detail on a.Id equals b.Id_Order
+                        join c in _DbContext.Products on b.Id_product equals c.Id
+                        join d in _DbContext.User on a.Id_customer equals d.Id
+                        where (a.Id == id )
+                        group new { c, b } by new { a.Id, a.Id_customer, a.Price, a.Address, a.Payment, a.status, a.Created, d.UserName, d.Email, d.PhoneNumber } into g
+                        orderby g.Key.Created descending
+                        select new GetorderDto
+                        {
+                            Id = g.Key.Id,
+                            Id_customer = g.Key.Id_customer,
+                            Price = g.Key.Price,
+                            Address = g.Key.Address,
+                            Payment = g.Key.Payment,
+                            Status = g.Key.status,
+                            Quantity = g.Count(),
+                            Username = g.Key.UserName,
+                            Phone = g.Key.PhoneNumber,
+                            Email = g.Key.Email,
+                            Created = g.Key.Created,
+                            OrderProductList = g.Select(x => new Order_productDto
+                            {
+                                Id_product = x.c.Id,
+                                Image = x.c.Image,
+                                Product_name = x.c.Name,
+                                Quantity = x.b.Quantity,
+                                Price = x.b.Price
+                            }).ToList()
+                        };
+
+            return await query.ToListAsync();
+        }
+        public async Task<BaseQuerieResponse<OrderDto>> Search(Paging paging)
+        {
+            var query = from d in _DbContext.Set<Order>()
+            join a in _DbContext.User on d.Id_customer equals a.Id
+                        where  (string.IsNullOrEmpty(paging.Keyword) ||a.UserName.Contains(paging.Keyword) || a.Email.Contains( paging.Keyword))
+                        orderby d.Created descending
+
+                        select new OrderDto
+                        {
+                            Id=d.Id,
+                            Id_customer=d.Id_customer,
+                            Price = d.Price,
+                            Payment = d.Payment,    
+                            status=d.status,
+                            Address= d.Address,
+                            Username=a.UserName,
+
+                        };
+
+            var totalCount = await query.LongCountAsync();
+            var pageResults = await query.Skip((paging.PageIndex - 1) * paging.PageSize).Take(paging.PageSize).ToListAsync();
+
+            var searchResults = new BaseQuerieResponse<OrderDto>
+            {
+                PageIndex = paging.PageIndex,
+                PageSize = paging.PageSize,
+                Keyword = paging.Keyword,
+                TotalFilter = totalCount,
+                Data = pageResults
+            };
+            return searchResults;
         }
         public async Task<CreateOrderDto> CreateOrder(CreateOrderDto entity)
         {

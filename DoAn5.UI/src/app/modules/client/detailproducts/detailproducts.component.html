@@ -7,10 +7,10 @@
       <h3>{{data.name}}</h3>
       <div class="product_infomatiom">
         <div class="price" *ngIf="data?.activeSale==0 || data?.activeSale== null">
-          <span style="color:rgb(193, 19, 19);font-size: larger;font-weight: bold;">{{data?.price_product |currency:'VND'}}</span>
+          <span style="color:rgb(193, 19, 19);font-size: larger;font-weight: bold;">{{data?.price_product |currency:'VND':''}}đ</span>
         </div>
         <div class="price"*ngIf="data?.activeSale==1">
-          <div><span style="color:rgb(193, 19, 19);font-size: larger;font-weight: bold;">{{data?.salePrice |currency:'VND'}}</span></div>
+          <div><span style="color:rgb(193, 19, 19);font-size: larger;font-weight: bold;">{{data?.salePrice |currency:'VND':''}}đ</span></div>
           <div style="margin-left: 10%;">  <span style="font-size: larger;" pBadge  [value]="data?.percent + '%'"  severity="danger" ><del>{{data?.price_product |currency:'VND'}}</del></span></div>
         </div>
         <div class="color">

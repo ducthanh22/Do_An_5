@@ -1,11 +1,11 @@
 ﻿<Project>
   <ItemGroup>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\Images\72ebb5b7-66a0-4bd3-bfcf-c1aeb3c78bf0-polo_den.jpg))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\Images\02486a53-11a0-425c-8cc1-f22a21ff2e39-APC24067.jpg))">
       <SourceType>Package</SourceType>
       <SourceId>Back_end</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/Back_end</BasePath>
-      <RelativePath>Images/72ebb5b7-66a0-4bd3-bfcf-c1aeb3c78bf0-polo_den.jpg</RelativePath>
+      <RelativePath>Images/02486a53-11a0-425c-8cc1-f22a21ff2e39-APC24067.jpg</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
@@ -14,14 +14,14 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\Images\72ebb5b7-66a0-4bd3-bfcf-c1aeb3c78bf0-polo_den.jpg))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\Images\02486a53-11a0-425c-8cc1-f22a21ff2e39-APC24067.jpg))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\Images\7401a77f-143d-4982-b66b-e345c7e3f324-APC24067.jpg))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\Images\9e1e93a7-2e45-4abf-a86e-9cc123811619-IAIk3zbeifxTNhcFUhOdyQj5uQUvCjMDaM1nMkHz.jpg))">
       <SourceType>Package</SourceType>
       <SourceId>Back_end</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/Back_end</BasePath>
-      <RelativePath>Images/7401a77f-143d-4982-b66b-e345c7e3f324-APC24067.jpg</RelativePath>
+      <RelativePath>Images/9e1e93a7-2e45-4abf-a86e-9cc123811619-IAIk3zbeifxTNhcFUhOdyQj5uQUvCjMDaM1nMkHz.jpg</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
@@ -30,7 +30,23 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\Images\7401a77f-143d-4982-b66b-e345c7e3f324-APC24067.jpg))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\Images\9e1e93a7-2e45-4abf-a86e-9cc123811619-IAIk3zbeifxTNhcFUhOdyQj5uQUvCjMDaM1nMkHz.jpg))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\Images\da2a4f96-5557-4435-a6aa-0ae1b89a001f-polo_den.jpg))">
+      <SourceType>Package</SourceType>
+      <SourceId>Back_end</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Back_end</BasePath>
+      <RelativePath>Images/da2a4f96-5557-4435-a6aa-0ae1b89a001f-polo_den.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\Images\da2a4f96-5557-4435-a6aa-0ae1b89a001f-polo_den.jpg))</OriginalItemSpec>
     </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\Img_Brand\016c577a-d5ed-4439-b9c2-6765145780f3-LV.jpg))">
       <SourceType>Package</SourceType>

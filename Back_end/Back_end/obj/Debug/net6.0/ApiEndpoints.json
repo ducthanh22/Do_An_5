@@ -1206,32 +1206,6 @@
   },
   {
     "ContainingType": "Back_end.Controllers.OrderController",
-    "Method": "CreateOrder",
-    "RelativePath": "api/Order/CrateOrder",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "entity",
-        "Type": "DTO.CreateOrderDto",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "DTO.CreateOrderDto",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "Back_end.Controllers.OrderController",
     "Method": "Create",
     "RelativePath": "api/Order/create",
     "HttpMethod": "POST",
@@ -1312,7 +1286,7 @@
     "Parameters": [
       {
         "Name": "id",
-        "Type": "System.Guid",
+        "Type": "System.String",
         "IsRequired": false
       }
     ],
@@ -1364,7 +1338,7 @@
     "Parameters": [
       {
         "Name": "id",
-        "Type": "System.Guid",
+        "Type": "System.String",
         "IsRequired": false
       },
       {
@@ -1384,6 +1358,37 @@
         "StatusCode": 200
       }
     ]
+  },
+  {
+    "ContainingType": "Back_end.Controllers.OrderController",
+    "Method": "Search",
+    "RelativePath": "api/Order/Search",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "PageIndex",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "PageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "Keyword",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "OrderBy",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
   },
   {
     "ContainingType": "Back_end.Controllers.OrderController",
@@ -1851,6 +1856,32 @@
     "ReturnTypes": [
       {
         "Type": "System.Collections.Generic.List\u00601[[Model.Product_type, Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Back_end.Controllers.Product_typeController",
+    "Method": "GetByCategory",
+    "RelativePath": "api/Product_type/GetByCategory/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[DTO.Product_typeDto, DTO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",

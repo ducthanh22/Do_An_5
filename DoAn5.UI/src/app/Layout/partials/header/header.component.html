@@ -1,5 +1,5 @@
 <div class="card">
-  <p-menubar [model]="items" class="fixed-menu">
+  <p-menubar [model]="items" class="fixed-menu custom-input">
     <ng-template pTemplate="start">
       <img src="/./assets/client/assets/img/snapedit_Achino.png" height="45px" width="100%" class="mr-2"
         [routerLink]="['']" />
@@ -10,14 +10,14 @@
         <input type="text" pInputText placeholder="Search" class="w-full" style="margin-right: 100px;" />
 
         <i class="pi pi-cart-plus" [routerLink]="['/client','cart']">
-          Giỏ hàng
+          <span class="custom-input"> Giỏ hàng</span>
           <span *ngIf="Carts.length > 0" pBadge [value]="Carts.length" severity="danger"></span>
         </i>
         
-        <i class="pi pi-user" [routerLink]="['/Login']" routerLinkActive="router-link-active"
-          *ngIf="showName()==' Đăng Nhập'"> {{showName()}}</i>
+        <i class="pi pi-user " [routerLink]="['/Login']" routerLinkActive="router-link-active"
+          *ngIf="showName()==' Đăng nhập'"> <span class="custom-input"> {{showName()}}</span></i>
         <i class="pi pi-user" (click)="menu.toggle($event)" icon="pi pi-bars" label="Show"
-          *ngIf="showName()!=' Đăng Nhập'"> {{showName()}}</i>
+          *ngIf="showName()!=' Đăng nhập'"><span class="custom-input"> {{showName()}}</span></i>
         <p-toast></p-toast>
         <p-menu #menu [model]="itemAccount" [popup]="true" appendTo="body"></p-menu>
       </ng-container>

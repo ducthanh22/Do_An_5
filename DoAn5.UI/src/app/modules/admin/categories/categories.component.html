@@ -14,7 +14,7 @@
                 <i class="pi pi-search"></i>
                 <input type="text" class="p-inputtext" pInputText [(ngModel)]="keyword" placeholder="Tìm kiếm..."
                     [ngModelOptions]="{standalone: true}" />
-                <!-- <p-button type="submit" icon="pi pi-search"></p-button> -->
+                <p-button type="submit" icon="pi pi-search"></p-button>
             </form>
         </ng-template>
         <ng-template pTemplate="header">
@@ -67,7 +67,7 @@
                 <div class="input-container">
                     <label for="name">Tên</label>
                     <div class="dropdown-wrapper">
-                        <input type="text" class="p-inputtext" pInputText formControlName="name" />
+                        <input type="text" class="p-inputtext custom-input" pInputText formControlName="name" />
                     </div>
                 </div>
             </div>

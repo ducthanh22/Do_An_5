@@ -13,40 +13,38 @@
                 <i class="pi pi-search"></i>
                 <input type="text" class="p-inputtext" pInputText [(ngModel)]="keyword" placeholder="Tìm kiếm..."
                     [ngModelOptions]="{standalone: true}" />
-                <!-- <p-button type="submit" icon="pi pi-search"></p-button> -->
+                <p-button type="submit" icon="pi pi-search"></p-button>
             </form>
 
 
         </ng-template>
         <ng-template pTemplate="header">
             <tr>
-                <th style="width:3%;">STT</th>
+               <th class="center-align" style="width:3%;">STT</th>
+                <!--<th class="center-align" style="width:15%;">Mã</th> -->
+               <th class="center-align">Ảnh</th>
+               <th class="center-align">Tên</th>
+               <th class="center-align">Giá</th>
+               <th class="center-align">Màu</th>
+    
+                <!--<th class="center-align" >Mô tả</th> -->
 
-                <th style="width:15%;">Mã</th>
-                <th>Ảnh</th>
-                <th>Tên</th>
-                <th>Giá</th>
-                <th>Màu</th>
-               
-                <th >Mô tả</th>
-
-                <th>Chức năng</th>
+               <th class="center-align">Chức năng</th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-product let-rowIndex="rowIndex">
             <tr>
-                <td>{{ rowIndex + 1}}</td>
-                <td>{{ product.id }}</td>
-                <td><p-image src="https://localhost:7058/Images/{{ product.image }}"
+               <td class="center-align">{{ rowIndex + 1}}</td>
+                <!--<td class="center-align">{{ product.id }}</td> -->
+               <td class="center-align"><p-image src="https://localhost:7058/Images/{{ product.image }}"
                         previewImageSrc="https://localhost:7058/Images/{{ product.image }}" alt="Image" width="100"
                         [preview]="true"></p-image></td>
-                <!-- <td><img src="https://localhost:7058/Images/{{ product.image }}" [alt]="product.name"style="width: 100px;" /></td> -->
-                <td>{{ product.name }}</td>
-                <td style="color: rgb(191, 10, 10);;">{{ product.price_product | currency:"VND" }}</td>
-                <td>{{ product.namecolor }}</td>
+               <td class="center-align">{{ product.name }}</td>
+               <td class="center-align" style="color: rgb(191, 10, 10);;">{{ product.price_product | currency:"VND" :'symbol'}}</td>
+               <td class="center-align">{{ product.namecolor }}</td>
                 
-                <td [innerHTML]="product.describe"></td>
-                <td>
+                <!--<td class="center-align" [innerHTML]="product.describe"></td> -->
+               <td class="center-align">
                     <i class="pi pi-eye" style="color: slateblue; margin-left: 5%;"></i>
                     <i class="pi pi-pencil" style="color: rgb(255, 132, 0); margin-left: 5%;"
                         (click)="Edit(product)"></i>
@@ -123,18 +121,18 @@
                     <p-table [value]="listsize.controls">
                         <ng-template pTemplate="header">
                             <tr> 
-                                <th>Name Size</th>
-                                <th>Actions</th>
-                                <th *ngIf="listsize.length==0"> <p-button (click)="addSize()" icon="pi pi-plus-circle" label="Thêm"></p-button></th>
+                               <th class="center-align">Name Size</th>
+                               <th class="center-align">Actions</th>
+                               <th class="center-align" *ngIf="listsize.length==0"> <p-button (click)="addSize()" icon="pi pi-plus-circle" label="Thêm"></p-button></th>
 
                             </tr>
                         </ng-template>
                         <ng-template pTemplate="body" pTemplate="body" let-size let-i="rowIndex">
                             <tr [formGroup]="size" >
-                                <td>
+                               <td class="center-align">
                                   <input type="text" class="p-inputtext" pInputText  formControlName="NameSize">
                                 </td>
-                                <td>
+                               <td class="center-align">
                                     <i class="pi pi-plus-circle"style="color: green" (click)="addSize()"></i>
                                     <i class="pi pi-trash"style="color: red;margin-left: 20%"(click)="removeSize(i,size.controls.id.value)"></i>
                                 </td>

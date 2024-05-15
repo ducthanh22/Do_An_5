@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Model;
 using BLL.Interface;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Back_end.Controllers
 {
@@ -22,6 +23,13 @@ namespace Back_end.Controllers
         public async Task<ActionResult<List<Product_type>>> GetAll()
         {
             var result = await _Bus.GetAll();
+            return Ok(result);
+        }
+        [HttpGet("GetByCategory/{id}")]
+        [AllowAnonymous]
+        public async Task<ActionResult<List<Product_typeDto>>> GetByCategory(Guid id)
+        {
+            var result = await _Bus.GetByCategory(id);
             return Ok(result);
         }
 

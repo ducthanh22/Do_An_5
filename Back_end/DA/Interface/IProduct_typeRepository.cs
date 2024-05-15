@@ -11,6 +11,7 @@ namespace DAL.Interface
     public interface IProduct_typeRepository : IGenericRepository<Product_type>
     {
         Task<BaseQuerieResponse<Product_typeDto>> Search(Paging paging);
+        Task<List<Product_typeDto>> GetByCategory(Guid id);
 
     }
 }

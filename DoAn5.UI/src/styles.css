@@ -10,3 +10,13 @@
     height: 60%;
     margin-top: 23px;
 }
+body {
+    font-family: Arial, sans-serif;
+  }
+  .custom-input {
+    font-family: Arial, sans-serif;
+}
+.center-align {
+  text-align: center; /* Căn giữa nội dung trong ô */
+}
+

@@ -11,6 +11,6 @@ namespace BLL.Interface
     public interface IProduct_typeBus : IGenericBUS<Product_type>
     {
         Task<BaseQuerieResponse<Product_typeDto>> Search(Paging paging);
-
+        Task<List<Product_typeDto>> GetByCategory(Guid id);
     }
 }

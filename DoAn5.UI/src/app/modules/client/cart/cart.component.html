@@ -1,9 +1,8 @@
 <div class="card xl:flex xl:justify-content-center" *ngIf="Carts && Carts.length>0">
     <p-orderList [value]="Carts" [listStyle]="{ height: '25rem' }" header="Giỏ hàng">
         <ng-template let-product let-index="index" pTemplate="item">
-            <div class="flex ">
-                <img [src]="'https://localhost:7058/Images/' + product.data.image" [alt]="product.data.name"
-                    width="100px" />
+            <div class="flex-container">
+                <img [src]="'https://localhost:7058/Images/' + product.data.image" [alt]="product.data.name" width="100px" />
                 <div class="name">
                     <span>{{ product.data.name }}</span>
                     <div>
@@ -11,23 +10,25 @@
                         <span>{{ product.data.namecategory }}</span>
                     </div>
                     <div>
-                        <span>Size : {{ product.size.nameSize }}</span>
+                        <span>Size: {{ product.size.nameSize }}</span>
                     </div>
                 </div>
                 <div class="quantity">
-                    <p-inputNumber [(ngModel)]="product.quantity"
-                        (ngModelChange)="updateQuantity($event, product,index)" [showButtons]="true"
-                        buttonLayout="horizontal" inputId="horizontal" spinnerMode="horizontal" [step]="1"
+                    <p-inputNumber [(ngModel)]="product.quantity" (ngModelChange)="updateQuantity($event, product, index)"
+                        [showButtons]="true" buttonLayout="horizontal" inputId="horizontal" spinnerMode="horizontal" [step]="1"
                         decrementButtonClass="p-button-danger" incrementButtonClass="p-button-success"
-                        incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus" [min]="1"
-                        [max]="999"></p-inputNumber>
+                        incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus" [min]="1" [max]="999">
+                    </p-inputNumber>
                 </div>
-                <span class="price">{{ totalPrice(index)| currency:'VND' }}</span>
-                <span class="pi pi-trash price" style="font-size: 1rem;" (click)="deleteCart(index)"></span>
+                <span class="price">{{ totalPrice(index) | currency:'VND':'' }}đ</span>
+                <span class="pi pi-trash delete-icon" (click)="deleteCart(index)"></span>
             </div>
+            
         </ng-template>
     </p-orderList>
     <br>
+    <p style="font-size: 1.5em; margin-top: 1em; margin-left: 40%; color:rgb(193, 19, 19);font-weight: bold;">Tổng:
+        {{getTotalPrice()| currency:'VND':''}}đ</p>
     <p-button label="Thanh Toán" [rounded]="true" severity="danger" class="bt" (onClick)="OpenPay()"></p-button>
 </div>
 <br>

@@ -20,14 +20,14 @@ export class SidebarComponent {
   constructor(private messageService: MessageService, private AcountService:AccountService) {
       this.items = [
           {
-              label: 'Thông Tin Tài Khoản',
+              label: 'Thông tin',
               icon: 'pi pi-refresh',
               command: () => {
                   this.update();
               }
           },
           {
-              label: 'Đăng Xuất',
+              label: 'Đăng xuất',
               icon: 'pi pi-times',
               command: () => {
                   this.delete();

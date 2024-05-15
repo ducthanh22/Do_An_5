@@ -24,7 +24,7 @@ namespace Back_end.Controllers
         }
 
         [HttpGet("GetAll")]
-        [HasPermission(new[] { (int)EnumModule.Module.QlDm }, new[] { (int)EnumPermission.Type.Read })]
+        [AllowAnonymous]
         public async Task<ActionResult<List<Categories>>> GetAll()
         {
             var result= await _categoriesBus.GetAll();

@@ -1,21 +1,32 @@
-.flex {
+.flex-container {
     display: flex;
-    align-items: center;
+    align-items: center; /* Căn giữa các phần tử theo chiều dọc */
+    justify-content: space-between; /* Phân phối không gian đều giữa các phần tử */
 }
 
 .name {
-    margin-left: 5%;
+    flex-grow: 0.5; /* Cho phép .name chiếm không gian còn lại giữa img và quantity */
+    margin-left: 10px; /* Khoảng cách giữa img và name */
+    width: 20px;
 }
 
 .quantity {
-    margin-left: 5%;
+    margin: 0 10px; /* Khoảng cách giữa các phần tử xung quanh quantity */
 }
 
 .price {
-    margin-left: 5%;
+    margin-right: 10px; /* Khoảng cách giữa price và delete icon */
     color: rgb(193, 19, 19);
     font-weight: bold;
+
 }
+
+.delete-icon {
+    font-size: 1rem;
+    cursor: pointer; /* Thêm con trỏ để người dùng biết đây là một phần tử có thể click */
+    color: rgb(193, 19, 19);
+}
+
 
 :host ::ng-deep .p-inputnumber-input {
     width: 70px !important;

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Subscription, interval } from 'rxjs';
 import { GetProductsDto, ProductsDto } from 'src/app/model';
+import { AccountService } from 'src/app/service/account.service';
 import { ProducesService } from 'src/app/service/produces.service';
 import { ProductsService } from 'src/app/service/products.service';
 import { SaleService } from 'src/app/service/sale.service';
@@ -19,9 +20,12 @@ export class HomeComponent {
   layout: 'grid' | 'list' = 'grid'
   datasale!:any
   subscription!: Subscription;
-  constructor(private ProducesService:ProducesService, private productService:ProductsService,private SaleService : SaleService) {}
+  informationToken:any;
+  constructor(private ProducesService:ProducesService, private productService:ProductsService,private SaleService : SaleService,private AcountService:AccountService) {}
 
   ngOnInit() {
+    this.informationToken= this.AcountService.decodeToken();
+    this.resetAcount();
       this.responsiveOptions = [
           {
               breakpoint: '1199px',
@@ -43,7 +47,13 @@ export class HomeComponent {
       this.Getproductnew();
       this.startUpdateSalesPrices();
       this.GetproductSale();
-      
+  }
+  resetAcount(){
+    if(this.informationToken && this.informationToken.status !=1  ){
+      localStorage.removeItem('Token');
+      window.location.href = '/client/Home';
+
+    }
   }
   startUpdateSalesPrices(): void {
     this.subscription = interval(1000) // Tạo một luồng mới gửi một sự kiện sau mỗi 1 phút (60 giây)
@@ -70,7 +80,6 @@ export class HomeComponent {
   GetproductSale(){
     this.productService.GetproductSale().subscribe(data=>{
       this.productsSale= data;
-      console.log("sale",this.productsSale)
     });
   }
 

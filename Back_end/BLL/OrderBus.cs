@@ -18,8 +18,13 @@ namespace BLL
             _res = res;
         }
 
-        
-        public async Task<List<OrderDto>> GetbyCustomer(Guid id)
+        public async Task<List<GetorderDto>> Getbyids(Guid id)
+        {
+            return await _res.Getbyids(id);
+        }
+
+
+        public async Task<List<OrderDto>> GetbyCustomer(string id)
         {
             return await _res.GetbyCustomer(id);
 
@@ -28,10 +33,13 @@ namespace BLL
         {
             return await _res.CreateOrder(entity);
         }
-        public async Task<List<GetorderDto>> GetOrderProduct(Guid id, int status)
+        public async Task<List<GetorderDto>> GetOrderProduct(string id, int status)
         {
             return await _res.GetOrderProduct(id, status);
         }
-       
+        public async Task<BaseQuerieResponse<OrderDto>> Search(Paging paging)
+        {
+            return await _res.Search(paging);
+        }
     }
 }

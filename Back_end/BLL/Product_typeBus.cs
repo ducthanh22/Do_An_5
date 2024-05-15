@@ -20,5 +20,9 @@ namespace BLL
         {
             return await _res.Search(paging);
         }
+        public async Task<List<Product_typeDto>> GetByCategory(Guid id)
+        {
+            return await _res.GetByCategory(id);
+        }
     }
 }

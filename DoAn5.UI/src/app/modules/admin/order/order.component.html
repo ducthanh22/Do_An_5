@@ -1,0 +1,119 @@
+<h2 style="text-align: center;"> Quản lý đơn hàng</h2>
+
+<p-confirmDialog></p-confirmDialog>
+<div class="card">
+    <p-table [value]="listOrder" [lazy]="true" (onLazyLoad)="loadListLazy($event)" [paginator]="true" [rows]="10"
+        [scrollable]="true" scrollHeight="400px" [loading]="loading" [showCurrentPageReport]="true"
+        [tableStyle]="{ 'min-width': '50rem' }" [totalRecords]="totalCount" [resizableColumns]="true"
+        currentPageReportTemplate="Hiển thị từ {first} đến {last} của {totalRecords} bản ghi" [filterDelay]="0"
+        [rowsPerPageOptions]="[5, 10, 20]">
+        <ng-template pTemplate="caption">
+            <form class="p-input-icon-left frm" (ngSubmit)="onsubmit()">
+                <i class="pi pi-search"></i>
+                <input type="text" class="p-inputtext" pInputText [(ngModel)]="keyword" placeholder="Tìm kiếm..."
+                    [ngModelOptions]="{standalone: true}" />
+                <p-button type="submit" icon="pi pi-search"></p-button>
+            </form>
+        </ng-template>
+        <ng-template pTemplate="header">
+            <tr>
+                <th class="center-align">STT</th>
+                <th class="center-align">Tên</th>
+                <th class="center-align">Địa chỉ</th>
+                <th class="center-align">Thanh toán</th>
+                <th class="center-align">Tổng tiền</th>
+                <th class="center-align">Trạng thái</th>
+                <th class="center-align">Đơn giao thất bại</th>
+                <th class="center-align">Chức năng</th>
+
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-product let-rowIndex="rowIndex">
+            <tr>
+                <td class="center-align">{{ rowIndex + 1}}</td>
+                <!-- <td>{{product.id}}</td> -->
+                <td class="center-align">{{ product.username }}</td>
+                <td class="center-align">{{ product.address }}</td>
+                <td class="center-align">{{ product.payment }}</td>
+                <td class="center-align" style="color: rgb(191, 10, 10);;">{{ product.price | currency:"VND" :''}}đ</td>
+                <td class="center-align" *ngIf="product.status==0"><span>Thoát thanh toán VNPAY</span></td>
+                <td class="center-align" *ngIf="product.status==1"><span>Chờ xác nhận</span></td>
+                <td class="center-align" *ngIf="product.status==2"><span class="click" (click)="Update(product,3)">Chờ lấy hàng</span></td>
+                <td class="center-align" *ngIf="product.status==3"><span>Đang vận chuyển</span></td>
+                <td class="center-align" *ngIf="product.status==4"><span>Đã nhận & chờ đánh giá</span></td>
+                <td class="center-align" *ngIf="product.status==5"><span class="click" (click)="Update(product,6)">Xác nhận hiện đánh
+                        giá</span></td>
+                <td class="center-align" *ngIf="product.status==6"><span class="click">Hoàn Thành</span></td>
+                <td class="center-align" *ngIf="product.status==7"><span class="click">Đơn hàng giao thất bại</span></td>
+
+                <td class="center-align">
+                    <p-button icon="pi pi-times" [rounded]="true" severity="danger" [outlined]="true"
+                        (onClick)="Update(product,7)"></p-button>
+                </td>
+
+
+                <td class="center-align"> <i class="pi pi-eye" style="color: slateblue; margin-left: 5%;"
+                        (click)="getOrderDetail(product.id)"></i></td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="paginatorleft">
+            <p-button type="button" icon="pi pi-plus" styleClass="p-button-text"></p-button>
+        </ng-template>
+        <ng-template pTemplate="paginatorright">
+            <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text"></p-button>
+        </ng-template>
+    </p-table>
+</div>
+
+
+
+<p-dialog header="Long Content" [(visible)]="visible" [modal]="true" [maximizable]="true"
+    [style]="{width: '70%',height:'90%'}" [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }">
+    <ng-template pTemplate="header">
+        <div class="dialog-header">
+            <span class="font-bold">Chi tiết đơn hàng</span>
+        </div>
+    </ng-template>
+    <ng-template pTemplate="body">
+        <div class="info" *ngIf="dataGetId && dataGetId.length > 0">
+            <div style="width: 50%;">
+                <h4>Tên khách hàng: {{dataGetId[0]?.username}}</h4>
+                <h4>Địa chỉ: {{dataGetId[0]?.address}}</h4>
+            </div>
+            <div style="width: 50%;">
+                <h4>Số điện thoại: {{dataGetId[0]?.phone}}</h4>
+                <h4>Email: {{dataGetId[0]?.email}}</h4>
+            </div>
+        </div>
+        <p-table [value]="dataGetId[0]?.orderProductList" [tableStyle]="{ 'min-width': '50rem' }">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>Ảnh</th>
+                    <th>Tên</th>
+                    <th>Số lượng</th>
+                    <th>Giá</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-product>
+                <tr>
+                    <td>
+                        <p-image src="https://localhost:7058/Images/{{ product.image }}"
+                            previewImageSrc="https://localhost:7058/Images/{{ product.image }}" alt="Image" width="100"
+                            [preview]="true"></p-image>
+                    </td>
+                    <td>{{ product.product_name }}</td>
+                    <td>{{ product.quantity }}</td>
+                    <td style="color: rgb(191, 10, 10);;">{{ product.price | currency:"VND" :''}}đ</td>
+                </tr>
+            </ng-template>
+        </p-table>
+        <h4 style="text-align: center;color: rgb(191, 10, 10);"> Tổng đơn hàng: {{dataGetId[0]?.price| currency:"VND" :''}}đ</h4>
+    </ng-template>
+    
+    <ng-template pTemplate="footer">
+        <div class="dialog-footer">
+            <p-button icon="pi pi-check" (click)="visible = false" label="Đóng" severity="danger"></p-button>
+
+        </div>
+    </ng-template>
+</p-dialog>

@@ -46,7 +46,11 @@ export class CartComponent {
       this.MessageSV.add({ severity: 'warn', summary: 'Cảnh báo', detail: 'Vui lòng đăng nhập' })
     }
   }
-  create(){
-
+  getTotalPrice(): number {
+    let total: number = 0;
+    this.Carts.forEach((item: any) => {
+      total += item.data.price_product * item.quantity;
+    });
+    return total;
   }
 }
