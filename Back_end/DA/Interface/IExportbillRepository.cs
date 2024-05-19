@@ -13,6 +13,7 @@ namespace DAL.Interface
     {
         Task<BaseQuerieResponse<ExportbillDto>> Search(string keywork, int page, int pageSize);
         Task<CreateExportbillDto> CreateEX(CreateExportbillDto entity);
+        Task<Exportbill> DELETE(Guid id);
 
     }
 }

@@ -1,0 +1,160 @@
+<h2 style="text-align: center;"> Quản lý giảm giá</h2>
+
+<p-confirmDialog></p-confirmDialog>
+<div class="card">
+    <p-table [value]="listSale" [paginator]="true" [rows]="10" [scrollable]="true" scrollHeight="400px"
+        [loading]="loading" [showCurrentPageReport]="true" [tableStyle]="{ 'min-width': '50rem' }"
+        [resizableColumns]="true"
+        currentPageReportTemplate="Hiển thị từ {first} đến {last} của {totalRecords} bản ghi" [filterDelay]="0"
+        [rowsPerPageOptions]="[5, 10, 20]">
+        <ng-template pTemplate="caption">
+            
+                <p-button (click)="Add()" icon="pi pi-plus-circle" label="Thêm mới"></p-button>
+                <form class="frm" (ngSubmit)="onsubmit()">
+                    <p-selectButton 
+                      [options]="stateOptions" 
+                      [(ngModel)]="active" 
+                      optionLabel="label"   
+                      optionValue="active" 
+                      (onChange)="onsubmit()"
+                      name="stateOption"></p-selectButton>
+                  
+                    <input type="text" class="p-inputtext" pInputText [(ngModel)]="newkeyword" placeholder="Tìm kiếm..." [ngModelOptions]="{standalone: true}" name="keyword"/>
+                  
+                    <p-button type="submit" icon="pi pi-search"></p-button>
+                  </form>
+                  
+        
+               
+        </ng-template>
+        <ng-template pTemplate="header">
+            <tr>
+               <th class="center-align" style="width:3%;">STT</th>
+               <th class="center-align">Ảnh</th>
+               <th class="center-align">Tên</th>
+               <th class="center-align">Giá gốc</th>
+               <th class="center-align">Giảm giá(%)</th>
+               <th class="center-align">Giá áp dụng</th>
+               <th class="center-align">Thời gian giảm(phút)</th>
+               <th class="center-align">Thời gian bắt đầu</th>
+
+               <th class="center-align">Trạng thái</th>
+               <th class="center-align">Chức năng</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-product let-rowIndex="rowIndex">
+            <tr>
+               <td class="center-align">{{ rowIndex + 1}}</td>
+                <!--<td class="center-align">{{ product.id }}</td> -->
+               <td class="center-align"><p-image src="https://localhost:7058/Images/{{ product.image }}"
+                        previewImageSrc="https://localhost:7058/Images/{{ product.image }}" alt="Image" width="100"
+                        [preview]="true"></p-image></td>
+               <td class="center-align">{{ product.name }}</td>
+               <td class="center-align" style="color: rgb(191, 10, 10);;">{{ product.price_product | currency:"VND" :'symbol'}}</td>
+               <td class="center-align">{{ product.percent }}</td>
+               <td class="center-align">{{ product.salePrice }}</td>
+               <td class="center-align">{{ product.saleTime }}</td>
+               <td class="center-align">{{ product.created |date:"dd-MM-yyyy HH:mm" }}</td>
+               <td class="center-align" *ngIf="product.activeFlag==0">Đã kết thúc</td>
+               <td class="center-align" *ngIf="product.activeFlag==1">Đang hoạt động</td>
+               <td class="center-align" *ngIf="product.activeFlag==2">Sắp diễn ra</td>
+
+
+               <td class="center-align">
+                    <i class="pi pi-eye" style="color: slateblue; margin-left: 5%;"></i>
+                    <!-- <i class="pi pi-pencil" style="color: rgb(255, 132, 0); margin-left: 5%;"
+                        (click)="Edit(product)"></i>
+                    <i class="pi pi-trash" style="color: red; margin-left: 5%;"
+                        (click)="confirm($event,product.id )"></i> -->
+                </td>
+
+
+
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="paginatorleft">
+            <p-button type="button" icon="pi pi-plus" styleClass="p-button-text"></p-button>
+        </ng-template>
+        <ng-template pTemplate="paginatorright">
+            <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text"></p-button>
+        </ng-template>
+    </p-table>
+</div>
+
+
+<p-dialog header="Long Content  " [(visible)]="visible" [modal]="true" [maximizable]="true"[style]="{ width: '100%' }" 
+  [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }">
+    <ng-template pTemplate="header">
+        <div class="dialog-header">
+            <span class="font-bold">{{Titile}}</span>
+        </div>
+    </ng-template>
+    <ng-template pTemplate="body">
+        <form [formGroup]="formdata" class="full-width-form">
+          <div class="input-container" style="margin-top: 2%;">
+            <p-table [value]="listsale.controls">
+              <ng-template pTemplate="header">
+                <tr> 
+                  <th class="center-align">Sản phẩm</th>
+                  <th class="center-align">Giá gốc</th>
+
+                  <th class="center-align">Giảm(%)</th>
+                  <th class="center-align">Giá áp dụng</th>
+                  <th class="center-align">Thời gian giảm(phút)</th>
+                  <th class="center-align">Thời gian bắt đầu</th>
+
+                  <th></th>
+                  <th class="center-align" *ngIf="listsale.length==0">
+                    <p-button (click)="addSize()" icon="pi pi-plus-circle" label="Thêm"></p-button>
+                  </th>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-size let-i="rowIndex">
+                <tr [formGroup]="size">
+                  <td >
+                    <p-dropdown [options]="listProduct" formControlName="idProduct" optionLabel="name"
+                    optionValue="id" [filter]="true" filterBy="name" [showClear]="true"
+                    [style]="{'maxWidth':'250px'}" appendTo="body" (onChange)="updatePrice($event,i)">
+                    </p-dropdown>
+                  </td>
+                  <td >
+                    <input type="text"  id="disabled-input"  class="p-inputtext" pInputText formControlName="priceProduct" [disabled]="true">
+                  </td>
+                  <td >
+                    <input type="text" class="p-inputtext" pInputText formControlName="percent" (input)="onPercentChange($event, i)" >
+                  </td>
+                  <td >
+                    <input type="text" class="p-inputtext" pInputText formControlName="salePrice">
+                  </td>
+                  <td >
+                    <input type="text" class="p-inputtext" pInputText formControlName="saleTime" [(ngModel)]="saleTime">
+                  </td>
+                  <td >
+                    <p-calendar 
+                    inputId="calendar-24h" 
+                    formControlName="created"
+                    [(ngModel)]="datetime24h"
+                    [showTime]="true" 
+                    hourFormat="24" appendTo="body" 
+                    [showIcon]="true" [style]="{'minWidth':'250px'}" [minDate]="minDate"/>
+                  </td>
+                  <td >
+                    <i class="pi pi-plus-circle" style="color: green;cursor: pointer;" (click)="addSize()"></i>
+                    <i class="pi pi-trash" style="color: red; cursor: pointer;" (click)="removeSize(i)"></i>
+                  </td>
+                </tr>
+              </ng-template>
+            </p-table>
+          </div>
+        </form>
+      </ng-template>
+      
+    <ng-template pTemplate="footer">
+        <div class="dialog-footer">
+            <p-button icon="pi pi-check" *ngIf="formdata.valid " (click)="Save()" label="Lưu" pAutoFocus [autofocus]="true"></p-button>
+            <p-button icon="pi pi-check" (click)="close()"  label="Đóng"severity="danger" ></p-button>
+
+        </div>
+    </ng-template>
+</p-dialog>
+

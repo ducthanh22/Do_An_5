@@ -54,7 +54,6 @@ h2 {
 
 .product-price {
   flex: 1;
-  color: rgb(191, 10, 10);
   display: flex;
   /* Sử dụng flexbox để căn giữa */
   justify-content: center;

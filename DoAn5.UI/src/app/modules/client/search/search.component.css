@@ -1,0 +1,169 @@
+h5 {
+    margin-top: 5px;
+    text-align: center;
+    font-weight: bold;
+  }
+  
+  h2 {
+    text-align: center;
+    font-family: "Bookman", serif;
+    /* Chỉ định font chữ Bookman */
+  }
+  
+  .panner img {
+    position: relative;
+    z-index: 1;
+    max-width: 80%;
+    height: auto;
+    /* Đảm bảo tỷ lệ chiều cao của hình ảnh không bị méo */
+    display: block;
+    /* Loại bỏ khoảng trắng dưới hình ảnh */
+    margin: 0 auto;
+    /* Canh giữa hình ảnh trong phần tử cha */
+    margin-top: 4.5%;
+  }
+  
+  @media (max-width: 768px) {
+    .panner img {
+      margin-top: 17%;
+    }
+  }
+  
+  @media (max-width: 378px) {
+    .panner img {
+      margin-top: 30%;
+    }
+  }
+  
+  /* Style for the product list item */
+  .product-item {
+    display: flex;
+    width: 100%;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    /* Add a border between products */
+  }
+  
+  .product-image {
+    width: 100px;
+    height: 100px;
+    margin-right: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .product-price {
+    flex: 1;
+    color: rgb(191, 10, 10);
+    display: flex;
+    /* Sử dụng flexbox để căn giữa */
+    justify-content: center;
+    /* Căn giữa theo chiều ngang */
+    align-items: center;
+  }
+  
+  .product-details {
+    margin-left: 20px;
+    width: 50%;
+    display: grid;
+  }
+  
+  .product-name {
+    font-weight: bold;
+    cursor: pointer;
+  
+  }
+  
+  .grid {
+    display: grid;
+    /* Sử dụng CSS Grid */
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    /* Tạo các cột với độ rộng tối thiểu là 250px và linh hoạt theo kích thước của container */
+    gap: 20px;
+    /* Khoảng cách giữa các phần tử */
+    margin-top: 2%;
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+  
+  .grid-item {
+  
+    padding: 10px;
+    /* Khoảng cách bên trong mỗi phần tử */
+    border-radius: 5%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  
+  }
+  
+  .grid-image {
+    width: 80%;
+    /* Ảnh không vượt quá chiều rộng của phần tử */
+    height: 200px;
+    margin-right: 20px;
+    border-radius: 5px;
+    /* box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); */
+    margin-left: 10%;
+  }
+  
+  .grid-details {
+    margin-top: 10px;
+    /* Khoảng cách từ ảnh đến các chi tiết sản phẩm */
+  }
+  
+  .grid-name {
+    font-weight: bold;
+    font-size: 15px;
+    cursor: pointer;
+  
+  }
+  
+  .grid-category {
+    margin-top: 5px;
+    color: #666;
+    font-size: 15px;
+  
+  
+  }
+  
+  .grid-price {
+    margin-top: 5px;
+    display: flex;
+    align-items: center; /* Canh các phần tử theo chiều dọc */
+    justify-content: space-between; /* Canh các phần tử theo chiều ngang */
+  } 
+  
+  .product-cart-button {
+    margin-top: 10px;
+  }
+  
+  .gspan {
+    flex: 1;
+    color: rgb(191, 10, 10);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 15px;
+    font-weight: bold;
+  }
+  
+  .salespan {
+    flex: 1;
+    color: rgb(191, 10, 10);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 15px;
+    font-weight: bold;
+  }
+  .salespan1{
+    flex:0.5;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .flashsale1{
+    color: rgb(191, 10, 10);
+    font-weight: bold;
+  
+  }

@@ -1,12 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AboutComponent } from './about/about.component';
-import { ServiceComponent } from './service/service.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { HomeComponent } from './home/home.component';
 import { ClientRoutingModule } from './client-routing.module';
 import { BlogComponent } from './blog/blog.component';
-
 import { ContactComponent } from './contact/contact.component';
 import { CartComponent } from './cart/cart.component';
 import { DetailproductsComponent } from './detailproducts/detailproducts.component';
@@ -32,11 +30,12 @@ import { TableModule } from 'primeng/table';
 import { DialogModule } from 'primeng/dialog';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { BadgeModule } from 'primeng/badge';
+import { SearchComponent } from './search/search.component';
+import { CountdownModule } from 'ngx-countdown';
 
 @NgModule({
   declarations: [
     AboutComponent,
-    ServiceComponent,
     CategoriesComponent,
     HomeComponent,
     BlogComponent,
@@ -44,7 +43,8 @@ import { BadgeModule } from 'primeng/badge';
     CartComponent,
     DetailproductsComponent,
     PayproductsComponent,
-    MycartComponent
+    MycartComponent,
+    SearchComponent
   ],
   imports: [
     CommonModule,
@@ -69,7 +69,8 @@ import { BadgeModule } from 'primeng/badge';
     TableModule,
     DialogModule,
     InputTextareaModule,
-    BadgeModule
+    BadgeModule,
+    CountdownModule
   ]
 })
 export class ClientModule { }

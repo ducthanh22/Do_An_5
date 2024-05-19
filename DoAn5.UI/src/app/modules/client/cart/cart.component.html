@@ -1,4 +1,4 @@
-<div class="card xl:flex xl:justify-content-center" *ngIf="Carts && Carts.length>0">
+<div class="card " *ngIf="Carts && Carts.length>0">
     <p-orderList [value]="Carts" [listStyle]="{ height: '25rem' }" header="Giỏ hàng">
         <ng-template let-product let-index="index" pTemplate="item">
             <div class="flex-container">
@@ -31,6 +31,8 @@
         {{getTotalPrice()| currency:'VND':''}}đ</p>
     <p-button label="Thanh Toán" [rounded]="true" severity="danger" class="bt" (onClick)="OpenPay()"></p-button>
 </div>
+
+
 <br>
 
 <div class="NotCart" *ngIf="Carts&&Carts.length<=0">

@@ -6,7 +6,6 @@ using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using Model;
-using static DTO.RoleDto;
 
 namespace DTO.AutoMapper
 {
@@ -50,6 +49,8 @@ namespace DTO.AutoMapper
             CreateMap<Rating, RatingDto>().ReverseMap();
             CreateMap<Exportbill, CreateExportbillDto>().ReverseMap();
             CreateMap<Detail_exportbill, CreateExportbillDto>().ReverseMap();
+            CreateMap<Sale, SaleDto>().ReverseMap();
+
 
 
         }

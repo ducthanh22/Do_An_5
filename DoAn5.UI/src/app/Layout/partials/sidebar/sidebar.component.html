@@ -11,34 +11,26 @@
   <div class="p-toolbar-group-end" >
     <p-splitButton [label]="label" icon="pi pi-user" [model]="items" styleClass="p-button-text p-button-secondary mr-2 mb-2" *ngIf="showName()!=' Đăng Nhập'"></p-splitButton>
     <p-splitButton [label]="label" icon="pi pi-user" [routerLink]="['/Login']" styleClass="p-button-text p-button-secondary mr-2 mb-2" *ngIf="showName()==' Đăng Nhập'"></p-splitButton>
-
   </div>
 </p-toolbar>
 <p-sidebar [(visible)]="sidebarVisible">
   <ng-template pTemplate="header"><img src="/./assets/client/assets/img/snapedit_Achino.png" height="100%" width="50%" class="mr-2" style="margin-left: 20%;" />
   </ng-template>
   <ng-template pTemplate="content">
-      <li [routerLink]="'/admin/products'"><a><i class="pi pi-home "></i> Dashboard</a></li>
+      <li [routerLink]="'/admin/dashboard'"><a><i class="pi pi-home "></i> Dashboard</a></li>
       <li [routerLink]="'/admin/categories_admin'"><a><i class="pi pi-home "></i> Quản lý danh mục</a></li>
       <li [routerLink]="'/admin/productsType'"><a><i class="pi pi-home "></i> Quản lý loại sản phẩm</a></li>
       <li [routerLink]="'/admin/produces'"><a><i class="pi pi-home "></i> Quản lý nhà sản xuất</a></li>
       <li [routerLink]="'/admin/products'"><a><i class="pi pi-home "></i> Quản lý sản phẩm</a></li>
-      <li [routerLink]="'/admin/products'"><a><i class="pi pi-home "></i> Quản lý giảm giá</a></li>
+      <li [routerLink]="'/admin/products'"><a><i class="pi pi-home "></i> Quản lý màu</a></li>
+      <li [routerLink]="'/admin/sale'"><a><i class="pi pi-home "></i> Quản lý giảm giá</a></li>
       <li [routerLink]="'/admin/order'"><a><i class="pi pi-home "></i> Quản lý đơn hàng</a></li>
       <li [routerLink]="'/admin/order'"><a><i class="pi pi-home "></i> Quản lý hóa đơn nhập</a></li>
-      <li [routerLink]="'/admin/order'"><a><i class="pi pi-home "></i> Quản lý hóa đơn bán</a></li>
+      <li [routerLink]="'/admin/exportbill'"><a><i class="pi pi-home "></i> Quản lý hóa đơn bán</a></li>
       <li [routerLink]="'/admin/order'"><a><i class="pi pi-home "></i> Quản lý hóa đơn kho</a></li>
       <li [routerLink]="'/admin/order'"><a><i class="pi pi-home "></i> Quản lý hóa khách hàng</a></li>
       <li [routerLink]="'/admin/order'"><a><i class="pi pi-home "></i> Quản lý hóa nhân viên</a></li>
       <li [routerLink]="'/admin/order'"><a><i class="pi pi-home "></i> Quản lý quyền</a></li>
-
-
-
-
-
-
-
-
   </ng-template>
   <ng-template pTemplate="footer">Footer Content</ng-template>
 </p-sidebar>

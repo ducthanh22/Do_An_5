@@ -22,9 +22,9 @@ namespace Back_end.Controllers
             return Ok(result);
         }
         [HttpGet("GetSale")]
-        public async Task<ActionResult<List<GetSaleDto>>> GetSale()
+        public async Task<ActionResult<List<GetSaleDto>> >GetSale(string? keyword, int active)
         {
-            var result = await _Bus.GetSale();
+            var result = await _Bus.GetSale(keyword,active);
             return Ok(result);
         }
 
@@ -37,9 +37,9 @@ namespace Back_end.Controllers
       
 
         [HttpPost("create")]
-        public async Task<ActionResult<Sale>> Create([FromBody] Sale dto)
+        public async Task<ActionResult<List<SaleDto>>> CREATE(List<SaleDto> dto)
         {
-            var createdEntity = await _Bus.Create(dto);
+            var createdEntity = await _Bus.CREATE(dto);
 
             return Ok(createdEntity);
         }
@@ -57,7 +57,7 @@ namespace Back_end.Controllers
             return Ok(result);
         }
         [HttpGet("UpdateSalesPrices")]
-        public async Task<ActionResult> UpdateSalesPrices()
+        public async Task<ActionResult<int>> UpdateSalesPrices()
         {
             var result = await _Bus.UpdateSalesPrices();
             return Ok(result);

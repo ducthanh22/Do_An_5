@@ -24,10 +24,10 @@ namespace Back_end.Controllers
             return Ok(result);
         }
 
-        [HttpGet("GetByid")]
-        public async Task<ActionResult<Detail_exportbillDto>> Getbyid(Guid id)
+        [HttpGet("GetByid/{id}")]
+        public async Task<ActionResult<List<GetDetail_exportbillDto>>> Getbyid(Guid id)
         {
-            var result = await _Bus.Getbyid(id);
+            var result = await _Bus.GETBYID(id);
             return Ok(result);
         }
 
@@ -52,6 +52,7 @@ namespace Back_end.Controllers
             return Ok(result);
         }
         [HttpGet("CountProduct/{id}")]
+        [AllowAnonymous]
         public async Task<ActionResult<countProduct>> CountProduct(Guid id)
         {
             var result = await _Bus.CountProduct(id);

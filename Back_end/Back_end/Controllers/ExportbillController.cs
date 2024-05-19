@@ -47,10 +47,10 @@ namespace Back_end.Controllers
 
             return Ok(createdEntity);
         }
-        [HttpDelete("Delete")]
-        public async Task<ActionResult<ExportbillDto>> Delete(Guid id)
+        [HttpDelete("Delete/{id}")]
+        public async Task<ActionResult<Exportbill>> Delete(Guid id)
         {
-            var result = await _Bus.Delete(id);
+            var result = await _Bus.DELETE(id);
             return Ok(result);
         }
         [HttpGet("Search")]

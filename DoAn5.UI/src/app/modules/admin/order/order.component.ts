@@ -41,9 +41,6 @@ export class OrderComponent {
     });
 
   }
-  ngAfterContentChecked() {
-    this.changeDetector.detectChanges();
-  }
 
   loadListLazy = (event: any) => {
     this.loading = true;

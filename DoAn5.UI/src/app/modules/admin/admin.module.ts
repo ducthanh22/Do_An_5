@@ -24,6 +24,12 @@ import { ProduceComponent } from './produce/produce.component';
 import { ToastModule } from 'primeng/toast';
 import { ProductTypeComponent } from './product-type/product-type.component';
 import { OrderComponent } from './order/order.component';
+import { ExportBillComponent } from './export-bill/export-bill.component';
+import { CardModule } from 'primeng/card';
+import { ToolbarModule } from 'primeng/toolbar';
+import { SaleComponent } from './sale/sale.component';
+import { SelectButtonModule } from 'primeng/selectbutton';
+import { ColorComponent } from './color/color.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +39,9 @@ import { OrderComponent } from './order/order.component';
     ProduceComponent,
     ProductTypeComponent,
     OrderComponent,
+    ExportBillComponent,
+    SaleComponent,
+    ColorComponent,
   
   
   ],
@@ -53,7 +62,10 @@ import { OrderComponent } from './order/order.component';
     EditorModule,
     ConfirmDialogModule,
     FileUploadModule,
-    ToastModule
+    ToastModule,
+    CardModule,
+    ToolbarModule,
+    SelectButtonModule
     
   ],
   providers: [ConfirmationService],

@@ -164,7 +164,6 @@ export class MycartComponent {
                   status: 0,
                   idStaff: this.order[0].id_customer,
                   detail_exportbillDto:this.order[0].orderProductList.map((item: any) => ({
-                    // id_Order: undefined,
                     Idproduct: item.id_product,
                     idsize: item.id_size,
                     quantity: item.quantity,

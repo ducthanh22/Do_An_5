@@ -2,39 +2,40 @@
     <div class="panner">
         <img src="/./assets/client/assets/img/Panner_A.png">
     </div>
-
+    
     <div class="brand">
         <h2>Thương hiệu</h2>
         <div class="card">
-            <p-carousel [value]="ListProduces" [numVisible]="6" [numScroll]="3" [circular]="false"
+            <p-carousel [value]="ListProduces" [numVisible]="5" [numScroll]="5" [circular]="false"
                 [responsiveOptions]="responsiveOptions">
                 <ng-template let-x pTemplate="item">
                     <div class="border-1 surface-border border-round m-2 text-center py-5 px-3"
-                        style="margin-left: 20%;">
-                        <div class="mb-3">
-                            <a href="http://localhost:4200/client/Home"><img
+                        style="margin-left: 20%;" >
+                        <div class="mb-3"(click)="search(x.id)">
+                           <img
                                     src="https://localhost:7058/Img_Brand/{{ x.image }}" [alt]="x.name"
-                                    style="width: 100px;" /></a>
+                                    style="width: 40%;height: 100px;" />
                         </div>
                     </div>
                 </ng-template>
             </p-carousel>
+
         </div>
     </div>
     <div class="sale"  *ngIf="productsSale.length>0">
-        <h2 style="color: rgb(191, 10, 10);">Flash sale: {{datasale}}</h2>
+        <h2 style="color: rgb(191, 10, 10);">Flash sale: <countdown #cd [config]="{ leftTime: datasale*60  }" (event)="handleEvent($event)"/></h2>
         <div class="card">
             <p-carousel [value]="productsSale" [numVisible]="3" [numScroll]="3" [circular]="false"
                 [responsiveOptions]="responsiveOptions">
                 <ng-template let-product pTemplate="item">
-                    <div class="border-1 surface-border border-round m-2 p-3">
+                    <div class="border-1 surface-border border-round m-2 p-3"  [routerLink]="['/client/detail', product.id]">
                         <div class="mb-3" >
                             <div class="relative mx-auto">
                                 <img src="https://localhost:7058/Images/{{ product.image }}" [alt]="product.name"
-                                    style="width: 150px;" [routerLink]="['/client/detail', product.id]"/>
+                                    style="width: 150px;" />
                             </div>
                         </div>
-                        <div class="flex justify-content-between align-items-center" [routerLink]="['/client/detail', product.id]">
+                        <div class="flex justify-content-between align-items-center" >
                             <div class="mt-0 font-semibold text-xl flashsale1" >
                                Giảm {{ product.percent}}%
                             </div>
@@ -66,14 +67,15 @@
                                 <div class="product-details">
                                     <div class="product-name" [routerLink]="['/client','detail', product.id]">{{
                                         product.name }}</div>
-
                                     <div class="product-category">
                                         <i class="pi pi-tag"></i>
                                         <span style="margin-left: 2%;">{{product.namecategory }}</span>
                                     </div>
                                 </div>
                                 <div class="product-price">
-                                    <span>{{ product.price_product | currency:'VND':'' }}đ</span>
+                                    <div class="salespan1" pBadge [value]="product.percent + '%'" severity="danger">
+                                        <Del>{{ product.price_product | currency:'VND':'' }}đ</Del></div>
+                                    <div class="salespan">{{ product.salePrice | currency:'VND' :""}}đ</div>
                                 </div>
                                 <button pButton icon="pi pi-shopping-cart" class="product-cart-button"></button>
                             </div>
@@ -138,7 +140,9 @@
                                     </div>
                                 </div>
                                 <div class="product-price">
-                                    <span>{{ product.price_product | currency:'VND' }}</span>
+                                    <div class="salespan1" pBadge [value]="product.percent + '%'" severity="danger">
+                                        <Del>{{ product.price_product | currency:'VND':'' }}đ</Del></div>
+                                    <div class="salespan">{{ product.salePrice | currency:'VND' :""}}đ</div>
                                 </div>
                                 <button pButton icon="pi pi-shopping-cart" class="product-cart-button"></button>
                             </div>

@@ -22,5 +22,9 @@ namespace BLL
         {
             return await _res.CountProduct(id);
         }
+        public async Task<List<GetDetail_exportbillDto>> GETBYID(Guid id)
+        {
+            return await _res.GETBYID(id);
+        }
     }
 }

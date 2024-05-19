@@ -39,7 +39,32 @@ namespace DAL
             }
             return result;
         }
-    
+        public async Task<List<GetDetail_exportbillDto>>GETBYID(Guid id)
+        {
+            var data = from a in _DbContext.Detail_exportbill
+                       join b in _DbContext.Exportbill on a.IdExportbill equals b.Id
+                       join c in _DbContext.User on b.IdStaff equals c.Id
+                       join d in _DbContext.Products on a.Idproduct equals d.Id
+                       where a.IdExportbill == id
+                       select new GetDetail_exportbillDto
+                       {
+                           Id = a.Id,
+                           IdExportbill = a.IdExportbill,
+                           Idsize = a.Idsize,
+                           Idproduct = a.Idproduct,
+                           image = d.Image,
+                           productName = d.Name,
+                           Price = a.Price,
+                           Quantity = a.Quantity,
+                           userName = c.UserName,
+                           address = c.Address,
+                           phone = c.PhoneNumber,
+                           email=c.Email,
+                           toTal= b.Price
+                       };
+            return await data.ToListAsync();
+        }
+        
 
     }
 }

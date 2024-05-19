@@ -20,8 +20,7 @@ export class BaseService<T> {
     const params = new HttpParams()
       .set('pageIndex', paging.pageIndex.toString())
       .set('pageSize', paging.pageSize.toString())
-      .set('keyword', paging.keyword || '')  // Đảm bảo rằng keyword không bị undefined
-      // .set('orderBy', paging.orderBy || ''); // Đảm bảo rằng orderBy không bị undefined
+      .set('keyword', paging.keyword || '')  
     return this._http
       .get<BaseQuerieResponse<T>>(`${this.actionUrl}/Search`, { params })
       .pipe(first());

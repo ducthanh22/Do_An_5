@@ -12,5 +12,6 @@ namespace DAL.Interface
     public interface IDetail_exportbillRepository : IGenericRepository<Detail_exportbill>
     {
         Task<countProduct> CountProduct(Guid id);
+        Task<List<GetDetail_exportbillDto>> GETBYID(Guid id);
     }
 }

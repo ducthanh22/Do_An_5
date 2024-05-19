@@ -55,11 +55,11 @@
           <div class="quantity">
             <span>{{ product.quantity}}</span>
           </div>
-          <span class="price">{{ product.data.price_product| currency:'VND' }}</span>
+          <span class="price">{{ product.data.price_product|currency:'VND':''}}đ</span>
         </div>
       </ng-template>
     </p-orderList>
     <p style="font-size: 1.5em; margin-top: 1em; margin-left: 40%; color:rgb(193, 19, 19);font-weight: bold;">Tổng:
-      {{getTotalPrice()| currency:'VND'}}</p>
+      {{getTotalPrice()| currency:'VND':''}}đ</p>
   </div>
 </div>

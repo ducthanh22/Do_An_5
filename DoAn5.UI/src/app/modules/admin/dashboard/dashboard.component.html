@@ -1,0 +1,75 @@
+<div class="dashboard-container">
+  <div class="card flex flex-wrap gap-3 p-fluid">
+    <div class="date">
+      <label for="icondisplay" class="font-bold block mb-2"> Ngày bắt đầu </label>
+      <p-calendar [(ngModel)]="date1" [iconDisplay]="'input'" [showIcon]="true" inputId="icondisplay" class="short-calendar"/>
+    </div>
+    <div class="date ">
+      <label for="icondisplay" class="font-bold block mb-2"> Ngày kết thúc </label>
+      <p-calendar [(ngModel)]="date2" [iconDisplay]="'input'" [showIcon]="true" inputId="icondisplay" />
+    </div>
+    <div class="flex">
+      <p-button label="Submit" />
+    </div>
+    <div class="flex">
+      <p-button label="Reset" />
+    </div>
+  </div>
+  <!-- Lưới cho 4 ô hàng trên -->
+  <div class="p-flex">
+    <div class="infor">
+      <p-card header="Đơn hàng" subheader="150">
+        <!-- <ng-template pTemplate="content">
+            <p-chart type="bar" [data]="ordersChartData"></p-chart>
+          </ng-template> -->
+      </p-card>
+    </div>
+    <div class="infor">
+      <p-card header="Khách hàng" subheader="150">
+        <!-- <ng-template pTemplate="content">
+            <p-chart type="bar" [data]="ordersChartData"></p-chart>
+          </ng-template> -->
+      </p-card>
+    </div>
+    <div class="infor">
+      <p-card header="Số lượng sản phẩm" subheader="150">
+        <!-- <ng-template pTemplate="content">
+            <p-chart type="bar" [data]="ordersChartData"></p-chart>
+          </ng-template> -->
+      </p-card>
+    </div>
+    <div class="infor">
+      <p-card header="Doanh thu dự kiến" subheader="150">
+        <!-- <ng-template pTemplate="content">
+            <p-chart type="bar" [data]="ordersChartData"></p-chart>
+          </ng-template> -->
+      </p-card>
+    </div>
+  </div>
+
+
+  <!-- Lưới cho ô dưới -->
+  <div class="p-flex">
+    <div class="Revenue">
+      <p-card header="Doanh thu theo tháng" subheader="$45,000">
+        <ng-template pTemplate="content">
+          <p-chart type="line" [data]="revenueChartData" [options]="options"></p-chart>
+        </ng-template>
+      </p-card>
+    </div>
+    <div class="infor-2">
+      <p-card header="Tổng doanh thu" subheader="$12,000">
+        <ng-template pTemplate="content">
+          <p-chart type="pie" [data]="salesChartData"></p-chart>
+        </ng-template>
+      </p-card>
+    </div>
+    <div class="infor-2">
+      <p-card header="Tỷ lệ đánh giá" subheader="320">
+        <ng-template pTemplate="content">
+          <p-chart type="doughnut" [data]="ratingChartData" class="small-chart"></p-chart>
+        </ng-template>
+      </p-card>
+    </div>
+  </div>
+</div>

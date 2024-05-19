@@ -5,6 +5,7 @@ import { Subscription, forkJoin, map } from 'rxjs';
 import { CategoriesDto } from 'src/app/model';
 import { Product_typeDto } from 'src/app/model/Product_type';
 import { CategoriesService } from 'src/app/service';
+import { ShareService } from 'src/app/service/Common/share.service';
 import { Product_TypeService } from 'src/app/service/Product_type.service';
 import { AccountService } from 'src/app/service/account.service';
 import { ProducesService } from 'src/app/service/produces.service';
@@ -21,14 +22,15 @@ export class HeaderComponent {
     isSubMenuOpen: boolean = false;
     menuItems: MenuItem[] = [];
     showMenu: boolean = false;
-    Carts: any
+    Carts: any;
     cartUpdateSubscription!: Subscription;
-    listCategory: CategoriesDto[] = []
-    listProduct_type: Product_typeDto[] = []
-    submenu: any[] = []
+    listCategory: CategoriesDto[] = [];
+    listProduct_type: Product_typeDto[] = [];
+    submenu: any[] = [];
+    newKeyword:string='';
 
     constructor(private AcountService: AccountService, private messageService: MessageService, private router: Router, private productService: ProductsService,
-        private categoryService: CategoriesService, private product_typeService: Product_TypeService
+        private categoryService: CategoriesService, private product_typeService: Product_TypeService,private shareService: ShareService
     ) { }
 
     ngOnInit() {
@@ -98,7 +100,7 @@ export class HeaderComponent {
                 return data.map((x: any) => ({
                     label: x.name,
                     command: () => {
-                        this.update();
+                        this.shareService.sendKeyword(x.id);
                     }
                 }));
             })
@@ -122,6 +124,9 @@ export class HeaderComponent {
             localStorage.removeItem('Token');
             window.location.href = '/client/Home';
         }
+    }
+    search(){
+        this.shareService.sendKeyword(this.newKeyword);
     }
 
 }

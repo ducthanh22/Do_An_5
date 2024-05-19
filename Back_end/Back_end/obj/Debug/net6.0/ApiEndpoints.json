@@ -509,7 +509,7 @@
   {
     "ContainingType": "Back_end.Controllers.Detail_exportbillController",
     "Method": "Getbyid",
-    "RelativePath": "api/Detail_exportbill/GetByid",
+    "RelativePath": "api/Detail_exportbill/GetByid/{id}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -517,12 +517,12 @@
       {
         "Name": "id",
         "Type": "System.Guid",
-        "IsRequired": false
+        "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "DTO.Detail_exportbillDto",
+        "Type": "System.Collections.Generic.List\u00601[[DTO.GetDetail_exportbillDto, DTO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -835,7 +835,7 @@
   {
     "ContainingType": "Back_end.Controllers.ExportbillController",
     "Method": "Delete",
-    "RelativePath": "api/Exportbill/Delete",
+    "RelativePath": "api/Exportbill/Delete/{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -843,12 +843,12 @@
       {
         "Name": "id",
         "Type": "System.Guid",
-        "IsRequired": false
+        "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "DTO.ExportbillDto",
+        "Type": "Model.Exportbill",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -2388,7 +2388,7 @@
   },
   {
     "ContainingType": "Back_end.Controllers.SaleController",
-    "Method": "Create",
+    "Method": "CREATE",
     "RelativePath": "api/Sale/create",
     "HttpMethod": "POST",
     "IsController": true,
@@ -2396,13 +2396,13 @@
     "Parameters": [
       {
         "Name": "dto",
-        "Type": "Model.Sale",
+        "Type": "System.Collections.Generic.List\u00601[[DTO.SaleDto, DTO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "Model.Sale",
+        "Type": "System.Collections.Generic.List\u00601[[DTO.SaleDto, DTO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -2491,7 +2491,18 @@
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
+    "Parameters": [
+      {
+        "Name": "keyword",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "active",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
     "ReturnTypes": [
       {
         "Type": "System.Collections.Generic.List\u00601[[DTO.GetSaleDto, DTO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
@@ -2538,7 +2549,17 @@
     "IsController": true,
     "Order": 0,
     "Parameters": [],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "System.Int32",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "Back_end.Controllers.SendEmailController",

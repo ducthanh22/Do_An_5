@@ -6,6 +6,9 @@ import { ProductsComponent } from './products/products.component';
 import { ProduceComponent } from './produce/produce.component';
 import { ProductTypeComponent } from './product-type/product-type.component';
 import { OrderComponent } from './order/order.component';
+import { ExportBillComponent } from './export-bill/export-bill.component';
+import { SaleComponent } from './sale/sale.component';
+import { ColorComponent } from './color/color.component';
 
 
 
@@ -17,7 +20,13 @@ const routes: Routes = [
     {path:'produces',component:ProduceComponent},
     {path:'products',component:ProductsComponent},
     {path:'productsType',component:ProductTypeComponent},
-    {path:'order',component:OrderComponent}
+    {path:'order',component:OrderComponent},
+    {path:'exportbill',component:ExportBillComponent},
+    {path:'sale',component:SaleComponent},
+    {path:'color',component:ColorComponent},
+
+
+
 
 
 

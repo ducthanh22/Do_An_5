@@ -62,8 +62,6 @@ export class ProductsComponent {
  
   addSize() {
     const sizeFormGroup = this.FB.group({
-      // id: [''],
-      // Idproduct: [''],
       NameSize: ['', Validators.required]
     });
     this.listsize.push(sizeFormGroup);
@@ -89,9 +87,7 @@ export class ProductsComponent {
     const listSizeArray = this.FormProduct.get('listsize') as FormArray;
     listSizeArray.clear();
   }
-  ngAfterContentChecked() {
-    this.changeDetector.detectChanges();
-  }
+
   GetCategory() {
     this.Product_typeService.getAll().subscribe(data => {
       this.SelectionCategory = data;
@@ -122,7 +118,6 @@ export class ProductsComponent {
         this.loading = false;
       },
     });
-
   }
 
   loadListLazy = (event: any) => {

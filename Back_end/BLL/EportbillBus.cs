@@ -26,5 +26,10 @@ namespace BLL
         {
             return await _res.CreateEX(entity);
         }
+        public async Task<Exportbill> DELETE(Guid id)
+        {
+            return await _res.DELETE(id);
+
+        }
     }
 }

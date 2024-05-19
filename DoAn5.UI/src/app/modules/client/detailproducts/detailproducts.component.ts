@@ -42,6 +42,7 @@ export class DetailproductsComponent {
       this.GetRating(this.id,1,10)
       this.CountProduct(this.id)
     });
+    
   }
   CountProduct(id:string){
     this.exportBillService.countProduct(id).subscribe({
@@ -67,9 +68,8 @@ export class DetailproductsComponent {
     this.Size = data;
   }
   addtocart(data: any) {
-    if(data.activeSale == 1 && data.length > 0){
-      data.price_product=data[0].salePrice
-      console.log('data',data)
+    if(data.activeSale == 1){
+      data.price_product=data.salePrice
     }
     if (this.Size) {
       let idx = this.Carts.findIndex((item: any) => {

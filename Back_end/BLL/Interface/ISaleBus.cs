@@ -10,7 +10,8 @@ namespace BLL.Interface
 {
     public interface ISaleBus :IGenericBUS<Sale>
     {
-        Task<string> UpdateSalesPrices();
-        Task<List<GetSaleDto>> GetSale();
+        Task<int> UpdateSalesPrices();
+        Task<List<GetSaleDto>> GetSale(string? keyword, int active);
+        Task<List<SaleDto>> CREATE(List<SaleDto> dto);
     }
 }

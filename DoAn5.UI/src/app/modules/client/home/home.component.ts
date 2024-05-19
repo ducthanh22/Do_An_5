@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subscription, interval } from 'rxjs';
 import { GetProductsDto, ProductsDto, bestSellingProducts } from 'src/app/model';
+import { ShareService } from 'src/app/service/Common/share.service';
 import { AccountService } from 'src/app/service/account.service';
 import { ProducesService } from 'src/app/service/produces.service';
 import { ProductsService } from 'src/app/service/products.service';
@@ -22,7 +24,11 @@ export class HomeComponent {
   subscription!: Subscription;
   informationToken:any;
   bestSellingProducts!:bestSellingProducts[]
-  constructor(private ProducesService:ProducesService, private productService:ProductsService,private SaleService : SaleService,private AcountService:AccountService) {}
+  newKeyword:string="";
+  notify:any
+  constructor(private ProducesService:ProducesService, private productService:ProductsService,private SaleService : SaleService,private AcountService:AccountService,
+    private shareService :ShareService,private router:Router
+  ) {}
 
   ngOnInit() {
     this.informationToken= this.AcountService.decodeToken();
@@ -54,21 +60,39 @@ export class HomeComponent {
     if(this.informationToken && this.informationToken.status !=1  ){
       localStorage.removeItem('Token');
       window.location.href = '/client/Home';
-
     }
   }
-  startUpdateSalesPrices(): void {
-    this.subscription = interval(1000) // Tạo một luồng mới gửi một sự kiện sau mỗi 1 phút (60 giây)
-      .subscribe(() => { // Subscribe vào luồng
-        this.SaleService.UpdateSalesPrices().subscribe(data => { // Gọi phương thức UpdateSalesPrices
-          if (data !== "") {
-            this.datasale = data;
-          } else {
-            this.subscription.unsubscribe(); // Dừng interval nếu data là null
-          }
-        });
-      });
+  // startUpdateSalesPrices(): void {
+  //   this.subscription = interval(1000) // Tạo một luồng mới gửi một sự kiện sau mỗi 1 phút (60 giây)
+  //     .subscribe(() => { // Subscribe vào luồng
+  //       this.SaleService.UpdateSalesPrices().subscribe(data => { // Gọi phương thức UpdateSalesPrices
+  //         if (data !== null) {
+  //           this.datasale = data;
+  //         } else {
+  //           this.subscription.unsubscribe(); // Dừng interval nếu data là null
+  //         }
+  //       });
+  //     });
+  // }
+  startUpdateSalesPrices(){
+    this.SaleService.UpdateSalesPrices().subscribe(data => { // Gọi phương thức UpdateSalesPrices
+      if (data) {
+        this.datasale = data;
+      } 
+    });
+  
   }
+  handleEvent(e:any) {
+    if (e.action == 'done') {
+      this.startUpdateSalesPrices()
+      this.GetproductSale();
+      window.location.href = '/client/Home';
+    }
+  }
+
+  search(data:string){
+    this.shareService.sendKeyword(data);
+}
   GetallProduces(){
     this.ProducesService.getAll().subscribe(data=>{
         this.ListProduces=data;
@@ -76,7 +100,7 @@ export class HomeComponent {
   }
   Getproductnew(){
     this.productService.Getproductnew().subscribe(data=>{
-      this.products= data.slice(0, 8);
+      this.products= data;
     });
   }
   GetproductSale(){

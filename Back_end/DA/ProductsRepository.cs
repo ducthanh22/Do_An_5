@@ -23,10 +23,9 @@ namespace DAL
                         from b in bGroup.DefaultIfEmpty()
                         join e in _DbContext.Set<Product_type>() on d.Idcategories equals e.Id
                         join g in _DbContext.Set<Produces>() on d.Idproduces equals g.Id
-                        where ( string.IsNullOrEmpty(keyword)|| d.Name.Contains(keyword))
+                        where ( string.IsNullOrEmpty(keyword)|| d.Name.Contains(keyword) || d.Idproduces.ToString()==keyword|| d.Idcategories.ToString()==keyword)
                         select new GetProductsDto
                         {
-
                             Id = d.Id,
                             Name = d.Name,
                             Idcategories = d.Idcategories,

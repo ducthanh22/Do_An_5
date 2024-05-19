@@ -17,13 +17,17 @@ namespace BLL
         public SaleBus(ISaleRepository res) : base(res) {
             _res = res;
         }
-        public Task<string> UpdateSalesPrices()
+        public Task<int> UpdateSalesPrices()
         {
             return _res.UpdateSalesPrices();
         }
-        public async Task<List<GetSaleDto>> GetSale()
+        public async Task<List<GetSaleDto>> GetSale(string? keyword, int active)
         {
-            return await _res.GetSale();
+            return await _res.GetSale(keyword,active);
+        }
+        public async Task<List<SaleDto>> CREATE(List<SaleDto> dto)
+        {
+            return await _res.CREATE(dto);
         }
     }
 }

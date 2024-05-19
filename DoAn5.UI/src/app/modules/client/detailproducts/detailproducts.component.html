@@ -31,7 +31,7 @@
             </div>
           </div>
         </div>
-        <div class="buy"><span>Đã Bán: {{countProduct.totalQuantity}} sản phẩm</span></div>
+        <div class="buy" *ngIf="countProduct != null"><span>Đã Bán: {{countProduct.totalQuantity}} sản phẩm</span></div>
         <p-button label="Thêm vào giỏ hàng" severity="danger" (click)="addtocart(data)"><i
             class="pi pi-shopping-cart"></i></p-button>
         <div class="sevice">

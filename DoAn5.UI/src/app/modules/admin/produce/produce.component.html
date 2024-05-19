@@ -77,7 +77,7 @@
     </ng-template>
     <ng-template pTemplate="body">
         <form [formGroup]="formProduce" class="full-width-form">
-            <div class="flex card flex justify-content-center">
+            <div class="card">
                 <div class="input-container">
                     <label for="name">Tên</label>
                     <div class="dropdown-wrapper">
@@ -105,8 +105,8 @@
 
             </div>
         </form>
-        <form [formGroup]="formUpload" class="full-width-form">
-            <div class="card flex justify-content-center">
+        <form [formGroup]="formUpload" class="full-width-form">v
+            <div class="card ">
                 <label for="name">Ảnh</label>
                 <p-fileUpload name="demo[]" url="https://www.primefaces.org/cdn/api/upload.php"
                     (onUpload)="onUpload($event)" [multiple]="true" accept="image/*" [maxFileSize]="1000000">

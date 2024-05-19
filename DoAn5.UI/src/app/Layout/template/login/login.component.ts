@@ -41,7 +41,7 @@ login() {
           if(status==1){
             this.router.navigate(['/client/Home']);
           }else{
-              this.router.navigate(['/admin/products']);
+              this.router.navigate(['/admin/dashboard']);
           }
         }
       },

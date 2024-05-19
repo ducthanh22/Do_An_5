@@ -10,7 +10,7 @@ export interface ProductsDto extends BasedbDto {
     describe: string;
     image: string;
     idcolor: string;
-    price_product: number | null;
+    price_product: number ;
     listsize: SizeDto[]
 }
 export interface GetProductsDto extends BasedbDto {

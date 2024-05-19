@@ -99,7 +99,7 @@ namespace Back_end.Controllers
         }
 
         [HttpGet("Search")]
-        [HasPermission(new[] { (int)EnumModule.Module.QlPr }, new[] { (int)EnumPermission.Type.Read })]
+        [AllowAnonymous]
 
         public async Task<IActionResult> Search([FromQuery] string? keyword, [FromQuery] int pageIndex, [FromQuery] int pageSize)
         {
