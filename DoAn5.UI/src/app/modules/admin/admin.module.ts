@@ -30,6 +30,7 @@ import { ToolbarModule } from 'primeng/toolbar';
 import { SaleComponent } from './sale/sale.component';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { ColorComponent } from './color/color.component';
+import { ImportBillComponent } from './import-bill/import-bill.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { ColorComponent } from './color/color.component';
     ExportBillComponent,
     SaleComponent,
     ColorComponent,
+    ImportBillComponent,
   
   
   ],

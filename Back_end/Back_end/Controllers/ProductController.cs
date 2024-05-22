@@ -60,7 +60,7 @@ namespace Back_end.Controllers
         [HttpGet("GetByid/{id}")]
         [AllowAnonymous]
 
-        public async Task<ActionResult<GetProductsDto>> GetByIds(Guid id)
+        public async Task<ActionResult<List<GetProductsDto>>> GetByIds(Guid id)
         {
             var result = await _productsBus.GetByIds(id);
             return Ok(result);

@@ -3,16 +3,16 @@ import { BasedbDto } from "./Common/BaseDto";
 export interface ImportbillDto extends BasedbDto {
     price: number;
     status: number;
-    idStaff: number;
+    idStaff: string;
 }
 
-export interface CreateImportbillDto extends BasedbDto {
+export interface CreateImportbillDto  {
     price: number;
     status: number;
     idStaff: string;
     detail_importbill: Detail_importbill[];
 }
-export interface Detail_importbill extends BasedbDto {
+export interface Detail_importbill {
     idExportbill: string;
     idproduct: string;
     idsize: string;

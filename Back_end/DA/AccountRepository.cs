@@ -168,17 +168,10 @@ namespace DAL
             {
                 var token = await _userManager.GeneratePasswordResetTokenAsync(user);
                 var newtoken= Uri.EscapeDataString(token);
-
                 var email = await _userManager.GetEmailAsync(user);
-
-                //var callbackUrl = _linkGenerator.GetUriByAction(
-                //    _httpContextAccessor.HttpContext,
-                //    action: "ResetPassword",
-                //    controller: "Account",
-                //    values: new { token  });
                 var callbackUrl = "http://localhost:4200/ResetPassword/" + newtoken +"/"+ email;
                 // Gửi email
-                await _sendEmailRepository.SendEmailAsync(model.Email, "Reset Password",
+                await _sendEmailRepository.SendEmailAsync(model.Email, "Đặt lại mật khẩu",
                     $"Vui lòng đặt lại mật khẩu của bạn bằng cách nhấp vào đây: <a href='{callbackUrl}'>link</a>");
             }
             else {

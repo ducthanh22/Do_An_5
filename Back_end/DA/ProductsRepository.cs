@@ -107,7 +107,7 @@ namespace DAL
 
         }
 
-        public async Task<GetProductsDto> GetByIds(Guid ids)
+        public async Task<List<GetProductsDto>> GetByIds(Guid ids)
         {
             try
             {
@@ -119,7 +119,7 @@ namespace DAL
                              join g in _DbContext.Set<Produces>() on d.Idproduces equals g.Id
                              join h in _DbContext.Sale on d.Id equals h.IdProduct into hGroup
                              from h in hGroup.DefaultIfEmpty()
-                             where d.Id == ids
+                             where ((d.Id == ids&& h.ActiveFlag==0) || (d.Id == ids && h.ActiveFlag == 1))
                              select new GetProductsDto
                              {
                                  Id = d.Id,
@@ -143,10 +143,9 @@ namespace DAL
                                      Idproduct = m.Idproduct,
                                      NameSize = m.NameSize
                                  }).ToList()
-                             }).AsQueryable();  // Đảm bảo truy vấn là IQueryable
+                             });  
                 var result = await query.ToListAsync();
-                //trả về mục đầu tiên (hoặc mặc định) từ danh sách
-                return result.FirstOrDefault();
+                return result;
             }
             catch (Exception ex)
             {
@@ -164,11 +163,10 @@ namespace DAL
                          join b in _DbContext.Set<Price>() on d.Id equals b.Idproduct into bGroup
                          from b in bGroup.DefaultIfEmpty()
                          join e in _DbContext.Set<Product_type>() on d.Idcategories equals e.Id
-
                          join g in _DbContext.Set<Produces>() on d.Idproduces equals g.Id
                          join h in _DbContext.Sale on d.Id equals h.IdProduct into hGroup
-                             from h in hGroup.DefaultIfEmpty()
-                             where h.ActiveFlag==1
+                         from h in hGroup.DefaultIfEmpty()
+                         where (h.ActiveFlag==1)
                          select new GetProductsDto
                          {
 
@@ -207,6 +205,7 @@ namespace DAL
                         join c in _DbContext.Sale on a.Id equals c.IdProduct into cGroup
                         from c  in cGroup.DefaultIfEmpty()
                         join d in _DbContext.Price on a.Id equals d.Idproduct
+                        where (c.ActiveFlag == 0 || c.ActiveFlag == 1)
                         group b by new { a.Id, a.Name, a.Image, d.Price_product, c.SalePrice ,c.ActiveFlag, c.percent } into g
                         select new bestSellingProducts
                         {
@@ -235,10 +234,10 @@ namespace DAL
                          join b in _DbContext.Set<Price>() on d.Id equals b.Idproduct into bGroup
                          from b in bGroup.DefaultIfEmpty()
                          join e in _DbContext.Set<Product_type>() on d.Idcategories equals e.Id
-
                          join g in _DbContext.Set<Produces>() on d.Idproduces equals g.Id
                          join h in _DbContext.Sale on d.Id equals h.IdProduct into hGroup
                          from h in hGroup.DefaultIfEmpty()
+                         where (h.ActiveFlag==0 || h.ActiveFlag==1)
                          orderby d.Created descending
                          select new GetProductsDto
                          {

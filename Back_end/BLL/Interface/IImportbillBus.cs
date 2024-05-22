@@ -11,7 +11,7 @@ namespace BLL.Interface
 {
     public  interface IImportbillBus : IGenericBUS<Importbill>
     {
-        Task<BaseQuerieResponse<ImportbillDto>> Search(int keywork, int page, int pageSize);
+        Task<BaseQuerieResponse<ImportbillDto>> Search(Paging paging);
         Task<CreateImportbillDto> CreateIm(CreateImportbillDto entity);
 
     }

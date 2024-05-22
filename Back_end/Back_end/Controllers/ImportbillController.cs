@@ -33,7 +33,7 @@ namespace Back_end.Controllers
         }
 
         [HttpPost("create")]
-        public async Task<ActionResult<CreateImportbillDto>> Create([FromBody] CreateImportbillDto dto)
+        public async Task<ActionResult<CreateImportbillDto>> CreateIm([FromBody] CreateImportbillDto dto)
         {
             var createdEntity = await _Bus.CreateIm(dto);
 
@@ -53,9 +53,9 @@ namespace Back_end.Controllers
             return Ok(result);
         }
         [HttpGet("Search")]
-        public async Task<IActionResult> Search([FromQuery] int keywork, [FromQuery] int page = 1, [FromQuery] int pageSize = 10)
+        public async Task<IActionResult> Search([FromQuery] Paging paging)
         {
-            var result = await _Bus.Search(keywork, page, pageSize);
+            var result = await _Bus.Search(paging);
 
             return Ok(result);
         }

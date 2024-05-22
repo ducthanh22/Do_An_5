@@ -1,4 +1,5 @@
 ﻿using BLL.Interface;
+using DTO;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Model;
@@ -21,10 +22,16 @@ namespace Back_end.Controllers
             return Ok(result);
         }
 
-        [HttpGet("GetByid")]
+        [HttpGet("GetByid/{id}")]
         public async Task<ActionResult<Size>> Getbyid(Guid id)
         {
             var result = await _Bus.Getbyid(id);
+            return Ok(result);
+        }
+        [HttpGet("Getbyidproduct/{id}")]
+        public async Task<ActionResult<List<SizeDto>>> Getbyidproduct(Guid id)
+        {
+            var result = await _Bus.Getbyidproduct(id);
             return Ok(result);
         }
 

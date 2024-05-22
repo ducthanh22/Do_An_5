@@ -57,8 +57,22 @@ export class DetailproductsComponent {
     this.productService.getbyid(this.id).subscribe({
       next: (res) => {
         if (res) {
-          this.data = res;
-          console.log(this.data)
+          this.data = res.reduce((acc: any, x: any) => {
+            const kt = acc.find((y: any) => y.id === x.id);
+            if (!kt) {
+              acc.push(x);
+            } else {
+              if (kt.activeSale - x.activeSale < 1) {
+                const index = acc.indexOf(kt);
+                if (index !== -1) {
+                  acc.splice(index, 1); // Loại bỏ phần tử tại vị trí index
+                  acc.push(x);
+                }
+              }
+            }
+            return acc;
+          }, []);
+          console.log("date",this.data[0])
         }
       }
     })

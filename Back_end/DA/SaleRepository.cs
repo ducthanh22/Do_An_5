@@ -58,21 +58,21 @@ namespace DAL
         {
             var query = from a in _DbContext.Sale
                         join b in _DbContext.Products on a.IdProduct equals b.Id
-            join c in _DbContext.Price on a.IdProduct equals c.Idproduct
-                        where ((string.IsNullOrEmpty(keyword)&& a.ActiveFlag == active)||(b.Name.Contains(keyword) && a.ActiveFlag == active))
+                        join c in _DbContext.Price on a.IdProduct equals c.Idproduct
+                        where ((string.IsNullOrEmpty(keyword) && a.ActiveFlag == active) || (b.Name.Contains(keyword) && a.ActiveFlag == active))
                         orderby a.Created descending
                         select new GetSaleDto
                         {
-                            IdProduct=a.IdProduct,
-                            Id= a.Id,
-                            SalePrice=a.SalePrice,
-                            percent=a.percent,
+                            IdProduct = a.IdProduct,
+                            Id = a.Id,
+                            SalePrice = a.SalePrice,
+                            percent = a.percent,
                             SaleTime = a.SaleTime,
-                            Name= b.Name,
-                            Image=b.Image,
-                            Price_product=c.Price_product,
-                            ActiveFlag=a.ActiveFlag,
-                            Created=a.Created
+                            Name = b.Name,
+                            Image = b.Image,
+                            Price_product = c.Price_product,
+                            ActiveFlag = a.ActiveFlag,
+                            Created = a.Created
                         };
             return await query.ToListAsync();
         }
@@ -99,14 +99,9 @@ namespace DAL
 
                 if (remainingTime <= 0)
                 {
-                    var originalPrice = await _DbContext.Price
-                        .Where(p => p.Idproduct == sale.IdProduct)
-                        .Select(p => p.Price_product)
-                        .FirstOrDefaultAsync();
-                    sale.SalePrice = originalPrice;
                     sale.ActiveFlag = 0;
                     message =0;
-                    continue; // Tiếp tục với sản phẩm tiếp theo
+                    continue; 
                 }
                 else
                 {

@@ -12,7 +12,7 @@ namespace BLL.Interface
 {
     public interface IExportbillBus :IGenericBUS<Exportbill>
     {
-        Task<BaseQuerieResponse<ExportbillDto>> Search(string keywork, int page, int pageSize);
+        Task<BaseQuerieResponse<ExportbillDto>> Search(Paging paging);
         Task<CreateExportbillDto> CreateEX(CreateExportbillDto entity);
         Task<Exportbill> DELETE(Guid id);
 

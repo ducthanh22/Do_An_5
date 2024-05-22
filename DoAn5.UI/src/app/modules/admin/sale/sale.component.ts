@@ -49,11 +49,11 @@ export class SaleComponent {
   addSize() {
     const formSale = this.fb.group({
       idProduct: new FormControl("", Validators.required),
-      salePrice: new FormControl("", Validators.required),
+      salePrice: new FormControl({value:"",disabled: true }, Validators.required),
       percent: new FormControl("", Validators.required),
       saleTime: new FormControl("", Validators.required),
       created: new FormControl("", Validators.required),
-      priceProduct: new FormControl("", Validators.required),
+      priceProduct: new FormControl({value:"",disabled: true }, Validators.required),
     });
     this.listsale.push(formSale);
   }
@@ -78,6 +78,9 @@ export class SaleComponent {
     const formSale = this.listsale.at(index);
     if (formSale && formSale.get('priceProduct')) {
       formSale.get('priceProduct')?.setValue(this.priceProduct);
+    }
+    if (formSale && formSale.get('percent')) {
+      formSale.get('salePrice')?.setValue(this.priceProduct-((formSale.value.percent/100)*this.priceProduct));
     }
   }
   onPercentChange(event: any, index: number) {

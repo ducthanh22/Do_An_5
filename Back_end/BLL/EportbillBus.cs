@@ -17,9 +17,9 @@ namespace BLL
         {
             _res = res;
         }
-        public async Task<BaseQuerieResponse<ExportbillDto>> Search(string keywork, int page, int pageSize)
+        public async Task<BaseQuerieResponse<ExportbillDto>> Search(Paging paging)
         {
-            return await _res.Search(keywork, page, pageSize);
+            return await _res.Search(paging);
         }
        
         public async Task<CreateExportbillDto> CreateEX(CreateExportbillDto entity)

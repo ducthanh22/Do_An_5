@@ -11,7 +11,7 @@ namespace DAL.Interface
 {
     public interface IImportbillRepository:IGenericRepository<Importbill>
     {
-        Task<BaseQuerieResponse<ImportbillDto>> Search(int keywork, int page, int pageSize);
+        Task<BaseQuerieResponse<ImportbillDto>> Search(Paging paging);
         Task<CreateImportbillDto> CreateIm(CreateImportbillDto entity);
 
     }

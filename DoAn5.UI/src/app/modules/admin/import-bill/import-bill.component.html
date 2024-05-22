@@ -1,0 +1,131 @@
+<h2 style="text-align: center;"> Quản lý hóa đơn nhập</h2>
+
+<p-confirmDialog></p-confirmDialog>
+<div class="card">
+    <p-table [value]="listExportBill" [lazy]="true" (onLazyLoad)="loadListLazy($event)" [paginator]="true" [rows]="10" [scrollable]="true" scrollHeight="400px"
+        [loading]="loading" [showCurrentPageReport]="true" [tableStyle]="{ 'min-width': '50rem' }"
+        [totalRecords]="Totalcount" [resizableColumns]="true"
+        currentPageReportTemplate="Hiển thị từ {first} đến {last} của {totalRecords} bản ghi" [filterDelay]="0"
+        [rowsPerPageOptions]="[5, 10, 20]">
+        <ng-template pTemplate="caption">
+            <p-button (click)="Add()" icon="pi pi-plus-circle" label="Thêm mới"></p-button>
+            <form class="p-input-icon-left frm" (ngSubmit)="onsubmit()">
+                <i class="pi pi-search"></i>
+                <input type="text" class="p-inputtext" pInputText [(ngModel)]="keyword" placeholder="Tìm kiếm..."
+                    [ngModelOptions]="{standalone: true}" />
+                <p-button type="submit" icon="pi pi-search"></p-button>
+            </form>
+
+
+        </ng-template>
+        <ng-template pTemplate="header">
+            <tr>
+               <th class="center-align" style="width:3%;">STT</th>
+                <th class="center-align" style="width:15%;">Mã hóa đơn</th>
+               <th class="center-align">Tên</th>
+               <th class="center-align">Giá</th>
+               <th class="center-align">Trạng thái</th>
+    
+                <!--<th class="center-align" >Mô tả</th> -->
+
+               <th class="center-align">Chức năng</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-product let-rowIndex="rowIndex">
+            <tr>
+               <td class="center-align">{{ rowIndex + 1}}</td>
+                <td class="center-align">{{ product.id }}</td>
+               <td class="center-align">{{ product.userName }}</td>
+               <td class="center-align" style="color: rgb(191, 10, 10);;">{{ product.price | currency:"VND" :''}}đ</td>
+               <td class="center-align">{{ product.status }}</td>
+                
+                <!--<td class="center-align" [innerHTML]="product.describe"></td> -->
+               <td class="center-align">
+                    <i class="pi pi-eye" style="color: slateblue; margin-left: 5%;" ></i>
+                    <i class="pi pi-trash" style="color: red; margin-left: 5%;"
+                        (click)="confirm($event,product.id )"></i>
+                </td>
+
+
+
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="paginatorleft">
+            <p-button type="button" icon="pi pi-plus" styleClass="p-button-text"></p-button>
+        </ng-template>
+        <ng-template pTemplate="paginatorright">
+            <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text"></p-button>
+        </ng-template>
+    </p-table>
+</div>
+
+
+<p-dialog header="Long Content  " [(visible)]="visible" [modal]="true" [maximizable]="true"[style]="{ width: '80%',height:'70%' }" 
+  [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }">
+    <ng-template pTemplate="header">
+        <div class="dialog-header">
+            <span class="font-bold">{{Titile}}</span>
+        </div>
+    </ng-template>
+    <ng-template pTemplate="body">
+        <form [formGroup]="formImport" class="full-width-form">
+          <div class="input-container" style="margin-top: 2%;">
+            <p-table [value]="detail_importbill.controls">
+              <ng-template pTemplate="header">
+                <tr> 
+                  <th class="center-align">Sản phẩm</th>
+                  <th class="center-align">Size</th>
+
+                  <th class="center-align">Giá</th>
+                  <th class="center-align">Số lượng</th>
+                  <th class="center-align">Tổng</th>
+
+                  <th></th>
+                  <th class="center-align" *ngIf="detail_importbill.length==0">
+                    <p-button (click)="addSize()" icon="pi pi-plus-circle" label="Thêm"></p-button>
+                  </th>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-size let-i="rowIndex">
+                <tr [formGroup]="size">
+                  <td class="center-align dropdown-wrapper">
+                    <p-dropdown [options]="listProduct" formControlName="idproduct" optionLabel="name"
+                    optionValue="id" [filter]="true" filterBy="name" [showClear]="true"
+                    [style]="{'minWidth':'300px','maxWidth':'300px'}" appendTo="body" (onChange)="updatePrice($event,i)">
+                    </p-dropdown>
+                  </td>
+                  <td class="center-align" >
+                    <p-dropdown [options]="listSize" formControlName="idsize" optionLabel="nameSize"
+                    optionValue="id" [filter]="true" filterBy="nameSize" [showClear]="true"  [style]="{'minWidth':'100px'}"
+                    appendTo="body">
+                    </p-dropdown>
+                  </td>
+                  <td class="center-align">
+                    <input type="text" class="p-inputtext" pInputText formControlName="price" >
+                  </td>
+                  <td class="center-align">
+                    <input type="text" class="p-inputtext" pInputText formControlName="quantity" (input)="onChange($event, i)">
+                  </td>
+                  <td class="center-align">
+                    <input type="text" class="p-inputtext" pInputText formControlName="total">
+                  </td>
+
+                  <td class="center-align">
+                    <i class="pi pi-plus-circle" style="color: green;cursor: pointer;" (click)="addSize()"></i>
+                    <i class="pi pi-trash" style="color: red; cursor: pointer;" (click)="removeSize(i)"></i>
+                  </td>
+                </tr>
+              </ng-template>
+            </p-table>
+          </div>
+        </form>
+        <h3 class="center-align">Tổng hóa đơn:{{getTotalPrice()| currency:'VND':''}}đ</h3>
+      </ng-template>
+    <ng-template pTemplate="footer">
+        <div class="dialog-footer">
+            <p-button icon="pi pi-check" *ngIf="formImport.valid && formImport.value.detail_importbill.length>0" (click)="Save()" label="Lưu" pAutoFocus [autofocus]="true"></p-button>
+            <p-button icon="pi pi-check" (click)="close()"  label="Đóng"severity="danger" ></p-button>
+
+        </div>
+    </ng-template>
+</p-dialog>

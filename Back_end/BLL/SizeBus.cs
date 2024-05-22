@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BLL.Interface;
+using DTO;
 
 namespace BLL
 {
@@ -15,6 +16,10 @@ namespace BLL
         public SizeBus(ISizeRepository res) : base(res)
         {
             _res = res;
+        }
+        public async Task<List<SizeDto>> Getbyidproduct(Guid id)
+        {
+            return await _res.Getbyidproduct(id);
         }
     }
 }

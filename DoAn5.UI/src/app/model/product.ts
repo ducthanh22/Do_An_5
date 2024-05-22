@@ -22,11 +22,11 @@ export interface GetProductsDto extends BasedbDto {
     describe: string;
     image: string;
     namecolor: string;
-    price_product: number | null;
+    price_product: number ;
     idcolor: string;
     salePrice: number;
     percent: number;
-    activeSale: number | null;
+    activeSale: number ;
     listSize: SizeDto[];
 }
 export interface bestSellingProducts {

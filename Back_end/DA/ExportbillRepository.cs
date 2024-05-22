@@ -18,28 +18,30 @@ namespace DAL
         public ExportbillRepository(Achino_DbContext dbContext, IMapper mapper) : base(dbContext, mapper)
         {
         }
-        public async Task<BaseQuerieResponse<ExportbillDto>> Search(string keyword, int page, int pageSize)
+        public async Task<BaseQuerieResponse<ExportbillDto>> Search(Paging paging)
         {
-            var query = from d in _DbContext.Set<Exportbill>().AsQueryable()
+            var query = from d in _DbContext.Set<ExportbillDto>().AsQueryable()
                         join a in _DbContext.User on d.IdStaff equals a.Id
-
-                        where (string.IsNullOrEmpty(keyword)|| d.Id.ToString()==keyword || d.IdStaff.ToString()==keyword)
+                        where (string.IsNullOrEmpty(paging.Keyword) || a.PhoneNumber.Contains(paging.Keyword) || a.Email.Contains(paging.Keyword) || a.UserName.Contains(paging.Keyword))
+                        orderby d.Created descending
                         select new ExportbillDto
                         {
                             Id = d.Id,
-                            Price=d.Price,
-                            Status=d.Status,
-                            IdStaff=d.IdStaff,
-                            userName=a.UserName
+                            Price = d.Price,
+                            Status = d.Status,
+                            IdStaff = d.IdStaff,
+                            userName = a.UserName
                         };
 
+
             var totalCount = await query.LongCountAsync();
-            var pageResults = await query.Skip((page - 1) * pageSize).Take(pageSize).ToListAsync();
+            var pageResults = await query.Skip((paging.PageIndex - 1) * paging.PageSize).Take(paging.PageSize).ToListAsync();
+
             var searchResults = new BaseQuerieResponse<ExportbillDto>
             {
-                PageIndex = page,
-                PageSize = pageSize,
-                Keyword = keyword,
+                PageIndex = paging.PageIndex,
+                PageSize = paging.PageSize,
+                Keyword = paging.Keyword,
                 TotalFilter = totalCount,
                 Data = pageResults
             };

@@ -9,9 +9,7 @@ import { OrderComponent } from './order/order.component';
 import { ExportBillComponent } from './export-bill/export-bill.component';
 import { SaleComponent } from './sale/sale.component';
 import { ColorComponent } from './color/color.component';
-
-
-
+import { ImportBillComponent } from './import-bill/import-bill.component';
 
 
 const routes: Routes = [
@@ -24,13 +22,8 @@ const routes: Routes = [
     {path:'exportbill',component:ExportBillComponent},
     {path:'sale',component:SaleComponent},
     {path:'color',component:ColorComponent},
+    {path:'importbill',component:ImportBillComponent},
 
-
-
-
-
-
-   
 ];
 
 @NgModule({

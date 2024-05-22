@@ -9,8 +9,8 @@ namespace DTO
 {
     public class Detail_warehouseDto : BasedbDto
     {
-        public int Idwarehouse {  get; set; }
-        public int Idproduct { get; set; }
+        public Guid Idwarehouse { get; set; }
+        public Guid Idproduct { get; set; }
         public Guid Idsize { get; set; }
         public int Quantity { get; set; }
     }

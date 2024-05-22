@@ -4,10 +4,12 @@ using Model;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DTO;
 
 namespace BLL.Interface
 {
     public interface ISizeBus : IGenericBUS<Size>
     {
+        Task<List<SizeDto>> Getbyidproduct(Guid id);
     }
 }

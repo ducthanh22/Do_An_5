@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Model;
 
+
 namespace DTO.AutoMapper
 {
     public class MappingProfile :Profile
@@ -24,13 +25,18 @@ namespace DTO.AutoMapper
 
             CreateMap<Detail_exportbill, Detail_exportbillDto>().ReverseMap();
             CreateMap<Detail_importbill, Detail_importbillDto>().ReverseMap();
-            CreateMap<Detail_warehouse, Detail_warehouseDto>().ReverseMap();
 
             CreateMap<Exportbill, ExportbillDto>().ReverseMap();
             CreateMap<Importbill, ImportbillDto>().ReverseMap();
             CreateMap<Price, PriceDto>().ReverseMap();
             CreateMap<Produces, ProducesDto>().ReverseMap();
+
+
             CreateMap<Warehouse, WarehouseDto>().ReverseMap();
+            CreateMap<Detail_warehouse, Detail_warehouseDto>().ReverseMap();
+
+
+
             CreateMap<Size, SizeDto>().ReverseMap();
 
 
@@ -47,8 +53,13 @@ namespace DTO.AutoMapper
             CreateMap<User, GennToken>().ReverseMap();
             CreateMap<PaymentTransactions,PaymentDto>().ReverseMap();
             CreateMap<Rating, RatingDto>().ReverseMap();
+
             CreateMap<Exportbill, CreateExportbillDto>().ReverseMap();
             CreateMap<Detail_exportbill, CreateExportbillDto>().ReverseMap();
+
+            CreateMap<Importbill, CreateImportbillDto>().ReverseMap();
+            CreateMap<Detail_importbill, CreateImportbillDto>().ReverseMap();
+
             CreateMap<Sale, SaleDto>().ReverseMap();
 
 

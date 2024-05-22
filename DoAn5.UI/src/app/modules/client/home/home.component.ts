@@ -15,49 +15,49 @@ import { SaleService } from 'src/app/service/sale.service';
 })
 export class HomeComponent {
   responsiveOptions: any[] | undefined;
-  ListProduces:any[]=[];
-  products:GetProductsDto[]=[];
-  productsSale:GetProductsDto[]=[];
+  ListProduces: any[] = [];
+  products: GetProductsDto[] = [];
+  productsSale: GetProductsDto[] = [];
 
   layout: 'grid' | 'list' = 'grid'
-  datasale!:any
+  datasale!: number
   subscription!: Subscription;
-  informationToken:any;
-  bestSellingProducts!:bestSellingProducts[]
-  newKeyword:string="";
-  notify:any
-  constructor(private ProducesService:ProducesService, private productService:ProductsService,private SaleService : SaleService,private AcountService:AccountService,
-    private shareService :ShareService,private router:Router
-  ) {}
+  informationToken: any;
+  bestSellingProducts!: bestSellingProducts[]
+  newKeyword: string = "";
+  notify: any
+  constructor(private ProducesService: ProducesService, private productService: ProductsService, private SaleService: SaleService, private AcountService: AccountService,
+    private shareService: ShareService, private router: Router
+  ) { }
 
   ngOnInit() {
-    this.informationToken= this.AcountService.decodeToken();
+    this.informationToken = this.AcountService.decodeToken();
     this.resetAcount();
-      this.responsiveOptions = [
-          {
-              breakpoint: '1199px',
-              numVisible: 1,
-              numScroll: 1
-          },
-          {
-              breakpoint: '991px',
-              numVisible: 2,
-              numScroll: 1
-          },
-          {
-              breakpoint: '767px',
-              numVisible: 1,
-              numScroll: 1
-          }
-      ];
-      this.GetallProduces();
-      this.Getproductnew();
-      this.startUpdateSalesPrices();
-      this.GetproductSale();
-      this.GetBestSellingProducts()
+    this.responsiveOptions = [
+      {
+        breakpoint: '1199px',
+        numVisible: 1,
+        numScroll: 1
+      },
+      {
+        breakpoint: '991px',
+        numVisible: 2,
+        numScroll: 1
+      },
+      {
+        breakpoint: '767px',
+        numVisible: 1,
+        numScroll: 1
+      }
+    ];
+    this.GetallProduces();
+    this.Getproductnew();
+    this.startUpdateSalesPrices();
+    this.GetproductSale();
+    this.GetBestSellingProducts()
   }
-  resetAcount(){
-    if(this.informationToken && this.informationToken.status !=1  ){
+  resetAcount() {
+    if (this.informationToken && this.informationToken.status != 1) {
       localStorage.removeItem('Token');
       window.location.href = '/client/Home';
     }
@@ -74,15 +74,15 @@ export class HomeComponent {
   //       });
   //     });
   // }
-  startUpdateSalesPrices(){
+  startUpdateSalesPrices() {
     this.SaleService.UpdateSalesPrices().subscribe(data => { // Gọi phương thức UpdateSalesPrices
       if (data) {
         this.datasale = data;
-      } 
+      }
     });
-  
+
   }
-  handleEvent(e:any) {
+  handleEvent(e: any) {
     if (e.action == 'done') {
       this.startUpdateSalesPrices()
       this.GetproductSale();
@@ -90,30 +90,55 @@ export class HomeComponent {
     }
   }
 
-  search(data:string){
+  search(data: string) {
     this.shareService.sendKeyword(data);
-}
-  GetallProduces(){
-    this.ProducesService.getAll().subscribe(data=>{
-        this.ListProduces=data;
+  }
+  GetallProduces() {
+    this.ProducesService.getAll().subscribe(data => {
+      this.ListProduces = data;
     })
   }
-  Getproductnew(){
-    this.productService.Getproductnew().subscribe(data=>{
-      this.products= data;
+  Getproductnew() {
+    this.productService.Getproductnew().subscribe(data => {
+      this.products = data.reduce((acc: any, x: any) => {
+        const kt = acc.find((y: any) => y.id === x.id);
+        if (!kt) {
+          acc.push(x);
+        } else {
+          if (kt.activeSale - x.activeSale < 1) {
+            const index = acc.indexOf(kt);
+            if (index !== -1) {
+              acc.splice(index, 1); // Loại bỏ phần tử tại vị trí index
+              acc.push(x);
+            }
+          }
+        }
+        return acc;
+      }, []);
     });
   }
-  GetproductSale(){
-    this.productService.GetproductSale().subscribe(data=>{
-      this.productsSale= data;
+  GetproductSale() {
+    this.productService.GetproductSale().subscribe(data => {
+      this.productsSale = data;
     });
   }
-  GetBestSellingProducts(){
-    this.productService.GetBestSellingProducts().subscribe(data=>{
-      this.bestSellingProducts= data;
+  GetBestSellingProducts() {
+    this.productService.GetBestSellingProducts().subscribe(data => {
+      this.bestSellingProducts = data.reduce((acc: any, x: any) => {
+        const kt = acc.find((y: any) => y.id === x.id);
+        if (!kt) {
+          acc.push(x);
+        } else {
+          if (kt.activeFlag - x.activeFlag < 1) {
+            const index = acc.indexOf(kt);
+            if (index !== -1) {
+              acc.splice(index, 1); // Loại bỏ phần tử tại vị trí index
+              acc.push(x);
+            }
+          }
+        }
+        return acc;
+      }, []);
     });
   }
-
-
-  
 }

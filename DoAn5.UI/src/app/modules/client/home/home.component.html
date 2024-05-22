@@ -96,7 +96,7 @@
                                         <span style="margin-left: 2%;">{{product.namecategory }}</span>
                                     </div>
                                 </div>
-                                <div class="grid-price" *ngIf="product.activeSale ==0 || product.activeSale==null">
+                                <div class="grid-price" *ngIf="product.activeSale ==0 || product.activeSale==2">
                                     <span class="gspan">{{ product.price_product | currency:'VND':''}}đ</span>
                                     <button pButton icon="pi pi-shopping-cart" class="product-cart-button"></button>
                                 </div>
@@ -164,7 +164,7 @@
                                         <span style="margin-left: 2%;">{{product.namecategory }}</span>
                                     </div>
                                 </div>
-                                <div class="grid-price" *ngIf="product.activeFlag ==0 || product.activeFlag==null">
+                                <div class="grid-price" *ngIf="product.activeFlag ==0 ">
                                     <span class="gspan">{{ product.price_product | currency:'VND' }}</span>
                                     <button pButton icon="pi pi-shopping-cart" class="product-cart-button"></button>
                                 </div>

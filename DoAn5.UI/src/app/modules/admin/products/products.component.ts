@@ -67,7 +67,6 @@ export class ProductsComponent {
     this.listsize.push(sizeFormGroup);
   }
 
-  // Hàm xóa một item từ listsize
   removeSize(index: number,data:any) {
     if (this.listsize.length > 1) {
       this.listsize.removeAt(index);
