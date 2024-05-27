@@ -10,6 +10,9 @@ import { ExportBillComponent } from './export-bill/export-bill.component';
 import { SaleComponent } from './sale/sale.component';
 import { ColorComponent } from './color/color.component';
 import { ImportBillComponent } from './import-bill/import-bill.component';
+import { RoleclaimComponent } from './roleclaim/roleclaim.component';
+import { StaffComponent } from './staff/staff.component';
+import { CustomerComponent } from './customer/customer.component';
 
 
 const routes: Routes = [
@@ -23,6 +26,12 @@ const routes: Routes = [
     {path:'sale',component:SaleComponent},
     {path:'color',component:ColorComponent},
     {path:'importbill',component:ImportBillComponent},
+    {path:'role',component:RoleclaimComponent},
+    {path:'staff',component:StaffComponent},
+    {path:'customer',component:CustomerComponent},
+
+
+
 
 ];
 

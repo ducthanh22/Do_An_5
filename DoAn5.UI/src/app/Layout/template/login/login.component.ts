@@ -38,7 +38,7 @@ login() {
           // // Lấy thông tin từ payload
           const status = tokenPayload.status;      
           this.FormLogin.reset();
-          if(status==1){
+          if(status==2){
             this.router.navigate(['/client/Home']);
           }else{
               this.router.navigate(['/admin/dashboard']);

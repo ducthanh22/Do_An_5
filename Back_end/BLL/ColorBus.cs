@@ -17,6 +17,9 @@ namespace BLL
         {
             _res = res;
         }
-      
+       public async Task<BaseQuerieResponse<ColorDto>> Search(Paging paging)
+        {
+            return await _res.Search(paging);
+        }
     }
 }

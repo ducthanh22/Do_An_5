@@ -21,7 +21,7 @@ export interface GetProductsDto extends BasedbDto {
     idproduces: string;
     describe: string;
     image: string;
-    namecolor: string;
+    colorformat: string;
     price_product: number ;
     idcolor: string;
     salePrice: number;

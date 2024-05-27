@@ -18,7 +18,9 @@
             <h4>Màu sắc</h4>
           </div>
           <div class="s1">
-            <div class="namecolor">{{data[0].namecolor}}</div>
+            <div class="namecolor"><p-colorPicker 
+              [(ngModel)]="data[0].colorformat" 
+              [disabled]="true" /></div>
           </div>
         </div>
         <div class="Size">
@@ -31,6 +33,7 @@
             </div>
           </div>
         </div>
+        <div class="buy" *ngIf="countprohouse != null"><span>Kho: {{countprohouse.totalQuantity}} sản phẩm</span></div>
         <div class="buy" *ngIf="countProduct != null"><span>Đã Bán: {{countProduct.totalQuantity}} sản phẩm</span></div>
         <p-button label="Thêm vào giỏ hàng" severity="danger" (click)="addtocart(data[0])"><i
             class="pi pi-shopping-cart"></i></p-button>

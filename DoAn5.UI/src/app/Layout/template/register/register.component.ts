@@ -16,13 +16,16 @@ export class RegisterComponent {
 constructor(private AccountSV:AccountService,private FB: FormBuilder, private MessageSV:MessageService){}
 ngOnInit(){
  this.formRegister=this.FB.group({
-  userName: new FormControl('',Validators.required),
+  userName: new FormControl('',[
+    Validators.required, 
+    Validators.pattern('^[a-zA-Z0-9]*$')]),
   address: new FormControl('',Validators.required),
-  status:new FormControl('1',Validators.required),
+  status:new FormControl('2',Validators.required),
   email:new FormControl('',Validators.required),
   passwordHash:new FormControl('',Validators.required),
   confirmPass:new FormControl('', [Validators.required, this.passwordMatchValidator()]),
-  phoneNumber: new FormControl('',Validators.required),
+  phoneNumber: new FormControl('',[Validators.required, Validators.pattern('^[0-9]{10}$')]),
+  roleName: new FormControl('Khách hàng'),
  })
 }
 passwordMatchValidator(): ValidatorFn {
@@ -55,7 +58,6 @@ Register(){
   }
   else{
     this.MessageSV.add({ severity: 'error', summary: 'Lỗi', detail: 'Chưa khớp mật khẩu' })
-
   }
   
 }

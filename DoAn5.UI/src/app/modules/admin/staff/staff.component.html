@@ -1,0 +1,136 @@
+<h2 class="center-align"> Quản lý nhân viên</h2>
+
+<p-confirmDialog></p-confirmDialog>
+<div class="card">
+    <p-table [value]="datas" [lazy]="true" (onLazyLoad)="loadListLazy($event)" [paginator]="true" [rows]="10"
+    [scrollable]="true" scrollHeight="400px"
+        [loading]="loading" [showCurrentPageReport]="true" [tableStyle]="{ 'min-width': '50rem' }"
+        [totalRecords]="Totalcount" [resizableColumns]="true"
+        currentPageReportTemplate="Hiển thị từ {first} đến {last} của {totalRecords} bản ghi" [filterDelay]="0"
+        [rowsPerPageOptions]="[5, 10, 20]">
+        <ng-template pTemplate="caption">
+            <p-button (click)="Add()" icon="pi pi-plus-circle" label="Thêm mới"></p-button>
+            <form class="p-input-icon-left frm" (ngSubmit)="onsubmit()">
+                <i class="pi pi-search"></i>
+                <input type="text" class="p-inputtext" pInputText [(ngModel)]="keyword" placeholder="Tìm kiếm..."
+                    [ngModelOptions]="{standalone: true}" />
+                <p-button type="submit" icon="pi pi-search"></p-button>
+            </form>
+        </ng-template>
+        <ng-template pTemplate="header">
+            <tr>
+                <th class="center-align">STT</th>
+                <th class="center-align">Tên</th>
+                <th class="center-align">Email</th>
+                <th class="center-align">SĐT</th>
+                <th class="center-align">Căn cước</th>
+                <th class="center-align">Địa chỉ</th>
+                <th class="center-align">Chức năng</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-user let-rowIndex="rowIndex">
+            <tr>
+                <td class="center-align">{{ rowIndex + 1}}</td>
+                <td class="center-align">{{ user.userName }}</td>
+                <td class="center-align">{{ user.email }}</td>
+                <td class="center-align">{{ user.phoneNumber }}</td>
+                <td class="center-align">{{ user.cccd }}</td>
+                <td class="center-align">{{ user.address }}</td>
+
+                <td class="center-align">
+                    <i class="pi pi-eye" style="color: slateblue; margin-left: 5%;"></i>
+                    <i class="pi pi-pencil" style="color: rgb(255, 132, 0); margin-left: 5%;"
+                        ></i>
+                    <i class="pi pi-trash" style="color: red; margin-left: 5%;"
+                       ></i>
+                </td>
+
+
+
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="paginatorleft">
+            <p-button type="button" icon="pi pi-plus" styleClass="p-button-text"></p-button>
+        </ng-template>
+        <ng-template pTemplate="paginatorright">
+            <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text"></p-button>
+        </ng-template>
+    </p-table>
+</div>
+
+
+
+
+<p-dialog header="Long Content" [(visible)]="visible" [modal]="true" [maximizable]="true"
+    [style]="{width: '40%',height:'80%'}" [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }">
+    <ng-template pTemplate="header">
+        <div class="dialog-header">
+            <span class="font-bold">{{Titile}}</span>
+        </div>
+    </ng-template>
+    <ng-template pTemplate="body">
+        <form [formGroup]="formSigIn" class="full-width-form">
+            <div class="card ">
+                <div class="input-container">
+                    <label for="name">Đối tượng</label>
+                    <div class="dropdown-wrapper">
+                        <p-dropdown [options]="status" formControlName="status" optionLabel="name"
+                            optionValue="id" [filter]="true" filterBy="name" [showClear]="true" appendTo="body"
+                            [style]="{'minWidth':'100%'}"></p-dropdown>
+                    </div>
+                </div>
+                <div class="input-container">
+                    <label for="name">Tên</label>
+                    <div class="dropdown-wrapper">
+                        <input type="text" class="p-inputtext" pInputText formControlName="userName" />
+                    </div>
+                </div>
+                <div class="input-container">
+                    <label for="name">Email</label>
+                    <div class="dropdown-wrapper">
+                        <input type="text" class="p-inputtext" pInputText formControlName="email" />
+                    </div>
+                </div>
+                <div class="input-container">
+                    <label for="name">Điện thoại</label>
+                    <div class="dropdown-wrapper">
+                        <input type="text" class="p-inputtext" pInputText formControlName="phoneNumber" />
+                    </div>
+                </div>
+                <div class="input-container">
+                    <label for="name">Mật khẩu</label>
+                    <div class="dropdown-wrapper">
+                        <input type="text" class="p-inputtext" pInputText formControlName="passwordHash" />
+                    </div>
+                </div>
+                <div class="input-container">
+                    <label for="name">Địa chỉ</label>
+                    <div class="dropdown-wrapper">
+                        <input type="text" class="p-inputtext" pInputText formControlName="address" />
+                    </div>
+                </div>
+                <div class="input-container">
+                    <label for="name">Số căn cước</label>
+                    <div class="dropdown-wrapper">
+                        <input type="text" class="p-inputtext" pInputText formControlName="cccd" />
+                    </div>
+                </div>
+                <div class="input-container">
+                    <label for="name">Quyền</label>
+                    <div class="dropdown-wrapper">
+                        <p-dropdown [options]="listRole" formControlName="roleName" optionLabel="name"
+                            optionValue="name" [filter]="true" filterBy="name" [showClear]="true" appendTo="body"
+                            [style]="{'minWidth':'100%'}"></p-dropdown>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </ng-template>
+    <ng-template pTemplate="footer">
+        <div class="dialog-footer">
+            <p-button icon="pi pi-check" *ngIf="formSigIn.valid " (click)="SubmitBtn()" label="Lưu" pAutoFocus [autofocus]="true"></p-button>
+            <p-button icon="pi pi-check" (click)="close()"  label="Đóng"severity="danger" ></p-button>
+
+        </div>
+    </ng-template>
+</p-dialog>

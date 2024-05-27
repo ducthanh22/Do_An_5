@@ -1,5 +1,6 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
+import { ChangeDetectorRef, Component, ViewChild } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { CategoriesDto, ColorDto, Paging, Produces, ProductsDto, SizeDto } from 'src/app/model';
 import { CategoriesService } from 'src/app/service';
@@ -15,6 +16,7 @@ import { SizeService } from 'src/app/service/size.service';
   styleUrls: ['./products.component.css']
 })
 export class ProductsComponent {
+
   loading: boolean = false;
   customers: any;
   keyword: string = '';
@@ -34,7 +36,9 @@ export class ProductsComponent {
   selectedFile!: File | null;
   uploadedFiles: any[] = [];
   SelectSize!: SizeDto[]
-  getSize!: any[]
+  getSize!: any[];
+
+
   constructor(private ProductSV: ProductsService, private FB: FormBuilder, private MessageSV: MessageService,
     private CategorySV: CategoriesService, private changeDetector: ChangeDetectorRef, private confirmationService: ConfirmationService,
     private ProducesSv: ProducesService, private ColorSV: ColorService, private SizeSV: SizeService, private Product_typeService:Product_TypeService) {
@@ -46,7 +50,7 @@ export class ProductsComponent {
       name: new FormControl("", Validators.required),
       idcategories: new FormControl("", Validators.required),
       idproduces: new FormControl("", Validators.required),
-      describe: new FormControl("", Validators.required),
+      describe: new FormControl("<p>Initial value</p>", Validators.required),
       image: new FormControl("",),
       idcolor: new FormControl("", Validators.required),
       price_product: new FormControl("", Validators.required),
@@ -59,7 +63,9 @@ export class ProductsComponent {
       image: [''],
     })
   }
- 
+  ngAfterContentChecked(): void {
+    this.changeDetector.detectChanges();
+  }
   addSize() {
     const sizeFormGroup = this.FB.group({
       NameSize: ['', Validators.required]
@@ -163,7 +169,6 @@ export class ProductsComponent {
       });;
       this.listsize.push(sizeFormGroup);
     });
-
     this.FormProduct.controls['name'].setValue(data.name);
     this.FormProduct.controls['idcategories'].setValue(data.idcategories);
     this.FormProduct.controls['idproduces'].setValue(data.idproduces);
@@ -171,6 +176,8 @@ export class ProductsComponent {
     this.FormProduct.controls['price_product'].setValue(data.price_product);
     this.FormProduct.controls['idcolor'].setValue(data.idcolor);
     this.FormProduct.controls['image'].setValue(data.image);
+    console.log(this.FormProduct.controls['describe'].value);
+
 
   }
   SubmitBtn() {
@@ -285,5 +292,33 @@ export class ProductsComponent {
         this.MessageSV.add({ severity: 'error', summary: 'Rejected', detail: 'You have rejected', life: 3000 });
       }
     });
+  }
+
+
+  copyToClipboard() {
+    const value = this.FormProduct.controls['describe'].value;
+    const tempElement = document.createElement('div');
+    tempElement.innerHTML = value;
+
+    document.body.appendChild(tempElement);
+
+    if (document.createRange && window.getSelection) {
+      const range = document.createRange();
+      range.selectNode(tempElement);
+      const selection = window.getSelection();
+      if (selection) {
+        selection.removeAllRanges();
+        selection.addRange(range);
+        try {
+          document.execCommand('copy');
+          this.MessageSV.add({ severity: 'success', summary: 'Success', detail: 'Nội dung đã được sao chép vào clipboard!' })
+        } catch (err) {
+      this.MessageSV.add({ severity: 'error', summary: 'Lỗi', detail: 'Không thể sao chép nội dung: '})
+        }
+        selection.removeAllRanges();
+      }
+    }
+
+    document.body.removeChild(tempElement);
   }
 }

@@ -32,12 +32,54 @@ namespace Back_end.Controllers
             var result = await _Bus.Register(user);
             return Ok(result);
         }
+
+        [AllowAnonymous]
+
+        [HttpGet("GetAllRoles")]
+        public async Task<ActionResult<List<Role>>> GetAllRoles()
+        {
+            var result = await _Bus.GetAllRoles();
+            return Ok(result);
+        }
+        [AllowAnonymous]
+
+        [HttpGet("GetUser/{status}")]
+        public async Task<ActionResult<List<Role>>> GetUser( string status , [FromQuery]  Paging paging)
+        {
+            var result = await _Bus.GetUser(status,paging);
+            return Ok(result);
+        }
+
+        [HttpGet("getClaimByIdRole/{id}")]
+        [AllowAnonymous]
+
+        public async Task<ActionResult<CreateRoleDto>> getClaimByIdRole(string id)
+        {
+            var result = await _Bus.getClaimByIdRole(id);
+            return Ok(result);
+        }
         [AllowAnonymous]
         [HttpPost("CreateRole")]
         public async Task<ActionResult<bool>> CreateRoleAsync(CreateRoleDto role)
         {
             var result = await _Bus.CreateRoleAsync(role);
 
+            return Ok(result);
+        }
+        [AllowAnonymous]
+        [HttpPost("UpdateRole")]
+        public async Task<ActionResult<bool>> UpdateRole(CreateRoleDto role)
+        {
+            var result = await _Bus.UpdateRole(role);
+
+            return Ok(result);
+        }
+        [HttpDelete("DeleteRole/{id}")]
+        [AllowAnonymous]
+
+        public async Task<ActionResult<bool>> DeleteRole(string id)
+        {
+            var result = await _Bus.DeleteRole(id);
             return Ok(result);
         }
         [AllowAnonymous]

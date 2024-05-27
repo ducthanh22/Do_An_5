@@ -54,7 +54,7 @@ namespace Back_end.Controllers
             return Ok(result);
         }
         [HttpGet("Search")]
-        public async Task<IActionResult> Search(Paging paging)
+        public async Task<ActionResult<ExportbillDto>> Search([FromQuery] Paging paging)
         {
             var result = await _Bus.Search(paging);
 

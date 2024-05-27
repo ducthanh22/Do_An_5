@@ -10,6 +10,8 @@ namespace Model
     public class Color:Basedb
     {
         public string NameColor { get; set; }
+        public string Colorformat  { get; set; }
+
 
     }
 }

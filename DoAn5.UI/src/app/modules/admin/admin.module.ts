@@ -18,7 +18,6 @@ import { DropdownModule } from 'primeng/dropdown';
 import { EditorModule } from 'primeng/editor';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService } from 'primeng/api';
-
 import { FileUploadModule } from 'primeng/fileupload';
 import { ProduceComponent } from './produce/produce.component';
 import { ToastModule } from 'primeng/toast';
@@ -31,6 +30,17 @@ import { SaleComponent } from './sale/sale.component';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { ColorComponent } from './color/color.component';
 import { ImportBillComponent } from './import-bill/import-bill.component';
+import { RoleclaimComponent } from './roleclaim/roleclaim.component';
+import { TreeSelectModule } from 'primeng/treeselect';
+import { TagModule } from 'primeng/tag';
+import { StaffComponent } from './staff/staff.component';
+import { CustomerComponent } from './customer/customer.component';
+import { ColorPickerModule } from 'primeng/colorpicker';
+import { InputTextModule } from 'primeng/inputtext';
+import { CheckboxModule } from 'primeng/checkbox';
+import { RadioButtonModule } from 'primeng/radiobutton';
+
+import { ClipboardModule } from '@angular/cdk/clipboard'; 
 
 @NgModule({
   declarations: [
@@ -44,6 +54,9 @@ import { ImportBillComponent } from './import-bill/import-bill.component';
     SaleComponent,
     ColorComponent,
     ImportBillComponent,
+    RoleclaimComponent,
+    StaffComponent,
+    CustomerComponent,
   
   
   ],
@@ -67,7 +80,15 @@ import { ImportBillComponent } from './import-bill/import-bill.component';
     ToastModule,
     CardModule,
     ToolbarModule,
-    SelectButtonModule
+    SelectButtonModule,
+    TreeSelectModule,
+    TagModule,
+    ColorPickerModule,
+    InputTextModule,
+    CheckboxModule,
+    RadioButtonModule,
+    ClipboardModule
+
     
   ],
   providers: [ConfirmationService],

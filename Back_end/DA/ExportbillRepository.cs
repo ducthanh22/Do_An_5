@@ -20,7 +20,7 @@ namespace DAL
         }
         public async Task<BaseQuerieResponse<ExportbillDto>> Search(Paging paging)
         {
-            var query = from d in _DbContext.Set<ExportbillDto>().AsQueryable()
+            var query = from d in _DbContext.Set<Exportbill>().AsQueryable()
                         join a in _DbContext.User on d.IdStaff equals a.Id
                         where (string.IsNullOrEmpty(paging.Keyword) || a.PhoneNumber.Contains(paging.Keyword) || a.Email.Contains(paging.Keyword) || a.UserName.Contains(paging.Keyword))
                         orderby d.Created descending

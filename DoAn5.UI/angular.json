@@ -60,10 +60,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "DoAn5.UI:build:production"
+              "buildTarget": "DoAn5.UI:build:production"
             },
             "development": {
-              "browserTarget": "DoAn5.UI:build:development"
+              "buildTarget": "DoAn5.UI:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -71,7 +71,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "DoAn5.UI:build"
+            "buildTarget": "DoAn5.UI:build"
           }
         },
         "test": {
@@ -88,14 +88,12 @@
             ],
             "styles": [
               "src/styles.css",
-              "node_modules/primeng/resources/themes/lara-light-blue/theme.css",
-              "node_modules/primeng/resources/primeng.min.css",
               "node_modules/primeicons/primeicons.css",
-              "node_modules/quill/dist/quill.snow.css"
-              
+              "node_modules/primeng/resources/themes/omega/theme.css",
+              "node_modules/primeng/resources/primeng.min.css"
               
             ],
-            "scripts": []
+            "scripts": ["../node_modules/quill/dist/quill.js"]
           }
         }
       }

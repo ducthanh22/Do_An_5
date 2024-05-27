@@ -10,6 +10,6 @@ namespace BLL.Interface
 {
     public interface IColorBus :IGenericBUS<Color>
     {
-
+        Task<BaseQuerieResponse<ColorDto>> Search(Paging paging);
     }
 }

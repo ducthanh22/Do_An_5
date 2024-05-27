@@ -24,8 +24,8 @@ namespace DTO
         public Guid Idproduces { get; set; }
         public string Describe { get; set; }
         public string Image { get; set; }
-        public string namecolor { get; set; }
-       
+        public string Colorformat  { get; set; }
+
         public int? Price_product { get; set; }
         public Guid Idcolor { get; set; }
         public int? SalePrice { get; set; }

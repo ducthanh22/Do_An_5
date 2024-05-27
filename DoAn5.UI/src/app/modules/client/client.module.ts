@@ -32,6 +32,8 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { BadgeModule } from 'primeng/badge';
 import { SearchComponent } from './search/search.component';
 import { CountdownModule } from 'ngx-countdown';
+import { ColorPickerModule } from 'primeng/colorpicker';
+
 
 @NgModule({
   declarations: [
@@ -70,7 +72,8 @@ import { CountdownModule } from 'ngx-countdown';
     DialogModule,
     InputTextareaModule,
     BadgeModule,
-    CountdownModule
+    CountdownModule,
+    ColorPickerModule
   ]
 })
 export class ClientModule { }

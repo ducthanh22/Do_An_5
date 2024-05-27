@@ -13,6 +13,8 @@ using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
+using System.Net.NetworkInformation;
 
 
 namespace DAL
@@ -24,25 +26,77 @@ namespace DAL
         private readonly Achino_DbContext _dbContext;
         private readonly IConfiguration _config;
         private readonly ISendEmailRepository _sendEmailRepository;
-        private readonly IHttpContextAccessor _httpContextAccessor;
-        private readonly LinkGenerator _linkGenerator;
+
         public AccountRepository(
             UserManager<User> userManager,
             Achino_DbContext dbContext,
             IConfiguration config,
             RoleManager<Role> roleManager,
-            IHttpContextAccessor httpContextAccessor,
-            ISendEmailRepository sendEmailRepository,
-            LinkGenerator linkGenerator)
+            ISendEmailRepository sendEmailRepository
+)
         {
             _userManager = userManager;
             _dbContext = dbContext;
             _config = config;
             _roleManager = roleManager;
-            _httpContextAccessor = httpContextAccessor;
             _sendEmailRepository = sendEmailRepository;
-            _linkGenerator = linkGenerator;
         }
+        public async Task<List<Role>> GetAllRoles()
+        {
+            var roles = await _roleManager.Roles.ToListAsync();
+            return roles;
+        }
+        public async Task<CreateRoleDto>getClaimByIdRole(string id)
+        {
+            var existRole = await _roleManager.FindByIdAsync(id);
+
+            var claim = await _roleManager.GetClaimsAsync(existRole);
+
+            var createRoleDto = new CreateRoleDto
+            {
+                Role = new RoleDto 
+                {
+                    Id=existRole.Id,
+                    Name = existRole.Name
+                },
+                RoleClaims = claim.Select(claim => new ClaimDto
+                {
+                    Type = claim.Type,
+                    Value = claim.Value
+                }).ToList()
+            };
+            return createRoleDto ;
+        }
+
+        public async Task<BaseQuerieResponse<User>> GetUser(string status, Paging paging)
+        {
+            var users = from user in _userManager.Users
+                        where (user.Status == status && string.IsNullOrEmpty(paging.Keyword)||user.Status == status && user.Email.Contains(paging.Keyword)|| user.Status == status && user.UserName.Contains(paging.Keyword)
+                        || user.Status == status && user.PhoneNumber.Contains(paging.Keyword))
+                        select new User
+                        {
+                            Id= user.Id,
+                            UserName= user.UserName,
+                            Status= user.Status,
+                            Email= user.Email,
+                            Address= user.Address,
+                            PhoneNumber= user.PhoneNumber,
+                            CCCD= user.CCCD,
+                        };
+            var totalCount = await users.LongCountAsync();
+            var pageResults = await users.Skip((paging.PageIndex - 1) * paging.PageSize).Take(paging.PageSize).ToListAsync();
+
+            var searchResults = new BaseQuerieResponse<User>
+            {
+                PageIndex = paging.PageIndex,
+                PageSize = paging.PageSize,
+                Keyword = paging.Keyword,
+                TotalFilter = totalCount,
+                Data = pageResults
+            };
+            return searchResults;
+        }
+
 
         public async Task<bool> CreateRoleAsync(CreateRoleDto role)
         {
@@ -69,12 +123,66 @@ namespace DAL
             }
             return false;
         }
+        public async Task<bool> UpdateRole(CreateRoleDto role)
+        {
+            try
+            {
+                var roleExists = await _roleManager.FindByIdAsync(role.Role.Id);
+                if (roleExists != null)
+                {
+                    if (roleExists.Name != role.Role.Name)
+                    {
+                        roleExists.Name = role.Role.Name;
+                        var updateResult = await _roleManager.UpdateAsync(roleExists);
 
+                        if (!updateResult.Succeeded)
+                        {
+                            return false;
+                        }
+                    }
+                    var existingClaims = await _roleManager.GetClaimsAsync(roleExists);
+                    foreach (var existingClaim in existingClaims)
+                    {
+                        await _roleManager.RemoveClaimAsync(roleExists, existingClaim);
+                    }
+                    foreach (var roleClaim in role.RoleClaims)
+                    {
+                        var claim = new Claim(roleClaim.Type, roleClaim.Value);
+                        var addClaimResult = await _roleManager.AddClaimAsync(roleExists, claim);
+
+                        if (!addClaimResult.Succeeded)
+                        {
+                            return false;
+                        }
+                    }
+
+                    return true; // Role updated successfully
+                }
+
+                return false; // Role does not exist
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                return false;
+            }
+        }
+
+        public async Task<bool>DeleteRole(string id)
+        { 
+          var role = await _roleManager.FindByIdAsync(id);
+            if(role != null)
+            {
+                await _roleManager.DeleteAsync(role);
+                return true;
+            }
+            return false;
+        }
 
         public async Task<bool> Register(CreateUserDto user)
         {
             var Check = await _userManager.FindByEmailAsync(user.Email);
-            if(Check == null )
+            if(Check == null ) 
             {
                 var newUser = new User
                 {

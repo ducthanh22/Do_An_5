@@ -8,6 +8,7 @@ import { exportBillService } from 'src/app/service/Exportbill.service';
 import { AccountService } from 'src/app/service/account.service';
 import { ProductsService } from 'src/app/service/products.service';
 import { RatingService } from 'src/app/service/rating.service';
+import { WarehousedetailService } from 'src/app/service/warehouse_detail.service';
 
 
 @Component({
@@ -28,9 +29,10 @@ export class DetailproductsComponent {
   Totalcount!: number;
   informationToken: any;
   countProduct!:countProduct;
-
+  countprohouse!:countProduct;
   constructor(private route: ActivatedRoute, private productService: ProductsService, private MessageSV: MessageService,
-    private RatingService: RatingService, private AcountService: AccountService, private exportBillService :exportBillService) { }
+    private RatingService: RatingService, private AcountService: AccountService, private exportBillService :exportBillService,
+  private warehouseService : WarehousedetailService) { }
   ngOnInit() {
     this.informationToken = this.AcountService.decodeToken();
     this.Carts = this.productService.GetCart();
@@ -41,6 +43,7 @@ export class DetailproductsComponent {
       this.getbyid(this.id);
       this.GetRating(this.id,1,10)
       this.CountProduct(this.id)
+      this.CountProWarehouse(this.id)
     });
     
   }
@@ -49,6 +52,15 @@ export class DetailproductsComponent {
       next:(res)=>{
         if(res){
           this.countProduct=res;
+        }
+      }
+    })
+  }
+  CountProWarehouse(id:string){
+    this.warehouseService.CountProduct(id).subscribe({
+      next:(res)=>{
+        if(res){
+          this.countprohouse=res;
         }
       }
     })

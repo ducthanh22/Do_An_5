@@ -11,7 +11,9 @@ namespace DTO
     public class ColorDto: BasedbDto
     {
         public string NameColor { get; set; }
+        public string Colorformat { get; set; }
+
     }
 
-   
+
 }

@@ -1,0 +1,61 @@
+<h2 class="center-align"> Quản lý khách hàng</h2>
+
+<p-confirmDialog></p-confirmDialog>
+<div class="card">
+    <p-table [value]="datas" [lazy]="true" (onLazyLoad)="loadListLazy($event)" [paginator]="true" [rows]="10"
+    [scrollable]="true" scrollHeight="400px"
+        [loading]="loading" [showCurrentPageReport]="true" [tableStyle]="{ 'min-width': '50rem' }"
+        [totalRecords]="Totalcount" [resizableColumns]="true"
+        currentPageReportTemplate="Hiển thị từ {first} đến {last} của {totalRecords} bản ghi" [filterDelay]="0"
+        [rowsPerPageOptions]="[5, 10, 20]">
+        <ng-template pTemplate="caption">
+            <form class="p-input-icon-left frm" (ngSubmit)="onsubmit()">
+                <i class="pi pi-search"></i>
+                <input type="text" class="p-inputtext" pInputText [(ngModel)]="keyword" placeholder="Tìm kiếm..."
+                    [ngModelOptions]="{standalone: true}" />
+                <p-button type="submit" icon="pi pi-search"></p-button>
+            </form>
+        </ng-template>
+        <ng-template pTemplate="header">
+            <tr>
+                <th class="center-align">STT</th>
+                <th class="center-align">Tên</th>
+                <th class="center-align">Email</th>
+                <th class="center-align">SĐT</th>
+                <th class="center-align">Căn cước</th>
+                <th class="center-align">Địa chỉ</th>
+                <th class="center-align">Chức năng</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-user let-rowIndex="rowIndex">
+            <tr>
+                <td class="center-align">{{ rowIndex + 1}}</td>
+                <td class="center-align">{{ user.userName }}</td>
+                <td class="center-align">{{ user.email }}</td>
+                <td class="center-align">{{ user.phoneNumber }}</td>
+                <td class="center-align">{{ user.cccd }}</td>
+                <td class="center-align">{{ user.address }}</td>
+
+                <td class="center-align">
+                    <i class="pi pi-eye" style="color: slateblue; margin-left: 5%;"></i>
+                    <i class="pi pi-pencil" style="color: rgb(255, 132, 0); margin-left: 5%;"
+                        ></i>
+                    <i class="pi pi-trash" style="color: red; margin-left: 5%;"
+                       ></i>
+                </td>
+
+
+
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="paginatorleft">
+            <p-button type="button" icon="pi pi-plus" styleClass="p-button-text"></p-button>
+        </ng-template>
+        <ng-template pTemplate="paginatorright">
+            <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text"></p-button>
+        </ng-template>
+    </p-table>
+</div>
+
+
+

@@ -44,5 +44,25 @@ namespace BLL
         {
             return await _accountRepository.ResetPassword(model);
         }
+        public async Task<List<Role>> GetAllRoles()
+        {
+            return await _accountRepository.GetAllRoles();
+        }
+        public async Task<CreateRoleDto> getClaimByIdRole(string id)
+        {
+            return await _accountRepository.getClaimByIdRole(id);
+        }
+        public async Task<bool> UpdateRole(CreateRoleDto role)
+        {
+            return await _accountRepository.UpdateRole(role);
+        }
+        public async Task<bool> DeleteRole(string id)
+        {
+            return await _accountRepository.DeleteRole(id);
+        }
+        public async Task<BaseQuerieResponse<User>> GetUser(string status, Paging paging)
+        {
+            return await _accountRepository.GetUser(status, paging);
+        }
     }
 }

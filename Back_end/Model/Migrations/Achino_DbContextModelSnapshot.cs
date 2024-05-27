@@ -270,6 +270,10 @@ namespace Model.Migrations
                     b.Property<int?>("ActiveFlag")
                         .HasColumnType("int");
 
+                    b.Property<string>("Colorformat")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime?>("Created")
                         .HasColumnType("datetime2");
 

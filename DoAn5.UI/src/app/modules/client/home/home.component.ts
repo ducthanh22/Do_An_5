@@ -57,25 +57,14 @@ export class HomeComponent {
     this.GetBestSellingProducts()
   }
   resetAcount() {
-    if (this.informationToken && this.informationToken.status != 1) {
+    if (this.informationToken && this.informationToken.status != 2) {
       localStorage.removeItem('Token');
       window.location.href = '/client/Home';
     }
   }
-  // startUpdateSalesPrices(): void {
-  //   this.subscription = interval(1000) // Tạo một luồng mới gửi một sự kiện sau mỗi 1 phút (60 giây)
-  //     .subscribe(() => { // Subscribe vào luồng
-  //       this.SaleService.UpdateSalesPrices().subscribe(data => { // Gọi phương thức UpdateSalesPrices
-  //         if (data !== null) {
-  //           this.datasale = data;
-  //         } else {
-  //           this.subscription.unsubscribe(); // Dừng interval nếu data là null
-  //         }
-  //       });
-  //     });
-  // }
+
   startUpdateSalesPrices() {
-    this.SaleService.UpdateSalesPrices().subscribe(data => { // Gọi phương thức UpdateSalesPrices
+    this.SaleService.UpdateSalesPrices().subscribe(data => { 
       if (data) {
         this.datasale = data;
       }

@@ -10,7 +10,7 @@ namespace DAL.Interface
 {
     public interface IColorRepository : IGenericRepository<Color>
     {
-       
+        Task<BaseQuerieResponse<ColorDto>> Search(Paging paging);
 
     }
 }

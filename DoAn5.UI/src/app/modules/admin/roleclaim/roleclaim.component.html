@@ -1,0 +1,161 @@
+
+<h2 style="text-align: center;"> Quản lý quyền</h2>
+
+<p-confirmDialog></p-confirmDialog>
+<!-- <div class="card">
+    <p-table [value]="dataGetRole" [paginator]="true" [rows]="10" [scrollable]="true" scrollHeight="400px"
+        [loading]="loading" [showCurrentPageReport]="true" [tableStyle]="{ 'min-width': '50rem' }"
+         [resizableColumns]="true"
+        currentPageReportTemplate="Hiển thị từ {first} đến {last} của {totalRecords} bản ghi" [filterDelay]="0"
+        [rowsPerPageOptions]="[5, 10, 20]">
+        <ng-template pTemplate="caption">
+            <p-button (click)="add()" icon="pi pi-plus-circle" label="Thêm mới"></p-button>
+            <form class="p-input-icon-left frm" >
+                <i class="pi pi-search"></i>
+                <input type="text" class="p-inputtext" pInputText  placeholder="Tìm kiếm..."/>
+                <p-button type="submit" icon="pi pi-search"></p-button>
+            </form>
+
+
+        </ng-template>
+        <ng-template pTemplate="header">
+            <tr>
+                <th >STT</th>
+
+                <th >Mã</th>
+                <th>Tên</th>
+                <th></th>
+
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-role let-rowIndex="rowIndex">
+            <tr>
+                <td>{{ rowIndex + 1}}</td>
+
+                <td>{{ role.id }}</td>
+               
+                <td>{{ role.name }}</td>
+              
+                <td>
+                    <i class="pi pi-eye" style="color: slateblue; margin-left: 5%;"></i>
+                    <i class="pi pi-pencil" style="color: rgb(255, 132, 0); margin-left: 5%;"
+                       ></i>
+                    <i class="pi pi-trash" style="color: red; margin-left: 5%;"
+                        ></i>
+                </td>
+
+
+
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="paginatorleft">
+            <p-button type="button" icon="pi pi-plus" styleClass="p-button-text"></p-button>
+        </ng-template>
+        <ng-template pTemplate="paginatorright">
+            <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text"></p-button>
+        </ng-template>
+    </p-table>
+</div> -->
+
+
+<div class="card">
+    <p-table
+        #dt2
+        [value]="dataGetRole"
+        dataKey="id"
+        [rows]="10"
+        [rowsPerPageOptions]="[10, 25, 50]"
+        [loading]="loading"
+        [paginator]="true"
+        [globalFilterFields]="['id','name']"
+        [tableStyle]="{ 'min-width': '75rem' }"
+    >
+    <ng-template pTemplate="caption">
+        <p-button (click)="add()" icon="pi pi-plus-circle" label="Thêm mới"></p-button>
+    </ng-template>
+    <ng-template pTemplate="header">
+        <tr>
+            <th >STT</th>
+            <th >Mã <p-columnFilter 
+                type="text"
+                field="id" 
+                placeholder="Lọc theo mã" 
+                ariaLabel="Filter Name"  display="menu"/></th>
+            <th>Tên
+                <p-columnFilter 
+                    type="text"
+                    field="name"
+                    placeholder="Lọc theo tên" 
+                    ariaLabel="Filter Country"  display="menu"/>
+            </th>
+            <th></th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body"  let-role let-rowIndex="rowIndex">
+        <tr>
+            <td>{{ rowIndex + 1}}</td>
+
+            <td>{{ role.id }}</td>
+           
+            <td>{{ role.name }}</td>
+          
+            <td>
+                <i class="pi pi-eye" style="color: slateblue; margin-left: 5%;"(click)="detail(role.id,role.name)"></i>
+                
+                <i class="pi pi-pencil" style="color: rgb(255, 132, 0); margin-left: 5%;" (click)="edit(role.id,role.name)"></i>
+                <i class="pi pi-trash" style="color: red; margin-left: 5%;"
+                    (click)="Delete($event  ,role.id)"></i>
+            </td>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+        <tr>
+            <td colspan="5">No customers found.</td>
+        </tr>
+    </ng-template>
+    </p-table>
+</div>
+
+
+<p-dialog header="Long Content" [(visible)]="visible" [modal]="true" [maximizable]="true"
+    [style]="{width: '40%'}" [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }">
+    <ng-template pTemplate="header">
+        <div class="dialog-header">
+            <span class="font-bold">{{Titile}}</span>
+        </div>
+    </ng-template>
+    <ng-template pTemplate="body">
+       
+            <div class="card">
+                <div class="input-container">
+                    <label for="name">Tên</label>
+                    <div class="dropdown-wrapper">
+                        <input type="text" class="p-inputtext" pInputText  [(ngModel)]="name" [ngModelOptions]="{standalone: true}" />
+                    </div>
+                </div>
+                <div class="input-container">
+                    <label for="name">Điện thoại</label>
+                    <p-treeSelect 
+            class="w-full md:w-20rem" 
+            containerStyleClass="w-full" 
+            [(ngModel)]="selectedNodes" 
+            [options]="nodes" 
+            display="chip" 
+            appendTo="body"
+            [metaKeySelection]="false" 
+            selectionMode="checkbox" 
+            placeholder="Select Item" />
+                </div>
+               
+
+            </div>
+    </ng-template>
+    <ng-template pTemplate="footer">
+        <div class="dialog-footer">
+            <p-button icon="pi pi-check"  (click)="clickBTN()" label="Lưu" pAutoFocus [autofocus]="true" *ngIf="checksave==true"></p-button>
+            <p-button icon="pi pi-check" (click)="close()"  label="Đóng"severity="danger" ></p-button>
+        </div>
+    </ng-template>
+</p-dialog>
+
+

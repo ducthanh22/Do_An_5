@@ -52,7 +52,12 @@ namespace Back_end.Controllers
             var result = await _Bus.Delete(id);
             return Ok(result);
         }
+        [HttpGet("Search")]
+        public async Task<ActionResult<Color>> Search([FromQuery] Paging paging)
+        {
+            var result = await _Bus.Search(paging);
+            return Ok(result);
+        }
 
-       
     }
 }
