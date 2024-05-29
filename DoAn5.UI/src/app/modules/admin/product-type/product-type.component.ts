@@ -4,8 +4,9 @@ import { DetachedRouteHandle } from '@angular/router';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { Paging } from 'src/app/model';
 import { Product_typeDto } from 'src/app/model/Product_type';
-import { CategoriesService } from 'src/app/service';
+
 import { Product_TypeService } from 'src/app/service/Product_type.service';
+import { CategoriesService } from 'src/app/service/categories.service';
 
 @Component({
   selector: 'app-product-type',

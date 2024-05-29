@@ -101,7 +101,16 @@ export class OrderComponent {
         rejectIcon:"none",
 
         accept: () => {
-          this.Update(data,7)
+          // this.Update(data,7)
+          this.OrderService.destroyOrder(data.id).subscribe({
+            next:res=>{
+              if(res){
+                this.onsubmit();
+            this.messageService.add({ severity: 'success', summary: 'Hủy', detail: 'Bạn đã hủy đơn hàng thành công' });
+              }
+            }
+          });
+          
         },
         reject: () => {
             this.messageService.add({ severity: 'error', summary: 'Hủy', detail: 'Bạn đã hủy' });

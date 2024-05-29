@@ -39,8 +39,9 @@ import { ColorPickerModule } from 'primeng/colorpicker';
 import { InputTextModule } from 'primeng/inputtext';
 import { CheckboxModule } from 'primeng/checkbox';
 import { RadioButtonModule } from 'primeng/radiobutton';
-
 import { ClipboardModule } from '@angular/cdk/clipboard'; 
+import { WarehouseComponent } from './warehouse/warehouse.component';
+
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import { ClipboardModule } from '@angular/cdk/clipboard';
     RoleclaimComponent,
     StaffComponent,
     CustomerComponent,
+    WarehouseComponent
   
   
   ],

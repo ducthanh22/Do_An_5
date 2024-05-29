@@ -3,8 +3,9 @@ import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@ang
 
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { CategoriesDto, ColorDto, Paging, Produces, ProductsDto, SizeDto } from 'src/app/model';
-import { CategoriesService } from 'src/app/service';
+
 import { Product_TypeService } from 'src/app/service/Product_type.service';
+import { CategoriesService } from 'src/app/service/categories.service';
 import { ColorService } from 'src/app/service/color.service';
 import { ProducesService } from 'src/app/service/produces.service';
 import { ProductsService } from 'src/app/service/products.service';

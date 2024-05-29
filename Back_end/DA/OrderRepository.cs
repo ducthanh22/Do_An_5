@@ -150,7 +150,6 @@ namespace DAL
             {
                 try
                 {
-                    // Create and save the main order
                     CreateOrderDto orderDto = new CreateOrderDto
                     {
                         Id_customer = entity.Id_customer,
@@ -159,7 +158,6 @@ namespace DAL
                         Address = entity.Address,
                         Payment = entity.Payment,
                         Created = DateTime.Now,
-
                     };
                     var orderEntity = _mapper.Map<Order>(orderDto);
                     await _DbContext.Order.AddAsync(orderEntity);
@@ -185,7 +183,6 @@ namespace DAL
                         if (checkwarehouse != null)
                         {
                             checkwarehouse.Quantity -= item.Quantity;
-
                             _DbContext.Detail_warehouse.Update(checkwarehouse);
                             await _DbContext.SaveChangesAsync();
                         }
@@ -213,7 +210,28 @@ namespace DAL
                     throw;
                 }
             }
-
+        }
+        public async Task<Order>destroyOrder(Guid id)
+        {
+            var checkdetail = await _DbContext.Order_detail.Where(x=>x.Id_Order== id).ToListAsync();
+            foreach( var item in checkdetail )
+            {
+                var checkwarehouse = await _DbContext.Detail_warehouse.Where(x => x.Idproduct == item.Id_product).FirstOrDefaultAsync();
+                if ( checkwarehouse != null )
+                {
+                    checkwarehouse.Quantity += item.Quantity;
+                    _DbContext.Detail_warehouse.Update(checkwarehouse);
+                    await _DbContext.SaveChangesAsync();
+                }
+            }
+            var checkorder = await _DbContext.Order.Where(x=>x.Id==id).FirstOrDefaultAsync();
+            if ( checkorder != null )
+            {
+                checkorder.status = 7;
+                _DbContext.Order.Update(checkorder);
+                await _DbContext.SaveChangesAsync();
+            }
+            return checkorder;
         }
     }
 }

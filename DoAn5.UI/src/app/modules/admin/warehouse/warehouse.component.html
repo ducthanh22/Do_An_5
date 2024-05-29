@@ -1,0 +1,106 @@
+<h2 style="text-align: center;"> Quản lý kho</h2>
+
+<p-confirmDialog></p-confirmDialog>
+<div class="card">
+    <p-table [value]="datas" [lazy]="true" (onLazyLoad)="loadListLazy($event)" [paginator]="true" [rows]="10"
+    [scrollable]="true" scrollHeight="400px"
+        [loading]="loading" [showCurrentPageReport]="true" [tableStyle]="{ 'min-width': '50rem' }"
+        [totalRecords]="Totalcount" [resizableColumns]="true"
+        currentPageReportTemplate="Hiển thị từ {first} đến {last} của {totalRecords} bản ghi" [filterDelay]="0"
+        [rowsPerPageOptions]="[5, 10, 20]">
+        <ng-template pTemplate="caption">
+            <!-- <p-button (click)="Add()" icon="pi pi-plus-circle" label="Thêm mới"></p-button> -->
+            <form class="p-input-icon-left frm" (ngSubmit)="onsubmit()">
+                <i class="pi pi-search"></i>
+                <input type="text" class="p-inputtext" pInputText [(ngModel)]="keyword" placeholder="Tìm kiếm..."
+                    [ngModelOptions]="{standalone: true}" />
+                <p-button type="submit" icon="pi pi-search"></p-button>
+            </form>
+        </ng-template>
+        <ng-template pTemplate="header">
+            <tr>
+                <th style="text-align: center;">STT</th>
+                <th style="text-align: center;">Tên</th>
+                <th style="text-align: center;">Ảnh</th>
+                <th style="text-align: center;">Size</th>
+                <th style="text-align: center;">Số lượng</th>
+                <th style="text-align: center;">Chức năng</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-data let-rowIndex="rowIndex">
+            <tr>
+                <td style="text-align: center;">{{ rowIndex + 1}}</td>
+                <td style="text-align: center;">{{ data.nameProduct }}</td>
+                <td class="center-align"><p-image src="https://localhost:7058/Images/{{ data.image }}"
+                    previewImageSrc="https://localhost:7058/Images/{{ data.image }}" alt="Image" width="100"
+                    [preview]="true"></p-image></td>
+                <td style="text-align: center;">{{ data.nameSize }}</td>
+                <td style="text-align: center;">{{ data.quantity }}</td>
+
+                <td style="text-align: center;">
+                    <i class="pi pi-eye" style="color: slateblue; margin-left: 5%;" (click)="view(data)"></i>
+                    <i class="pi pi-pencil" style="color: rgb(255, 132, 0); margin-left: 5%;"
+                        (click)="Edit(data)"></i>
+                    <i class="pi pi-trash" style="color: red; margin-left: 5%;"
+                        (click)="confirm($event,data.id )"></i>
+                </td>
+
+
+
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="paginatorleft">
+            <p-button type="button" icon="pi pi-plus" styleClass="p-button-text"></p-button>
+        </ng-template>
+        <ng-template pTemplate="paginatorright">
+            <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text"></p-button>
+        </ng-template>
+    </p-table>
+</div>
+
+
+
+
+<p-dialog header="Long Content" [(visible)]="visible" [modal]="true" [maximizable]="true"
+    [style]="{width: '40%',height:'50%'}" [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }">
+    <ng-template pTemplate="header">
+        <div class="dialog-header">
+            <span class="font-bold">{{Titile}}</span>
+        </div>
+    </ng-template>
+    <ng-template pTemplate="body">
+        <form [formGroup]="formWarehouse" class="full-width-form">
+            <div class="card ">
+                <div class="input-container">
+                    <label for="name">Chọn sản phẩm</label>
+                    <div class="dropdown-wrapper">
+                        <p-dropdown [options]="listProduct" formControlName="Idproduct" optionLabel="name"
+                            optionValue="id" [filter]="true" filterBy="name" [showClear]="true" appendTo="body"
+                            [style]="{'minWidth':'100%'}"  />
+                    </div>
+                </div>
+                <div class="input-container">
+                    <label for="name">Chọn size</label>
+                    <div class="dropdown-wrapper">
+                        <p-dropdown [options]="listSize" formControlName="Idsize" optionLabel="nameSize"
+                            optionValue="id" [filter]="true" filterBy="nameSize" [showClear]="true" appendTo="body"
+                            [style]="{'minWidth':'100%'}" />
+                    </div>
+                </div>
+                <div class="input-container">
+                    <label for="name">Số lượng</label>
+                    <div class="dropdown-wrapper">
+                        <input type="number" class="p-inputtext" pInputText formControlName="Quantity"  />
+                    </div>
+                </div>
+            </div>
+        </form>
+    </ng-template>
+    <ng-template pTemplate="footer">
+        <div class="dialog-footer">
+            <p-button icon="pi pi-check" *ngIf="setdisable==false && formWarehouse.valid " (click)="SaveEdit()" label="Lưu" pAutoFocus [autofocus]="true"></p-button>
+            <p-button icon="pi pi-check" (click)="close()"  label="Đóng"severity="danger" ></p-button>
+
+        </div>
+    </ng-template>
+</p-dialog>

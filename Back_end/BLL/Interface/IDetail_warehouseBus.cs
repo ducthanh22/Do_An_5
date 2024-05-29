@@ -12,6 +12,7 @@ namespace BLL.Interface
     public interface IDetail_warehouseBus :IGenericBUS<Detail_warehouse>
     {
         Task<countProduct> CountProduct(Guid id);
+        Task<BaseQuerieResponse<GetDetail_warehouseDto>> Search(Paging paging);
 
     }
 }

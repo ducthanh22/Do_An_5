@@ -41,5 +41,9 @@ namespace BLL
         {
             return await _res.Search(paging);
         }
+        public async Task<Order> destroyOrder(Guid id)
+        {
+            return await _res.destroyOrder(id);
+        }
     }
 }

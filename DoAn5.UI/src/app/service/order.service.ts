@@ -17,4 +17,9 @@ export class OrderService extends BaseService<CreateOrderDto> {
     .get<any>(`${environment.apiUrl}/Order/GetOrderProduct`,  { params: { id, status } })
     .pipe(first());
   }
+  destroyOrder(id:string):Observable<any>{
+    return this.http
+    .get<any>(`${environment.apiUrl}/Order/destroyOrder/${id}`)
+    .pipe(first());
+  }
 }

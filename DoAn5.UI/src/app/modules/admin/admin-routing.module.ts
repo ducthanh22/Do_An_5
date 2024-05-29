@@ -13,6 +13,7 @@ import { ImportBillComponent } from './import-bill/import-bill.component';
 import { RoleclaimComponent } from './roleclaim/roleclaim.component';
 import { StaffComponent } from './staff/staff.component';
 import { CustomerComponent } from './customer/customer.component';
+import { WarehouseComponent } from './warehouse/warehouse.component';
 
 
 const routes: Routes = [
@@ -29,6 +30,8 @@ const routes: Routes = [
     {path:'role',component:RoleclaimComponent},
     {path:'staff',component:StaffComponent},
     {path:'customer',component:CustomerComponent},
+    {path:'warehouse',component:WarehouseComponent},
+
 
 
 

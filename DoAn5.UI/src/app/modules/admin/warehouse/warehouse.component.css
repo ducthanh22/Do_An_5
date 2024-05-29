@@ -1,0 +1,16 @@
+
+    .input-container,
+    .dropdown-container {
+        grid: 1;
+        margin-right: 10px;
+    }
+    
+    .input-container input,
+    .dropdown-container p-dropdown {
+        width: 100%;
+    }
+    
+    .full-width-form {
+        width: 100%;
+    }
+    

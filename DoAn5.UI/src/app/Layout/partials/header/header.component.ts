@@ -4,7 +4,7 @@ import { MenuItem, MessageService } from 'primeng/api';
 import { Subscription, forkJoin, map } from 'rxjs';
 import { CategoriesDto } from 'src/app/model';
 import { Product_typeDto } from 'src/app/model/Product_type';
-import { CategoriesService } from 'src/app/service';
+import { CategoriesService } from 'src/app/service/categories.service';
 import { ShareService } from 'src/app/service/Common/share.service';
 import { Product_TypeService } from 'src/app/service/Product_type.service';
 import { AccountService } from 'src/app/service/account.service';

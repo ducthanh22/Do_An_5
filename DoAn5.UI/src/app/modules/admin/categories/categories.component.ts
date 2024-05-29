@@ -1,8 +1,9 @@
 import { Component, ViewChild } from '@angular/core';
 import { CategoriesDto, Paging } from 'src/app/model';
-import { CategoriesService } from 'src/app/service';
+
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ConfirmationService, MessageService } from 'primeng/api';
+import { CategoriesService } from 'src/app/service/categories.service';
 
 
 
@@ -120,7 +121,7 @@ export class CategoriesComponent {
   SaveAdd() {
     if (this.FormCategories) {
       this.categoriesService.create(this.FormCategories.value).subscribe({
-        next: res => {
+        next: (res) => {
           if (res) {
             this.MessageSV.add({ severity: 'success', summary: 'Success', detail: 'Thêm thành công' })
             this.FormCategories.reset();

@@ -22,5 +22,9 @@ namespace BLL
         {
             return await _res.CountProduct(id);
         }
+        public async Task<BaseQuerieResponse<GetDetail_warehouseDto>> Search(Paging paging)
+        {
+            return await _res.Search(paging);
+        }
     }
 }

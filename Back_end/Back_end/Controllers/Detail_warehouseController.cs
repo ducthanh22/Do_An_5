@@ -20,6 +20,8 @@ namespace Back_end.Controllers
             _Bus = Bus;
         }
         [HttpGet("GetAll")]
+        [AllowAnonymous]
+
         public async Task<ActionResult<List<Detail_warehouseDto>>> GetAll()
         {
             var result = await _Bus.GetAll();
@@ -59,6 +61,13 @@ namespace Back_end.Controllers
         public async Task<ActionResult<countProduct>> CountProduct(Guid id)
         {
             var result = await _Bus.CountProduct(id);
+            return Ok(result);
+        }
+        [HttpGet("Search")]
+        [AllowAnonymous]
+        public async Task<ActionResult<GetDetail_warehouseDto>> Search([FromQuery] Paging paging)
+        {
+            var result = await _Bus.Search(paging);
             return Ok(result);
         }
     }

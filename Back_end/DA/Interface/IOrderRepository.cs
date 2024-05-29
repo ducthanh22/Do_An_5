@@ -15,6 +15,7 @@ namespace DAL.Interface
         Task<List<GetorderDto>> GetOrderProduct(string id, int status);
         Task<BaseQuerieResponse<OrderDto>> Search(Paging paging);
         Task<List<GetorderDto>> Getbyids(Guid id);
+        Task<Order> destroyOrder(Guid id);
 
 
 

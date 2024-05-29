@@ -35,6 +35,12 @@ namespace Back_end.Controllers
             var result = await _Bus.Getbyids(id);
             return Ok(result);
         }
+        [HttpGet("destroyOrder/{id}")]
+        public async Task<ActionResult<OrderDto>> destroyOrder(Guid id)
+        {
+            var result = await _Bus.destroyOrder(id);
+            return Ok(result);
+        }
         [HttpGet("GetByCustomer")]
         public async Task<ActionResult<List<OrderDto>>> GetbyCustomerGet(string id)
         {

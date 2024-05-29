@@ -12,5 +12,6 @@ namespace DAL.Interface
     public interface IDetail_warehouseRepository : IGenericRepository<Detail_warehouse>
     {
         Task<countProduct> CountProduct(Guid id);
+        Task<BaseQuerieResponse<GetDetail_warehouseDto>> Search(Paging paging);
     }
 }
