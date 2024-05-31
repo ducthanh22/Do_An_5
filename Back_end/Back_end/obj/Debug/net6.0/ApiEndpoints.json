@@ -3031,6 +3031,37 @@
     ]
   },
   {
+    "ContainingType": "Back_end.Controllers.StatisticalController",
+    "Method": "Darhboarsh",
+    "RelativePath": "api/Statistical/Darhboarsh",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "start",
+        "Type": "System.DateTime",
+        "IsRequired": false
+      },
+      {
+        "Name": "end",
+        "Type": "System.DateTime",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "DTO.StatisticalDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
     "ContainingType": "Back_end.Controllers.WarehouseController",
     "Method": "Create",
     "RelativePath": "api/Warehouse/create",

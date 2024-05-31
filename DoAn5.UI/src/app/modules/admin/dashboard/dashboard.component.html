@@ -9,7 +9,7 @@
       <p-calendar [(ngModel)]="date2" [iconDisplay]="'input'" [showIcon]="true" inputId="icondisplay" />
     </div>
     <div class="flex">
-      <p-button label="Submit" />
+      <p-button label="Submit" (onClick)="getDashboarsh()" />
     </div>
     <div class="flex">
       <p-button label="Reset" />
@@ -17,32 +17,34 @@
   </div>
   <!-- Lưới cho 4 ô hàng trên -->
   <div class="p-flex">
-    <div class="infor">
-      <p-card header="Đơn hàng" subheader="150">
-        <!-- <ng-template pTemplate="content">
-            <p-chart type="bar" [data]="ordersChartData"></p-chart>
-          </ng-template> -->
+    <div class="infor center-align">
+      <p-card header="Đơn hàng" >
+        <p class="m-0 center-align">
+          {{statistical.totalOrder}}
+      </p>
       </p-card>
     </div>
-    <div class="infor">
-      <p-card header="Khách hàng" subheader="150">
-        <!-- <ng-template pTemplate="content">
-            <p-chart type="bar" [data]="ordersChartData"></p-chart>
-          </ng-template> -->
+    <div class="infor center-align">
+      <p-card header="Khách hàng" >
+        <p class="m-0 center-align">
+          {{statistical.totalCustomer}}
+
+      </p>
       </p-card>
     </div>
-    <div class="infor">
-      <p-card header="Số lượng sản phẩm" subheader="150">
-        <!-- <ng-template pTemplate="content">
-            <p-chart type="bar" [data]="ordersChartData"></p-chart>
-          </ng-template> -->
+    <div class="infor center-align">
+      <p-card header="Số lượng sản phẩm" >
+        <p class="m-0 center-align">
+          {{statistical.totalProduct}}
+
+      </p>
       </p-card>
     </div>
-    <div class="infor">
-      <p-card header="Doanh thu dự kiến" subheader="150">
-        <!-- <ng-template pTemplate="content">
-            <p-chart type="bar" [data]="ordersChartData"></p-chart>
-          </ng-template> -->
+    <div class="infor center-align">
+      <p-card header="Doanh thu dự kiến" >
+        <p class="m-0 center-align">
+          {{statistical.expected_Revenue| currency:'VND':''}}đ
+      </p>
       </p-card>
     </div>
   </div>
@@ -51,21 +53,21 @@
   <!-- Lưới cho ô dưới -->
   <div class="p-flex">
     <div class="Revenue">
-      <p-card header="Doanh thu theo tháng" subheader="$45,000">
+      <p-card header="Doanh thu theo tháng" subheader="{{statistical.totalMonthlyrevenue| currency:'VND':''}}đ">
         <ng-template pTemplate="content">
           <p-chart type="line" [data]="revenueChartData" [options]="options"></p-chart>
         </ng-template>
       </p-card>
     </div>
     <div class="infor-2">
-      <p-card header="Tổng doanh thu" subheader="$12,000">
+      <p-card header="Tổng doanh thu" subheader="{{statistical.totalRevenueCategory| currency:'VND':''}}đ">
         <ng-template pTemplate="content">
           <p-chart type="pie" [data]="salesChartData"></p-chart>
         </ng-template>
       </p-card>
     </div>
     <div class="infor-2">
-      <p-card header="Tỷ lệ đánh giá" subheader="320">
+      <p-card header="Tỷ lệ đánh giá" subheader="{{statistical.totalRating}}">
         <ng-template pTemplate="content">
           <p-chart type="doughnut" [data]="ratingChartData" class="small-chart"></p-chart>
         </ng-template>

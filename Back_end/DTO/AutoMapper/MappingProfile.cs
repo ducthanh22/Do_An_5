@@ -62,6 +62,16 @@ namespace DTO.AutoMapper
 
             CreateMap<Sale, SaleDto>().ReverseMap();
 
+            CreateMap<Categories, StatisticalDto>().ReverseMap();
+            CreateMap<Detail_exportbill, StatisticalDto>().ReverseMap();
+            CreateMap<Products, StatisticalDto>().ReverseMap();
+            CreateMap<Product_type, StatisticalDto>().ReverseMap();
+            CreateMap<Rating, StatisticalDto>().ReverseMap();
+            CreateMap<Order, StatisticalDto>().ReverseMap();
+            CreateMap<User, StatisticalDto>().ReverseMap();
+
+
+
 
 
         }

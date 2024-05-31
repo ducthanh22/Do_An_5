@@ -135,6 +135,9 @@ builder.Services.AddScoped<ISaleRepository, SaleRepository>();
 builder.Services.AddScoped<IProduct_typeBus, Product_typeBus>();
 builder.Services.AddScoped<IProduct_typeRepository, Product_typeRepository>();
 
+builder.Services.AddScoped<IStatisticalBus, StatisticalBus>();
+builder.Services.AddScoped<IStatisticalRepository, StatisticalRepository>();
+
 builder.Services.AddCors();
 
 builder.Services.AddAuthorization(options =>
