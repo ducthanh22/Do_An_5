@@ -29,7 +29,7 @@
                 <td>{{rowData.created | date:'dd/MM/yyyy '}}</td>
                 <td>{{rowData.payment}}</td>
                 <td style="color: rgb(191, 10, 10);">{{rowData.price | currency:'VND'}}</td>
-                <td *ngIf="rowData.status != 4 "><i class="pi pi-eye" style="color: slateblue"></i></td>
+                <td *ngIf="rowData.status != 4 " (click)="detailOrder(rowData)"><i class="pi pi-eye" style="color: slateblue"></i></td>
                 <td *ngIf="rowData.status==4" (click)="Rating(rowData)"><i class="pi pi-pencil"
                         style="color: slateblue"></i></td>
                 <td *ngIf="rowData.status==3"><p-button label="Đã nhận" severity="warning" (onClick)="Update(rowData,4)" /></td>
@@ -46,10 +46,9 @@
 
 
 
-<div class="card flex justify-content-center">
     <p-dialog header="Đánh Giá Sản Phẩm" [modal]="true" [(visible)]="visible" [style]="{ width: '50rem' }">
 
-        <div class="flex align-items-center gap-3 mb-5" *ngFor="let x of data_evaluate?.orderProductList">
+        <div class="grid align-items-center gap-3 mb-5" *ngFor="let x of data_evaluate?.orderProductList">
             <div class="Product">
                 <div class="product_image">
                     <p-image [src]="'https://localhost:7058/Images/' + x.image" alt="Image" width="120" />
@@ -60,7 +59,7 @@
                 </div>
             </div>
             <div class="evaluate">
-                <label for="float-evaluate">Chất lượng sản phẩm:</label>
+                <label for="float-evaluate">Chất lượng:</label>
                 <p-rating [(ngModel)]="x.evaluate" />
             </div>
             <div class="Comment">
@@ -74,4 +73,61 @@
             <p-button (click)="SaveRating()" label="Lưu đánh giá" />
         </div>
     </p-dialog>
-</div>
+
+
+
+
+<p-dialog header="Long Content" [(visible)]="visibledetail" [modal]="true" [maximizable]="true"
+    [style]="{width: '70%',height:'90%'}" [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }">
+    <ng-template pTemplate="header">
+        <div class="dialog-header">
+            <span class="font-bold">Chi tiết đơn hàng</span>
+        </div>
+    </ng-template>
+    <ng-template pTemplate="body">
+        <div class="info" *ngIf="dataDetail ">
+            <div style="width: 50%;">
+                <h4>Tên khách hàng: {{dataDetail.username}}</h4>
+                <h4>Địa chỉ: {{dataDetail.address}}</h4>
+            </div>
+            <div style="width: 50%;">
+                <h4>Số điện thoại: {{dataDetail.phone}}</h4>
+                <h4>Email: {{dataDetail.email}}</h4>
+            </div>
+        </div>
+        <p-table [value]="dataDetail.orderProductList" [tableStyle]="{ 'min-width': '50rem' }">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>Ảnh</th>
+                    <th>Tên</th>
+                    <th>Số lượng</th>
+                    <th>Giá</th>
+                    <th>Tổng</th>
+
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-product>
+                <tr>
+                    <td>
+                        <p-image src="https://localhost:7058/Images/{{ product.image }}"
+                            previewImageSrc="https://localhost:7058/Images/{{ product.image }}" alt="Image" width="100"
+                            [preview]="true"></p-image>
+                    </td>
+                    <td>{{ product.product_name }}</td>
+                    <td>{{ product.quantity }}</td>
+                    <td style="color: rgb(191, 10, 10);;">{{ product.price | currency:"VND" :''}}đ</td>
+                    <td style="color: rgb(191, 10, 10);;">{{ product.price* product.quantity  | currency:"VND" :''}}đ</td>
+
+                </tr>
+            </ng-template>
+        </p-table>
+        <h4 style="text-align: center;color: rgb(191, 10, 10);"> Tổng đơn hàng: {{dataDetail.price| currency:"VND" :''}}đ</h4>
+    </ng-template>
+    
+    <ng-template pTemplate="footer">
+        <div class="dialog-footer">
+            <p-button icon="pi pi-check" (click)="visibledetail = false" label="Đóng" severity="danger"></p-button>
+
+        </div>
+    </ng-template>
+</p-dialog>

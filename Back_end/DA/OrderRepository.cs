@@ -11,13 +11,22 @@ using System.Text;
 using System.Threading.Tasks;
 using static System.Net.Mime.MediaTypeNames;
 using static Microsoft.Extensions.Logging.EventSource.LoggingEventSource;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Hosting.Internal;
 
 namespace DAL
 {
     public class OrderRepository : GenericRepository<Order>, IOrderRepository
     {
-        public OrderRepository(Achino_DbContext dbContext, IMapper mapper) : base(dbContext, mapper)
+        private readonly ISendEmailRepository _sendEmailRepository;
+        private readonly IWebHostEnvironment _hostingEnvironment;
+
+
+        public OrderRepository(Achino_DbContext dbContext, IMapper mapper, ISendEmailRepository sendEmailRepository,IWebHostEnvironment hostingEnvironment) : base(dbContext, mapper)
         {
+            _sendEmailRepository = sendEmailRepository;
+            _hostingEnvironment = hostingEnvironment;
+
         }
         public async Task<List<OrderDto>> GetbyCustomer(string id)
         {
@@ -150,6 +159,8 @@ namespace DAL
             {
                 try
                 {
+                    var checkUser= await _DbContext.User.FindAsync(entity.Id_customer);
+
                     CreateOrderDto orderDto = new CreateOrderDto
                     {
                         Id_customer = entity.Id_customer,
@@ -201,6 +212,18 @@ namespace DAL
                         await _DbContext.SaveChangesAsync();
                     }
                     await transaction.CommitAsync();
+                    if (entity.status==1)
+                    {
+                        var callbackUrl = "http://localhost:4200/client/confirmOder/" + entity.Id;
+                        string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "Temlate_Email", "confirmOrder.html");
+                        string htmlMessage = await System.IO.File.ReadAllTextAsync(htmlFilePath);
+                        htmlMessage = htmlMessage.Replace("{{callbackUrl}}", callbackUrl);
+                        htmlMessage = htmlMessage.Replace("{{Username}}", checkUser.UserName);
+
+
+                        await _sendEmailRepository.SendEmailAsync(checkUser.Email, "Xác nhận đơn hàng", htmlMessage);
+                    }
+                    
                     return entity;
                 }
                 catch (Exception)

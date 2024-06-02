@@ -237,7 +237,33 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "System.String",
+        "Type": "DTO.ResetPasswordModel",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Back_end.Controllers.AccountController",
+    "Method": "updateUser",
+    "RelativePath": "api/Account/update",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "user",
+        "Type": "DTO.updateUserDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "DTO.updateUserDto",
         "MediaTypes": [
           "text/plain",
           "application/json",

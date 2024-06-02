@@ -10,6 +10,7 @@ import { Product_TypeService } from 'src/app/service/Product_type.service';
 import { AccountService } from 'src/app/service/account.service';
 import { ProducesService } from 'src/app/service/produces.service';
 import { ProductsService } from 'src/app/service/products.service';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 @Component({
     selector: 'app-header',
     templateUrl: './header.component.html',
@@ -27,14 +28,16 @@ export class HeaderComponent {
     listCategory: CategoriesDto[] = [];
     listProduct_type: Product_typeDto[] = [];
     submenu: any[] = [];
-    newKeyword:string='';
+    newKeyword: string = '';
+    visible: boolean = false;
+    formACC!: FormGroup;
 
     constructor(private AcountService: AccountService, private messageService: MessageService, private router: Router, private productService: ProductsService,
-        private categoryService: CategoriesService, private product_typeService: Product_TypeService,private shareService: ShareService
-    ) { }
+        private categoryService: CategoriesService, private product_typeService: Product_TypeService, private shareService: ShareService, private fb: FormBuilder) { }
 
     ngOnInit() {
         this.informationToken = this.AcountService.decodeToken();
+        console.log(this.informationToken)
         this.Carts = this.productService.GetCart();
         this.selectCategory();
         this.cartUpdateSubscription = this.productService.cartUpdated.subscribe(() => {
@@ -48,7 +51,7 @@ export class HeaderComponent {
                         label: 'Thông Tin',
                         icon: 'pi pi-user',
                         command: () => {
-                            this.update();
+                            this.infoACC();
                         }
                     },
                     {
@@ -66,7 +69,13 @@ export class HeaderComponent {
                 ]
             }
         ];
-
+        this.formACC=this.fb.group({
+            id:new FormControl(this.informationToken.Id,Validators.required),
+            address:new FormControl(this.informationToken.Address,Validators.required),
+            cccd:new FormControl(''),
+            phoneNumber:new FormControl(this.informationToken.Phone,Validators.required),
+            userName:new FormControl(this.informationToken.Username,Validators.required),
+        })
     }
     ngOnDestroy() {
         if (this.cartUpdateSubscription) {
@@ -114,8 +123,9 @@ export class HeaderComponent {
         return " Đăng nhập"
     }
 
-    update() {
-        this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Data Updated' });
+    infoACC() {
+        this.visible = true;
+        
     }
 
     delete() {
@@ -125,8 +135,28 @@ export class HeaderComponent {
             window.location.href = '/client/Home';
         }
     }
-    search(){
+    search() {
         this.shareService.sendKeyword(this.newKeyword);
+    }
+    updateUser(){
+        if(this.formACC){
+            this.AcountService.updateUser(this.formACC.value).subscribe({
+                next:(res:any)=>{
+                    if(res){
+                    this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Sửa thông tin thành công' });
+                    this.visible=false;             
+                    }
+                }
+            })
+        }
+    }
+    close(){
+        this.visible=false;
+        this.formACC.controls['id'].setValue(this.informationToken.Id);
+        this.formACC.controls['address'].setValue(this.informationToken.Address);
+        this.formACC.controls['cccd'].setValue('');
+        this.formACC.controls['phoneNumber'].setValue(this.informationToken.Phone);
+        this.formACC.controls['userName'].setValue(this.informationToken.Username);
     }
 
 }

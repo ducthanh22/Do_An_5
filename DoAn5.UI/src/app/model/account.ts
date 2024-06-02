@@ -31,3 +31,10 @@ export interface User  {
     phoneNumber: string;
     cccd: string;
 }
+export interface updateUserDto {
+    id: string;
+    address: string;
+    cCCD: string | null;
+    phoneNumber: string;
+    userName: string;
+}

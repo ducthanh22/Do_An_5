@@ -18,11 +18,12 @@ namespace BLL.Interface
         Task<bool> CreateRoleAsync(CreateRoleDto role);
         Task<bool> UpdateRole(CreateRoleDto role);
         Task<ForgotPasswordModel> ForgotPassword(ForgotPasswordModel model);
-        Task<string> ResetPassword(ResetPasswordModel model);
+        Task<ResetPasswordModel> ResetPassword(ResetPasswordModel model);
 
         Task<List<Role>> GetAllRoles();
         Task<CreateRoleDto> getClaimByIdRole(string id);
         Task<bool> DeleteRole(string id);
         Task<BaseQuerieResponse<User>> GetUser(string status, Paging paging);
+        Task<updateUserDto> updateUser(updateUserDto model);
     }
 }

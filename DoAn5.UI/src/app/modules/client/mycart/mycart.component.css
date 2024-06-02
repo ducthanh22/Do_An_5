@@ -33,13 +33,18 @@ label {
 .float-Product{
     margin-bottom: 50px;
 }
-
+.Product{
+    width: 100%;
+}
 .product_image{
     width: 20%;
 }
 .product_infomatiom{
     display: flex;
-    justify-content: center;
+    /* justify-content: center; */
     align-items: center;
-
+    flex: 1;
+}
+.info{
+    display: flex;
 }

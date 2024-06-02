@@ -84,7 +84,6 @@ export class DetailproductsComponent {
             }
             return acc;
           }, []);
-          console.log("date",this.data[0])
         }
       }
     })
@@ -133,7 +132,6 @@ export class DetailproductsComponent {
   
 
   onPageChange(event: any) {
-    console.log(event)
     this.first = event.first;
     this.rows = event.rows;
     this.page = event.page;

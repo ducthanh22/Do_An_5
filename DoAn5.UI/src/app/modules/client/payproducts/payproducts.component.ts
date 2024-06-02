@@ -24,7 +24,9 @@ export class PayproductsComponent {
   formData: FormData = new FormData();
   datapayment: PaymentDto = { orderId: '', money: 0, transactionStatus: 0 };
   GetId_order: string = ''
-  order: any
+  order: any;
+  loading: boolean = false;
+
   constructor(private productService: ProductsService, private fb: FormBuilder, private AccountService: AccountService,
     private OrderService: OrderService, private MessageSV: MessageService, private EmailService: SendEmailService, private PaymentService: PaymentService,
     private route: ActivatedRoute
@@ -59,9 +61,10 @@ export class PayproductsComponent {
 
   SaveAdd() {
     if (this.Carts.length > 0) {
+      this.loading = true;
       const order: CreateOrderDto = {
         id_customer: this.informationAccount.Id,
-        status: 0,
+        status: 1,
         price: this.getTotalPrice(),
         address: this.FormPay.value.Address,
         payment: this.FormPay.value.selectPay.name,
@@ -73,10 +76,11 @@ export class PayproductsComponent {
           price: item.data.price_product,
         }))
       };
-      this.OrderService.create(order).subscribe({
-        next: (res) => {
-          if (res != null) {
-            if (this.FormPay.value.selectPay.code == 'VNPAY') {
+      if (this.FormPay.value.selectPay.code == 'VNPAY') {
+        order.status=0;
+        this.OrderService.create(order).subscribe({
+          next: (res) => {
+            if (res != null) {
               this.datapayment.orderId = res.id,
                 this.GetId_order = res.id,
                 this.datapayment.money = this.getTotalPrice(),
@@ -84,99 +88,84 @@ export class PayproductsComponent {
                 this.PaymentService.CreatURL(this.datapayment).subscribe({
                   next: (url) => {
                     // window.open(url, '_blank');
-                    window.open(url, '_self');
-
+                    window.open(url, '_self')
                   }
                 });
             }
-            else {
-              const orderDto: OrderDto = {
-                id: res.id,
-                id_customer: this.informationAccount.Id,
-                status: 1,
-                price: this.getTotalPrice(),
-                address: this.FormPay.value.Address,
-                payment: this.FormPay.value.selectPay.name,
-                created: format(new Date(), "yyyy-MM-dd'T'HH:mm:ss.SSS"),
-                activeFlag: null,
-                createdBy: null,
-                modifiedBy: null,
-                modified: null,
-              }
-              this.OrderService.Update(orderDto).subscribe({})
+          }
+        })
+      }
+      else{
+        this.OrderService.create(order).subscribe({
+          next: (res) => {
+            if (res != null) {
               this.FormPay.reset();
               this.Carts = []
               this.productService.saveCart(this.Carts);
-              this.MessageSV.add({ severity: 'success', summary: 'Success', detail: 'Đặt hàng thành công' })
-              this.formData = new FormData();
-              this.formData.append('email', this.informationAccount.Email);
-              this.formData.append('donhang', res.id)
-              this.EmailService.SendEmail(this.formData).subscribe({
-                next: (response) => {
-                  console.log(response);
-                },
-              })
+              this.loading = false;
+              this.MessageSV.add({ severity: 'success', summary: 'Success', detail: 'Đặt hàng thành công vui lòng kiểm tra email' })
             }
           }
-        },
-      });
-    } else {
-      console.warn('The cart is empty. Cannot create an order.');
+        })
+
+      }
     }
   }
-  ReturnUrl() {
-    const params = this.route.snapshot.queryParams;
-    this.PaymentService.Callback(params).subscribe({
-      next: (res) => {
-        if (res.vnp_TransactionStatus == '00') {
-          this.OrderService.getbyid(res.vnp_TxnRef).subscribe({
-            next: (value) => {
-              if (value) {
-                this.order = value;
-                const order: OrderDto = {
-                  id: res.vnp_TxnRef,
-                  id_customer: this.informationAccount.Id,
-                  status: 2,
-                  price: this.order[0]?.price,
-                  address: this.FormPay.value.Address,
-                  payment: this.order[0]?.payment,
-                  activeFlag: null,
-                  createdBy: null,
-                  created: format(this.order[0]?.created, "yyyy-MM-dd'T'HH:mm:ss.SSS"),
-                  modifiedBy: null,
-                  modified: format(new Date(), "yyyy-MM-dd'T'HH:mm:ss.SSS")
-                }
-                this.OrderService.Update(order).subscribe({
-                  next: (value) => {
-                    if (value) {
 
-                    }
+    ReturnUrl() {
+      const params = this.route.snapshot.queryParams;
+      this.PaymentService.Callback(params).subscribe({
+        next: (res) => {
+          if (res.vnp_TransactionStatus == '00') {
+            this.OrderService.getbyid(res.vnp_TxnRef).subscribe({
+              next: (value) => {
+                if (value) {
+                  this.order = value;
+                  const order: OrderDto = {
+                    id: res.vnp_TxnRef,
+                    id_customer: this.informationAccount.Id,
+                    status: 2,
+                    price: this.order[0]?.price,
+                    address: this.FormPay.value.Address,
+                    payment: this.order[0]?.payment,
+                    activeFlag: null,
+                    createdBy: null,
+                    created: format(this.order[0]?.created, "yyyy-MM-dd'T'HH:mm:ss.SSS"),
+                    modifiedBy: null,
+                    modified: format(new Date(), "yyyy-MM-dd'T'HH:mm:ss.SSS")
                   }
-                })
-                this.FormPay.reset();
-                this.Carts = []
-                this.productService.saveCart(this.Carts);
-                this.MessageSV.add({ severity: 'success', summary: 'Success', detail: 'Đặt hàng thành công' })
-                this.formData = new FormData();
-                this.formData.append('email', this.informationAccount.Email);
-                this.formData.append('donhang', res.id)
-                this.EmailService.SendEmail(this.formData).subscribe({
-                  next: (response) => {
-                    console.log(response);
-                  },
-                })
+                  this.OrderService.Update(order).subscribe({
+                    next: (value) => {
+                      if (value) {
+                        this.FormPay.reset();
+                        this.Carts = []
+                        this.productService.saveCart(this.Carts);
+                       
+                        this.formData = new FormData();
+                        this.formData.append('email', this.informationAccount.Email);
+                        this.formData.append('donhang', value.id)
+                        this.EmailService.SendEmail(this.formData).subscribe({
+                          next: (response) => {
+                            console.log(response);
+                            this.MessageSV.add({ severity: 'success', summary: 'Success', detail: 'Đặt hàng thành công' })
+                          },
+                        })
+                      }
+                    }
+                  })
+                 
 
+                }
               }
-            }
-          })
+            })
 
+          }
+        },
+        error: (error) => {
+          console.error('Error occurred:', error);
+          // Xử lý lỗi nếu cần
         }
-      },
-      error: (error) => {
-        console.error('Error occurred:', error);
-        // Xử lý lỗi nếu cần
-      }
-    });
-  }
+      });
+    }
 
-}
+  }

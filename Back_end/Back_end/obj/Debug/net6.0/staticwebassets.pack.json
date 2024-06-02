@@ -1,20 +1,36 @@
 {
   "Files": [
     {
-      "Id": "D:\\Do_An_5\\Back_end\\Back_end\\wwwroot\\Images\\3acd4701-9598-4ddf-875f-51088e4b1e39-IAIk3zbeifxTNhcFUhOdyQj5uQUvCjMDaM1nMkHz.jpg",
-      "PackagePath": "staticwebassets\\Images\\3acd4701-9598-4ddf-875f-51088e4b1e39-IAIk3zbeifxTNhcFUhOdyQj5uQUvCjMDaM1nMkHz.jpg"
+      "Id": "D:\\Do_An_5\\Back_end\\Back_end\\wwwroot\\Images\\193b5c93-2ac3-4069-94d7-d5d064ca1e16-APC24067.jpg",
+      "PackagePath": "staticwebassets\\Images\\193b5c93-2ac3-4069-94d7-d5d064ca1e16-APC24067.jpg"
     },
     {
-      "Id": "D:\\Do_An_5\\Back_end\\Back_end\\wwwroot\\Images\\3c37d1c6-663c-445b-95bb-7f6fd8e57886-polo_den.jpg",
-      "PackagePath": "staticwebassets\\Images\\3c37d1c6-663c-445b-95bb-7f6fd8e57886-polo_den.jpg"
+      "Id": "D:\\Do_An_5\\Back_end\\Back_end\\wwwroot\\Images\\4ff2cff7-fc4d-4106-91c8-9a086cafeb67-Screenshot 2024-06-02 163410.png",
+      "PackagePath": "staticwebassets\\Images\\4ff2cff7-fc4d-4106-91c8-9a086cafeb67-Screenshot 2024-06-02 163410.png"
     },
     {
-      "Id": "D:\\Do_An_5\\Back_end\\Back_end\\wwwroot\\Images\\7ef3b73d-c5ae-4ec5-95f8-df73bf65accb-APC24067.jpg",
-      "PackagePath": "staticwebassets\\Images\\7ef3b73d-c5ae-4ec5-95f8-df73bf65accb-APC24067.jpg"
+      "Id": "D:\\Do_An_5\\Back_end\\Back_end\\wwwroot\\Images\\6c23d091-f100-41fd-9a1e-52f92aa0fda3-polo_den.jpg",
+      "PackagePath": "staticwebassets\\Images\\6c23d091-f100-41fd-9a1e-52f92aa0fda3-polo_den.jpg"
+    },
+    {
+      "Id": "D:\\Do_An_5\\Back_end\\Back_end\\wwwroot\\Images\\cb5ba5ac-5bee-4441-94c3-c80d7021107d-chelsea_boot1.jpg",
+      "PackagePath": "staticwebassets\\Images\\cb5ba5ac-5bee-4441-94c3-c80d7021107d-chelsea_boot1.jpg"
+    },
+    {
+      "Id": "D:\\Do_An_5\\Back_end\\Back_end\\wwwroot\\Images\\ecb60194-bcdf-4073-abe8-e533bb4f9fc5-Thắt lưng 1.jpg",
+      "PackagePath": "staticwebassets\\Images\\ecb60194-bcdf-4073-abe8-e533bb4f9fc5-Thắt lưng 1.jpg"
+    },
+    {
+      "Id": "D:\\Do_An_5\\Back_end\\Back_end\\wwwroot\\Images\\f1c2a403-8187-458f-999a-4a3e7045a589-IAIk3zbeifxTNhcFUhOdyQj5uQUvCjMDaM1nMkHz.jpg",
+      "PackagePath": "staticwebassets\\Images\\f1c2a403-8187-458f-999a-4a3e7045a589-IAIk3zbeifxTNhcFUhOdyQj5uQUvCjMDaM1nMkHz.jpg"
     },
     {
       "Id": "D:\\Do_An_5\\Back_end\\Back_end\\wwwroot\\Img_Brand\\0fa477d2-bd56-4713-98f0-2ec824e2b132-D&G.png",
       "PackagePath": "staticwebassets\\Img_Brand\\0fa477d2-bd56-4713-98f0-2ec824e2b132-D&G.png"
+    },
+    {
+      "Id": "D:\\Do_An_5\\Back_end\\Back_end\\wwwroot\\Img_Brand\\6dd13aa7-a1a6-4ee8-aed1-ca6369879049-adidas.png",
+      "PackagePath": "staticwebassets\\Img_Brand\\6dd13aa7-a1a6-4ee8-aed1-ca6369879049-adidas.png"
     },
     {
       "Id": "D:\\Do_An_5\\Back_end\\Back_end\\wwwroot\\Img_Brand\\7f030da8-062e-4aea-a33c-c44af7cdd102-LV.jpg",
@@ -35,6 +51,10 @@
     {
       "Id": "D:\\Do_An_5\\Back_end\\Back_end\\wwwroot\\Img_Brand\\f8858488-8217-4fc8-9608-08212d106667-gucci.png",
       "PackagePath": "staticwebassets\\Img_Brand\\f8858488-8217-4fc8-9608-08212d106667-gucci.png"
+    },
+    {
+      "Id": "D:\\Do_An_5\\Back_end\\Back_end\\wwwroot\\Temlate_Email\\confirmOrder.html",
+      "PackagePath": "staticwebassets\\Temlate_Email\\confirmOrder.html"
     },
     {
       "Id": "D:\\Do_An_5\\Back_end\\Back_end\\wwwroot\\Temlate_Email\\images\\image-1.png",

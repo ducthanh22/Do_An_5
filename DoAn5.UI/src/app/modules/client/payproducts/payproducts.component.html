@@ -32,7 +32,7 @@
     <p-dropdown formControlName="selectPay" [options]="Pay"  optionLabel="name" [showClear]="true" placeholder="Vui Lòng Chọn Phương Thức Thanh Toán" [style]="{'minWidth':'100%'}"  ></p-dropdown>
   </div>
 </div>
-<p-button label="Thanh Toán" [rounded]="true" severity="danger" class="bt"[style]="{'margin-top':'3%'}" (onClick)="SaveAdd()" *ngIf="this.FormPay.valid"></p-button>
+<p-button label="Thanh Toán" [rounded]="true" [loading]="loading" severity="danger" class="bt"[style]="{'margin-top':'3%'}" (onClick)="SaveAdd()" *ngIf="this.FormPay.valid"></p-button>
 
     </form>
   </div>

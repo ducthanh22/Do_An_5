@@ -119,7 +119,7 @@ namespace DAL
                              join g in _DbContext.Set<Produces>() on d.Idproduces equals g.Id
                              join h in _DbContext.Sale on d.Id equals h.IdProduct into hGroup
                              from h in hGroup.DefaultIfEmpty()
-                             where ((d.Id == ids&& h.ActiveFlag==0) || (d.Id == ids && h.ActiveFlag == 1))
+                             where ((d.Id == ids&& h.ActiveFlag==0) || (d.Id == ids && h.ActiveFlag == 1)|| (d.Id == ids && h.ActiveFlag == null))
                              select new GetProductsDto
                              {
                                  Id = d.Id,
@@ -133,9 +133,10 @@ namespace DAL
                                  Idcolor = d.Idcolor,
                                  Namecategory = e.Name,
                                  NameProduces = g.Name,
-                                 SalePrice = h.SalePrice,
-                                 percent = h.percent,
-                                 ActiveSale = h.ActiveFlag,
+                                 SalePrice = h == null ? null : h.SalePrice,
+                                 percent = h == null ? null : h.percent,
+                                 ActiveSale = h == null ? null : h.ActiveFlag,
+
                                  Created = d.Created,
                                  ListSize = _DbContext.Size.Where(a => a.Idproduct == d.Id).Select(m => new SizeDto
                                  {
@@ -205,7 +206,7 @@ namespace DAL
                         join c in _DbContext.Sale on a.Id equals c.IdProduct into cGroup
                         from c  in cGroup.DefaultIfEmpty()
                         join d in _DbContext.Price on a.Id equals d.Idproduct
-                        where (c.ActiveFlag == 0 || c.ActiveFlag == 1)
+                        where (c.ActiveFlag == 0 || c.ActiveFlag == 1|| c.ActiveFlag == null)
                         group b by new { a.Id, a.Name, a.Image, d.Price_product, c.SalePrice ,c.ActiveFlag, c.percent } into g
                         select new bestSellingProducts
                         {
@@ -237,7 +238,7 @@ namespace DAL
                          join g in _DbContext.Set<Produces>() on d.Idproduces equals g.Id
                          join h in _DbContext.Sale on d.Id equals h.IdProduct into hGroup
                          from h in hGroup.DefaultIfEmpty()
-                         where (h.ActiveFlag==0 || h.ActiveFlag==1)
+                         where (h.ActiveFlag==0 || h.ActiveFlag==1||h.ActiveFlag == null)
                          orderby d.Created descending
                          select new GetProductsDto
                          {

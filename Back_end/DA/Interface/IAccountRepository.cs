@@ -19,11 +19,12 @@ namespace DAL.Interface
         Task<bool> Register(CreateUserDto user);
         Task<bool> Login(UserDto user);
         Task<ForgotPasswordModel> ForgotPassword(ForgotPasswordModel model);
-        Task<string> ResetPassword(ResetPasswordModel model);
+        Task<ResetPasswordModel> ResetPassword(ResetPasswordModel model);
         Task<List<Role>> GetAllRoles();
         Task<CreateRoleDto> getClaimByIdRole(string id);
         Task<bool> DeleteRole(string id);
         Task<BaseQuerieResponse<User>> GetUser(string status, Paging paging);
+        Task<updateUserDto> updateUser(updateUserDto model);
 
     }
 }

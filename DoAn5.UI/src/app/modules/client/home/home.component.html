@@ -32,7 +32,7 @@
                         <div class="mb-3" >
                             <div class="relative mx-auto">
                                 <img src="https://localhost:7058/Images/{{ product.image }}" [alt]="product.name"
-                                    style="width: 150px;" />
+                                    style="width: 150px;height:150px" />
                             </div>
                         </div>
                         <div class="flex justify-content-between align-items-center" >
@@ -72,7 +72,10 @@
                                         <span style="margin-left: 2%;">{{product.namecategory }}</span>
                                     </div>
                                 </div>
-                                <div class="product-price">
+                                <div class="product-price" *ngIf="product.activeSale ==0 || product.activeSale==2|| product.activeSale==null">
+                                    <div class="salespan">{{ product.price_product | currency:'VND' :""}}đ</div>
+                                </div>
+                                <div class="product-price"  *ngIf="product.activeSale ==1">
                                     <div class="salespan1" pBadge [value]="product.percent + '%'" severity="danger">
                                         <Del>{{ product.price_product | currency:'VND':'' }}đ</Del></div>
                                     <div class="salespan">{{ product.salePrice | currency:'VND' :""}}đ</div>
@@ -96,7 +99,7 @@
                                         <span style="margin-left: 2%;">{{product.namecategory }}</span>
                                     </div>
                                 </div>
-                                <div class="grid-price" *ngIf="product.activeSale ==0 || product.activeSale==2">
+                                <div class="grid-price" *ngIf="product.activeSale ==0 || product.activeSale==2|| product.activeSale==null">
                                     <span class="gspan">{{ product.price_product | currency:'VND':''}}đ</span>
                                     <button pButton icon="pi pi-shopping-cart" class="product-cart-button"></button>
                                 </div>
@@ -117,7 +120,7 @@
     <div class="Newproduct">
         <h2>Sản phẩm bán chạy</h2>
 
-        <div class="card">
+               <div class="card">
             <p-dataView #dv [value]="bestSellingProducts" [layout]="layout" [rows]="8" [paginator]="true">
                 <ng-template pTemplate="header">
                     <div class="flex justify-content-end">
@@ -133,13 +136,12 @@
                                 <div class="product-details">
                                     <div class="product-name" [routerLink]="['/client','detail', product.id]">{{
                                         product.name }}</div>
-
-                                    <div class="product-category">
-                                        <i class="pi pi-tag"></i>
-                                        <span style="margin-left: 2%;">{{product.namecategory }}</span>
-                                    </div>
+                                  
                                 </div>
-                                <div class="product-price">
+                                <div class="product-price" *ngIf="product.activeSale ==0 || product.activeSale==2|| product.activeSale==null">
+                                    <div class="salespan">{{ product.price_product | currency:'VND' :""}}đ</div>
+                                </div>
+                                <div class="product-price"  *ngIf="product.activeSale ==1">
                                     <div class="salespan1" pBadge [value]="product.percent + '%'" severity="danger">
                                         <Del>{{ product.price_product | currency:'VND':'' }}đ</Del></div>
                                     <div class="salespan">{{ product.salePrice | currency:'VND' :""}}đ</div>
@@ -157,21 +159,17 @@
                                 <img class="grid-image" [src]="'https://localhost:7058/Images/' + product.image"
                                     [alt]="product.name" [routerLink]="['/client/detail', product.id]" />
                                 <div class="grid-details">
-                                    <div class="grid-name" [routerLink]="['/client/detail', product.id]">{{ product.name
-                                        }}</div>
-                                    <div class="grid-category">
-                                        <i class="pi pi-tag"></i>
-                                        <span style="margin-left: 2%;">{{product.namecategory }}</span>
-                                    </div>
+                                    <div class="grid-name" [routerLink]="['/client/detail', product.id]">{{ product.name}}</div>
+                                    
                                 </div>
-                                <div class="grid-price" *ngIf="product.activeFlag ==0 ">
-                                    <span class="gspan">{{ product.price_product | currency:'VND' }}</span>
+                                <div class="grid-price" *ngIf="product.activeSale ==0 || product.activeSale==2|| product.activeSale==null">
+                                    <span class="gspan">{{ product.price_product | currency:'VND':''}}đ</span>
                                     <button pButton icon="pi pi-shopping-cart" class="product-cart-button"></button>
                                 </div>
-                                <div class="grid-price" *ngIf="product.activeFlag ==1">
+                                <div class="grid-price" *ngIf="product.activeSale ==1">
                                     <div class="salespan1" pBadge [value]="product.percent + '%'" severity="danger">
-                                        <Del>{{ product.price_product | currency:'VND' }}</Del></div>
-                                    <div class="salespan">{{ product.salePrice | currency:'VND' }}</div>
+                                        <Del>{{ product.price_product | currency:'VND':'' }}đ</Del></div>
+                                    <div class="salespan">{{ product.salePrice | currency:'VND' :""}}đ</div>
                                     <button pButton icon="pi pi-shopping-cart" class="product-cart-button"></button>
                                 </div>
 

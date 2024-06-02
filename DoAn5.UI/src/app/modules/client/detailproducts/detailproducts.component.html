@@ -6,21 +6,22 @@
     <div class="select">
       <h3>{{data[0].name}}</h3>
       <div class="product_infomatiom">
-        <div class="price" *ngIf="data[0]?.activeSale==0">
-          <span style="color:rgb(193, 19, 19);font-size: larger;font-weight: bold;">{{data[0]?.price_product |currency:'VND':''}}đ</span>
+        <div class="price" *ngIf="data[0]?.activeSale==0 || data[0]?.activeSale==2||data[0]?.activeSale== null">
+          <span style="color:rgb(193, 19, 19);font-size: larger;font-weight: bold;">{{data[0]?.price_product
+            |currency:'VND':''}}đ</span>
         </div>
-        <div class="price"*ngIf="data[0]?.activeSale==1">
-          <div><span style="color:rgb(193, 19, 19);font-size: larger;font-weight: bold;">{{data[0]?.salePrice |currency:'VND':''}}đ</span></div>
-          <div style="margin-left: 10%;">  <span style="font-size: larger;" pBadge  [value]="data[0]?.percent + '%'"  severity="danger" ><del>{{data[0]?.price_product |currency:'VND'}}</del></span></div>
+        <div class="price" *ngIf="data[0]?.activeSale==1">
+          <div><span style="color:rgb(193, 19, 19);font-size: larger;font-weight: bold;">{{data[0]?.salePrice
+              |currency:'VND':''}}đ</span></div>
+          <div style="margin-left: 10%;"> <span style="font-size: larger;" pBadge [value]="data[0]?.percent + '%'"
+              severity="danger"><del>{{data[0]?.price_product |currency:'VND'}}</del></span></div>
         </div>
         <div class="color">
           <div style="width: 20%;">
             <h4>Màu sắc</h4>
           </div>
           <div class="s1">
-            <div class="namecolor"><p-colorPicker 
-              [(ngModel)]="data[0].colorformat" 
-              [disabled]="true" /></div>
+            <div class="namecolor"><p-colorPicker [(ngModel)]="data[0].colorformat" [disabled]="true" /></div>
           </div>
         </div>
         <div class="Size">
@@ -35,7 +36,10 @@
         </div>
         <div class="buy" *ngIf="countprohouse != null"><span>Kho: {{countprohouse.totalQuantity}} sản phẩm</span></div>
         <div class="buy" *ngIf="countProduct != null"><span>Đã Bán: {{countProduct.totalQuantity}} sản phẩm</span></div>
-        <p-button label="Thêm vào giỏ hàng" severity="danger" (click)="addtocart(data[0])"><i
+        <p-button label="Thêm vào giỏ hàng" severity="danger" (click)="addtocart(data[0])"
+          *ngIf="countprohouse.totalQuantity >0"><i class="pi pi-shopping-cart"></i></p-button>
+
+        <p-button label="Sản phẩm đã bán hết" severity="danger" *ngIf="countprohouse.totalQuantity==0"><i
             class="pi pi-shopping-cart"></i></p-button>
         <div class="sevice">
           <div class="freeship"><span><i class="pi pi-truck "></i> Miễn phí vận chuyển</span> </div>
@@ -59,15 +63,20 @@
       </div>
     </div>
   </div>
-  <div class="Rating" >
+  <div class="Rating">
     <Span style="font-weight:bold;">Đánh Giá Sản Phẩm</Span>
     <div class="Comment" *ngFor="let x of datas">
-      <Span> <i class="pi pi-user"></i>{{x.username}}</Span>
-      <p-rating [(ngModel)]="x.evaluate" [readonly]="true" [cancel]="false"></p-rating>
-      <Span>{{x.comment}}</Span>
+      <div style="display: grid; margin-left: 2%;margin-top: 1%;">
+        <Span> <i class="pi pi-user"></i>{{x.username}}</Span>
+        <p-rating [(ngModel)]="x.evaluate" [readonly]="true" [cancel]="false"></p-rating>
+      </div>
+      <div style="margin-left: 10%;margin-top: 1%;">
+        <span>Nội dung: </span>
+        <Span>{{x.comment}}</Span>
+      </div>
     </div>
     <p-paginator (onPageChange)="onPageChange($event)" [first]="first" [rows]="rows" [totalRecords]="Totalcount"
       [rowsPerPageOptions]="[5, 10, 20]"></p-paginator>
-  
+
   </div>
 </div>

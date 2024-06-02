@@ -27,9 +27,11 @@ export class MycartComponent {
   data_evaluate: any;
   createRating!: CreateRatingDto;
   order: any;
-  active!: number
+  active!: number;
+  visibledetail:boolean=false;
+  dataDetail:any;
   constructor(public messageService: MessageService, private OrderService: OrderService, private AcountService: AccountService,
-    private router: Router, private RatingService: RatingService,private exportBillService:exportBillService) { }
+    private router: Router, private RatingService: RatingService, private exportBillService: exportBillService) { }
 
   ngOnInit() {
     this.informationToken = this.AcountService.decodeToken();
@@ -117,12 +119,9 @@ export class MycartComponent {
                 this.OrderService.Update(order).subscribe({
                   next: (res) => {
                     if (res) {
-                            this.GetOrderProduct(4);
-                            this.visible = false
-                            this.messageService.add({ severity: 'success', summary: 'Thành công', detail: 'Đánh giá thành công' })
-                          }
-                        }
-                      })
+                      this.GetOrderProduct(4);
+                      this.visible = false
+                      this.messageService.add({ severity: 'success', summary: 'Thành công', detail: 'Đánh giá thành công' })
                     }
                   }
                 })
@@ -130,11 +129,9 @@ export class MycartComponent {
             }
           })
         }
-      
-    
-
-  
-
+      }
+    })
+  }
 
   Update(data: any, status: number) {
     status == 7 ? this.active = 0 : this.active = 1
@@ -155,15 +152,15 @@ export class MycartComponent {
       next: (value) => {
         if (value) {
           this.OrderService.getbyid(data.id).subscribe({
-            next:(res)=>{
-              if(res){
-                this.order=res;
-                const exportBill : CreateExportbillDto={
-                             
+            next: (res) => {
+              if (res) {
+                this.order = res;
+                const exportBill: CreateExportbillDto = {
+
                   price: this.order[0].price,
                   status: 0,
                   idStaff: this.order[0].id_customer,
-                  detail_exportbillDto:this.order[0].orderProductList.map((item: any) => ({
+                  detail_exportbillDto: this.order[0].orderProductList.map((item: any) => ({
                     Idproduct: item.id_product,
                     idsize: item.id_size,
                     quantity: item.quantity,
@@ -171,8 +168,8 @@ export class MycartComponent {
                   }))
                 }
                 this.exportBillService.create(exportBill).subscribe({
-                  next:(res)=>{
-                    if(res){
+                  next: (res) => {
+                    if (res) {
                       this.GetOrderProduct(3);
                       this.visible = false
                       this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Đã nhận hàng thành công' })
@@ -185,10 +182,12 @@ export class MycartComponent {
         }
       }
     })
-   
-
   }
-
+ detailOrder(data:any){
+  this.visibledetail=true;
+  this.dataDetail=data;
+  console.log(data)
+ }
 
   OpenPay() {
     if (this.informationToken) {

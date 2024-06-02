@@ -193,6 +193,7 @@ namespace DAL
                     Address = user.Address,
                     Status = user.Status,
                     PhoneNumber=user.PhoneNumber,
+                    Created= DateTime.Now,
                 };
                 var result = await _userManager.CreateAsync(newUser, user.PasswordHash);
                 if (result.Succeeded)
@@ -287,7 +288,8 @@ namespace DAL
             }
             return new ForgotPasswordModel { Email=user.Email};
         }
-        public async Task<string> ResetPassword(ResetPasswordModel model)
+
+        public async Task<ResetPasswordModel> ResetPassword(ResetPasswordModel model)
         {
             var user = await _userManager.FindByEmailAsync(model.Email);
             if (user != null)
@@ -296,20 +298,45 @@ namespace DAL
                 var result = await _userManager.ResetPasswordAsync(user, decodedToken, model.NewPassword);
                 if (result.Succeeded)
                 {
-                    return "Password reset successfully.";
+                    return new ResetPasswordModel
+                    {
+                        Email=model.Email,
+                        Token=model.Token,
+                        NewPassword=model.NewPassword
+                    };
                 }
                 else
                 {
-                    foreach (var error in result.Errors)
-                    {
-                        return error.Description.ToString();
-                    }
+                    return null;
                 }
             }
-            return "Không tìm thấy người dùng";
+            return  null; 
         }
 
+        public async Task<updateUserDto> updateUser(updateUserDto model)
+        {
+            var checkUser= await _dbContext.User.FindAsync(model.Id);
+            if(checkUser != null)
+            {
+                checkUser.Address = model.Address;
+                checkUser.CCCD = model.CCCD;
+                checkUser.UserName = model.UserName;
+                checkUser.Modified = DateTime.Now;
+                checkUser.PhoneNumber = model.PhoneNumber;
 
+                // Đánh dấu người dùng đã thay đổi
+                _dbContext.User.Update(checkUser);
+
+                // Lưu thay đổi vào cơ sở dữ liệu
+                await _dbContext.SaveChangesAsync();
+
+                return model;
+            }
+            else
+            {
+                return null;
+            }
+        }
 
 
 

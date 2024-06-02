@@ -5,7 +5,7 @@ import { FooterComponent } from './footer/footer.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { RouterModule } from '@angular/router';
 import { DropdownModule } from 'primeng/dropdown';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // import { BrowserModule } from '@angular/platform-browser';
 // import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -18,7 +18,7 @@ import { SplitButtonModule } from 'primeng/splitbutton';
 import { ToastModule } from 'primeng/toast';
 import { MenuModule } from 'primeng/menu';
 import { BadgeModule } from 'primeng/badge';
-
+import { DialogModule } from 'primeng/dialog';
 
 
 
@@ -44,7 +44,10 @@ import { BadgeModule } from 'primeng/badge';
     SplitButtonModule,
     ToastModule,
     MenuModule,
-    BadgeModule
+    BadgeModule,
+    DialogModule,
+    ReactiveFormsModule,
+
     
   ],
   exports:[HeaderComponent,

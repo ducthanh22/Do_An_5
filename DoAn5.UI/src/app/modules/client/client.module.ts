@@ -1,11 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AboutComponent } from './about/about.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { HomeComponent } from './home/home.component';
 import { ClientRoutingModule } from './client-routing.module';
-import { BlogComponent } from './blog/blog.component';
-import { ContactComponent } from './contact/contact.component';
 import { CartComponent } from './cart/cart.component';
 import { DetailproductsComponent } from './detailproducts/detailproducts.component';
 import { PayproductsComponent } from './payproducts/payproducts.component';
@@ -33,20 +30,20 @@ import { BadgeModule } from 'primeng/badge';
 import { SearchComponent } from './search/search.component';
 import { CountdownModule } from 'ngx-countdown';
 import { ColorPickerModule } from 'primeng/colorpicker';
+import { ConfirmOrderComponent } from './confirm-order/confirm-order.component';
+
 
 
 @NgModule({
   declarations: [
-    AboutComponent,
     CategoriesComponent,
     HomeComponent,
-    BlogComponent,
-    ContactComponent,
     CartComponent,
     DetailproductsComponent,
     PayproductsComponent,
     MycartComponent,
-    SearchComponent
+    SearchComponent,
+    ConfirmOrderComponent
   ],
   imports: [
     CommonModule,
@@ -73,7 +70,9 @@ import { ColorPickerModule } from 'primeng/colorpicker';
     InputTextareaModule,
     BadgeModule,
     CountdownModule,
-    ColorPickerModule
+    ColorPickerModule,
+    TableModule,
+
   ]
 })
 export class ClientModule { }

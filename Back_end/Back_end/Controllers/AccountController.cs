@@ -110,9 +110,19 @@ namespace Back_end.Controllers
         [AllowAnonymous]
 
         [HttpPost("ResetPassword")]
-        public async Task<ActionResult<string>> ResetPassword([FromBody] ResetPasswordModel user)
+        public async Task<ActionResult<ResetPasswordModel>> ResetPassword([FromBody] ResetPasswordModel user)
         {
             var result = await _Bus.ResetPassword(user);
+
+
+            return Ok(result);
+        }
+        [AllowAnonymous]
+        [HttpPatch("update")]
+
+        public async Task<ActionResult<updateUserDto>> updateUser([FromBody ] updateUserDto user)
+        {
+            var result = await _Bus.updateUser(user);
 
 
             return Ok(result);

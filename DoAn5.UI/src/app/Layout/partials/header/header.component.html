@@ -28,3 +28,46 @@
       </ng-template>
   </p-menubar>
 </div>
+
+
+
+<p-dialog header="Long Content" [(visible)]="visible" [modal]="true" [maximizable]="true"
+    [style]="{width: '40%',height:'60%'}" [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }">
+    <ng-template pTemplate="header">
+        <div class="dialog-header">
+            <span class="font-bold">Thông tin</span>
+        </div>
+    </ng-template>
+    <ng-template pTemplate="body">
+        <form [formGroup]="formACC" class="full-width-form">
+            <div class="card ">
+                <div class="input-container">
+                    <label for="name">Tên</label>
+                    <div class="dropdown-wrapper">
+                        <input type="text" class="p-inputtext" pInputText formControlName="userName" />
+                    </div>
+                </div>
+                <div class="input-container">
+                  <label for="name">Điện thoại</label>
+                  <div class="dropdown-wrapper">
+                      <input type="text" class="p-inputtext" pInputText formControlName="phoneNumber" />
+                  </div>
+              </div>
+            <div class="input-container">
+              <label for="name">Địa chỉ</label>
+              <div class="dropdown-wrapper">
+                  <input type="text" class="p-inputtext" pInputText formControlName="address" />
+              </div>
+          </div>
+                
+            </div>
+        </form>
+    </ng-template>
+    <ng-template pTemplate="footer">
+        <div class="dialog-footer">
+            <p-button icon="pi pi-check" *ngIf="formACC.valid " (onClick)="updateUser()" label="Cập nhật" pAutoFocus [autofocus]="true"></p-button>
+            <p-button icon="pi pi-check" (click)="close()" label="Đóng"severity="danger" ></p-button>
+
+        </div>
+    </ng-template>
+</p-dialog>

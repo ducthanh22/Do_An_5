@@ -4,7 +4,7 @@ import { environment } from 'src/environment/environment';
 import { Injectable } from '@angular/core';
 import { Observable, first } from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Paging, User, UserDto } from '../model';
+import { Paging, ResetPasswordModel, User, UserDto, updateUserDto } from '../model';
 import { ClaimDto, CreateRoleDto, RoleDto } from '../model/role';
 import { BaseQuerieResponse } from '../model/Common/BaseQuerieResponse';
 
@@ -20,6 +20,9 @@ export class AccountService {
 
   Register(data: User): Observable<any> {
     return this._http.post<any>(`${environment.apiUrl}/Account/Register`, data).pipe(first());
+  }
+  ResetPassword(data: ResetPasswordModel): Observable<any> {
+    return this._http.post<any>(`${environment.apiUrl}/Account/ResetPassword`, data).pipe(first());
   }
   Login(data: UserDto): Observable<any> {
     return this._http.post<any>(`${environment.apiUrl}/Account/Login`, data).pipe(first());
@@ -48,7 +51,9 @@ export class AccountService {
     return this._http.get<BaseQuerieResponse<any>>(`${environment.apiUrl}/Account/GetUser/${status}`,{params}).pipe(first());
   }
 
-
+  updateUser(data: updateUserDto): Observable<updateUserDto> {
+    return this._http.patch<updateUserDto>(`${environment.apiUrl}/Account/update`, data).pipe(first());
+  }
   
   decodeToken() {
     const token = localStorage.getItem('Token');

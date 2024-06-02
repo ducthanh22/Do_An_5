@@ -40,7 +40,7 @@ namespace BLL
         {
             return await _accountRepository.ForgotPassword(model);
         }
-        public async Task<string> ResetPassword(ResetPasswordModel model)
+        public async Task<ResetPasswordModel> ResetPassword(ResetPasswordModel model)
         {
             return await _accountRepository.ResetPassword(model);
         }
@@ -63,6 +63,10 @@ namespace BLL
         public async Task<BaseQuerieResponse<User>> GetUser(string status, Paging paging)
         {
             return await _accountRepository.GetUser(status, paging);
+        }
+        public async Task<updateUserDto> updateUser(updateUserDto model)
+        {
+            return await _accountRepository.updateUser(model);
         }
     }
 }
