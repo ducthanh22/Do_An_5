@@ -85,7 +85,7 @@ namespace DAL
                         item.Id=DetailEntity.Id;
 
                         // Checking if the product exists in the Detail_warehouse table based on Idproduct
-                        var checkwarehouse = await _DbContext.Detail_warehouse.Where(x=>x.Idproduct==item.Idproduct).FirstOrDefaultAsync();
+                        var checkwarehouse = await _DbContext.Detail_warehouse.Where(x=>x.Idproduct==item.Idproduct && x.Idsize==item.Idsize).FirstOrDefaultAsync();
 
                         if (checkwarehouse != null)
                         {

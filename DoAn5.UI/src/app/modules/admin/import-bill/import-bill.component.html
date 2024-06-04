@@ -94,10 +94,10 @@
                     [style]="{'minWidth':'300px','maxWidth':'300px'}" appendTo="body" (onChange)="updatePrice($event,i)">
                     </p-dropdown>
                   </td>
-                  <td class="center-align" >
-                    <p-dropdown [options]="listSize" formControlName="idsize" optionLabel="nameSize"
-                    optionValue="id" [filter]="true" filterBy="nameSize" [showClear]="true"  [style]="{'minWidth':'100px'}"
-                    appendTo="body">
+                  <td class="center-align">
+                    <p-dropdown [options]="size.get('listSize')?.value" formControlName="idsize" optionLabel="nameSize"
+                      optionValue="id" [filter]="true" filterBy="nameSize" [showClear]="true"
+                      [style]="{'minWidth':'100px'}" appendTo="body">
                     </p-dropdown>
                   </td>
                   <td class="center-align">

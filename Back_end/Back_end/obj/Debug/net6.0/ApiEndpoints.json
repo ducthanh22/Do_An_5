@@ -896,7 +896,7 @@
   {
     "ContainingType": "Back_end.Controllers.Detail_warehouseController",
     "Method": "CountProduct",
-    "RelativePath": "api/Detail_warehouse/CountProduct/{id}",
+    "RelativePath": "api/Detail_warehouse/CountProduct",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -904,7 +904,12 @@
       {
         "Name": "id",
         "Type": "System.Guid",
-        "IsRequired": true
+        "IsRequired": false
+      },
+      {
+        "Name": "idSize",
+        "Type": "System.Guid",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": [
@@ -3066,12 +3071,12 @@
     "Parameters": [
       {
         "Name": "start",
-        "Type": "System.DateTime",
+        "Type": "System.Nullable\u00601[[System.DateTime, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "IsRequired": false
       },
       {
         "Name": "end",
-        "Type": "System.DateTime",
+        "Type": "System.Nullable\u00601[[System.DateTime, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "IsRequired": false
       }
     ],

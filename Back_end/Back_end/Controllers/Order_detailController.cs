@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using DTO;
 using Model;
+using Back_end.Attribute;
+using DTO.Enum;
 
 
 namespace Back_end.Controllers
@@ -27,6 +29,8 @@ namespace Back_end.Controllers
         }
 
         [HttpGet("GetByid")]
+        [HasPermission(new[] { (int)EnumModule.Module.QlDh }, new[] { (int)EnumPermission.Type.Read })]
+
         public async Task<ActionResult<Order_detailDto>> Getbyid(Guid id)
         {
             var result = await _Bus.Getbyid(id);
@@ -34,6 +38,8 @@ namespace Back_end.Controllers
         }
 
         [HttpPost("create")]
+        [HasPermission(new[] { (int)EnumModule.Module.QlDh }, new[] { (int)EnumPermission.Type.Create })]
+
         public async Task<ActionResult<Order_detail>> Create([FromBody] Order_detail dto)
         {
             var createdEntity = await _Bus.Create(dto);
@@ -41,6 +47,8 @@ namespace Back_end.Controllers
             return Ok(createdEntity);
         }
         [HttpPut("update")]
+        [HasPermission(new[] { (int)EnumModule.Module.QlDh }, new[] { (int)EnumPermission.Type.Update })]
+
         public async Task<ActionResult<Order_detail>> Update([FromBody] Order_detail dto)
         {
             var createdEntity = await _Bus.Update(dto);
@@ -48,6 +56,8 @@ namespace Back_end.Controllers
             return Ok(createdEntity);
         }
         [HttpDelete("Delete")]
+        [HasPermission(new[] { (int)EnumModule.Module.QlDh }, new[] { (int)EnumPermission.Type.Deleted })]
+
         public async Task<ActionResult<Order_detail>> Delete(Guid id)
         {
             var result = await _Bus.Delete(id);

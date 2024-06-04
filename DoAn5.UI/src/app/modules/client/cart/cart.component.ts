@@ -34,7 +34,7 @@ export class CartComponent {
   }
   deleteCart(index: number){
     if (index >= 0 && index < this.Carts.length) {
-      this.Carts.splice(index);
+      this.Carts.splice(index,1);
       this.productService.saveCart(this.Carts);
     }
   }

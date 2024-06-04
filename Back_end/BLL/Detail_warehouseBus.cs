@@ -18,9 +18,9 @@ namespace BLL
             _res = res;
         }
        
-        public async Task<countProduct> CountProduct(Guid id)
+        public async Task<countProduct> CountProduct(Guid id, Guid idSize)
         {
-            return await _res.CountProduct(id);
+            return await _res.CountProduct(id,idSize);
         }
         public async Task<BaseQuerieResponse<GetDetail_warehouseDto>> Search(Paging paging)
         {

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
 import { AccountService } from 'src/app/service/account.service';
 import { drawPoint } from 'src/assets/admin/vendor/chart.js/helpers';
 
@@ -17,7 +18,7 @@ export class LoginComponent {
   showPassword: boolean = false;
 
   constructor(private AccountService:AccountService, private fb:FormBuilder,
-    private router: Router){}
+    private router: Router, private messageService:MessageService){}
   ngOnInit(){
     this.FormLogin= this.fb.group({
       email:new FormControl('',Validators.required),
@@ -46,7 +47,9 @@ login() {
         }
       },
       error: (e) => {
-        console.error(e.errorMessage);
+        // console.error(e.errorMessage);
+        this.messageService.add({ severity: 'error', summary: 'Lỗi', detail: 'Vui lòng kiểm tra lại tài khoản và mật khẩu' });
+
       },
     });
   }

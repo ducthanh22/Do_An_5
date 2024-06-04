@@ -37,7 +37,6 @@ export class HeaderComponent {
 
     ngOnInit() {
         this.informationToken = this.AcountService.decodeToken();
-        console.log(this.informationToken)
         this.Carts = this.productService.GetCart();
         this.selectCategory();
         this.cartUpdateSubscription = this.productService.cartUpdated.subscribe(() => {

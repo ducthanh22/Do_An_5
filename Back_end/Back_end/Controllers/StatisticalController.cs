@@ -16,7 +16,7 @@ namespace Back_end.Controllers
         }
 
         [HttpGet("Darhboarsh")]
-        public async Task<ActionResult<StatisticalDto>> Darhboarsh([FromQuery] DateTime start, [FromQuery] DateTime end)
+        public async Task<ActionResult<StatisticalDto>> Darhboarsh([FromQuery] DateTime? start, [FromQuery] DateTime? end)
         {
             var createdEntity = await _Bus.Darhboarsh(start,end);
 

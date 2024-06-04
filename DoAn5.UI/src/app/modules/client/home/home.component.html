@@ -2,7 +2,7 @@
     <div class="panner">
         <img src="/./assets/client/assets/img/Panner_A.png">
     </div>
-    
+
     <div class="brand">
         <h2>Thương hiệu</h2>
         <div class="card">
@@ -10,11 +10,10 @@
                 [responsiveOptions]="responsiveOptions">
                 <ng-template let-x pTemplate="item">
                     <div class="border-1 surface-border border-round m-2 text-center py-5 px-3"
-                        style="margin-left: 20%;" >
-                        <div class="mb-3"(click)="search(x.id)">
-                           <img
-                                    src="https://localhost:7058/Img_Brand/{{ x.image }}" [alt]="x.name"
-                                    style="width: 40%;height: 100px;" />
+                        style="margin-left: 20%;">
+                        <div class="mb-3" (click)="search(x.id)">
+                            <img src="https://localhost:7058/Img_Brand/{{ x.image }}" [alt]="x.name"
+                                style="width: 40%;height: 100px;" />
                         </div>
                     </div>
                 </ng-template>
@@ -22,22 +21,25 @@
 
         </div>
     </div>
-    <div class="sale"  *ngIf="productsSale.length>0">
-        <h2 style="color: rgb(191, 10, 10);">Flash sale: <countdown #cd [config]="{ leftTime: datasale*60  }" (event)="handleEvent($event)"/></h2>
+    <div class="sale" *ngIf="productsSale.length>0">
+        <h2 style="color: rgb(191, 10, 10);">Flash sale:
+            <countdown #cd [config]="{ leftTime: datasale*60  }" (event)="handleEvent($event)" />
+        </h2>
         <div class="card">
-            <p-carousel [value]="productsSale" [numVisible]="3" [numScroll]="3" [circular]="false"
+            <p-carousel [value]="productsSale" [numVisible]="6" [numScroll]="3" [circular]="false"
                 [responsiveOptions]="responsiveOptions">
                 <ng-template let-product pTemplate="item">
-                    <div class="border-1 surface-border border-round m-2 p-3"  [routerLink]="['/client/detail', product.id]">
-                        <div class="mb-3" >
+                    <div class="border-1 surface-border border-round m-2 p-3"
+                        [routerLink]="['/client/detail', product.id]">
+                        <div class="mb-3">
                             <div class="relative mx-auto">
                                 <img src="https://localhost:7058/Images/{{ product.image }}" [alt]="product.name"
-                                    style="width: 150px;height:150px" />
+                                    style="width: 200px;height:200px;margin-left: 20%;" />
                             </div>
                         </div>
-                        <div class="flex justify-content-between align-items-center" >
-                            <div class="mt-0 font-semibold text-xl flashsale1" >
-                               Giảm {{ product.percent}}%
+                        <div class="flex justify-content-between align-items-center">
+                            <div class="mt-0 font-semibold text-xl flashsale1">
+                                Giảm {{ product.percent}}%
                             </div>
                             <div class="mt-0 font-semibold text-xl flashsale1">
                                 {{ product.salePrice | currency:'VND'}}
@@ -45,6 +47,8 @@
                         </div>
                     </div>
                 </ng-template>
+
+                
             </p-carousel>
         </div>
     </div>
@@ -52,7 +56,7 @@
         <h2>Sản phẩm mới</h2>
 
         <div class="card">
-            <p-dataView #dv [value]="products" [layout]="layout" [rows]="8" [paginator]="true">
+            <p-dataView #dv [value]="products" [layout]="layout" [rows]="12" [paginator]="true">
                 <ng-template pTemplate="header">
                     <div class="flex justify-content-end">
                         <p-dataViewLayoutOptions layout="list"></p-dataViewLayoutOptions>
@@ -72,15 +76,18 @@
                                         <span style="margin-left: 2%;">{{product.namecategory }}</span>
                                     </div>
                                 </div>
-                                <div class="product-price" *ngIf="product.activeSale ==0 || product.activeSale==2|| product.activeSale==null">
+                                <div class="product-price"
+                                    *ngIf="product.activeSale ==0 || product.activeSale==2|| product.activeSale==null">
                                     <div class="salespan">{{ product.price_product | currency:'VND' :""}}đ</div>
                                 </div>
-                                <div class="product-price"  *ngIf="product.activeSale ==1">
+                                <div class="product-price" *ngIf="product.activeSale ==1">
                                     <div class="salespan1" pBadge [value]="product.percent + '%'" severity="danger">
-                                        <Del>{{ product.price_product | currency:'VND':'' }}đ</Del></div>
+                                        <Del>{{ product.price_product | currency:'VND':'' }}đ</Del>
+                                    </div>
                                     <div class="salespan">{{ product.salePrice | currency:'VND' :""}}đ</div>
                                 </div>
-                                <button pButton icon="pi pi-shopping-cart" class="product-cart-button"></button>
+                                <button pButton icon="pi pi-shopping-cart" class="product-cart-button"
+                                    (click)="getbyid(product.id)"></button>
                             </div>
                         </div>
                     </div>
@@ -93,21 +100,25 @@
                                 <img class="grid-image" [src]="'https://localhost:7058/Images/' + product.image"
                                     [alt]="product.name" [routerLink]="['/client/detail', product.id]" />
                                 <div class="grid-details">
-                                    <div class="grid-name" [routerLink]="['/client/detail', product.id]">{{ product.name}}</div>
+                                    <div class="grid-name" [routerLink]="['/client/detail', product.id]">{{
+                                        product.name}}</div>
                                     <div class="grid-category">
                                         <i class="pi pi-tag"></i>
                                         <span style="margin-left: 2%;">{{product.namecategory }}</span>
                                     </div>
                                 </div>
-                                <div class="grid-price" *ngIf="product.activeSale ==0 || product.activeSale==2|| product.activeSale==null">
+                                <div class="grid-price"
+                                    *ngIf="product.activeSale ==0 || product.activeSale==2|| product.activeSale==null">
                                     <span class="gspan">{{ product.price_product | currency:'VND':''}}đ</span>
-                                    <button pButton icon="pi pi-shopping-cart" class="product-cart-button"></button>
+                                    <button pButton icon="pi pi-shopping-cart" class="product-cart-button" (click)="getbyid(product.id)"></button>
                                 </div>
                                 <div class="grid-price" *ngIf="product.activeSale ==1">
                                     <div class="salespan1" pBadge [value]="product.percent + '%'" severity="danger">
-                                        <Del>{{ product.price_product | currency:'VND':'' }}đ</Del></div>
+                                        <Del>{{ product.price_product | currency:'VND':'' }}đ</Del>
+                                    </div>
                                     <div class="salespan">{{ product.salePrice | currency:'VND' :""}}đ</div>
-                                    <button pButton icon="pi pi-shopping-cart" class="product-cart-button"></button>
+                                    <button pButton icon="pi pi-shopping-cart" class="product-cart-button"
+                                        (click)="getbyid(product.id)"></button>
                                 </div>
 
                             </div>
@@ -120,8 +131,8 @@
     <div class="Newproduct">
         <h2>Sản phẩm bán chạy</h2>
 
-               <div class="card">
-            <p-dataView #dv [value]="bestSellingProducts" [layout]="layout" [rows]="8" [paginator]="true">
+        <div class="card">
+            <p-dataView #dv [value]="bestSellingProducts" [layout]="layout" [rows]="12" [paginator]="true">
                 <ng-template pTemplate="header">
                     <div class="flex justify-content-end">
                         <p-dataViewLayoutOptions layout="list"></p-dataViewLayoutOptions>
@@ -136,17 +147,20 @@
                                 <div class="product-details">
                                     <div class="product-name" [routerLink]="['/client','detail', product.id]">{{
                                         product.name }}</div>
-                                  
+
                                 </div>
-                                <div class="product-price" *ngIf="product.activeSale ==0 || product.activeSale==2|| product.activeSale==null">
+                                <div class="product-price"
+                                    *ngIf="product.activeSale ==0 || product.activeSale==2|| product.activeSale==null">
                                     <div class="salespan">{{ product.price_product | currency:'VND' :""}}đ</div>
                                 </div>
-                                <div class="product-price"  *ngIf="product.activeSale ==1">
+                                <div class="product-price" *ngIf="product.activeSale ==1">
                                     <div class="salespan1" pBadge [value]="product.percent + '%'" severity="danger">
-                                        <Del>{{ product.price_product | currency:'VND':'' }}đ</Del></div>
+                                        <Del>{{ product.price_product | currency:'VND':'' }}đ</Del>
+                                    </div>
                                     <div class="salespan">{{ product.salePrice | currency:'VND' :""}}đ</div>
                                 </div>
-                                <button pButton icon="pi pi-shopping-cart" class="product-cart-button"></button>
+                                <button pButton icon="pi pi-shopping-cart" class="product-cart-button"
+                                    (click)="getbyid(product.id)"></button>
                             </div>
                         </div>
                     </div>
@@ -159,18 +173,22 @@
                                 <img class="grid-image" [src]="'https://localhost:7058/Images/' + product.image"
                                     [alt]="product.name" [routerLink]="['/client/detail', product.id]" />
                                 <div class="grid-details">
-                                    <div class="grid-name" [routerLink]="['/client/detail', product.id]">{{ product.name}}</div>
-                                    
+                                    <div class="grid-name" [routerLink]="['/client/detail', product.id]">{{
+                                        product.name}}</div>
                                 </div>
-                                <div class="grid-price" *ngIf="product.activeSale ==0 || product.activeSale==2|| product.activeSale==null">
+                                <div class="grid-price"
+                                    *ngIf="product.activeSale ==0 || product.activeSale==2|| product.activeSale==null">
                                     <span class="gspan">{{ product.price_product | currency:'VND':''}}đ</span>
-                                    <button pButton icon="pi pi-shopping-cart" class="product-cart-button"></button>
+                                    <button pButton icon="pi pi-shopping-cart" class="product-cart-button"
+                                        (click)="getbyid(product.id)"></button>
                                 </div>
                                 <div class="grid-price" *ngIf="product.activeSale ==1">
                                     <div class="salespan1" pBadge [value]="product.percent + '%'" severity="danger">
-                                        <Del>{{ product.price_product | currency:'VND':'' }}đ</Del></div>
+                                        <Del>{{ product.price_product | currency:'VND':'' }}đ</Del>
+                                    </div>
                                     <div class="salespan">{{ product.salePrice | currency:'VND' :""}}đ</div>
-                                    <button pButton icon="pi pi-shopping-cart" class="product-cart-button"></button>
+                                    <button pButton icon="pi pi-shopping-cart" class="product-cart-button"
+                                        (click)="getbyid(product.id)"></button>
                                 </div>
 
                             </div>
@@ -181,3 +199,54 @@
         </div>
     </div>
 </div>
+
+
+
+<p-dialog header="Thêm vào giỏ hàng" [modal]="true" [(visible)]="visible" [style]="{ width: '40%' }" *ngIf="data">
+    <div class="top">
+        <div class="card flex justify-content-center">
+          <img [src]="'https://localhost:7058/Images/' + data[0]?.image" alt="Image" style="width: 250px;">
+        </div>
+        <div class="select">
+          <h3>{{data[0].name}}</h3>
+          <div class="product_infomatiom">
+            <div class="price" *ngIf="data[0]?.activeSale==0 || data[0]?.activeSale==2||data[0]?.activeSale== null">
+              <span style="color:rgb(193, 19, 19);font-size: larger;font-weight: bold;">{{data[0]?.price_product
+                |currency:'VND':''}}đ</span>
+            </div>
+            <div class="price" *ngIf="data[0]?.activeSale==1">
+              <div><span style="color:rgb(193, 19, 19);font-size: larger;font-weight: bold;">{{data[0]?.salePrice
+                  |currency:'VND':''}}đ</span></div>
+              <div style="margin-left: 10%;"> <span style="font-size: larger;" pBadge [value]="data[0]?.percent + '%'"
+                  severity="danger"><del>{{data[0]?.price_product |currency:'VND'}}</del></span></div>
+            </div>
+            <div class="color">
+              <div style="width: 20%;">
+                <h4>Màu sắc</h4>
+              </div>
+              <div class="s1">
+                <div class="namecolor"><p-colorPicker [(ngModel)]="data[0].colorformat" [disabled]="true" /></div>
+              </div>
+            </div>
+            <div class="Size">
+              <div style="width: 20%;">
+                <h4>Kích thước</h4>
+              </div>
+              <div class="s1" *ngIf="data[0].listSize && data[0].listSize.length>0">
+                <div class="namesize" *ngFor="let x of data[0].listSize" [class.selected]="x === Size"
+                  (click)="selectSize(data[0].id,x)">{{x?.nameSize}}
+                </div>
+              </div>
+            </div>
+            <div class="buy" *ngIf="countprohouse != null"><span>Kho: {{countprohouse.totalQuantity}} sản phẩm</span></div>
+            <div class="buy" *ngIf="countProduct != null"><span>Đã Bán: {{countProduct.totalQuantity}} sản phẩm</span></div>
+            
+            <p-button label="Thêm vào giỏ hàng" severity="danger" (click)="addtocart(data[0])"
+              *ngIf="countprohouse && countprohouse.totalQuantity >0"><i class="pi pi-shopping-cart"></i></p-button>
+    
+            <p-button label="Sản phẩm đã bán hết" severity="danger" *ngIf="countprohouse && countprohouse.totalQuantity==0"><i
+                class="pi pi-shopping-cart"></i></p-button>
+          </div>
+        </div>
+      </div>
+</p-dialog>

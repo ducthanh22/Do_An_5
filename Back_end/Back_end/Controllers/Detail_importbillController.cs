@@ -4,6 +4,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using DTO;
 using Model;
+using Back_end.Attribute;
+using DTO.Enum;
+
 
     
 
@@ -20,6 +23,7 @@ namespace Back_end.Controllers
             _Bus = Bus;
         }
         [HttpGet("GetAll")]
+        [AllowAnonymous]
         public async Task<ActionResult<List<Detail_importbillDto>>> GetAll()
         {
             var result = await _Bus.GetAll();
@@ -27,6 +31,8 @@ namespace Back_end.Controllers
         }
 
         [HttpGet("GetByid")]
+        [HasPermission(new[] { (int)EnumModule.Module.QlHdn }, new[] { (int)EnumPermission.Type.Read })]
+
         public async Task<ActionResult<Detail_importbillDto>> Getbyid(Guid id)
         {
             var result = await _Bus.Getbyid(id);
@@ -34,6 +40,8 @@ namespace Back_end.Controllers
         }
 
         [HttpPost("create")]
+        [HasPermission(new[] { (int)EnumModule.Module.QlHdn }, new[] { (int)EnumPermission.Type.Create })]
+
         public async Task<ActionResult<Detail_importbillDto>> Create([FromBody] Detail_importbill dto)
         {
             var createdEntity = await _Bus.Create(dto);
@@ -41,6 +49,8 @@ namespace Back_end.Controllers
             return Ok(createdEntity);
         }
         [HttpPut("update")]
+        [HasPermission(new[] { (int)EnumModule.Module.QlHdn }, new[] { (int)EnumPermission.Type.Update })]
+
         public async Task<ActionResult<Detail_importbillDto>> Update([FromBody] Detail_importbill dto)
         {
             var createdEntity = await _Bus.Update(dto);
@@ -48,6 +58,8 @@ namespace Back_end.Controllers
             return Ok(createdEntity);
         }
         [HttpDelete("Delete")]
+        [HasPermission(new[] { (int)EnumModule.Module.QlHdn }, new[] { (int)EnumPermission.Type.Deleted })]
+
         public async Task<ActionResult<Detail_importbillDto>> Delete(Guid id)
         {
             var result = await _Bus.Delete(id);

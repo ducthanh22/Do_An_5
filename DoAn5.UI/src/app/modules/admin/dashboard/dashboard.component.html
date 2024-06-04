@@ -1,12 +1,13 @@
-<div class="dashboard-container">
+<div class="dashboard-container" *ngIf="statistical">
   <div class="card flex flex-wrap gap-3 p-fluid">
     <div class="date">
       <label for="icondisplay" class="font-bold block mb-2"> Ngày bắt đầu </label>
-      <p-calendar [(ngModel)]="date1" [iconDisplay]="'input'" [showIcon]="true" inputId="icondisplay" class="short-calendar"/>
+      <p-calendar [(ngModel)]="date1" [iconDisplay]="'input'" [showIcon]="true" inputId="icondisplay"
+        class="short-calendar"  />
     </div>
     <div class="date ">
       <label for="icondisplay" class="font-bold block mb-2"> Ngày kết thúc </label>
-      <p-calendar [(ngModel)]="date2" [iconDisplay]="'input'" [showIcon]="true" inputId="icondisplay" />
+      <p-calendar [(ngModel)]="date2" [iconDisplay]="'input'" [showIcon]="true" inputId="icondisplay" [maxDate]="maxdate" />
     </div>
     <div class="flex">
       <p-button label="Submit" (onClick)="getDashboarsh()" />
@@ -18,33 +19,33 @@
   <!-- Lưới cho 4 ô hàng trên -->
   <div class="p-flex">
     <div class="infor center-align">
-      <p-card header="Đơn hàng" >
+      <p-card header="Đơn hàng">
         <p class="m-0 center-align">
           {{statistical.totalOrder}}
-      </p>
+        </p>
       </p-card>
     </div>
     <div class="infor center-align">
-      <p-card header="Khách hàng" >
+      <p-card header="Khách hàng">
         <p class="m-0 center-align">
           {{statistical.totalCustomer}}
 
-      </p>
+        </p>
       </p-card>
     </div>
     <div class="infor center-align">
-      <p-card header="Số lượng sản phẩm" >
+      <p-card header="Số lượng sản phẩm">
         <p class="m-0 center-align">
           {{statistical.totalProduct}}
 
-      </p>
+        </p>
       </p-card>
     </div>
     <div class="infor center-align">
-      <p-card header="Doanh thu dự kiến" >
+      <p-card header="Doanh thu dự kiến">
         <p class="m-0 center-align">
           {{statistical.expected_Revenue| currency:'VND':''}}đ
-      </p>
+        </p>
       </p-card>
     </div>
   </div>

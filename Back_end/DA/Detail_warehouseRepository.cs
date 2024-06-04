@@ -16,10 +16,10 @@ namespace DAL
         public Detail_warehouseRepository(Achino_DbContext dbContext, IMapper mapper) : base(dbContext, mapper)
         {
         }
-        public async Task<countProduct> CountProduct(Guid id)
+        public async Task<countProduct> CountProduct(Guid id,Guid idSize)
         {
             var query = from a in _DbContext.Detail_warehouse
-                        where a.Idproduct == id
+                        where a.Idproduct == id && a.Idsize == idSize
                         group a by a.Idproduct into g
                         select new countProduct
                         {

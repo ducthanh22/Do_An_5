@@ -36,8 +36,9 @@ constructor(private accountService:AccountService,private activeRoute:ActivatedR
       this.accountService.ResetPassword(this.dataReset).subscribe({
         next:(data)=>{
           if(data){
+            alert('Cập nhật mật khẩu thành công')
             this.route.navigate(['/Login']);
-            this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Cập nhật mật khẩu thành công' });
+            // this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Cập nhật mật khẩu thành công' });
 
     
           }

@@ -19,22 +19,26 @@ export class DashboardComponent {
   date1!: Date;
   date2!: Date;
   statistical!: StatisticalDto;
+  maxdate!:Date;
   constructor(private statisticalservice: StatisticalService) { }
 
   ngOnInit() {
-
+    this.maxdate= new Date();
     this.getDashboarsh();
   }
 
   getDashboarsh() {
+    let start='';
+    let end='';
     if (this.date1 == undefined && this.date2 == undefined) {
-      this.date1 = new Date();
-      this.date1.setMonth(this.date1.getMonth() - 6);
-      this.date2 = new Date();
+       start='';
+       end='';
     }
-    const start = format(this.date1, "yyyy-MM-dd'T'HH:mm:ss.SSS");
-    const end = format(this.date2, "yyyy-MM-dd'T'HH:mm:ss.SSS");
-
+    else{
+      start  = format(this.date1, "yyyy-MM-dd'T'HH:mm:ss.SSS");
+      end = format(this.date2, "yyyy-MM-dd'T'HH:mm:ss.SSS"); 
+    }
+    
     this.statisticalservice.Darhboarsh(start, end).subscribe({
       next: (value) => {
         if (value) {

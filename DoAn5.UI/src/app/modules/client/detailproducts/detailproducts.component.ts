@@ -43,7 +43,6 @@ export class DetailproductsComponent {
       this.getbyid(this.id);
       this.GetRating(this.id,1,10)
       this.CountProduct(this.id)
-      this.CountProWarehouse(this.id)
     });
     
   }
@@ -56,8 +55,8 @@ export class DetailproductsComponent {
       }
     })
   }
-  CountProWarehouse(id:string){
-    this.warehouseService.CountProduct(id).subscribe({
+  CountProWarehouse(id:string,idSize:string){
+    this.warehouseService.CountProduct(id,idSize).subscribe({
       next:(res)=>{
         if(res){
           this.countprohouse=res;
@@ -91,6 +90,7 @@ export class DetailproductsComponent {
   selectSize(data: any) {
     this.Size = []
     this.Size = data;
+    this.CountProWarehouse(this.id,data.id)
   }
   addtocart(data: any) {
     if(data.activeSale == 1){

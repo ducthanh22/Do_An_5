@@ -1,4 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { MenuItem, MessageService } from 'primeng/api';
 import { Sidebar } from 'primeng/sidebar';
 import { AccountService } from 'src/app/service/account.service';
@@ -17,7 +18,7 @@ export class SidebarComponent {
   informationToken!:any;
 
 
-  constructor(private messageService: MessageService, private AcountService:AccountService) {
+  constructor(private messageService: MessageService, private AcountService:AccountService,private route:Router) {
       this.items = [
           {
               label: 'Thông tin',
@@ -53,7 +54,8 @@ export class SidebarComponent {
     const token = localStorage.getItem('Token');
     if(token !=null){
         localStorage.removeItem('Token');
-        window.location.reload()
+        this.route.navigate(['/Login'])
+        // window.location.reload();
     }
 }
 showName(){

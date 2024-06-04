@@ -119,20 +119,6 @@ export class ImportBillComponent implements AfterViewInit {
       this.listProduct=data;
     })
   }
-
-  updatePrice(event: any, index: number) {
-    const selectedProductId = event.value;
-    this.getSize(selectedProductId);
-    const selectedProduct = this.listProduct.find(product => product.id === selectedProductId);
-    selectedProduct != null ? this.priceProduct = selectedProduct.price_product : this.priceProduct = 0
-    const detail = this.detail_importbill.at(index);
-    if (detail && detail.get('price')) {
-      detail.get('price')?.setValue(this.priceProduct);
-    }
-    if (detail && detail.get('quantity')) {
-      detail.get('total')?.setValue(this.priceProduct* detail.value.quantity);
-    }
-  }
   onChange(event: any, index: number) {
     const quantityValue = event.target.value;
     this.total =this.priceProduct * quantityValue;
@@ -148,11 +134,46 @@ export class ImportBillComponent implements AfterViewInit {
     });
     return total;
   }
-  getSize(id:string){
-    this.sizeService.Getbyidproduct(id).subscribe(data=>{
-      this.listSize=data;
-    })
+  updatePrice(event: any, index: number) {
+    const selectedProductId = event.value;
+    const detail = this.detail_importbill.at(index) as FormGroup;
+
+    // Lưu trữ giá trị đã chọn của listSize
+    const selectedSizeId = detail.get('idsize')?.value;
+
+    this.getSize(selectedProductId, index, selectedSizeId);
+    const selectedProduct = this.listProduct.find(product => product.id === selectedProductId);
+    this.priceProduct = selectedProduct ? selectedProduct.price_product : 0;
+
+    if (detail) {
+      if (detail.get('price')) {
+        detail.get('price')?.setValue(this.priceProduct);
+      }
+      if (detail.get('quantity')) {
+        detail.get('total')?.setValue(this.priceProduct * detail.value.quantity);
+      }
+    }
   }
+
+  getSize(productId: string, index: number, selectedSizeId?: string) {
+    this.sizeService.Getbyidproduct(productId).subscribe(data => {
+      // Cập nhật listSize riêng cho từng phần tử trong detail_importbill
+      (this.detail_importbill.at(index) as FormGroup).addControl('listSize', this.fb.control(data));
+      // Khôi phục giá trị đã chọn của listSize
+      if (selectedSizeId) {
+        this.restoreSelectedSize(index, selectedSizeId);
+      }
+    });
+  }
+
+  restoreSelectedSize(index: number, selectedSizeId: string) {
+    // Khôi phục giá trị đã chọn cho formControlName 'idsize'
+    const detail = this.detail_importbill.at(index) as FormGroup;
+    if (detail) {
+      detail.get('idsize')?.setValue(selectedSizeId);
+    }
+  }
+  
   // GetDetail(id :string){
   //   this.visible= true;
   //   this.importbillService.GetDetail(id).subscribe({
@@ -172,7 +193,7 @@ export class ImportBillComponent implements AfterViewInit {
   }
   Save(){
     this.dataImport={
-      price: this.getTotalPrice(),
+      price: Number(this.getTotalPrice()),
       status: 1,
       idStaff: this.infomation.Id,
       detail_importbill: this.formImport.value.detail_importbill
