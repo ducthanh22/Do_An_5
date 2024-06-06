@@ -189,7 +189,7 @@ namespace DAL
                         var orderDetailEntity = _mapper.Map<Order_detail>(orderDetailDto);
                         await _DbContext.Order_detail.AddAsync(orderDetailEntity);
 
-                        var checkwarehouse = await _DbContext.Detail_warehouse.Where(x => x.Idproduct == item.Id_product).FirstOrDefaultAsync();
+                        var checkwarehouse = await _DbContext.Detail_warehouse.Where(x => x.Idproduct == item.Id_product&& x.Idsize==item.Idsize).FirstOrDefaultAsync();
 
                         if (checkwarehouse != null)
                         {

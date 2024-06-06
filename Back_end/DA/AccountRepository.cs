@@ -323,7 +323,6 @@ namespace DAL
                 checkUser.UserName = model.UserName;
                 checkUser.Modified = DateTime.Now;
                 checkUser.PhoneNumber = model.PhoneNumber;
-
                 // Đánh dấu người dùng đã thay đổi
                 _dbContext.User.Update(checkUser);
 
