@@ -29,7 +29,7 @@ export class PayproductsComponent {
 
   constructor(private productService: ProductsService, private fb: FormBuilder, private AccountService: AccountService,
     private OrderService: OrderService, private MessageSV: MessageService, private EmailService: SendEmailService, private PaymentService: PaymentService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute, private router:Router
   ) { }
   ngOnInit() {
     this.Carts = this.productService.GetCart();
@@ -146,8 +146,8 @@ export class PayproductsComponent {
                         this.formData.append('donhang', value.id)
                         this.EmailService.SendEmail(this.formData).subscribe({
                           next: (response) => {
-                            console.log(response);
-                            this.MessageSV.add({ severity: 'success', summary: 'Success', detail: 'Đặt hàng thành công' })
+                            this.MessageSV.add({ severity: 'success', summary: 'Success', detail: 'Đặt hàng thành công' });
+                              this.router.navigate(['/cart'])
                           },
                         })
                       }

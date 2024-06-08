@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { format, setMonth } from 'date-fns';
+import { Paging } from 'src/app/model';
 import { StatisticalDto } from 'src/app/model/statistical';
+import { ProductsService } from 'src/app/service/products.service';
 import { StatisticalService } from 'src/app/service/statistical.service';
 
 
@@ -20,11 +22,34 @@ export class DashboardComponent {
   date2!: Date;
   statistical!: StatisticalDto;
   maxdate!:Date;
-  constructor(private statisticalservice: StatisticalService) { }
+  bestSellingProducts:any;
+  paging:Paging={keyword:"",pageIndex:1,pageSize:10}
+  constructor(private statisticalservice: StatisticalService, private productService:ProductsService) { }
 
   ngOnInit() {
     this.maxdate= new Date();
     this.getDashboarsh();
+    this.GetBestSellingProducts();
+  }
+  GetBestSellingProducts() {
+    this.productService.GetBestSellingProducts().subscribe(data => {
+      this.bestSellingProducts = data.reduce((acc: any, x: any) => {
+        const kt = acc.find((y: any) => y.id === x.id);
+        if (!kt) {
+          acc.push(x);
+        } else {
+          if (kt.activeFlag - x.activeFlag < 1) {
+            const index = acc.indexOf(kt);
+            if (index !== -1) {
+              acc.splice(index, 1); // Loại bỏ phần tử tại vị trí index
+              acc.push(x);
+            }
+          }
+        }
+        return acc;
+      }, []);
+      console.log(this.bestSellingProducts)
+    });
   }
 
   getDashboarsh() {

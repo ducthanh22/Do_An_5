@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { Subscription, interval } from 'rxjs';
-import { GetProductsDto, ProductsDto, bestSellingProducts } from 'src/app/model';
+import { GetProductsDto, Paging, ProductsDto, bestSellingProducts } from 'src/app/model';
 import { ShareService } from 'src/app/service/Common/share.service';
 import { exportBillService } from 'src/app/service/Exportbill.service';
 import { AccountService } from 'src/app/service/account.service';
@@ -19,7 +19,7 @@ import { WarehousedetailService } from 'src/app/service/warehouse_detail.service
 export class HomeComponent {
   responsiveOptions: any[] | undefined;
   ListProduces: any[] = [];
-  products: GetProductsDto[] = [];
+  products: any;
   productsSale: GetProductsDto[] = [];
   Carts!: any[];
 
@@ -35,6 +35,8 @@ export class HomeComponent {
   Size!: any;
   countProduct:any;
   countprohouse:any;
+  paging:Paging={keyword:'',pageIndex:1,pageSize:12};
+  totalRecords!:number;
   constructor(private ProducesService: ProducesService, private productService: ProductsService, private SaleService: SaleService, private AcountService: AccountService,
     private shareService: ShareService, private router: Router,private exportBillService:exportBillService,private warehouseService:WarehousedetailService,
     private MessageSV:MessageService
@@ -95,6 +97,18 @@ export class HomeComponent {
   search(data: string) {
     this.shareService.sendKeyword(data);
   }
+  // loadListLazy(event:any){
+  //   debugger
+  //   event.first==0?event.first=12:event.first=event.first+12;
+  //   this.paging.pageIndex=event.first / event.rows;
+  //   this.paging.pageSize=event.rows
+  //   this.productService.Getproductnew(this.paging).subscribe(data => {
+  //     this.products = data.data;
+  //     this.totalRecords = data.totalFilter;;
+  //   console.log('3', this.products)
+
+  //   });
+  // }
   GetallProduces() {
     this.ProducesService.getAll().subscribe(data => {
       this.ListProduces = data;
@@ -142,6 +156,7 @@ export class HomeComponent {
         return acc;
       }, []);
     });
+    
   }
 
   getbyid(id: string) {
@@ -164,7 +179,6 @@ export class HomeComponent {
             }
             return acc;
           }, []);
-          console.log(this.data)
         }
       }
     })

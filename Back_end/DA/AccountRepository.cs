@@ -179,7 +179,7 @@ namespace DAL
             return false;
         }
 
-        public async Task<bool> Register(CreateUserDto user)
+        public async Task<Response> Register(CreateUserDto user)
         {
             var Check = await _userManager.FindByEmailAsync(user.Email);
             if(Check == null ) 
@@ -200,16 +200,19 @@ namespace DAL
                 {
                     await _userManager.AddToRoleAsync(newUser, user.roleName);
                     await _dbContext.SaveChangesAsync();
-                    return true;
+                    return new Response { message = "Tạo tài khoản thành công" };
+
                 }
                 else
                 {
-                    return false;
+                    
+                    return new Response { message = "Mật khẩu phải có ít nhất một ký tự không phải chữ và số." };
                 }
             }
             else
             {
-                return false;
+                return new Response { message = "Email tài khoản đã tồn tại" };
+
             }
 
         }

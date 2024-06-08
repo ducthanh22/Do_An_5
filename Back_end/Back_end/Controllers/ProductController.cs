@@ -7,6 +7,7 @@ using DAL.Interface;
 using DTO;
 using Back_end.Attribute;
 using DTO.Enum;
+using System.Net.NetworkInformation;
 
 namespace Back_end.Controllers
 {

@@ -35,7 +35,6 @@ export class MycartComponent {
 
   ngOnInit() {
     this.informationToken = this.AcountService.decodeToken();
-    console.log(this.informationToken)
     this.GetOrderProduct(1);
     this.items = [
       {
@@ -186,7 +185,6 @@ export class MycartComponent {
  detailOrder(data:any){
   this.visibledetail=true;
   this.dataDetail=data;
-  console.log(data)
  }
 
   OpenPay() {

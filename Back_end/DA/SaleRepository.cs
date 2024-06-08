@@ -95,7 +95,7 @@ namespace DAL
             foreach (var sale in activeSales)
             {
                 var elapsedTime = now - sale.Created;
-                var remainingTime = sale.SaleTime - (int)elapsedTime?.TotalMinutes;
+                var remainingTime = sale.SaleTime - (int?)elapsedTime?.TotalMinutes;
 
                 if (remainingTime <= 0)
                 {
@@ -114,7 +114,7 @@ namespace DAL
                     }
                 }
                 sale.Time_remaining = remainingTime <= 0 ? 0 : remainingTime;
-                message = remainingTime;
+                message = (int)remainingTime;
             }
 
             await _DbContext.SaveChangesAsync();

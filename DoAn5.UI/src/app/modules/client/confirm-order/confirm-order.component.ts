@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { CreateOrderDto, OrderDto } from 'src/app/model';
+import { AccountService } from 'src/app/service/account.service';
 import { OrderService } from 'src/app/service/order.service';
 
 @Component({
@@ -13,22 +14,30 @@ export class ConfirmOrderComponent {
   token!: string;
   id!: string;
   dataOrder!: any;
-
-  constructor(private route: Router, private activeRoute: ActivatedRoute, private orderService: OrderService, private messageService: MessageService) { }
+  informationToken:any;
+  constructor(private route: Router, private activeRoute: ActivatedRoute, private orderService: OrderService,
+     private messageService: MessageService,private AcountService:AccountService) { }
   ngOnInit() {
     this.confirmOrder();
   }
   confirmOrder() {
     var checkToken = localStorage.getItem('Token');
     if (checkToken != undefined) {
+      this.informationToken = this.AcountService.decodeToken();
       this.activeRoute.params.subscribe(params => {
         this.id = params['id'];
         this.orderService.getbyid(this.id).subscribe({
           next: (res) => {
             if (res) {
-              this.dataOrder = res;
-              console.log(this.dataOrder)
-              this.updateOrder(this.dataOrder)
+              if(res[0].id_customer== this.informationToken.Id){
+                this.dataOrder = res;
+                this.updateOrder(this.dataOrder)
+              }
+              else{
+              localStorage.removeItem('Token');
+              this.route.navigate(['/Login'])
+              }
+              
             }
           }
         })

@@ -13,7 +13,7 @@ namespace BLL.Interface
     public interface IAccountBus
     {
          Task<GennToken> GenerateToken (UserDto user);
-        Task<bool> Register(CreateUserDto user);
+        Task<Response> Register(CreateUserDto user);
         Task<bool> Login(UserDto user);
         Task<bool> CreateRoleAsync(CreateRoleDto role);
         Task<bool> UpdateRole(CreateRoleDto role);

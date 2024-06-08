@@ -64,7 +64,7 @@
       </div>
     </div>
   </div>
-  <div class="Rating">
+  <div class="Rating" *ngIf="datas.length >0">
     <Span style="font-weight:bold;">Đánh Giá Sản Phẩm</Span>
     <div class="Comment" *ngFor="let x of datas">
       <div style="display: grid; margin-left: 2%;margin-top: 1%;">
@@ -72,8 +72,8 @@
         <p-rating [(ngModel)]="x.evaluate" [readonly]="true" [cancel]="false"></p-rating>
       </div>
       <div style="margin-left: 10%;margin-top: 1%;">
-        <span>Nội dung: </span>
-        <Span>{{x.comment}}</Span>
+        <!-- <span>Nội dung: </span> -->
+        <Span [innerHTML]="x.comment"></Span>
       </div>
     </div>
     <p-paginator (onPageChange)="onPageChange($event)" [first]="first" [rows]="rows" [totalRecords]="Totalcount"

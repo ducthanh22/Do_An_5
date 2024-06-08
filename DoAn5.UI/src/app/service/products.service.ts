@@ -1,10 +1,11 @@
 import { Injectable ,EventEmitter } from '@angular/core';
 import { BaseService } from './Common/base.service';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from 'src/environment/environment';
-import { GetProductsDto, ProductsDto, bestSellingProducts } from '../model';
+import { GetProductsDto, Paging, ProductsDto, bestSellingProducts } from '../model';
 import { Observable, first } from 'rxjs';
 import { BaseCommandResponse } from '../model/Common/BaseCommandResponse';
+import { BaseQuerieResponse } from '../model/Common/BaseQuerieResponse';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +21,7 @@ export class ProductsService extends BaseService<ProductsDto>{
       .pipe(first());
   }
   Getproductnew():Observable<GetProductsDto[]>{
+   
     return this._http.get<GetProductsDto[]>(`${environment.apiUrl}/Product/GetProductNew`)
     .pipe(first());
   }

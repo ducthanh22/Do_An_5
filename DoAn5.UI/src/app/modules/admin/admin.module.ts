@@ -41,6 +41,8 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { ClipboardModule } from '@angular/cdk/clipboard'; 
 import { WarehouseComponent } from './warehouse/warehouse.component';
+import { RatingComponent } from './rating/rating.component';
+import { RatingModule } from 'primeng/rating';
 
 
 @NgModule({
@@ -58,7 +60,8 @@ import { WarehouseComponent } from './warehouse/warehouse.component';
     RoleclaimComponent,
     StaffComponent,
     CustomerComponent,
-    WarehouseComponent
+    WarehouseComponent,
+    RatingComponent
   
   
   ],
@@ -89,7 +92,8 @@ import { WarehouseComponent } from './warehouse/warehouse.component';
     InputTextModule,
     CheckboxModule,
     RadioButtonModule,
-    ClipboardModule
+    ClipboardModule,
+    RatingModule
 
     
   ],

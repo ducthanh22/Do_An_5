@@ -2,8 +2,11 @@
 using AutoMapper;
 using DAL.Interface;
 using DTO;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Model;
+using System.Net.NetworkInformation;
+using static Microsoft.Extensions.Logging.EventSource.LoggingEventSource;
 using static System.Net.Mime.MediaTypeNames;
 
 
@@ -17,13 +20,16 @@ namespace DAL
         }
         public async Task<BaseQuerieResponse<GetProductsDto>> Search(string keyword, int page, int pageSize)
         {
+            // Tạo câu truy vấn LINQ để lấy dữ liệu từ cơ sở dữ liệu
             var query = from d in _DbContext.Set<Products>()
                         join c in _DbContext.Set<Color>() on d.Idcolor equals c.Id
                         join b in _DbContext.Set<Price>() on d.Id equals b.Idproduct into bGroup
                         from b in bGroup.DefaultIfEmpty()
                         join e in _DbContext.Set<Product_type>() on d.Idcategories equals e.Id
                         join g in _DbContext.Set<Produces>() on d.Idproduces equals g.Id
-                        where ( string.IsNullOrEmpty(keyword)|| d.Name.Contains(keyword) || d.Idproduces.ToString()==keyword|| d.Idcategories.ToString()==keyword)
+                        join h in _DbContext.Set<Sale>() on d.Id equals h.IdProduct into hGroup
+                        from h in hGroup.DefaultIfEmpty()
+                        where (string.IsNullOrEmpty(keyword) || d.Name.Contains(keyword) || d.Idproduces.ToString() == keyword || d.Idcategories.ToString() == keyword)
                         select new GetProductsDto
                         {
                             Id = d.Id,
@@ -37,6 +43,9 @@ namespace DAL
                             Idcolor = d.Idcolor,
                             Namecategory = e.Name,
                             NameProduces = g.Name,
+                            SalePrice = h == null ? null : h.SalePrice,
+                            percent = h == null ? null : h.percent,
+                            ActiveSale = h == null ? 0 : h.ActiveFlag,
                             Created = d.Created,
                             ListSize = _DbContext.Size.Where(a => a.Idproduct == d.Id).Select(m => new SizeDto
                             {
@@ -44,12 +53,26 @@ namespace DAL
                                 Idproduct = m.Idproduct,
                                 NameSize = m.NameSize
                             }).ToList()
-
                         };
 
-            var totalCount = await query.LongCountAsync();
-            var pageResults = await query.Skip((page - 1) * pageSize).Take(pageSize).ToListAsync();
+            // Thực hiện câu truy vấn LINQ và lấy kết quả về
+            var results = await query.ToListAsync();
 
+            // Nhóm kết quả theo Id sản phẩm và chọn ra bản ghi phù hợp
+            var groupedResults = results.GroupBy(x => x.Id).Select(group =>
+            {
+                var activeSaleItem = group.FirstOrDefault(x => x.ActiveSale == 1);
+                var resultItem = activeSaleItem ?? group.FirstOrDefault(x => x.ActiveSale == 0);
+                return resultItem;
+            }).ToList();
+
+            // Đếm tổng số lượng kết quả
+            var totalCount = groupedResults.Count();
+
+            // Phân trang kết quả
+            var pageResults = groupedResults.Skip((page - 1) * pageSize).Take(pageSize).ToList();
+
+            // Tạo đối tượng response chứa kết quả phân trang
             var searchResults = new BaseQuerieResponse<GetProductsDto>
             {
                 PageIndex = page,
@@ -60,6 +83,8 @@ namespace DAL
             };
             return searchResults;
         }
+
+
         public async Task<List<GetProductsDto>> Getalls()
         {
             try
@@ -201,12 +226,13 @@ namespace DAL
 
         public async Task<List<bestSellingProducts>> GetBestSellingProducts()
         {
-            var query = from a in _DbContext.Products
+            var query = (from a in _DbContext.Products
                         join b in _DbContext.Detail_exportbill on a.Id equals b.Idproduct
                         join c in _DbContext.Sale on a.Id equals c.IdProduct into cGroup
                         from c  in cGroup.DefaultIfEmpty()
                         join d in _DbContext.Price on a.Id equals d.Idproduct
-                        where (c.ActiveFlag == 0 || c.ActiveFlag == 1|| c.ActiveFlag == null)
+
+                        where ( c.ActiveFlag == 0 || c.ActiveFlag == 1|| c.ActiveFlag == null)
                         group b by new { a.Id, a.Name, a.Image, d.Price_product, c.SalePrice ,c.ActiveFlag, c.percent } into g
                         select new bestSellingProducts
                         {
@@ -219,56 +245,59 @@ namespace DAL
                             percent = (g.Key.percent != null) ? g.Key.percent : null,
 
                             TotalQuantity = g.Sum(x => x.Quantity)
-                        };
+                        }).Take(12);
 
             var bestSellingProducts = await query.OrderByDescending(p => p.TotalQuantity).ToListAsync();
 
+          
             return bestSellingProducts;
+   
         }
 
 
         public async Task<List<GetProductsDto>> GetProductNew()
         {
-            try { 
-            var query = (from d in _DbContext.Set<Products>()
-                         join c in _DbContext.Set<Color>() on d.Idcolor equals c.Id
-                         join b in _DbContext.Set<Price>() on d.Id equals b.Idproduct into bGroup
-                         from b in bGroup.DefaultIfEmpty()
-                         join e in _DbContext.Set<Product_type>() on d.Idcategories equals e.Id
-                         join g in _DbContext.Set<Produces>() on d.Idproduces equals g.Id
-                         join h in _DbContext.Sale on d.Id equals h.IdProduct into hGroup
-                         from h in hGroup.DefaultIfEmpty()
-                         where (h.ActiveFlag==0 || h.ActiveFlag==1||h.ActiveFlag == null)
-                         orderby d.Created descending
-                         select new GetProductsDto
-                         {
-
-                             Id = d.Id,
-                             Name = d.Name,
-                             Idcategories = d.Idcategories,
-                             Idproduces = d.Idproduces,
-                             Describe = d.Describe,
-                             Colorformat = c.NameColor,
-                             Price_product = b.Price_product,
-                             Image = d.Image,
-                             Idcolor = d.Idcolor,
-                             Namecategory = e.Name,
-                             NameProduces = g.Name,
-                             SalePrice = (h != null) ? h.SalePrice : null, 
-                             percent = (h != null) ? h.percent : null, 
-                             ActiveSale = (h != null) ? h.ActiveFlag : null,
-                             Created = d.Created,
-                             ListSize = _DbContext.Size.Where(a=>a.Idproduct== d.Id).Select(m=>new SizeDto
+            try {
+                var query = (from d in _DbContext.Set<Products>()
+                             join c in _DbContext.Set<Color>() on d.Idcolor equals c.Id
+                             join b in _DbContext.Set<Price>() on d.Id equals b.Idproduct into bGroup
+                             from b in bGroup.DefaultIfEmpty()
+                             join e in _DbContext.Set<Product_type>() on d.Idcategories equals e.Id
+                             join g in _DbContext.Set<Produces>() on d.Idproduces equals g.Id
+                             join h in _DbContext.Sale on d.Id equals h.IdProduct into hGroup
+                             from h in hGroup.DefaultIfEmpty()
+                             where (h.ActiveFlag == 0 || h.ActiveFlag == 1 || h.ActiveFlag == null)
+                             orderby d.Created descending
+                             select new GetProductsDto
                              {
-                                 Id=m.Id,
-                                 Idproduct=m.Idproduct,
-                                 NameSize=m.NameSize
-                             }).ToList()
-                         });
+                                 Id = d.Id,
+                                 Name = d.Name,
+                                 Idcategories = d.Idcategories,
+                                 Idproduces = d.Idproduces,
+                                 Describe = d.Describe,
+                                 Colorformat = c.Colorformat,
+                                 Price_product = b.Price_product,
+                                 Image = d.Image,
+                                 Idcolor = d.Idcolor,
+                                 Namecategory = e.Name,
+                                 NameProduces = g.Name,
+                                 SalePrice = h == null ? null : h.SalePrice,
+                                 percent = h == null ? null : h.percent,
+                                 ActiveSale = h == null ? null : h.ActiveFlag,
+                                 Created = d.Created,
+                                 ListSize = _DbContext.Size.Where(a => a.Idproduct == d.Id).Select(m => new SizeDto
+                                 {
+                                     Id = m.Id,
+                                     Idproduct = m.Idproduct,
+                                     NameSize = m.NameSize
+                                 }).ToList()
+                             }).Take(24);
+
+              
+
+                return  await query.ToListAsync();
 
 
-
-            return await query.ToListAsync();
             }
             catch (Exception ex)
             {

@@ -20,7 +20,7 @@ namespace BLL
 
             _accountRepository = accountRepository;
         }
-        public async Task<bool> Register(CreateUserDto user)
+        public async Task<Response> Register(CreateUserDto user)
         {
             return await _accountRepository.Register(user);
         }

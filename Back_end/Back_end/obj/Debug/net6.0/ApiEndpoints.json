@@ -211,7 +211,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Boolean",
+        "Type": "DTO.Response",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -2594,7 +2594,7 @@
   {
     "ContainingType": "Back_end.Controllers.RatingController",
     "Method": "Delete",
-    "RelativePath": "api/Rating/Delete",
+    "RelativePath": "api/Rating/Delete/{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -2602,7 +2602,7 @@
       {
         "Name": "id",
         "Type": "System.Guid",
-        "IsRequired": false
+        "IsRequired": true
       }
     ],
     "ReturnTypes": [
@@ -2636,6 +2636,32 @@
         "StatusCode": 200
       }
     ]
+  },
+  {
+    "ContainingType": "Back_end.Controllers.RatingController",
+    "Method": "GetByEvaluate",
+    "RelativePath": "api/Rating/GetByEvaluate",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Evaluate",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "page",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "pageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
   },
   {
     "ContainingType": "Back_end.Controllers.RatingController",
@@ -2688,6 +2714,47 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Back_end.Controllers.RatingController",
+    "Method": "Search",
+    "RelativePath": "api/Rating/Search",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "PageIndex",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "PageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "Keyword",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "OrderBy",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "DTO.RatingDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "Back_end.Controllers.RatingController",

@@ -37,6 +37,13 @@ namespace Back_end.Controllers
 
             return Ok(result);
         }
+        [HttpGet("GetByEvaluate")]
+        public async Task<IActionResult> GetByEvaluate([FromQuery] int Evaluate, [FromQuery] int page, [FromQuery] int pageSize)
+        {
+            var result = await _Bus.GetByEvaluate(Evaluate, page, pageSize);
+
+            return Ok(result);
+        }
 
         [HttpPost("create")]
         public async Task<ActionResult<CreateRatingDto>> Create([FromBody] CreateRatingDto dto)
@@ -52,12 +59,21 @@ namespace Back_end.Controllers
 
             return Ok(createdEntity);
         }
-        [HttpDelete("Delete")]
+        [HttpDelete("Delete/{id}")]
         public async Task<ActionResult<Rating>> Delete(Guid id)
         {
             var result = await _Bus.Delete(id);
             return Ok(result);
         }
-        
+        [HttpGet("Search")]
+        [AllowAnonymous]
+
+        public async Task<ActionResult<RatingDto>> Search([FromQuery] Paging paging)
+        {
+            var result = await _Bus.Search(paging);
+
+            return Ok(result);
+        }
+
     }
 }

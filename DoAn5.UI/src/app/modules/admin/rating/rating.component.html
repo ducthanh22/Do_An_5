@@ -1,0 +1,62 @@
+<h2 style="text-align: center;"> Quản lý đánh giá</h2>
+
+<p-confirmDialog></p-confirmDialog>
+<div class="card">
+    <p-table [value]="listRating" [lazy]="true" (onLazyLoad)="loadListLazy($event)" [paginator]="true" [rows]="10" [scrollable]="true" scrollHeight="400px"
+    [loading]="loading" [showCurrentPageReport]="true" [tableStyle]="{ 'min-width': '50rem' }"
+    [totalRecords]="Totalcount" [resizableColumns]="true"
+    currentPageReportTemplate="Hiển thị từ {first} đến {last} của {totalRecords} bản ghi" [filterDelay]="0"
+    [rowsPerPageOptions]="[5, 10, 20]">
+        <ng-template pTemplate="caption">
+            <!-- <p-button (click)="Add()" icon="pi pi-plus-circle" label="Thêm mới"></p-button> -->
+            <form class="p-input-icon-left frm" (ngSubmit)="onSubmit()">
+                <i class="pi pi-search"></i>
+                <input type="text" class="p-inputtext" pInputText [(ngModel)]="keyword" placeholder="Tìm kiếm..."
+                    [ngModelOptions]="{standalone: true}" />
+                <p-button type="submit" icon="pi pi-search"></p-button>
+            </form>
+        </ng-template>
+        <ng-template pTemplate="header">
+            <tr>
+                <th style="width:3%;">STT</th>
+                <th>Ảnh</th>
+                <th>Tên</th>
+                <th>Đánh giá</th>
+                <th>Nội dung</th>
+                <th>Trạng thái</th>
+
+                <th>Chức năng</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rating let-rowIndex="rowIndex">
+            <tr>
+                <td>{{ rowIndex + 1}}</td>
+                <td><p-image src="https://localhost:7058/Images/{{ rating.image }}"
+                        previewImageSrc="https://localhost:7058/Images/{{ rating.image }}" alt="Image" width="100"
+                        [preview]="true"></p-image></td>
+                <td>{{ rating.username }}</td>
+                <td><p-rating [(ngModel)]="rating.evaluate" [readonly]="true" [cancel]="false"></p-rating></td>
+                <td [innerHTML]="rating.comment"></td>
+                <td (click)="update(rating)" style="cursor: pointer;">
+                    {{ rating.status === 1 ? 'Chưa hiện đánh giá' : 'Đã đánh giá' }}
+                </td>
+                
+                <td>
+                    <i class="pi pi-eye" style="color: slateblue; margin-left: 5%;"></i>
+                    <i class="pi pi-trash" style="color: red; margin-left: 5%;"
+                        (click)="confirm($event,rating.id )"></i>
+                </td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="paginatorleft">
+            <p-button type="button" icon="pi pi-plus" styleClass="p-button-text"></p-button>
+        </ng-template>
+        <ng-template pTemplate="paginatorright">
+            <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text"></p-button>
+        </ng-template>
+    </p-table>
+</div>
+
+
+
+

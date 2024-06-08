@@ -14,11 +14,13 @@ namespace DTO
         public int Price_product { get; set; }
         public List<SizeDto> ListSize { get; set; }
     }
-    public class GetProductsDto : BasedbDto
+    public class GetProductsDto 
     {
+        public Guid Id { get; set; }
+
         public string Name { get; set; }
         public Guid Idcategories { get; set; }
-        public string Namecategory { get; set; }
+        public string? Namecategory { get; set; }
         public string NameProduces { get; set; }
 
         public Guid Idproduces { get; set; }
@@ -26,11 +28,12 @@ namespace DTO
         public string Image { get; set; }
         public string Colorformat  { get; set; }
 
-        public int? Price_product { get; set; }
+        public int Price_product { get; set; }
         public Guid Idcolor { get; set; }
         public int? SalePrice { get; set; }
         public int? percent { get; set; }
         public int? ActiveSale { get; set; }
+        public DateTime? Created { get; set; }
 
         public List<SizeDto> ListSize { get; set; }
 

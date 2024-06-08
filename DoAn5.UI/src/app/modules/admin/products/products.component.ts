@@ -112,6 +112,7 @@ export class ProductsComponent {
 
   onsubmit = () => {
     this.paging.keyword = this.keyword;
+    debugger
     this.ProductSV.Search(this.paging).subscribe({
       next: (res) => {
         this.ListProducts = res.data;
@@ -141,9 +142,6 @@ export class ProductsComponent {
         this.Totalcount = res.totalFilter;
       },
       error: (e) => {
-        this.loading = false;
-      },
-      complete: () => {
         this.loading = false;
       },
     });

@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CategoriesComponent } from './categories/categories.component';
 import { HomeComponent } from './home/home.component';
 import { ClientRoutingModule } from './client-routing.module';
 import { CartComponent } from './cart/cart.component';
@@ -36,7 +35,6 @@ import { ConfirmOrderComponent } from './confirm-order/confirm-order.component';
 
 @NgModule({
   declarations: [
-    CategoriesComponent,
     HomeComponent,
     CartComponent,
     DetailproductsComponent,

@@ -167,3 +167,53 @@ h5 {
     font-weight: bold;
   
   }
+  .Newproduct{
+    margin-top: 5%;
+  }
+  
+.top{
+  display: flex;
+}
+.select{
+  margin-left: 5%;
+  width: 50%;
+}
+.Size{
+  display: flex;
+  margin-bottom: 5%;
+}
+
+.color{
+  display: flex;
+
+  align-items: center;
+}
+.namecolor{
+
+  display: inline-block;
+  padding: 10px 20px;
+
+  text-align: center;
+  text-decoration: none;
+}
+.namesize{
+  border-radius: 4px;
+  display: inline-block;
+  padding: 10px 20px;
+  color: rgb(73, 71, 71);
+  text-align: center;
+  text-decoration: none;
+  border: 1px solid rgb(73, 71, 71);
+  height: 70%;
+  margin-right: 4%;
+}
+.s1{
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+.selected {
+  background-color: rgb(193, 19, 19); /* Thiết lập màu đỏ cho phần tử được chọn */
+  color: white;
+  font-weight: bold;
+}

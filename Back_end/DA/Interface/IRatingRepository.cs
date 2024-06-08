@@ -12,6 +12,8 @@ namespace DAL.Interface
     {
         Task<BaseQuerieResponse<RatingDto>> GetByProduct(Guid id, int page, int pageSize);
         Task<CreateRatingDto> CreateS(CreateRatingDto entities);
+        Task<BaseQuerieResponse<GetRatingByEvaluate>> GetByEvaluate(int Evaluate, int page, int pageSize);
+        Task<BaseQuerieResponse<RatingDto>> Search(Paging paging);
 
     }
 }

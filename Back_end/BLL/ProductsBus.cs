@@ -33,7 +33,7 @@ namespace BLL
             return await _res.Getalls();
         }
         public async Task<List<GetProductsDto>> GetProductNew()
-        {
+        {     
             return await _res.GetProductNew();
         }
         public async Task<List<GetProductsDto>> GetProductSale()

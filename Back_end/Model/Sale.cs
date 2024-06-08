@@ -9,10 +9,10 @@ namespace Model
     public class Sale : Basedb
     {
         public Guid IdProduct { get; set; }
-        public int SalePrice { get; set; }
-        public int percent {  get; set; }
-        public int SaleTime { get; set; }
-        public int Time_remaining { get; set; }
+        public int? SalePrice { get; set; }
+        public int? percent {  get; set; }
+        public int? SaleTime { get; set; }
+        public int? Time_remaining { get; set; }
 
     }
 
