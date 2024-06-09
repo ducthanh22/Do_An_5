@@ -1,5 +1,7 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { ChangeDetectorRef, Component, ViewChild } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { CategoriesDto, ColorDto, Paging, Produces, ProductsDto, SizeDto } from 'src/app/model';
@@ -42,7 +44,8 @@ export class ProductsComponent {
 
   constructor(private ProductSV: ProductsService, private FB: FormBuilder, private MessageSV: MessageService,
     private CategorySV: CategoriesService, private changeDetector: ChangeDetectorRef, private confirmationService: ConfirmationService,
-    private ProducesSv: ProducesService, private ColorSV: ColorService, private SizeSV: SizeService, private Product_typeService:Product_TypeService) {
+    private ProducesSv: ProducesService, private ColorSV: ColorService, private SizeSV: SizeService, private Product_typeService:Product_TypeService,
+  private route:Router) {
   }
   ngOnInit() {
     this.GetCategory();
@@ -81,8 +84,17 @@ export class ProductsComponent {
     if(data !=null){
       this.SizeSV.Delete(data).subscribe({
         next: (res) => {
-          this.MessageSV.add({ severity: 'error', summary: 'Error', detail: 'Xóa thành công' })     
+          this.MessageSV.add({ severity: 'error', summary: 'Xóa', detail: 'Xóa thành công' })     
         },
+        error:(error: HttpErrorResponse) => {
+          if (error.status === 401) {
+           this.route.navigate(['/admin/unauthorized'])
+          } else if (error.status === 403) {
+           this.route.navigate(['/admin/unauthorized'])
+          } else {
+           this.route.navigate(['/admin/unauthorized'])
+          }
+        }
       })
     }
   }
@@ -97,16 +109,43 @@ export class ProductsComponent {
   GetCategory() {
     this.Product_typeService.getAll().subscribe(data => {
       this.SelectionCategory = data;
+    },
+   (error: HttpErrorResponse) => {
+      if (error.status === 401) {
+       this.route.navigate(['/admin/unauthorized'])
+      } else if (error.status === 403) {
+       this.route.navigate(['/admin/unauthorized'])
+      } else {
+       this.route.navigate(['/admin/unauthorized'])
+      }
     })
   }
   Getproduces() {
     this.ProducesSv.getAll().subscribe(data => {
       this.SelectionProduces = data;
+    },
+    (error: HttpErrorResponse) => {
+      if (error.status === 401) {
+       this.route.navigate(['/admin/unauthorized'])
+      } else if (error.status === 403) {
+       this.route.navigate(['/admin/unauthorized'])
+      } else {
+       this.route.navigate(['/admin/unauthorized'])
+      }
     })
   }
   Getcolor() {
     this.ColorSV.getAll().subscribe(data => {
       this.SelectColor = data;
+    },
+   (error: HttpErrorResponse) => {
+      if (error.status === 401) {
+       this.route.navigate(['/admin/unauthorized'])
+      } else if (error.status === 403) {
+       this.route.navigate(['/admin/unauthorized'])
+      } else {
+       this.route.navigate(['/admin/unauthorized'])
+      }
     })
   }
 
@@ -118,8 +157,14 @@ export class ProductsComponent {
         this.ListProducts = res.data;
         this.Totalcount = res.totalFilter;
       },
-      error: (e) => {
-        this.loading = false;
+      error:(error: HttpErrorResponse) => {
+        if (error.status === 401) {
+         this.route.navigate(['/admin/unauthorized'])
+        } else if (error.status === 403) {
+         this.route.navigate(['/admin/unauthorized'])
+        } else {
+         this.route.navigate(['/admin/unauthorized'])
+        }
       },
       complete: () => {
         this.loading = false;
@@ -142,6 +187,9 @@ export class ProductsComponent {
         this.Totalcount = res.totalFilter;
       },
       error: (e) => {
+        this.loading = false;
+      },
+      complete: () => {
         this.loading = false;
       },
     });
@@ -228,6 +276,15 @@ export class ProductsComponent {
             })
 
           }
+        },
+        error:(error: HttpErrorResponse) => {
+          if (error.status === 401) {
+           this.route.navigate(['/admin/unauthorized'])
+          } else if (error.status === 403) {
+           this.route.navigate(['/admin/unauthorized'])
+          } else {
+           this.route.navigate(['/admin/unauthorized'])
+          }
         }
       })
     }
@@ -262,6 +319,15 @@ export class ProductsComponent {
             })
 
           }
+        },
+        error:(error: HttpErrorResponse) => {
+          if (error.status === 401) {
+           this.route.navigate(['/admin/unauthorized'])
+          } else if (error.status === 403) {
+           this.route.navigate(['/admin/unauthorized'])
+          } else {
+           this.route.navigate(['/admin/unauthorized'])
+          }
         }
       })
     }
@@ -282,6 +348,15 @@ export class ProductsComponent {
               if (res) {
                 this.MessageSV.add({ severity: 'error', summary: 'Error', detail: 'Xóa thành công' })
                 this.onsubmit();
+              }
+            },
+            error:(error: HttpErrorResponse) => {
+              if (error.status === 401) {
+               this.route.navigate(['/admin/unauthorized'])
+              } else if (error.status === 403) {
+               this.route.navigate(['/admin/unauthorized'])
+              } else {
+               this.route.navigate(['/admin/unauthorized'])
               }
             }
           })

@@ -6,6 +6,8 @@ import { GetDetail_warehouseDto } from 'src/app/model/warehouse';
 import { WarehousedetailService } from 'src/app/service/warehouse_detail.service';
 import { SizeService } from 'src/app/service/size.service';
 import { ProductsService } from 'src/app/service/products.service';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-warehouse',
@@ -27,7 +29,7 @@ export class WarehouseComponent {
   idware:string='';
   setdisable:boolean=false;
   constructor(private MessageSV: MessageService,private confirmationService:ConfirmationService, private warehouseService: WarehousedetailService,
-    private fb :FormBuilder, private productService:ProductsService, private sizeService: SizeService
+    private fb :FormBuilder, private productService:ProductsService, private sizeService: SizeService, private route:Router
   ) {
   }
 
@@ -49,6 +51,15 @@ this.productService.getAll().subscribe(data=>{
   getSize(id:string){
     this.sizeService.Getbyidproduct(id).subscribe(data=>{
       this.listSize=data;
+    },
+    (error: HttpErrorResponse) => {
+      if (error.status === 401) {
+       this.route.navigate(['/admin/unauthorized'])
+      } else if (error.status === 403) {
+       this.route.navigate(['/admin/unauthorized'])
+      } else {
+       this.route.navigate(['/admin/unauthorized'])
+      }
     })
       }
  
@@ -82,8 +93,14 @@ this.productService.getAll().subscribe(data=>{
         this.datas = res.data;
         this.Totalcount = res.totalFilter;
       },
-      error: (e) => {
-        this.loading = false;
+      error:(error: HttpErrorResponse) => {
+        if (error.status === 401) {
+         this.route.navigate(['/admin/unauthorized'])
+        } else if (error.status === 403) {
+         this.route.navigate(['/admin/unauthorized'])
+        } else {
+         this.route.navigate(['/admin/unauthorized'])
+        }
       },
       complete: () => {
         this.loading = false;
@@ -119,8 +136,6 @@ this.productService.getAll().subscribe(data=>{
 
   }
   
-
-
   SaveEdit() {
     if (this.formWarehouse) {
       this.formWarehouse.value["id"] = this.Getid;
@@ -132,6 +147,15 @@ this.productService.getAll().subscribe(data=>{
             this.formWarehouse.reset();
             this.visible = false;
             this.onsubmit()
+          }
+        },
+        error:(error: HttpErrorResponse) => {
+          if (error.status === 401) {
+           this.route.navigate(['/admin/unauthorized'])
+          } else if (error.status === 403) {
+           this.route.navigate(['/admin/unauthorized'])
+          } else {
+           this.route.navigate(['/admin/unauthorized'])
           }
         }
       })
@@ -153,6 +177,15 @@ this.productService.getAll().subscribe(data=>{
               if (res) {
                 this.MessageSV.add({ severity: 'error', summary: 'Error', detail: 'Xóa thành công' })
                 this.onsubmit();
+              }
+            },
+            error:(error: HttpErrorResponse) => {
+              if (error.status === 401) {
+               this.route.navigate(['/admin/unauthorized'])
+              } else if (error.status === 403) {
+               this.route.navigate(['/admin/unauthorized'])
+              } else {
+               this.route.navigate(['/admin/unauthorized'])
               }
             }
           })

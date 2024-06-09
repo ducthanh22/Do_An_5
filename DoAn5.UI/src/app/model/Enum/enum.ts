@@ -9,7 +9,8 @@ export enum Module {
     QlDh = 6,
     QlG = 7,
     QlKh = 8,
-    QlNv = 9
+    QlNv = 9,
+    QlNcc = 10
 }
 
 export enum Type {
@@ -28,5 +29,7 @@ export const moduleTypeMap: { [key in Module]: Type[] } = {
     [Module.QlDh]: [Type.Read, Type.Create, Type.Update, Type.Deleted],
     [Module.QlG]: [Type.Read, Type.Create, Type.Update, Type.Deleted],
     [Module.QlKh]: [Type.Read, Type.Create, Type.Update, Type.Deleted],
-    [Module.QlNv]: [Type.Read, Type.Create, Type.Update, Type.Deleted]
+    [Module.QlNv]: [Type.Read, Type.Create, Type.Update, Type.Deleted],
+    [Module.QlNcc]: [Type.Read, Type.Create, Type.Update, Type.Deleted]
+
 };

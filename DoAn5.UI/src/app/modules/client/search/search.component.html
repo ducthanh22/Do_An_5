@@ -1,7 +1,7 @@
 <div class="Newproduct">
     <h2>Sản phẩm</h2>
     <div class="card">
-        <p-dataView #dv [value]="ListProducts" [layout]="layout" [rows]="10" [paginator]="true"  (onLazyLoad)="loadListLazy($event)" [totalRecords]="Totalcount" >
+        <p-dataView #dv [value]="ListProducts" [layout]="layout" [rows]="12" [paginator]="true"  (onLazyLoad)="loadListLazy($event)" [totalRecords]="Totalcount" >
             <ng-template pTemplate="header">
                 <div class="flex justify-content-end">
                     <p-dataViewLayoutOptions layout="list"></p-dataViewLayoutOptions>

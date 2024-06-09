@@ -3,20 +3,20 @@
     <div class="date">
       <label for="icondisplay" class="font-bold block mb-2"> Ngày bắt đầu </label>
       <p-calendar [(ngModel)]="date1" [iconDisplay]="'input'" [showIcon]="true" inputId="icondisplay"
-        class="short-calendar"  />
+        class="short-calendar" />
     </div>
     <div class="date ">
       <label for="icondisplay" class="font-bold block mb-2"> Ngày kết thúc </label>
-      <p-calendar [(ngModel)]="date2" [iconDisplay]="'input'" [showIcon]="true" inputId="icondisplay" [maxDate]="maxdate" />
+      <p-calendar [(ngModel)]="date2" [iconDisplay]="'input'" [showIcon]="true" inputId="icondisplay"
+        [maxDate]="maxdate" />
     </div>
     <div class="flex">
       <p-button label="Submit" (onClick)="getDashboarsh()" />
     </div>
     <div class="flex">
-      <p-button label="Reset" />
+      <p-button label="Reset" (onClick)="reset()" />
     </div>
   </div>
-  <!-- Lưới cho 4 ô hàng trên -->
   <div class="p-flex">
     <div class="infor center-align">
       <p-card header="Đơn hàng">
@@ -73,43 +73,39 @@
       </p-card>
     </div>
   </div>
-<div style="width: 90%; margin-top: 2%;margin-left: 5%;" >
-  <p-card header="Sản phẩm bán chạy">
-    <p-table [value]="bestSellingProducts" [lazy]="true"[rows]="10" [scrollable]="true"  scrollHeight="500px"
-    [showCurrentPageReport]="true" [tableStyle]="{ 'min-width': '30rem' }"[resizableColumns]="true" [filterDelay]="0">
-    <ng-template pTemplate="header">
-        <tr>
+  <div style="width: 90%; margin-top: 2%;margin-left: 5%;">
+    <p-card header="Top 10 sản phẩm bán chạy">
+      <p-table [value]="bestSellingProducts" [lazy]="true" [rows]="10" [scrollable]="true" scrollHeight="500px"
+        [showCurrentPageReport]="true" [tableStyle]="{ 'min-width': '30rem' }" [resizableColumns]="true"
+        [filterDelay]="0">
+        <ng-template pTemplate="header">
+          <tr>
             <th style="width:3%;">STT</th>
             <th>Ảnh</th>
             <th>Tên</th>
             <th>Giá</th>
             <th>Số lượng bán</th>
-           
-        </tr>
-    </ng-template>
-    <ng-template pTemplate="body" let-product let-rowIndex="rowIndex">
-        <tr>
+
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-product let-rowIndex="rowIndex">
+          <tr>
             <td>{{ rowIndex + 1}}</td>
             <td><p-image src="https://localhost:7058/Images/{{ product.image }}"
-                    previewImageSrc="https://localhost:7058/Images/{{ product.image }}" alt="Image" width="100"
-                    [preview]="true"></p-image></td>
+                previewImageSrc="https://localhost:7058/Images/{{ product.image }}" alt="Image" width="100"
+                [preview]="true"></p-image></td>
             <td>{{ product.name }}</td>
             <td>{{ product.price_product}}</td>
             <td>{{ product.totalQuantity }}</td>
-        </tr>
-    </ng-template>
-    <ng-template pTemplate="paginatorleft">
-        <p-button type="button" icon="pi pi-plus" styleClass="p-button-text"></p-button>
-    </ng-template>
-    <ng-template pTemplate="paginatorright">
-        <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text"></p-button>
-    </ng-template>
-  </p-table>
-  </p-card>
-  <!-- <h4 class="center-align">Sản phẩm bán chạy</h4> -->
-
-</div>
-
-
-
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="paginatorleft">
+          <p-button type="button" icon="pi pi-plus" styleClass="p-button-text"></p-button>
+        </ng-template>
+        <ng-template pTemplate="paginatorright">
+          <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text"></p-button>
+        </ng-template>
+      </p-table>
+    </p-card>
+  </div>
 </div>

@@ -1,4 +1,6 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { ChangeDetectorRef, Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { format } from 'date-fns';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { OrderDto, Paging } from 'src/app/model';
@@ -19,21 +21,32 @@ export class OrderComponent {
   dataGetId: any[] = [];
   order: any;
   active!: number;
+  status:number=1;
+  stateOptions: any[] = [{ label: 'Chờ xác nhận', status: 1 },{ label: 'Chờ lấy hàng', status: 2}, { label: 'Đang vận chuyển', status: 3 },
+    { label: 'Đã nhận & chờ đánh giá', status: 4 }, { label: 'Hoàn Thành', status: 6 }, { label: 'Đơn hàng giao thất bại', status: 7 }
+  ];
   constructor(private OrderService: OrderService, private messageService: MessageService, private changeDetector: ChangeDetectorRef,
-    private confirmationService: ConfirmationService,
+    private confirmationService: ConfirmationService,private route:Router
   ) { }
   ngOnInit() {
-
+    this.onsubmit();
   }
   onsubmit() {
+    debugger
     this.paging.keyword = this.keyword;
-    this.OrderService.Search(this.paging).subscribe({
+    this.OrderService.Searchbystatus(this.paging,this.status).subscribe({
       next: (res) => {
         this.listOrder = res.data;
         this.totalCount = res.totalFilter;
       },
-      error: (e) => {
-        this.loading = false;
+      error:(error: HttpErrorResponse) => {
+        if (error.status === 401) {
+         this.route.navigate(['/admin/unauthorized'])
+        } else if (error.status === 403) {
+         this.route.navigate(['/admin/unauthorized'])
+        } else {
+         this.route.navigate(['/admin/unauthorized'])
+        }
       },
       complete: () => {
         this.loading = false;
@@ -56,7 +69,7 @@ export class OrderComponent {
         this.listOrder = res.data;
         this.totalCount = res.totalFilter;
       },
-      error: (e) => {
+      error: (e)=>{
         this.loading = false;
       },
       complete: () => {
@@ -86,6 +99,15 @@ export class OrderComponent {
           this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Đổi trạng thái thành công' })
           this.onsubmit()
         }
+      },
+      error:(error: HttpErrorResponse) => {
+        if (error.status === 401) {
+         this.route.navigate(['/admin/unauthorized'])
+        } else if (error.status === 403) {
+         this.route.navigate(['/admin/unauthorized'])
+        } else {
+         this.route.navigate(['/admin/unauthorized'])
+        }
       }
     })
   }
@@ -108,6 +130,15 @@ export class OrderComponent {
                 this.onsubmit();
             this.messageService.add({ severity: 'success', summary: 'Hủy', detail: 'Bạn đã hủy đơn hàng thành công' });
               }
+            },
+            error:(error: HttpErrorResponse) => {
+              if (error.status === 401) {
+               this.route.navigate(['/admin/unauthorized'])
+              } else if (error.status === 403) {
+               this.route.navigate(['/admin/unauthorized'])
+              } else {
+               this.route.navigate(['/admin/unauthorized'])
+              }
             }
           });
           
@@ -126,6 +157,15 @@ export class OrderComponent {
       next: (res) => {
         if (res) {
           this.dataGetId = res;
+        }
+      },
+      error:(error: HttpErrorResponse) => {
+        if (error.status === 401) {
+         this.route.navigate(['/admin/unauthorized'])
+        } else if (error.status === 403) {
+         this.route.navigate(['/admin/unauthorized'])
+        } else {
+         this.route.navigate(['/admin/unauthorized'])
         }
       }
     })

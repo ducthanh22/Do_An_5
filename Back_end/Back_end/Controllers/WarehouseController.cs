@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using DTO;
 using Model;
+using Back_end.Attribute;
+using DTO.Enum;
 
 
 namespace Back_end.Controllers
@@ -19,6 +21,8 @@ namespace Back_end.Controllers
             _Bus = Bus;
         }
         [HttpGet("GetAll")]
+        [HasPermission(new[] { (int)EnumModule.Module.QlKh }, new[] { (int)EnumPermission.Type.Read })]
+
         public async Task<ActionResult<List<WarehouseDto>>> GetAll()
         {
             var result = await _Bus.GetAll();

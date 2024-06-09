@@ -2,62 +2,6 @@
 <h2 style="text-align: center;"> Quản lý quyền</h2>
 
 <p-confirmDialog></p-confirmDialog>
-<!-- <div class="card">
-    <p-table [value]="dataGetRole" [paginator]="true" [rows]="10" [scrollable]="true" scrollHeight="400px"
-        [loading]="loading" [showCurrentPageReport]="true" [tableStyle]="{ 'min-width': '50rem' }"
-         [resizableColumns]="true"
-        currentPageReportTemplate="Hiển thị từ {first} đến {last} của {totalRecords} bản ghi" [filterDelay]="0"
-        [rowsPerPageOptions]="[5, 10, 20]">
-        <ng-template pTemplate="caption">
-            <p-button (click)="add()" icon="pi pi-plus-circle" label="Thêm mới"></p-button>
-            <form class="p-input-icon-left frm" >
-                <i class="pi pi-search"></i>
-                <input type="text" class="p-inputtext" pInputText  placeholder="Tìm kiếm..."/>
-                <p-button type="submit" icon="pi pi-search"></p-button>
-            </form>
-
-
-        </ng-template>
-        <ng-template pTemplate="header">
-            <tr>
-                <th >STT</th>
-
-                <th >Mã</th>
-                <th>Tên</th>
-                <th></th>
-
-            </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-role let-rowIndex="rowIndex">
-            <tr>
-                <td>{{ rowIndex + 1}}</td>
-
-                <td>{{ role.id }}</td>
-               
-                <td>{{ role.name }}</td>
-              
-                <td>
-                    <i class="pi pi-eye" style="color: slateblue; margin-left: 5%;"></i>
-                    <i class="pi pi-pencil" style="color: rgb(255, 132, 0); margin-left: 5%;"
-                       ></i>
-                    <i class="pi pi-trash" style="color: red; margin-left: 5%;"
-                        ></i>
-                </td>
-
-
-
-            </tr>
-        </ng-template>
-        <ng-template pTemplate="paginatorleft">
-            <p-button type="button" icon="pi pi-plus" styleClass="p-button-text"></p-button>
-        </ng-template>
-        <ng-template pTemplate="paginatorright">
-            <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text"></p-button>
-        </ng-template>
-    </p-table>
-</div> -->
-
-
 <div class="card">
     <p-table
         #dt2

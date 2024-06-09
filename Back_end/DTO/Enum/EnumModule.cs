@@ -29,6 +29,8 @@ namespace DTO.Enum
             QlKh = 8,
             [Description("Staff management")]
             QlNv = 9,
+            [Description("Produces management")]
+            QlNcc = 10,
         }
        
     }

@@ -13,7 +13,7 @@ namespace DAL.Interface
         Task<CreateOrderDto> CreateOrder(CreateOrderDto entity);
         Task<List<OrderDto>> GetbyCustomer(string id);
         Task<List<GetorderDto>> GetOrderProduct(string id, int status);
-        Task<BaseQuerieResponse<OrderDto>> Search(Paging paging);
+        Task<BaseQuerieResponse<OrderDto>> Search(Paging paging, int status);
         Task<List<GetorderDto>> Getbyids(Guid id);
         Task<Order> destroyOrder(Guid id);
 

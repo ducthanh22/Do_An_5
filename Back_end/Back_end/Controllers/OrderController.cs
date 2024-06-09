@@ -23,6 +23,7 @@ namespace Back_end.Controllers
             _Bus = Bus;
         }
         [HttpGet("GetAll")]
+        [HasPermission(new[] { (int)EnumModule.Module.QlDh }, new[] { (int)EnumPermission.Type.Read })]
         public async Task<ActionResult<List<OrderDto>>> GetAll()
         {
             var result = await _Bus.GetAll();
@@ -30,18 +31,22 @@ namespace Back_end.Controllers
         }
 
         [HttpGet("GetByid/{id}")]
+        [HasPermission(new[] { (int)EnumModule.Module.QlDh }, new[] { (int)EnumPermission.Type.Read })]
         public async Task<ActionResult<OrderDto>> Getbyid(Guid id)
         {
             var result = await _Bus.Getbyids(id);
             return Ok(result);
         }
         [HttpGet("destroyOrder/{id}")]
+        [HasPermission(new[] { (int)EnumModule.Module.QlDh }, new[] { (int)EnumPermission.Type.Deleted })]
         public async Task<ActionResult<OrderDto>> destroyOrder(Guid id)
         {
             var result = await _Bus.destroyOrder(id);
             return Ok(result);
         }
         [HttpGet("GetByCustomer")]
+        [HasPermission(new[] { (int)EnumModule.Module.QlDh }, new[] { (int)EnumPermission.Type.Read })]
+
         public async Task<ActionResult<List<OrderDto>>> GetbyCustomerGet(string id)
         {
             var result = await _Bus.GetbyCustomer(id);
@@ -49,6 +54,8 @@ namespace Back_end.Controllers
             return Ok(result);
         }
         [HttpGet("GetOrderProduct")]
+        [HasPermission(new[] { (int)EnumModule.Module.QlDh }, new[] { (int)EnumPermission.Type.Read })]
+
         public async Task<ActionResult<List<GetorderDto>>> GetOrderProduct(string id, int status)
         {
             var result = await _Bus.GetOrderProduct(id, status);
@@ -57,6 +64,8 @@ namespace Back_end.Controllers
         }
 
         [HttpPost("create")]
+        [HasPermission(new[] { (int)EnumModule.Module.QlDh }, new[] { (int)EnumPermission.Type.Create })]
+
         public async Task<ActionResult<CreateOrderDto>> Create([FromBody] CreateOrderDto dto)
         {
             var createdEntity = await _Bus.CreateOrder(dto);
@@ -64,6 +73,8 @@ namespace Back_end.Controllers
             return Ok(createdEntity);
         }
         [HttpPut("update")]
+        [HasPermission(new[] { (int)EnumModule.Module.QlDh }, new[] { (int)EnumPermission.Type.Update })]
+
         public async Task<ActionResult<Order>> Update([FromBody] Order dto)
         {
             var createdEntity = await _Bus.Update(dto);
@@ -71,17 +82,18 @@ namespace Back_end.Controllers
             return Ok(createdEntity);
         }
         [HttpDelete("Delete")]
+        [HasPermission(new[] { (int)EnumModule.Module.QlDh }, new[] { (int)EnumPermission.Type.Deleted })]
+
         public async Task<ActionResult<OrderDto>> Delete(Guid id)
         {
             var result = await _Bus.Delete(id);
             return Ok(result);
         }
-        [HttpGet("Search")]
-        //[HasPermission(new[] { (int)EnumModule.Module.QlDh }, new[] { (int)EnumPermission.Type.Read })]
-
-        public async Task<IActionResult> Search([FromQuery] Paging paging)
+        [HttpGet("Search/{status}")]
+        [HasPermission(new[] { (int)EnumModule.Module.QlDh }, new[] { (int)EnumPermission.Type.Read })]
+        public async Task<IActionResult> Search([FromQuery] Paging paging, int status)
         {
-            var result = await _Bus.Search(paging);
+            var result = await _Bus.Search(paging, status);
 
 
             return Ok(result);

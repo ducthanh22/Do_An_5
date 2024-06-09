@@ -1,5 +1,7 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { Paging, Produces } from 'src/app/model';
 import { ProducesService } from 'src/app/service/produces.service';
@@ -25,7 +27,7 @@ export class ProduceComponent {
   formUpload!: FormGroup;
   formData: FormData = new FormData();
   constructor(private ProduceSV: ProducesService, private FB: FormBuilder, private MessageSV: MessageService,
-    private confirmationService: ConfirmationService) { }
+    private confirmationService: ConfirmationService, private route :Router) { }
 
   ngOnInit() {
 
@@ -50,8 +52,14 @@ export class ProduceComponent {
         this.ListProduces = res.data;
         this.Totalcount = res.totalFilter;
       },
-      error: (e) => {
-        this.loading = false;
+      error:(error: HttpErrorResponse) => {
+        if (error.status === 401) {
+         this.route.navigate(['/admin/unauthorized'])
+        } else if (error.status === 403) {
+         this.route.navigate(['/admin/unauthorized'])
+        } else {
+         this.route.navigate(['/admin/unauthorized'])
+        }
       },
       complete: () => {
         this.loading = false;
@@ -148,6 +156,15 @@ export class ProduceComponent {
             })
 
           }
+        },
+        error:(error: HttpErrorResponse) => {
+          if (error.status === 401) {
+           this.route.navigate(['/admin/unauthorized'])
+          } else if (error.status === 403) {
+           this.route.navigate(['/admin/unauthorized'])
+          } else {
+           this.route.navigate(['/admin/unauthorized'])
+          }
         }
       })
     }
@@ -177,7 +194,15 @@ export class ProduceComponent {
                 }
               }
             })
-
+          }
+        },
+        error:(error: HttpErrorResponse) => {
+          if (error.status === 401) {
+           this.route.navigate(['/admin/unauthorized'])
+          } else if (error.status === 403) {
+           this.route.navigate(['/admin/unauthorized'])
+          } else {
+           this.route.navigate(['/admin/unauthorized'])
           }
         }
       })
@@ -199,6 +224,15 @@ export class ProduceComponent {
               if (res) {
                 this.MessageSV.add({ severity: 'error', summary: 'Error', detail: 'Xóa thành công' })
                 this.onsubmit();
+              }
+            },
+            error:(error: HttpErrorResponse) => {
+              if (error.status === 401) {
+               this.route.navigate(['/admin/unauthorized'])
+              } else if (error.status === 403) {
+               this.route.navigate(['/admin/unauthorized'])
+              } else {
+               this.route.navigate(['/admin/unauthorized'])
               }
             }
           })

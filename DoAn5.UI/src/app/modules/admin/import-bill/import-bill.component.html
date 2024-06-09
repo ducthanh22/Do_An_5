@@ -75,11 +75,9 @@
                 <tr> 
                   <th class="center-align">Sản phẩm</th>
                   <th class="center-align">Size</th>
-
                   <th class="center-align">Giá</th>
                   <th class="center-align">Số lượng</th>
                   <th class="center-align">Tổng</th>
-
                   <th></th>
                   <th class="center-align" *ngIf="detail_importbill.length==0">
                     <p-button (click)="addSize()" icon="pi pi-plus-circle" label="Thêm"></p-button>
@@ -91,7 +89,7 @@
                   <td class="center-align dropdown-wrapper">
                     <p-dropdown [options]="listProduct" formControlName="idproduct" optionLabel="name"
                     optionValue="id" [filter]="true" filterBy="name" [showClear]="true"
-                    [style]="{'minWidth':'300px','maxWidth':'300px'}" appendTo="body" (onChange)="updatePrice($event,i)">
+                    [style]="{'minWidth':'300px','maxWidth':'500px'}" appendTo="body" (onChange)="updatePrice($event,i)">
                     </p-dropdown>
                   </td>
                   <td class="center-align">
@@ -109,7 +107,6 @@
                   <td class="center-align">
                     <input type="text" class="p-inputtext" pInputText formControlName="total">
                   </td>
-
                   <td class="center-align">
                     <i class="pi pi-plus-circle" style="color: green;cursor: pointer;" (click)="addSize()"></i>
                     <i class="pi pi-trash" style="color: red; cursor: pointer;" (click)="removeSize(i)"></i>

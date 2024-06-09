@@ -4,6 +4,8 @@ import { CategoriesDto, Paging } from 'src/app/model';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { CategoriesService } from 'src/app/service/categories.service';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 
 
@@ -37,12 +39,11 @@ export class CategoriesComponent {
 
   constructor(
     private categoriesService: CategoriesService,
-    private fb: FormBuilder, private MessageSV: MessageService,private confirmationService:ConfirmationService) {
+    private fb: FormBuilder, private MessageSV: MessageService,private confirmationService:ConfirmationService, private route:Router) {
   }
 
   ngOnInit() {
     this.LoadCategories();
-
     this.FormCategories = this.fb.group({
       name: new FormControl('', Validators.required),
     });
@@ -51,7 +52,8 @@ export class CategoriesComponent {
   LoadCategories() {
     this.categoriesService.getAll().subscribe((data) => {
       this.Dscategories = data
-    })
+    },
+  )
   }
   loadListLazy = (event: any) => {
     this.loading = true;
@@ -83,8 +85,14 @@ export class CategoriesComponent {
         this.datas = res.data;
         this.Totalcount = res.totalFilter;
       },
-      error: (e) => {
-        this.loading = false;
+      error: (error: HttpErrorResponse) => {
+        if (error.status === 401) {
+         this.route.navigate(['/admin/unauthorized'])
+        } else if (error.status === 403) {
+         this.route.navigate(['/admin/unauthorized'])
+        } else {
+         this.route.navigate(['/admin/unauthorized'])
+        }
       },
       complete: () => {
         this.loading = false;
@@ -128,8 +136,19 @@ export class CategoriesComponent {
             this.visible = false;
             this.onsubmit()
           }
+        },
+        error:(error: HttpErrorResponse) => {
+          debugger
+          if (error.status === 401) {
+           this.route.navigate(['/admin/unauthorized'])
+          } else if (error.status === 403) {
+           this.route.navigate(['/admin/unauthorized'])
+          } else {
+           this.route.navigate(['/admin/unauthorized'])
+          }
         }
-      })
+      }
+    )
     }
   }
   SaveEdit() {
@@ -142,6 +161,16 @@ export class CategoriesComponent {
             this.FormCategories.reset();
             this.visible = false;
             this.onsubmit()
+          }
+        },
+        error:(error: HttpErrorResponse) => {
+          debugger
+          if (error.status === 401) {
+           this.route.navigate(['/admin/unauthorized'])
+          } else if (error.status === 403) {
+           this.route.navigate(['/admin/unauthorized'])
+          } else {
+           this.route.navigate(['/admin/unauthorized'])
           }
         }
       })
@@ -163,6 +192,16 @@ export class CategoriesComponent {
               if (res) {
                 this.MessageSV.add({ severity: 'error', summary: 'Error', detail: 'Xóa thành công' })
                 this.onsubmit();
+              }
+            },
+            error:(error: HttpErrorResponse) => {
+              debugger
+              if (error.status === 401) {
+               this.route.navigate(['/admin/unauthorized'])
+              } else if (error.status === 403) {
+               this.route.navigate(['/admin/unauthorized'])
+              } else {
+               this.route.navigate(['/admin/unauthorized'])
               }
             }
           })

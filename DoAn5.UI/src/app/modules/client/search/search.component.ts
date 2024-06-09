@@ -15,7 +15,7 @@ import { exportBillService } from 'src/app/service/Exportbill.service';
 export class SearchComponent implements OnInit {
 
   loading: boolean = true;
-  paging: Paging = { keyword: "", pageIndex: 1, pageSize: 10 };
+  paging: Paging = { keyword: "", pageIndex: 1, pageSize: 12 };
   ListProducts: any[] = [];
   Totalcount!: number;
   receivedKeyword: string = '';
@@ -31,7 +31,6 @@ export class SearchComponent implements OnInit {
 
   ngOnInit() {
     this.Carts = this.ProductSV.GetCart();
-
     this.ShareService.keyword$.subscribe(keyword => {
       if (this.receivedKeyword !== keyword) {
         this.receivedKeyword = keyword;

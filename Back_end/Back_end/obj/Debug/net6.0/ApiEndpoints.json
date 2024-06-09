@@ -1717,7 +1717,7 @@
   {
     "ContainingType": "Back_end.Controllers.OrderController",
     "Method": "Search",
-    "RelativePath": "api/Order/Search",
+    "RelativePath": "api/Order/Search/{status}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -1741,6 +1741,11 @@
         "Name": "OrderBy",
         "Type": "System.String",
         "IsRequired": false
+      },
+      {
+        "Name": "status",
+        "Type": "System.Int32",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []
@@ -2811,7 +2816,7 @@
   {
     "ContainingType": "Back_end.Controllers.SaleController",
     "Method": "Delete",
-    "RelativePath": "api/Sale/Delete",
+    "RelativePath": "api/Sale/Delete/{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -2819,7 +2824,7 @@
       {
         "Name": "id",
         "Type": "System.Guid",
-        "IsRequired": false
+        "IsRequired": true
       }
     ],
     "ReturnTypes": [

@@ -43,6 +43,8 @@ import { ClipboardModule } from '@angular/cdk/clipboard';
 import { WarehouseComponent } from './warehouse/warehouse.component';
 import { RatingComponent } from './rating/rating.component';
 import { RatingModule } from 'primeng/rating';
+import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
+import { InputNumberModule } from 'primeng/inputnumber';
 
 
 @NgModule({
@@ -61,7 +63,8 @@ import { RatingModule } from 'primeng/rating';
     StaffComponent,
     CustomerComponent,
     WarehouseComponent,
-    RatingComponent
+    RatingComponent,
+    UnauthorizedComponent
   
   
   ],
@@ -93,7 +96,8 @@ import { RatingModule } from 'primeng/rating';
     CheckboxModule,
     RadioButtonModule,
     ClipboardModule,
-    RatingModule
+    RatingModule,
+    InputNumberModule
 
     
   ],

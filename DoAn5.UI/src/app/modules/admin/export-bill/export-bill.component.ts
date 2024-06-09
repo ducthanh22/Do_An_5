@@ -1,4 +1,6 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { ChangeDetectorRef, Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { Paging } from 'src/app/model';
 import { CreateExportbillDto, GetDetail_exportbillDto } from 'src/app/model/exportBill';
@@ -18,14 +20,14 @@ export class ExportBillComponent {
   visible: boolean = false;
   listDetail: GetDetail_exportbillDto[] = [];
   constructor(private exportBillService: exportBillService, private confirmationService: ConfirmationService, private MessageSV: MessageService,
-    private cdref: ChangeDetectorRef
+    private cdref: ChangeDetectorRef, private route: Router
   ) { }
   ngOnInit() {
-this.onsubmit()
+    this.onsubmit()
   }
   ngAfterContentChecked() {
     this.cdref.detectChanges();
-}
+  }
   onsubmit() {
     this.paging.keyword = this.keyword;
     this.exportBillService.Search(this.paging).subscribe({
@@ -33,16 +35,21 @@ this.onsubmit()
         this.listExportBill = res.data;
         this.Totalcount = res.totalFilter;
       },
-      error: (e) => {
-        this.loading = false;
+      error: (error: HttpErrorResponse) => {
+        debugger
+        if (error.status === 401) {
+          this.route.navigate(['/admin/unauthorized'])
+        } else if (error.status === 403) {
+          this.route.navigate(['/admin/unauthorized'])
+        } else {
+          this.route.navigate(['/admin/unauthorized'])
+        }
       },
       complete: () => {
         this.loading = false;
       },
     });
-
   }
-
   loadListLazy = (event: any) => {
     this.loading = true;
     let pageSize = event.rows;
@@ -57,8 +64,14 @@ this.onsubmit()
         this.listExportBill = res.data;
         this.Totalcount = res.totalFilter;
       },
-      error: (e) => {
-        this.loading = false;
+      error: (error: HttpErrorResponse) => {
+        if (error.status === 401) {
+          this.route.navigate(['/admin/unauthorized'])
+        } else if (error.status === 403) {
+          this.route.navigate(['/admin/unauthorized'])
+        } else {
+          this.route.navigate(['/admin/unauthorized'])
+        }
       },
       complete: () => {
         this.loading = false;
@@ -71,6 +84,15 @@ this.onsubmit()
       next: (res) => {
         if (res) {
           this.listDetail = res;
+        }
+      }, error: (error: HttpErrorResponse) => {
+        debugger
+        if (error.status === 401) {
+          this.route.navigate(['/admin/unauthorized'])
+        } else if (error.status === 403) {
+          this.route.navigate(['/admin/unauthorized'])
+        } else {
+          this.route.navigate(['/admin/unauthorized'])
         }
       }
 
@@ -89,6 +111,16 @@ this.onsubmit()
               if (res) {
                 this.MessageSV.add({ severity: 'error', summary: 'Error', detail: 'Xóa thành công' })
                 this.onsubmit();
+              }
+            },
+            error: (error: HttpErrorResponse) => {
+              debugger
+              if (error.status === 401) {
+                this.route.navigate(['/admin/unauthorized'])
+              } else if (error.status === 403) {
+                this.route.navigate(['/admin/unauthorized'])
+              } else {
+                this.route.navigate(['/admin/unauthorized'])
               }
             }
           })

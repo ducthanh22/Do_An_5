@@ -16,6 +16,7 @@ import { CustomerComponent } from './customer/customer.component';
 import { WarehouseComponent } from './warehouse/warehouse.component';
 import { Rating } from 'primeng/rating';
 import { RatingComponent } from './rating/rating.component';
+import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 
 
 const routes: Routes = [
@@ -34,6 +35,8 @@ const routes: Routes = [
     {path:'customer',component:CustomerComponent,title:'ADMIN'},
     {path:'warehouse',component:WarehouseComponent,title:'ADMIN'},
     {path:'rating',component:RatingComponent,title:'ADMIN'},
+    {path:'unauthorized',component:UnauthorizedComponent,title:'Unauthorized'},
+
 
 
 

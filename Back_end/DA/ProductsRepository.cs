@@ -291,7 +291,7 @@ namespace DAL
                                      Idproduct = m.Idproduct,
                                      NameSize = m.NameSize
                                  }).ToList()
-                             }).Take(24);
+                             }).Take(25);
 
               
 

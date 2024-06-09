@@ -1,5 +1,7 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { format } from 'date-fns';
 import { MessageService } from 'primeng/api';
 import { ProductsDto } from 'src/app/model';
@@ -31,7 +33,7 @@ export class SaleComponent {
   datasale!:number;
 
   constructor(private saleService: SaleService, private fb: FormBuilder, private productService: ProductsService,
-    private MessageSV:MessageService) { }
+    private MessageSV:MessageService, private route:Router) { }
   ngOnInit() {
     this.startUpdateSalesPrices()
     this.onsubmit();
@@ -91,7 +93,6 @@ export class SaleComponent {
       formSale.get('salePrice')?.setValue(this.percentValue);
     }
   }
-
   startUpdateSalesPrices(){
     this.saleService.UpdateSalesPrices().subscribe(data => { // Gọi phương thức UpdateSalesPrices
       if (data) {
@@ -99,13 +100,19 @@ export class SaleComponent {
         this.onsubmit();
       } 
     });
-  
   }
-
   getProduct() {
     this.productService.getAll().subscribe(data => {
       this.listProduct = data;
-      console.log(this.listProduct)
+    },
+    (error: HttpErrorResponse) => {
+      if (error.status === 401) {
+       this.route.navigate(['/admin/unauthorized'])
+      } else if (error.status === 403) {
+       this.route.navigate(['/admin/unauthorized'])
+      } else {
+       this.route.navigate(['/admin/unauthorized'])
+      }
     })
   }
   onsubmit() {
@@ -115,8 +122,14 @@ export class SaleComponent {
       next: (res) => {
         this.listSale = res
       },
-      error: (e) => {
-        this.loading = false;
+      error:(error: HttpErrorResponse) => {
+        if (error.status === 401) {
+         this.route.navigate(['/admin/unauthorized'])
+        } else if (error.status === 403) {
+         this.route.navigate(['/admin/unauthorized'])
+        } else {
+         this.route.navigate(['/admin/unauthorized'])
+        }
       },
       complete: () => {
         this.loading = false;
@@ -145,6 +158,15 @@ export class SaleComponent {
             this.MessageSV.add({ severity: 'success', summary: 'Success', detail: 'Thêm thành công' });
             this.close();
             this.onsubmit();
+          }
+        },
+        error:(error: HttpErrorResponse) => {
+          if (error.status === 401) {
+           this.route.navigate(['/admin/unauthorized'])
+          } else if (error.status === 403) {
+           this.route.navigate(['/admin/unauthorized'])
+          } else {
+           this.route.navigate(['/admin/unauthorized'])
           }
         }
       })

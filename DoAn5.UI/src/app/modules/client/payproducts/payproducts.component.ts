@@ -147,7 +147,7 @@ export class PayproductsComponent {
                         this.EmailService.SendEmail(this.formData).subscribe({
                           next: (response) => {
                             this.MessageSV.add({ severity: 'success', summary: 'Success', detail: 'Đặt hàng thành công' });
-                              this.router.navigate(['/cart'])
+                              this.router.navigate(['/client/cart'])
                           },
                         })
                       }

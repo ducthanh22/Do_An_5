@@ -145,9 +145,8 @@
                 <div class="input-container">
                     <label for="describe">Mô tả</label>
                     <div class="dropdown-wrapper">
-                        <button (click)="copyToClipboard()">Sao chép</button>
+                        <button (click)="copyToClipboard()" *ngIf="FormProduct.controls['describe'].value != null">Sao chép</button>
                         <a [innerHTML]="FormProduct.controls['describe'].value"></a>
-
                         <p-editor formControlName="describe" ></p-editor>
 
                     </div>
@@ -155,7 +154,7 @@
                 <div class="input-container">
                     <label for="name">Giá</label>
                     <div class="dropdown-wrapper">
-                        <input type="number"  class="p-inputtext" pInputText formControlName="price_product" />
+                        <p-inputNumber  inputId="integeronly" formControlName="price_product" class="inputNumber"  />
                     </div>
                 </div>
 

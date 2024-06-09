@@ -1,4 +1,6 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { Paging } from 'src/app/model';
 import { ProductsService } from 'src/app/service/products.service';
@@ -15,7 +17,8 @@ export class RatingComponent implements OnInit {
   loading: boolean = false;
   keyword: string = '';
   Totalcount!: number;
-  constructor(private ratingService: RatingService, private productService: ProductsService, private confirmationService: ConfirmationService,private MessageSV: MessageService){ }
+  constructor(private ratingService: RatingService, private productService: ProductsService, private confirmationService: ConfirmationService,
+    private MessageSV: MessageService, private route:Router){ }
   ngOnInit(): void {
     this.onSubmit();
   }
@@ -30,6 +33,15 @@ export class RatingComponent implements OnInit {
           this.listRating = res.data;
           console.log(this.listRating)
           this.loading = false; 
+        }
+      },
+      error:(error: HttpErrorResponse) => {
+        if (error.status === 401) {
+         this.route.navigate(['/admin/unauthorized'])
+        } else if (error.status === 403) {
+         this.route.navigate(['/admin/unauthorized'])
+        } else {
+         this.route.navigate(['/admin/unauthorized'])
         }
       }
     })
@@ -64,6 +76,14 @@ export class RatingComponent implements OnInit {
           if(res){
             this.MessageSV.add({ severity: 'success', summary: 'Thành công', detail: 'Đổi trạng thái thành công' })
           }
+        }, error:(error: HttpErrorResponse) => {
+          if (error.status === 401) {
+           this.route.navigate(['/admin/unauthorized'])
+          } else if (error.status === 403) {
+           this.route.navigate(['/admin/unauthorized'])
+          } else {
+           this.route.navigate(['/admin/unauthorized'])
+          }
         }
       })
     }else{
@@ -85,6 +105,15 @@ export class RatingComponent implements OnInit {
               if (res) {
                 this.MessageSV.add({ severity: 'error', summary: 'Error', detail: 'Xóa thành công' })
                 this.onSubmit();
+              }
+            },
+            error:(error: HttpErrorResponse) => {
+              if (error.status === 401) {
+               this.route.navigate(['/admin/unauthorized'])
+              } else if (error.status === 403) {
+               this.route.navigate(['/admin/unauthorized'])
+              } else {
+               this.route.navigate(['/admin/unauthorized'])
               }
             }
           })

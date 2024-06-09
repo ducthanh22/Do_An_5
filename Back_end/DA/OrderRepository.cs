@@ -120,11 +120,11 @@ namespace DAL
 
             return await query.ToListAsync();
         }
-        public async Task<BaseQuerieResponse<OrderDto>> Search(Paging paging)
+        public async Task<BaseQuerieResponse<OrderDto>> Search(Paging paging, int status)
         {
             var query = from d in _DbContext.Set<Order>()
                         join a in _DbContext.User on d.Id_customer equals a.Id
-                        where (string.IsNullOrEmpty(paging.Keyword) || a.UserName.Contains(paging.Keyword) || a.Email.Contains(paging.Keyword))
+                        where ((string.IsNullOrEmpty(paging.Keyword)&& d.status==status) || (a.UserName.Contains(paging.Keyword) && d.status == status) ||( a.Email.Contains(paging.Keyword) && d.status == status))
                         orderby d.Created descending
 
                         select new OrderDto

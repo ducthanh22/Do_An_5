@@ -54,8 +54,8 @@ export class MycartComponent {
         command: () => { this.GetOrderProduct(4); }
       },
       {
-        label: 'Đã Đánh giá',
-        command: () => { this.GetOrderProduct(5); }
+        label: 'Hoàn thành',
+        command: () => { this.GetOrderProduct(6); }
       }
     ];
   }
@@ -105,7 +105,7 @@ export class MycartComponent {
                 const order: OrderDto = {
                   id: this.order[0].id,
                   id_customer: this.order[0].id_customer,
-                  status: 5,
+                  status: 6,
                   price: this.order[0].price,
                   address: this.order[0].address,
                   payment: this.order[0].payment,

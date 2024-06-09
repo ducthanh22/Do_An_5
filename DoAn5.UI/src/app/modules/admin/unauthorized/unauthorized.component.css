@@ -1,0 +1,23 @@
+.unauthorized-container {
+    text-align: center;
+    margin-top: 50px;
+  }
+  
+  .unauthorized-container h1 {
+    color: red;
+  }
+  
+  .unauthorized-container p {
+    font-size: 18px;
+  }
+  
+  .unauthorized-container a {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    color: white;
+    background-color: blue;
+    text-decoration: none;
+    border-radius: 5px;
+  }
+  

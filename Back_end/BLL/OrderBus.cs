@@ -37,9 +37,9 @@ namespace BLL
         {
             return await _res.GetOrderProduct(id, status);
         }
-        public async Task<BaseQuerieResponse<OrderDto>> Search(Paging paging)
+        public async Task<BaseQuerieResponse<OrderDto>> Search(Paging paging, int status)
         {
-            return await _res.Search(paging);
+            return await _res.Search(paging,status);
         }
         public async Task<Order> destroyOrder(Guid id)
         {

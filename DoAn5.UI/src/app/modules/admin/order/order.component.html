@@ -7,13 +7,23 @@
         [tableStyle]="{ 'min-width': '50rem' }" [totalRecords]="totalCount" [resizableColumns]="true"
         currentPageReportTemplate="Hiển thị từ {first} đến {last} của {totalRecords} bản ghi" [filterDelay]="0"
         [rowsPerPageOptions]="[5, 10, 20]">
-        <ng-template pTemplate="caption">
-            <form class="p-input-icon-left frm" (ngSubmit)="onsubmit()">
-                <i class="pi pi-search"></i>
-                <input type="text" class="p-inputtext" pInputText [(ngModel)]="keyword" placeholder="Tìm kiếm..."
-                    [ngModelOptions]="{standalone: true}" />
-                <p-button type="submit" icon="pi pi-search"></p-button>
-            </form>
+        <ng-template pTemplate="caption" >
+            <div style="display: flex;">
+                <p-selectButton 
+                [options]="stateOptions" 
+                [(ngModel)]="status" 
+                optionLabel="label"   
+                optionValue="status" 
+                (onChange)="onsubmit()"
+                name="stateOption"></p-selectButton>
+                <form class="p-input-icon-left frm" (ngSubmit)="onsubmit()">
+                    <i class="pi pi-search"></i>
+                    <input type="text" class="p-inputtext" pInputText [(ngModel)]="keyword" placeholder="Tìm kiếm..."
+                        [ngModelOptions]="{standalone: true}" />
+                    <p-button type="submit" icon="pi pi-search"></p-button>
+                </form>
+            </div>
+           
         </ng-template>
         <ng-template pTemplate="header">
             <tr>
@@ -41,7 +51,6 @@
                 <td class="center-align click" *ngIf="product.status==2"><span class="click" (click)="Update(product,3)">Chờ lấy hàng</span></td>
                 <td class="center-align click" *ngIf="product.status==3"><i class="pi pi-truck" style="color: rgb(44, 88, 164)"> Đang vận chuyển</i> </td>
                 <td class="center-align click" *ngIf="product.status==4"><i class="pi pi-user-edit" style="color: rgb(2, 174, 68)"> Đã nhận & chờ đánh giá</i> </td>
-                <td class="center-align click" *ngIf="product.status==5"><span class="click" (click)="Update(product,6)">Xác nhận hiện đánh giá</span></td>
                 <td class="center-align click" *ngIf="product.status==6"><i class="pi pi-check-circle" style="color: rgb(44, 88, 164)"> Hoàn Thành</i></td>
                 <td class="center-align click" *ngIf="product.status==7"> <i class="pi pi-ban
 " style="color: rgb(217, 31, 43)"> Đơn hàng giao thất bại</i></td>

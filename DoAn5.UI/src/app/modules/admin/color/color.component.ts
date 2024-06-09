@@ -1,5 +1,7 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { ColorDto, Paging } from 'src/app/model';
 import { ColorService } from 'src/app/service/color.service';
@@ -20,7 +22,7 @@ export class ColorComponent {
   Titile: string = '';
   formColor!: FormGroup;
   getIdColor!:string;
-  constructor(private colorService: ColorService, private fb: FormBuilder, private MessageSV: MessageService) { }
+  constructor(private colorService: ColorService, private fb: FormBuilder, private MessageSV: MessageService, private route : Router) { }
   ngOnInit() {
     this.formColor = this.fb.group({
       nameColor: new FormControl('', Validators.required),
@@ -31,7 +33,6 @@ export class ColorComponent {
         this.formColor.get('colorformat')?.setValue(value, { emitEvent: false });
       }
     });
-
   }
 
   loadListLazy = (event: any) => {
@@ -83,8 +84,6 @@ export class ColorComponent {
     this.formColor.controls['nameColor'].setValue(data.nameColor);
     this.formColor.controls['colorformat'].setValue(data.colorformat);
     this.getIdColor=data.id;
-
-
   }
   SubmitBtn() {
     this.checkbtn == true ? this.save() : this.upDate()
@@ -101,7 +100,16 @@ export class ColorComponent {
             this.close();
             this.onsubmit();
             this.MessageSV.add({ severity: 'success', summary: 'Success', detail: 'Thêm thành công' });
-
+          }
+        },
+        error:(error: HttpErrorResponse) => {
+          debugger
+          if (error.status === 401) {
+           this.route.navigate(['/admin/unauthorized'])
+          } else if (error.status === 403) {
+           this.route.navigate(['/admin/unauthorized'])
+          } else {
+           this.route.navigate(['/admin/unauthorized'])
           }
         }
       })
@@ -117,7 +125,16 @@ export class ColorComponent {
             this.close();
             this.onsubmit();
             this.MessageSV.add({ severity: 'success', summary: 'Success', detail: 'Thêm thành công' });
-
+          }
+        },
+        error:(error: HttpErrorResponse) => {
+          debugger
+          if (error.status === 401) {
+           this.route.navigate(['/admin/unauthorized'])
+          } else if (error.status === 403) {
+           this.route.navigate(['/admin/unauthorized'])
+          } else {
+           this.route.navigate(['/admin/unauthorized'])
           }
         }
       })

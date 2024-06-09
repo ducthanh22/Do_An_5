@@ -35,7 +35,6 @@ namespace Back_end.Controllers
         }
         [HttpGet("GetBestSellingProducts")]
         [AllowAnonymous]
-
         public async Task<ActionResult<List<bestSellingProducts>>> GetBestSellingProducts()
         {
             var result = await _productsBus.GetBestSellingProducts();

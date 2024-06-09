@@ -1,5 +1,7 @@
-﻿using BLL.Interface;
+﻿using Back_end.Attribute;
+using BLL.Interface;
 using DTO;
+using DTO.Enum;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Model;
@@ -16,6 +18,8 @@ namespace Back_end.Controllers
             _Bus = Bus;
         }
         [HttpGet("GetAll")]
+        [HasPermission(new[] { (int)EnumModule.Module.QlPr }, new[] { (int)EnumPermission.Type.Read })]
+
         public async Task<ActionResult<List<Size>>> GetAll()
         {
             var result = await _Bus.GetAll();
@@ -23,12 +27,16 @@ namespace Back_end.Controllers
         }
 
         [HttpGet("GetByid/{id}")]
+        [HasPermission(new[] { (int)EnumModule.Module.QlPr }, new[] { (int)EnumPermission.Type.Read })]
+
         public async Task<ActionResult<Size>> Getbyid(Guid id)
         {
             var result = await _Bus.Getbyid(id);
             return Ok(result);
         }
         [HttpGet("Getbyidproduct/{id}")]
+        [HasPermission(new[] { (int)EnumModule.Module.QlPr }, new[] { (int)EnumPermission.Type.Read })]
+
         public async Task<ActionResult<List<SizeDto>>> Getbyidproduct(Guid id)
         {
             var result = await _Bus.Getbyidproduct(id);
@@ -36,6 +44,8 @@ namespace Back_end.Controllers
         }
 
         [HttpPost("create")]
+        [HasPermission(new[] { (int)EnumModule.Module.QlPr }, new[] { (int)EnumPermission.Type.Create })]
+
         public async Task<ActionResult<Size>> Create([FromBody] Size dto)
         {
             var createdEntity = await _Bus.Create(dto);
@@ -43,6 +53,8 @@ namespace Back_end.Controllers
             return Ok(createdEntity);
         }
         [HttpPut("update")]
+        [HasPermission(new[] { (int)EnumModule.Module.QlPr }, new[] { (int)EnumPermission.Type.Update })]
+
         public async Task<ActionResult<Size>> Update([FromBody] Size dto)
         {
             var createdEntity = await _Bus.Update(dto);
@@ -50,6 +62,8 @@ namespace Back_end.Controllers
             return Ok(createdEntity);
         }
         [HttpDelete("Delete/{id}")]
+        [HasPermission(new[] { (int)EnumModule.Module.QlPr }, new[] { (int)EnumPermission.Type.Deleted })]
+
         public async Task<ActionResult<Size>> Delete(Guid id)
         {
             var result = await _Bus.Delete(id);

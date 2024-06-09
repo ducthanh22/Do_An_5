@@ -52,6 +52,23 @@ export class DashboardComponent {
     });
   }
 
+  reset(){
+    let start='';
+    let end='';
+    if (this.date1 != undefined && this.date2 != undefined) {
+       start='';
+       end='';
+    }
+    this.statisticalservice.Darhboarsh(start, end).subscribe({
+      next: (value) => {
+        if (value) {
+          this.statistical = value;
+          console.log(this.statistical);
+          this.Charts(this.statistical)
+        }
+      },
+    })
+  }
   getDashboarsh() {
     let start='';
     let end='';
@@ -63,7 +80,6 @@ export class DashboardComponent {
       start  = format(this.date1, "yyyy-MM-dd'T'HH:mm:ss.SSS");
       end = format(this.date2, "yyyy-MM-dd'T'HH:mm:ss.SSS"); 
     }
-    
     this.statisticalservice.Darhboarsh(start, end).subscribe({
       next: (value) => {
         if (value) {

@@ -64,4 +64,7 @@ a {
   button:hover {
     background-color: #45a049;
   }
-  
+
+  .inputNumber{
+        width: 500px;
+  }

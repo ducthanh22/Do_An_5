@@ -20,13 +20,13 @@ export class SidebarComponent {
 
   constructor(private messageService: MessageService, private AcountService:AccountService,private route:Router) {
       this.items = [
-          {
-              label: 'Thông tin',
-              icon: 'pi pi-refresh',
-              command: () => {
-                  this.update();
-              }
-          },
+        //   {
+        //       label: 'Thông tin',
+        //       icon: 'pi pi-refresh',
+        //       command: () => {
+        //           this.update();
+        //       }
+        //   },
           {
               label: 'Đăng xuất',
               icon: 'pi pi-times',

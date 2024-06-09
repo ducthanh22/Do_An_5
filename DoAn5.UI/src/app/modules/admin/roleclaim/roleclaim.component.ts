@@ -1,4 +1,6 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { ConfirmationService, MessageService, TreeNode } from 'primeng/api';
 import { Module, Type, moduleTypeMap } from 'src/app/model/Enum/enum';
 import { ClaimDto, CreateRoleDto, RoleDto } from 'src/app/model/role';
@@ -26,22 +28,32 @@ export class RoleclaimComponent {
   detailClaim!: CreateRoleDto;
   checksave: boolean = false;
   checkbtn: boolean = false;
-  getIdRole:string='';
-
-
-
-  constructor(private accountService: AccountService, private messageService: MessageService,private confirmationService:ConfirmationService) {
+  getIdRole: string = '';
+  constructor(private accountService: AccountService, private messageService: MessageService, private confirmationService: ConfirmationService,
+    private route:Router
+  ) {
   }
   ngOnInit() {
     this.nodes = this.getTreeNodes();
-    console.log(this.nodes)
     this.getRole();
 
   }
   getRole() {
-    this.accountService.GetAllRoles().subscribe(data => {
-      this.dataGetRole = data
-    })
+    this.accountService.GetAllRoles().subscribe(
+      data => {
+        this.dataGetRole = data;
+      },
+      (error: HttpErrorResponse) => {
+        debugger
+        if (error.status === 401) {
+         this.route.navigate(['/admin/unauthorized'])
+        } else if (error.status === 403) {
+         this.route.navigate(['/admin/unauthorized'])
+        } else {
+         this.route.navigate(['/admin/unauthorized'])
+        }
+      }
+    );
   }
   getTreeNodes() {
     return Object.keys(Module)
@@ -82,14 +94,12 @@ export class RoleclaimComponent {
   add() {
     this.visible = true;
     this.Titile = 'Thêm quyền';
-    this.checkbtn=true;
+    this.checkbtn = true;
     this.checksave = true;
   }
-
-  
-clickBTN(){
-  this.checkbtn == true ? this.save() :this.upDate()
-}
+  clickBTN() {
+    this.checkbtn == true ? this.save() : this.upDate()
+  }
 
   save() {
     if (this.dataRole) {
@@ -118,8 +128,6 @@ clickBTN(){
             this.getRole();
             this.close();
             this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Thêm thành công' })
-
-
           }
         }
 
@@ -131,11 +139,11 @@ clickBTN(){
     this.visible = true;
     this.Titile = 'Sửa quyền'
     this.checksave = true;
-    this.checkbtn=false;
+    this.checkbtn = false;
     this.name = name;
     this.accountService.getClaimByIdRole(id).subscribe(data => {
       this.detailClaim = data;
-      this.getIdRole=this.detailClaim.role.id;
+      this.getIdRole = this.detailClaim.role.id;
       this.selectedNodes = [];
       this.detailClaim.roleClaims.forEach(item => {
         const node = this.nodes.find(node => node.data === Number(item.type));
@@ -187,12 +195,12 @@ clickBTN(){
       });
     }
   }
-  
+
   // Hàm kiểm tra xem claim đã tồn tại trong mảng roleClaims chưa
   isClaimExist(claim: ClaimDto): boolean {
     return this.dataRole?.roleClaims.some(existingClaim => existingClaim.type === claim.type && existingClaim.value === claim.value);
   }
-  
+
 
   Delete(event: Event, data: string) {
     this.confirmationService.confirm({
@@ -222,9 +230,9 @@ clickBTN(){
   close() {
     this.visible = false;
     this.name = '';
-    this.getIdRole='';
+    this.getIdRole = '';
     this.selectedNodes = [];
-    this.dataRole={
+    this.dataRole = {
       role: { id: '', name: '', activeFlag: null, created: null, createdBy: null, modified: null, modifiedBy: null },
       roleClaims: [],
     };

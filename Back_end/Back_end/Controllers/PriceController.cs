@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using DTO;
 using Model;
+using Back_end.Attribute;
+using DTO.Enum;
 
 
 namespace Back_end.Controllers
@@ -19,6 +21,8 @@ namespace Back_end.Controllers
             _Bus = Bus;
         }
         [HttpGet("GetAll")]
+        [HasPermission(new[] { (int)EnumModule.Module.QlG}, new[] { (int)EnumPermission.Type.Read })]
+
         public async Task<ActionResult<List<PriceDto>>> GetAll()
         {
             var result = await _Bus.GetAll();
@@ -26,6 +30,7 @@ namespace Back_end.Controllers
         }
 
         [HttpGet("GetByid")]
+        [HasPermission(new[] { (int)EnumModule.Module.QlG }, new[] { (int)EnumPermission.Type.Read })]
         public async Task<ActionResult<PriceDto>> Getbyid(Guid id)
         {
             var result = await _Bus.Getbyid(id);
@@ -33,6 +38,7 @@ namespace Back_end.Controllers
         }
 
         [HttpPost("create")]
+        [HasPermission(new[] { (int)EnumModule.Module.QlG }, new[] { (int)EnumPermission.Type.Create })]
         public async Task<ActionResult<PriceDto>> Create([FromBody] Price dto)
         {
             var createdEntity = await _Bus.Create(dto);
@@ -40,6 +46,8 @@ namespace Back_end.Controllers
             return Ok(createdEntity);
         }
         [HttpPut("update")]
+        [HasPermission(new[] { (int)EnumModule.Module.QlG }, new[] { (int)EnumPermission.Type.Update })]
+
         public async Task<ActionResult<PriceDto>> Update([FromBody] Price dto)
         {
             var createdEntity = await _Bus.Update(dto);
@@ -47,12 +55,16 @@ namespace Back_end.Controllers
             return Ok(createdEntity);
         }
         [HttpDelete("Delete")]
+        [HasPermission(new[] { (int)EnumModule.Module.QlG }, new[] { (int)EnumPermission.Type.Deleted })]
+
         public async Task<ActionResult<PriceDto>> Delete(Guid id)
         {
             var result = await _Bus.Delete(id);
             return Ok(result);
         }
         [HttpGet("Search")]
+        [HasPermission(new[] { (int)EnumModule.Module.QlG }, new[] { (int)EnumPermission.Type.Read })]
+
         public async Task<IActionResult> Search([FromQuery] int? min, [FromQuery] int? max, [FromQuery] int page = 1, [FromQuery] int pageSize = 10)
         {
             var result = await _Bus.Search(min, max, page, pageSize);

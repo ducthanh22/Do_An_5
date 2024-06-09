@@ -1,6 +1,7 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { ChangeDetectorRef, Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { DetachedRouteHandle } from '@angular/router';
+import { DetachedRouteHandle, Router } from '@angular/router';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { Paging } from 'src/app/model';
 import { Product_typeDto } from 'src/app/model/Product_type';
@@ -35,7 +36,8 @@ export class ProductTypeComponent {
 
   constructor(
     private Product_typeService: Product_TypeService,
-    private fb: FormBuilder, private MessageSV: MessageService,private confirmationService:ConfirmationService,private CategoryService:CategoriesService) {
+    private fb: FormBuilder, private MessageSV: MessageService,private confirmationService:ConfirmationService,private CategoryService:CategoriesService,
+  private route:Router) {
   }
 
   ngOnInit() {
@@ -50,6 +52,15 @@ export class ProductTypeComponent {
   LoadCategories() {
     this.CategoryService.getAll().subscribe((data) => {
       this.Dscategories = data
+    },
+    (error: HttpErrorResponse) => {
+      if (error.status === 401) {
+       this.route.navigate(['/admin/unauthorized'])
+      } else if (error.status === 403) {
+       this.route.navigate(['/admin/unauthorized'])
+      } else {
+       this.route.navigate(['/admin/unauthorized'])
+      }
     })
   }
   loadListLazy = (event: any) => {
@@ -82,8 +93,14 @@ export class ProductTypeComponent {
         this.datas = res.data;
         this.Totalcount = res.totalFilter;
       },
-      error: (e) => {
-        this.loading = false;
+      error:(error: HttpErrorResponse) => {
+        if (error.status === 401) {
+         this.route.navigate(['/admin/unauthorized'])
+        } else if (error.status === 403) {
+         this.route.navigate(['/admin/unauthorized'])
+        } else {
+         this.route.navigate(['/admin/unauthorized'])
+        }
       },
       complete: () => {
         this.loading = false;
@@ -129,6 +146,15 @@ export class ProductTypeComponent {
             this.visible = false;
             this.onsubmit()
           }
+        },
+        error:(error: HttpErrorResponse) => {
+          if (error.status === 401) {
+           this.route.navigate(['/admin/unauthorized'])
+          } else if (error.status === 403) {
+           this.route.navigate(['/admin/unauthorized'])
+          } else {
+           this.route.navigate(['/admin/unauthorized'])
+          }
         }
       })
     }
@@ -143,6 +169,15 @@ export class ProductTypeComponent {
             this.FormCategories.reset();
             this.visible = false;
             this.onsubmit()
+          }
+        },
+        error:(error: HttpErrorResponse) => {
+          if (error.status === 401) {
+           this.route.navigate(['/admin/unauthorized'])
+          } else if (error.status === 403) {
+           this.route.navigate(['/admin/unauthorized'])
+          } else {
+           this.route.navigate(['/admin/unauthorized'])
           }
         }
       })
@@ -164,6 +199,15 @@ export class ProductTypeComponent {
               if (res) {
                 this.MessageSV.add({ severity: 'error', summary: 'Error', detail: 'Xóa thành công' })
                 this.onsubmit();
+              }
+            },
+            error:(error: HttpErrorResponse) => {
+              if (error.status === 401) {
+               this.route.navigate(['/admin/unauthorized'])
+              } else if (error.status === 403) {
+               this.route.navigate(['/admin/unauthorized'])
+              } else {
+               this.route.navigate(['/admin/unauthorized'])
               }
             }
           })

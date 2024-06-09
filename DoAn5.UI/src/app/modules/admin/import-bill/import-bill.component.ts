@@ -1,5 +1,7 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { AfterViewInit, ChangeDetectorRef, Component } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { Paging, ProductsDto, SizeDto } from 'src/app/model';
 import { CreateImportbillDto } from 'src/app/model/importBill';
@@ -32,7 +34,7 @@ export class ImportBillComponent implements AfterViewInit {
   // listDetail: GetDetail_exportbillDto[] = [];
   constructor (private importbillService:importBillService,private confirmationService:ConfirmationService, private MessageSV: MessageService,
     private fb :FormBuilder,private productService:ProductsService,private accountService:AccountService, private sizeService:SizeService,
-    private cd:ChangeDetectorRef
+    private cd:ChangeDetectorRef, private route: Router
     
   ){}
   ngOnInit(){
@@ -82,8 +84,14 @@ export class ImportBillComponent implements AfterViewInit {
         this.listExportBill = res.data;
         this.Totalcount = res.totalFilter;
       },
-      error: (e) => {
-        this.loading = false;
+      error:(error: HttpErrorResponse) => {
+        if (error.status === 401) {
+         this.route.navigate(['/admin/unauthorized'])
+        } else if (error.status === 403) {
+         this.route.navigate(['/admin/unauthorized'])
+        } else {
+         this.route.navigate(['/admin/unauthorized'])
+        }
       },
       complete: () => {
         this.loading = false;
@@ -105,8 +113,17 @@ export class ImportBillComponent implements AfterViewInit {
         this.listExportBill = res.data;
         this.Totalcount = res.totalFilter;
       },
-      error: (e) => {
-        this.loading = false;
+      // error: (e) => {
+      //   this.loading = false;
+      // },
+      error:(error: HttpErrorResponse) => {
+        if (error.status === 401) {
+         this.route.navigate(['/admin/unauthorized'])
+        } else if (error.status === 403) {
+         this.route.navigate(['/admin/unauthorized'])
+        } else {
+         this.route.navigate(['/admin/unauthorized'])
+        }
       },
       complete: () => {
         this.loading = false;
@@ -204,6 +221,15 @@ export class ImportBillComponent implements AfterViewInit {
           this.MessageSV.add({ severity: 'success', summary: 'Success', detail: 'Thêm thành công' });
           this.visible=false;
           this.onsubmit()
+        }
+      },
+      error:(error: HttpErrorResponse) => {
+        if (error.status === 401) {
+         this.route.navigate(['/admin/unauthorized'])
+        } else if (error.status === 403) {
+         this.route.navigate(['/admin/unauthorized'])
+        } else {
+         this.route.navigate(['/admin/unauthorized'])
         }
       }
     })

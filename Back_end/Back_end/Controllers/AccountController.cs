@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
+using Back_end.Attribute;
 using BLL.Interface;
 using DTO;
+using DTO.Enum;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -33,17 +35,19 @@ namespace Back_end.Controllers
             return Ok(result);
         }
 
-        [AllowAnonymous]
+     
 
         [HttpGet("GetAllRoles")]
+        [HasPermission(new[] { (int)EnumModule.Module.QlNv }, new[] { (int)EnumPermission.Type.Read })]
         public async Task<ActionResult<List<Role>>> GetAllRoles()
         {
             var result = await _Bus.GetAllRoles();
             return Ok(result);
         }
-        [AllowAnonymous]
 
         [HttpGet("GetUser/{status}")]
+        [HasPermission(new[] { (int)EnumModule.Module.QlNv }, new[] { (int)EnumPermission.Type.Read })]
+
         public async Task<ActionResult<List<Role>>> GetUser( string status , [FromQuery]  Paging paging)
         {
             var result = await _Bus.GetUser(status,paging);
@@ -51,23 +55,24 @@ namespace Back_end.Controllers
         }
 
         [HttpGet("getClaimByIdRole/{id}")]
-        [AllowAnonymous]
-
+        [HasPermission(new[] { (int)EnumModule.Module.QlNv }, new[] { (int)EnumPermission.Type.Read })]
         public async Task<ActionResult<CreateRoleDto>> getClaimByIdRole(string id)
         {
             var result = await _Bus.getClaimByIdRole(id);
             return Ok(result);
         }
-        [AllowAnonymous]
+
         [HttpPost("CreateRole")]
+        [HasPermission(new[] { (int)EnumModule.Module.QlNv }, new[] { (int)EnumPermission.Type.Create })]
         public async Task<ActionResult<bool>> CreateRoleAsync(CreateRoleDto role)
         {
             var result = await _Bus.CreateRoleAsync(role);
 
             return Ok(result);
         }
-        [AllowAnonymous]
         [HttpPost("UpdateRole")]
+        [HasPermission(new[] { (int)EnumModule.Module.QlNv }, new[] { (int)EnumPermission.Type.Update })]
+
         public async Task<ActionResult<bool>> UpdateRole(CreateRoleDto role)
         {
             var result = await _Bus.UpdateRole(role);
@@ -75,7 +80,7 @@ namespace Back_end.Controllers
             return Ok(result);
         }
         [HttpDelete("DeleteRole/{id}")]
-        [AllowAnonymous]
+        [HasPermission(new[] { (int)EnumModule.Module.QlNv }, new[] { (int)EnumPermission.Type.Deleted })]
 
         public async Task<ActionResult<bool>> DeleteRole(string id)
         {
@@ -117,9 +122,8 @@ namespace Back_end.Controllers
 
             return Ok(result);
         }
-        [AllowAnonymous]
+     
         [HttpPatch("update")]
-
         public async Task<ActionResult<updateUserDto>> updateUser([FromBody ] updateUserDto user)
         {
             var result = await _Bus.updateUser(user);
