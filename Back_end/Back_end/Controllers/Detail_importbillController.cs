@@ -23,19 +23,19 @@ namespace Back_end.Controllers
             _Bus = Bus;
         }
         [HttpGet("GetAll")]
-        [AllowAnonymous]
+        [HasPermission(new[] { (int)EnumModule.Module.QlHdn }, new[] { (int)EnumPermission.Type.Read })]
         public async Task<ActionResult<List<Detail_importbillDto>>> GetAll()
         {
             var result = await _Bus.GetAll();
             return Ok(result);
         }
 
-        [HttpGet("GetByid")]
+        [HttpGet("GetByid/{id}")]
         [HasPermission(new[] { (int)EnumModule.Module.QlHdn }, new[] { (int)EnumPermission.Type.Read })]
 
         public async Task<ActionResult<Detail_importbillDto>> Getbyid(Guid id)
         {
-            var result = await _Bus.Getbyid(id);
+            var result = await _Bus.GETBYID(id);
             return Ok(result);
         }
 

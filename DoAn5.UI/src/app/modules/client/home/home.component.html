@@ -52,10 +52,10 @@
             </p-carousel>
         </div>
     </div>
-    <div class="Newproduct" *ngIf="bestSellingProducts.length>0">
+    <div class="Newproduct" >
         <h2>Sản phẩm bán chạy</h2>
         <div class="card">
-            <p-dataView #dv [value]="bestSellingProducts" [layout]="layout" [rows]="12"  [totalRecords]="10" >
+            <p-dataView #dv [value]="bestSellingProducts" [layout]="layout" [rows]="50">
                 <ng-template pTemplate="header">
                     <div class="flex justify-content-end">
                         <p-dataViewLayoutOptions layout="list"></p-dataViewLayoutOptions>

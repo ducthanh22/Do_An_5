@@ -11,6 +11,6 @@ namespace BLL.Interface
 {
     public interface IDetail_importbillBus : IGenericBUS<Detail_importbill>
     {
-        //Task<IEnumerable<BaseQuerieResponse<Detail_importbillDto>>> Search(string keywork, int page, int pageSize);
+        Task<List<GetDetail_importbillDto>> GETBYID(Guid id);
     }
 }

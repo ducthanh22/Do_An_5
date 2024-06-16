@@ -11,6 +11,6 @@ namespace DAL.Interface
 {
     public interface IDetail_importbillRepository: IGenericRepository<Detail_importbill>
     {
-        //Task<IEnumerable<BaseQuerieResponse<Detail_importbillDto>>> Search(string keywork, int page, int pageSize);
+        Task<List<GetDetail_importbillDto>> GETBYID(Guid id);
     }
 }

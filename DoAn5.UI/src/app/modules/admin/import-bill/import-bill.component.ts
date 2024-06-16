@@ -31,6 +31,8 @@ export class ImportBillComponent implements AfterViewInit {
   priceProduct!:number;
   total!:number;
   dataImport!:CreateImportbillDto;
+  listDetail:any;
+  visible2:boolean=false;
   // listDetail: GetDetail_exportbillDto[] = [];
   constructor (private importbillService:importBillService,private confirmationService:ConfirmationService, private MessageSV: MessageService,
     private fb :FormBuilder,private productService:ProductsService,private accountService:AccountService, private sizeService:SizeService,
@@ -190,24 +192,31 @@ export class ImportBillComponent implements AfterViewInit {
       detail.get('idsize')?.setValue(selectedSizeId);
     }
   }
-  
-  // GetDetail(id :string){
-  //   this.visible= true;
-  //   this.importbillService.GetDetail(id).subscribe({
-  //     next:(res)=>{
-  //       if(res){
-  //         this.listDetail=res;
-  //       }
-  //     }
-  
-  //   })
-  // }
+  GetDetail(id: string) {
+    this.visible2 = true;
+    this.importbillService.GetDetail(id).subscribe({
+      next: (res) => {
+        if (res) {
+          this.listDetail = res;
+        }
+      }, error: (error: HttpErrorResponse) => {
+        if (error.status === 401) {
+          this.route.navigate(['/admin/unauthorized'])
+        } else if (error.status === 403) {
+          this.route.navigate(['/admin/unauthorized'])
+        } else {
+          this.route.navigate(['/admin/unauthorized'])
+        }
+      }
+    })
+  }
+
   Add(){
     this.Titile="Thêm hóa đơn nhập";
     this.getProduct();
     this.visible=true;
-
   }
+
   Save(){
     this.dataImport={
       price: Number(this.getTotalPrice()),
@@ -220,7 +229,8 @@ export class ImportBillComponent implements AfterViewInit {
         if(res){
           this.MessageSV.add({ severity: 'success', summary: 'Success', detail: 'Thêm thành công' });
           this.visible=false;
-          this.onsubmit()
+          this.onsubmit();
+          this.close();
         }
       },
       error:(error: HttpErrorResponse) => {

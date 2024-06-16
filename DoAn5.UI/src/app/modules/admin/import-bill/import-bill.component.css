@@ -2,3 +2,20 @@
     float: right ;
     margin-right: 5%;
     }
+    .click {
+        cursor: pointer;
+    }
+    
+    .click:hover {
+        color: red;
+    }
+    .center-align {
+        text-align: center; /* Căn giữa nội dung trong ô */
+    }
+    
+    .center-align p-button {
+        display: inline-block; /* Hiển thị nút dưới dạng khối */
+    }
+    .info{
+        display: flex;
+    }

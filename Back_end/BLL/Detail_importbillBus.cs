@@ -17,9 +17,9 @@ namespace BLL
         {
             _res = res;
         }
-        //public async Task<IEnumerable<BaseQuerieResponse<Detail_importbillDto>>> Search(string keywork, int page, int pageSize)
-        //{
-        //    return await _res.Search(keywork, page, pageSize);
-        //}
+        public async Task<List<GetDetail_importbillDto>> GETBYID(Guid id)
+        {
+            return await _res.GETBYID(id);
+        }
     }
 }

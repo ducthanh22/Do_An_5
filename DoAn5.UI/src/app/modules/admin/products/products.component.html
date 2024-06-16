@@ -47,7 +47,7 @@
                 
                 <!--<td class="center-align" [innerHTML]="product.describe"></td> -->
                <td class="center-align">
-                    <i class="pi pi-eye" style="color: slateblue; margin-left: 5%;"></i>
+                    <i class="pi pi-eye" style="color: slateblue; margin-left: 5%;" (click)="detail(product)"></i>
                     <i class="pi pi-pencil" style="color: rgb(255, 132, 0); margin-left: 5%;"
                         (click)="Edit(product)"></i>
                     <i class="pi pi-trash" style="color: red; margin-left: 5%;"
@@ -136,7 +136,9 @@
                                 </td>
                                <td class="center-align">
                                     <i class="pi pi-plus-circle"style="color: green" (click)="addSize()"></i>
-                                    <i class="pi pi-trash"style="color: red;margin-left: 20%"(click)="removeSize(i,size.controls.id.value)"></i>
+                                    <i class="pi pi-trash"style="color: red;margin-left: 20%" (click)="removenotdata(i)" *ngIf="size.controls.id== null"></i>
+
+                                    <i class="pi pi-trash"style="color: red;margin-left: 20%" (click)="removeSize(i,size.controls.id.value)" *ngIf="size.controls.id != null"></i>
                                 </td>
                               </tr>
                         </ng-template>
@@ -164,20 +166,23 @@
             <div class="card ">
                 <label for="name">Ảnh</label>
                 <p-fileUpload name="demo[]" url="https://www.primefaces.org/cdn/api/upload.php"
-                    (onUpload)="onUpload($event)" [multiple]="true" accept="image/*" [maxFileSize]="1000000">
+                    (onUpload)="onUpload($event)" [multiple]="true" accept="image/*" [maxFileSize]="1000000" *ngIf="viewImage== false">
                     <ng-template pTemplate="content">
                         <ul *ngIf="uploadedFiles.length">
                             <li *ngFor="let file of uploadedFiles">{{ file.name }} - {{ file.size }} bytes</li>
                         </ul>
                     </ng-template>
                 </p-fileUpload>
+                <p-image src="https://localhost:7058/Images/{{ dataimage }}"
+                        previewImageSrc="https://localhost:7058/Images/{{ dataimage }}" alt="Image" width="100"
+                        [preview]="true" *ngIf="viewImage== true"></p-image>
             </div>
 
         </form>
     </ng-template>
     <ng-template pTemplate="footer">
         <div class="dialog-footer">
-            <p-button icon="pi pi-check" *ngIf="FormProduct.valid " (click)="SubmitBtn()" label="Lưu" pAutoFocus [autofocus]="true"></p-button>
+            <p-button icon="pi pi-check" *ngIf="FormProduct.valid && viewImage== false " (click)="SubmitBtn()" label="Lưu" pAutoFocus [autofocus]="true"></p-button>
             <p-button icon="pi pi-check" (click)="close()"  label="Đóng"severity="danger" ></p-button>
 
         </div>

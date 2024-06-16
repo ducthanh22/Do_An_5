@@ -40,6 +40,8 @@ export class ProductsComponent {
   uploadedFiles: any[] = [];
   SelectSize!: SizeDto[]
   getSize!: any[];
+  viewImage!:boolean;
+  dataimage:string='';
 
 
   constructor(private ProductSV: ProductsService, private FB: FormBuilder, private MessageSV: MessageService,
@@ -75,6 +77,9 @@ export class ProductsComponent {
       NameSize: ['', Validators.required]
     });
     this.listsize.push(sizeFormGroup);
+  }
+  removenotdata(index: number){
+    this.listsize.removeAt(index);
   }
 
   removeSize(index: number,data:any) {
@@ -151,7 +156,6 @@ export class ProductsComponent {
 
   onsubmit = () => {
     this.paging.keyword = this.keyword;
-    debugger
     this.ProductSV.Search(this.paging).subscribe({
       next: (res) => {
         this.ListProducts = res.data;
@@ -196,13 +200,17 @@ export class ProductsComponent {
   };
 
   Add() {
+    this.viewImage=false;
     this.FormProduct.reset();
     this.visible = true;
     this.Titile = "Thêm mới";
     this.showSub = true;
+    this.viewImage=false;
+
 
   }
   Edit(data: any) {
+    this.viewImage=false;
     this.visible = true;
     this.Titile = "Sửa";
     this.showSub = false;
@@ -223,9 +231,32 @@ export class ProductsComponent {
     this.FormProduct.controls['price_product'].setValue(data.price_product);
     this.FormProduct.controls['idcolor'].setValue(data.idcolor);
     this.FormProduct.controls['image'].setValue(data.image);
-    console.log(this.FormProduct.controls['describe'].value);
-
-
+  }
+  
+  detail(data: any) {
+    this.viewImage=true;
+    this.dataimage= data.image;
+    this.visible = true;
+    this.Titile = "Xem sản phẩm";
+    this.showSub = false;
+    this.Getid = data.id;
+    this.getSize = data.listSize;
+    this.getSize.forEach(size => {
+      const sizeFormGroup = this.FB.group({
+        id: [size.id],
+        Idproduct: [size.idproduct],
+        NameSize: [size.nameSize]
+      });;
+      this.listsize.push(sizeFormGroup);
+    });
+    this.FormProduct.controls['name'].setValue(data.name);
+    this.FormProduct.controls['idcategories'].setValue(data.idcategories);
+    this.FormProduct.controls['idproduces'].setValue(data.idproduces);
+    this.FormProduct.controls['describe'].setValue(data.describe);
+    this.FormProduct.controls['price_product'].setValue(data.price_product);
+    this.FormProduct.controls['idcolor'].setValue(data.idcolor);
+    this.FormProduct.controls['image'].setValue(data.image);
+  
   }
   SubmitBtn() {
     if (this.showSub != null) {

@@ -19,3 +19,17 @@ export interface Detail_importbill {
     price: number;
     quantity: number;
 }
+export interface GetDetail_importbillDto extends BasedbDto {
+    idExportbill: string;
+    idproduct: string;
+    idsize: string;
+    price: number;
+    quantity: number;
+    productName: string;
+    image: string;
+    userName: string;
+    address: string;
+    phone: string;
+    email: string;
+    toTal: number;
+}

@@ -245,7 +245,7 @@ namespace DAL
                             percent = (g.Key.percent != null) ? g.Key.percent : null,
 
                             TotalQuantity = g.Sum(x => x.Quantity)
-                        }).Take(12);
+                        });
 
             var bestSellingProducts = await query.OrderByDescending(p => p.TotalQuantity).ToListAsync();
 

@@ -43,7 +43,7 @@ export class PayproductsComponent {
       name: new FormControl(this.informationAccount.Username, Validators.required),
       email: new FormControl(this.informationAccount.Email, Validators.required),
       phone: new FormControl(this.informationAccount.Phone, Validators.required),
-      Address: new FormControl(this.informationAccount.Address, Validators.required),
+      Address: new FormControl('', Validators.required),
       selectPay: new FormControl("", Validators.required)
     })
   }
@@ -60,6 +60,7 @@ export class PayproductsComponent {
   }
 
   SaveAdd() {
+    debugger
     if (this.Carts.length > 0) {
       this.loading = true;
       const order: CreateOrderDto = {
@@ -120,13 +121,14 @@ export class PayproductsComponent {
             this.OrderService.getbyid(res.vnp_TxnRef).subscribe({
               next: (value) => {
                 if (value) {
+                  debugger
                   this.order = value;
                   const order: OrderDto = {
                     id: res.vnp_TxnRef,
                     id_customer: this.informationAccount.Id,
                     status: 2,
                     price: this.order[0]?.price,
-                    address: this.FormPay.value.Address,
+                    address: this.order[0]?.address,
                     payment: this.order[0]?.payment,
                     activeFlag: null,
                     createdBy: null,
