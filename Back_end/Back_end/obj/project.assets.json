@@ -4139,8 +4139,8 @@
     },
     "DAL/1.0.0": {
       "type": "project",
-      "path": "../DA/DAL.csproj",
-      "msbuildProject": "../DA/DAL.csproj"
+      "path": "../DAL/DAL.csproj",
+      "msbuildProject": "../DAL/DAL.csproj"
     },
     "DTO/1.0.0": {
       "type": "project",
@@ -4207,8 +4207,8 @@
             "D:\\Do_An_5\\Back_end\\BLL\\BLL.csproj": {
               "projectPath": "D:\\Do_An_5\\Back_end\\BLL\\BLL.csproj"
             },
-            "D:\\Do_An_5\\Back_end\\DA\\DAL.csproj": {
-              "projectPath": "D:\\Do_An_5\\Back_end\\DA\\DAL.csproj"
+            "D:\\Do_An_5\\Back_end\\DAL\\DAL.csproj": {
+              "projectPath": "D:\\Do_An_5\\Back_end\\DAL\\DAL.csproj"
             },
             "D:\\Do_An_5\\Back_end\\DTO\\DTO.csproj": {
               "projectPath": "D:\\Do_An_5\\Back_end\\DTO\\DTO.csproj"

@@ -16,7 +16,7 @@ export interface CreateOrderDto  {
     price: number;
     address:string;
     payment:string;
-    orderList: Order_detailDto[];
+    orderList: Order_detailDto[]; 
 }
 
 export interface Order_detailDto {

@@ -36,8 +36,8 @@
               "D:\\Do_An_5\\Back_end\\BLL\\BLL.csproj": {
                 "projectPath": "D:\\Do_An_5\\Back_end\\BLL\\BLL.csproj"
               },
-              "D:\\Do_An_5\\Back_end\\DA\\DAL.csproj": {
-                "projectPath": "D:\\Do_An_5\\Back_end\\DA\\DAL.csproj"
+              "D:\\Do_An_5\\Back_end\\DAL\\DAL.csproj": {
+                "projectPath": "D:\\Do_An_5\\Back_end\\DAL\\DAL.csproj"
               },
               "D:\\Do_An_5\\Back_end\\DTO\\DTO.csproj": {
                 "projectPath": "D:\\Do_An_5\\Back_end\\DTO\\DTO.csproj"
@@ -158,8 +158,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "D:\\Do_An_5\\Back_end\\DA\\DAL.csproj": {
-                "projectPath": "D:\\Do_An_5\\Back_end\\DA\\DAL.csproj"
+              "D:\\Do_An_5\\Back_end\\DAL\\DAL.csproj": {
+                "projectPath": "D:\\Do_An_5\\Back_end\\DAL\\DAL.csproj"
               },
               "D:\\Do_An_5\\Back_end\\DTO\\DTO.csproj": {
                 "projectPath": "D:\\Do_An_5\\Back_end\\DTO\\DTO.csproj"
@@ -214,14 +214,14 @@
         }
       }
     },
-    "D:\\Do_An_5\\Back_end\\DA\\DAL.csproj": {
+    "D:\\Do_An_5\\Back_end\\DAL\\DAL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Do_An_5\\Back_end\\DA\\DAL.csproj",
+        "projectUniqueName": "D:\\Do_An_5\\Back_end\\DAL\\DAL.csproj",
         "projectName": "DAL",
-        "projectPath": "D:\\Do_An_5\\Back_end\\DA\\DAL.csproj",
+        "projectPath": "D:\\Do_An_5\\Back_end\\DAL\\DAL.csproj",
         "packagesPath": "C:\\Users\\phith\\.nuget\\packages\\",
-        "outputPath": "D:\\Do_An_5\\Back_end\\DA\\obj\\",
+        "outputPath": "D:\\Do_An_5\\Back_end\\DAL\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
