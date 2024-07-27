@@ -1,45 +1,43 @@
-﻿using Back_end.Model;
+﻿
+using AutoMapper;
 using DAL.Interface;
+using DTO;
 using Microsoft.EntityFrameworkCore;
 using Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace DAL
 {
     public class CategoriesRepository : GenericRepository<Categories>, ICategoriesRepository
     {
-        public CategoriesRepository(Achino_DbContext dbContext) : base(dbContext)
+        public CategoriesRepository(Achino_DbContext dbContext, IMapper mapper) : base(dbContext, mapper)
         {
-            _DbContext = dbContext;
+
         }
 
-        public async Task<IEnumerable<Categories>> Search(string searchTerm, int page, int pageSize)
+        public async Task<BaseQuerieResponse<CategoriesDto>> Search(Paging paging)
         {
-            // Bắt đầu với truy vấn cơ bản
-            var query = from a in _DbContext.Categorie_entities.AsQueryable()
-                        where a.Name == searchTerm
-                        select a;
 
-            // Thực hiện tìm kiếm nếu có
-            if (!string.IsNullOrEmpty(searchTerm))
+            var query = from d in _DbContext.Set<Categories>().AsQueryable()
+                        where string.IsNullOrEmpty(paging.Keyword) || d.Name.Contains(paging.Keyword)
+                        select new CategoriesDto 
+                        {
+                            Id = d.Id,
+                        Name = d.Name,
+                        };
+  
+            var totalCount = await query.LongCountAsync();
+            var pageResults = await query.Skip((paging.PageIndex - 1) * paging.PageSize).Take(paging.PageSize) .ToListAsync();
+      
+            var searchResults = new BaseQuerieResponse<CategoriesDto>
             {
-                query = query.Where(p => p.Name.Contains(searchTerm) );
-            }
-
-            // Thực hiện phân trang
-            query = query.Skip((page - 1) * pageSize)
-                         .Take(pageSize);
-
-            // Thực hiện truy vấn và lấy kết quả
-            var result = await query.ToListAsync();
-
-            return result;
+                PageIndex = paging.PageIndex,
+                PageSize = paging.PageSize,
+                Keyword = paging.Keyword,
+                TotalFilter = totalCount,
+                Data = pageResults
+            };
+            return searchResults;
         }
-
     }
-
 }

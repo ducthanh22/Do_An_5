@@ -43,7 +43,7 @@ export class PayproductsComponent {
       name: new FormControl(this.informationAccount.Username, Validators.required),
       email: new FormControl(this.informationAccount.Email, Validators.required),
       phone: new FormControl(this.informationAccount.Phone, Validators.required),
-      Address: new FormControl('', Validators.required),
+      Address: new FormControl(this.informationAccount.Address, Validators.required),
       selectPay: new FormControl("", Validators.required)
     })
   }

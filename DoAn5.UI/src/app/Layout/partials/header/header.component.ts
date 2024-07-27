@@ -68,17 +68,23 @@ export class HeaderComponent {
                 ]
             }
         ];
-        this.formACC=this.fb.group({
-            id:new FormControl(this.informationToken.Id,Validators.required),
-            address:new FormControl(this.informationToken.Address,Validators.required),
-            cccd:new FormControl(''),
-            phoneNumber:new FormControl(this.informationToken.Phone,Validators.required),
-            userName:new FormControl(this.informationToken.Username,Validators.required),
-        })
+
+       this.checkFormACC();
     }
     ngOnDestroy() {
         if (this.cartUpdateSubscription) {
             this.cartUpdateSubscription.unsubscribe();
+        }
+    }
+    checkFormACC(){
+        if(this.informationToken!= null){
+            this.formACC=this.fb.group({
+                id:new FormControl(this.informationToken.Id,Validators.required),
+                address:new FormControl(this.informationToken.Address,Validators.required),
+                cccd:new FormControl(''),
+                phoneNumber:new FormControl(this.informationToken.Phone,Validators.required),
+                userName:new FormControl(this.informationToken.Username,Validators.required),
+            })
         }
     }
     selectCategory() {

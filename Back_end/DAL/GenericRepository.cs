@@ -1,4 +1,4 @@
-﻿using Back_end.Model;
+﻿using AutoMapper;
 using DAL.Interface;
 using Microsoft.EntityFrameworkCore;
 using Model;
@@ -7,53 +7,62 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DTO;
+
 
 namespace DAL
 {
-    public class GenericRepository<T>: IGenericRepository<T> where T : class
+    public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
-        protected Achino_DbContext _DbContext;
+        public Achino_DbContext _DbContext;
 
-        public GenericRepository(Achino_DbContext dbContext)
+        public readonly IMapper _mapper;
+        public GenericRepository(Achino_DbContext dbContext, IMapper mapper)
         {
             _DbContext = dbContext;
+            _mapper = mapper;
         }
-
-        public async Task<IReadOnlyList<T >> GetAll()
+        public async Task<List<T>> GetAll()
         {
-            return await _DbContext.Set<T>().ToListAsync();
+            var result = await _DbContext.Set<T>().ToListAsync(); 
+
+            return result;
         }
 
-        public async Task<T> Getbyid(int id)
+        public async Task<T> Getbyid(Guid id)
         {
-            return await _DbContext.Set<T>().FindAsync(id);
+            var result = await _DbContext.Set<T>().FindAsync(id); // Assuming _DbContext is of type DbContext
+          
+            return result;
         }
-
         public async Task<T> Create(T entity)
         {
-            _DbContext.AddAsync(entity);
-            await _DbContext.SaveChangesAsync();
+            try {
+                _DbContext.Set<T>().AddAsync(entity);
+                await _DbContext.SaveChangesAsync();
+            }
+            catch (Exception e) { Console.WriteLine(e.Message); }
+            
+
             return entity;
         }
 
         public async Task<T> Update(T entity)
         {
+
             _DbContext.Entry(entity).State = EntityState.Modified;
             await _DbContext.SaveChangesAsync();
             return entity;
         }
-
-        public async Task<T> Delete(int id)
+        public async Task<T> Delete(Guid id)
         {
             var entity = await _DbContext.Set<T>().FindAsync(id);
             if (entity != null)
             {
                 _DbContext.Set<T>().Remove(entity);
                 await _DbContext.SaveChangesAsync();
-            }
+            }     
             return entity;
         }
-       
-        
     }
 }

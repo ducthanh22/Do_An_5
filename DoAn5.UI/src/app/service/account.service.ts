@@ -37,24 +37,24 @@ export class AccountService {
   GetAllRoles(): Observable<RoleDto[]> {
     return this._http.get<RoleDto[]>(`${environment.apiUrl}/Account/GetAllRoles`).pipe(first());
   }
-  getClaimByIdRole(id:string): Observable<CreateRoleDto> {
+  getClaimByIdRole(id: string): Observable<CreateRoleDto> {
     return this._http.get<CreateRoleDto>(`${environment.apiUrl}/Account/getClaimByIdRole/${id}`).pipe(first());
   }
-  DeleteRole(id:string): Observable<boolean> {
+  DeleteRole(id: string): Observable<boolean> {
     return this._http.delete<boolean>(`${environment.apiUrl}/Account/DeleteRole/${id}`).pipe(first());
   }
-  GetUser(status:string, paging :Paging): Observable<BaseQuerieResponse<any>> {
+  GetUser(status: string, paging: Paging): Observable<BaseQuerieResponse<any>> {
     const params = new HttpParams()
-    .set('pageIndex', paging.pageIndex.toString())
-    .set('pageSize', paging.pageSize.toString())
-    .set('keyword', paging.keyword || '')  
-    return this._http.get<BaseQuerieResponse<any>>(`${environment.apiUrl}/Account/GetUser/${status}`,{params}).pipe(first());
+      .set('pageIndex', paging.pageIndex.toString())
+      .set('pageSize', paging.pageSize.toString())
+      .set('keyword', paging.keyword || '')
+    return this._http.get<BaseQuerieResponse<any>>(`${environment.apiUrl}/Account/GetUser/${status}`, { params }).pipe(first());
   }
 
   updateUser(data: updateUserDto): Observable<updateUserDto> {
     return this._http.patch<updateUserDto>(`${environment.apiUrl}/Account/update`, data).pipe(first());
   }
-  
+
   decodeToken() {
     const token = localStorage.getItem('Token');
     if (!token) {
@@ -65,7 +65,9 @@ export class AccountService {
       throw new Error('Invalid token format');
     }
     const payloadBase64 = tokenParts[1];
-    const payload = JSON.parse(decodeURIComponent(escape(atob(payloadBase64))));
+    // Chuyển đổi từ Base64URL sang Base64 tiêu chuẩn
+    const base64 = payloadBase64.replace(/-/g, '+').replace(/_/g, '/');
+    const payload = JSON.parse(decodeURIComponent(escape(atob(base64))));
     return payload;
   }
 
