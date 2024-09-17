@@ -33,10 +33,10 @@
                 <td>{{ rowIndex + 1}}</td>
 
                 <td>{{ produce.id }}</td>
-                <td><p-image src="https://localhost:7058/Img_Brand/{{ produce.image }}"
-                        previewImageSrc="https://localhost:7058/Img_Brand/{{ produce.image }}" alt="Image" width="100"
+                <td><p-image src="https://localhost:8443/Img_Brand/{{ produce.image }}"
+                        previewImageSrc="https://localhost:8443/Img_Brand/{{ produce.image }}" alt="Image" width="100"
                         [preview]="true"></p-image></td>
-                <!-- <td><img src="https://localhost:7058/Images/{{ produce.image }}" [alt]="produce.name"style="width: 100px;" /></td> -->
+                <!-- <td><img src="https://localhost:8443/Images/{{ produce.image }}" [alt]="produce.name"style="width: 100px;" /></td> -->
                 <td>{{ produce.name }}</td>
                 <td>{{ produce.phone}}</td>
                 <td>{{ produce.email }}</td>
@@ -105,7 +105,7 @@
         <form [formGroup]="formUpload" class="full-width-form">v
             <div class="card ">
                 <label for="name">Ảnh</label>
-                <p-fileUpload name="demo[]" url="https://www.primefaces.org/cdn/api/upload.php"
+                <p-fileUpload name="demo[]" url="http://www.primefaces.org/cdn/api/upload.php"
                     (onUpload)="onUpload($event)" [multiple]="true" accept="image/*" [maxFileSize]="1000000">
                     <ng-template pTemplate="content">
                         <ul *ngIf="uploadedFiles.length">

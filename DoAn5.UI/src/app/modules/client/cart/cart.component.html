@@ -2,7 +2,7 @@
     <p-orderList [value]="Carts" [listStyle]="{ height: '25rem' }" header="Giỏ hàng">
         <ng-template let-product let-index="index" pTemplate="item">
             <div class="flex-container">
-                <img [src]="'https://localhost:7058/Images/' + product.data.image" [alt]="product.data.name" width="100px" />
+                <img [src]="'https://localhost:8443/Images/' + product.data.image" [alt]="product.data.name" width="100px" />
                 <div class="name">
                     <span>{{ product.data.name }}</span>
                     <div>

@@ -1,0 +1,649 @@
+{
+  "ContentRoots": [
+    "/src/Back_end/wwwroot/"
+  ],
+  "Root": {
+    "Children": {
+      "Images": {
+        "Children": {
+          "001b23cb-4e64-4daf-89d6-da0fd6626ce5-8hCIbA2qZJuwMbLFn8hrZ0InZqOCXsAFpF21CLpj.jpg": {
+            "Children": null,
+            "Asset": {
+              "ContentRootIndex": 0,
+              "SubPath": "Images/001b23cb-4e64-4daf-89d6-da0fd6626ce5-8hCIbA2qZJuwMbLFn8hrZ0InZqOCXsAFpF21CLpj.jpg"
+            },
+            "Patterns": null
+          },
+          "02f0f6bf-dbb4-4f57-8dbb-bbca57b624c9-images2.jpg": {
+            "Children": null,
+            "Asset": {
+              "ContentRootIndex": 0,
+              "SubPath": "Images/02f0f6bf-dbb4-4f57-8dbb-bbca57b624c9-images2.jpg"
+            },
+            "Patterns": null
+          },
+          "0ce5c246-761f-443a-bc94-967eac570309-images23.jpg": {
+            "Children": null,
+            "Asset": {
+              "ContentRootIndex": 0,
+              "SubPath": "Images/0ce5c246-761f-443a-bc94-967eac570309-images23.jpg"
+            },
+            "Patterns": null
+          },
+          "0e59b279-ea51-4515-9606-f2a8949cd64f-images40.jpg": {
+            "Children": null,
+            "Asset": {
+              "ContentRootIndex": 0,
+              "SubPath": "Images/0e59b279-ea51-4515-9606-f2a8949cd64f-images40.jpg"
+            },
+            "Patterns": null
+          },
+          "10819b18-bb35-480c-a00b-a277850df4a3-images15.jpg": {
+            "Children": null,
+            "Asset": {
+              "ContentRootIndex": 0,
+              "SubPath": "Images/10819b18-bb35-480c-a00b-a277850df4a3-images15.jpg"
+            },
+            "Patterns": null
+          },
+          "1209953d-2c2a-45c9-bfe7-8dd81a0f1180-images25.jpg": {
+            "Children": null,
+            "Asset": {
+              "ContentRootIndex": 0,
+              "SubPath": "Images/1209953d-2c2a-45c9-bfe7-8dd81a0f1180-images25.jpg"
+            },
+            "Patterns": null
+          },
+          "16092321-5b9c-483e-882f-8e9792c89128-images20.jpg": {
+            "Children": null,
+            "Asset": {
+              "ContentRootIndex": 0,
+              "SubPath": "Images/16092321-5b9c-483e-882f-8e9792c89128-images20.jpg"
+            },
+            "Patterns": null
+          },
+          "163b20ef-9bb5-4631-99ac-9970b147e7f5-polo_den.jpg": {
+            "Children": null,
+            "Asset": {
+              "ContentRootIndex": 0,
+              "SubPath": "Images/163b20ef-9bb5-4631-99ac-9970b147e7f5-polo_den.jpg"
+            },
+            "Patterns": null
+          },
+          "18f770e7-47b6-4bd6-8ccf-a1efa47894d9-images5.jpg": {
+            "Children": null,
+            "Asset": {
+              "ContentRootIndex": 0,
+              "SubPath": "Images/18f770e7-47b6-4bd6-8ccf-a1efa47894d9-images5.jpg"
+            },
+            "Patterns": null
+          },
+          "1dd310d1-5b20-44ec-862e-f6f31c940b6c-images12.jpg": {
+            "Children": null,
+            "Asset": {
+              "ContentRootIndex": 0,
+              "SubPath": "Images/1dd310d1-5b20-44ec-862e-f6f31c940b6c-images12.jpg"
+            },
+            "Patterns": null
+          },
+          "20763f46-0491-413b-9b05-d9018babcf17-Screenshot 2024-06-03 234436.png": {
+            "Children": null,
+            "Asset": {
+              "ContentRootIndex": 0,
+              "SubPath": "Images/20763f46-0491-413b-9b05-d9018babcf17-Screenshot 2024-06-03 234436.png"
+            },
+            "Patterns": null
+          },
+          "235a960d-72af-42f2-b2b6-1fd845fceeae-images24.jpg": {
+            "Children": null,
+            "Asset": {
+              "ContentRootIndex": 0,
+              "SubPath": "Images/235a960d-72af-42f2-b2b6-1fd845fceeae-images24.jpg"
+            },
+            "Patterns": null
+          },
+          "24a345e9-224d-4f04-9440-a17423354565-images3.jpg": {
+            "Children": null,
+            "Asset": {
+              "ContentRootIndex": 0,
+              "SubPath": "Images/24a345e9-224d-4f04-9440-a17423354565-images3.jpg"
+            },
+            "Patterns": null
+          },
+          "2ba5e955-c002-4342-806d-18869da1e38c-aurong1.jpg": {
+            "Children": null,
+            "Asset": {
+              "ContentRootIndex": 0,
+              "SubPath": "Images/2ba5e955-c002-4342-806d-18869da1e38c-aurong1.jpg"
+            },
+            "Patterns": null
+          },
+          "30237d3b-f8b5-4efb-b012-32c2e3cfaa19-aFoMfcJCjde3BRc59kPhoHHjQc7DosMwwJMzTZAf.jpg": {
+            "Children": null,
+            "Asset": {
+              "ContentRootIndex": 0,
+              "SubPath": "Images/30237d3b-f8b5-4efb-b012-32c2e3cfaa19-aFoMfcJCjde3BRc59kPhoHHjQc7DosMwwJMzTZAf.jpg"
+            },
+            "Patterns": null
+          },
+          "3464657f-e1b6-40e0-a221-4352d4a93de9-tải xuống7.jpg": {
+            "Children": null,
+            "Asset": {
+              "ContentRootIndex": 0,
+              "SubPath": "Images/3464657f-e1b6-40e0-a221-4352d4a93de9-tải xuống7.jpg"
+            },
+            "Patterns": null
+          },
+          "429a6af4-7b8d-4c8b-bc8e-5a109b72ce8b-images1.jpg": {
+            "Children": null,
+            "Asset": {
+              "ContentRootIndex": 0,
+              "SubPath": "Images/429a6af4-7b8d-4c8b-bc8e-5a109b72ce8b-images1.jpg"
+            },
+            "Patterns": null
+          },
+          "485667fe-9cb0-43a6-b835-6c837f0963c8-images35.jpg": {
+            "Children": null,
+            "Asset": {
+              "ContentRootIndex": 0,
+              "SubPath": "Images/485667fe-9cb0-43a6-b835-6c837f0963c8-images35.jpg"
+            },
+            "Patterns": null
+          },
+          "48990e4c-8951-4819-94d6-734c177e2487-Screenshot 2024-06-10 005611.png": {
+            "Children": null,
+            "Asset": {
+              "ContentRootIndex": 0,
+              "SubPath": "Images/48990e4c-8951-4819-94d6-734c177e2487-Screenshot 2024-06-10 005611.png"
+            },
+            "Patterns": null
+          },
+          "4ff2cff7-fc4d-4106-91c8-9a086cafeb67-Screenshot 2024-06-02 163410.png": {
+            "Children": null,
+            "Asset": {
+              "ContentRootIndex": 0,
+              "SubPath": "Images/4ff2cff7-fc4d-4106-91c8-9a086cafeb67-Screenshot 2024-06-02 163410.png"
+            },
+            "Patterns": null
+          },
+          "518e64fb-f8c1-4e8f-8f91-43644b5766a1-dOu8OBNEKsPabwrhO7lg4X2IvNSHsVDj4dX19IJC.jpg": {
+            "Children": null,
+            "Asset": {
+              "ContentRootIndex": 0,
+              "SubPath": "Images/518e64fb-f8c1-4e8f-8f91-43644b5766a1-dOu8OBNEKsPabwrhO7lg4X2IvNSHsVDj4dX19IJC.jpg"
+            },
+            "Patterns": null
+          },
+          "63ca60f5-849e-4900-a553-73db4daf76d9-quan-jean-nam-co-dien-dang-dung-501-505s-11507.jpeg": {
+            "Children": null,
+            "Asset": {
+              "ContentRootIndex": 0,
+              "SubPath": "Images/63ca60f5-849e-4900-a553-73db4daf76d9-quan-jean-nam-co-dien-dang-dung-501-505s-11507.jpeg"
+            },
+            "Patterns": null
+          },
+          "6602730a-ecff-46b6-a65c-de34a4aa7b8b-VHbkVFYVCAyVbPHyqsFd8yF1W5iTVc6cbhbfDqAT.jpg": {
+            "Children": null,
+            "Asset": {
+              "ContentRootIndex": 0,
+              "SubPath": "Images/6602730a-ecff-46b6-a65c-de34a4aa7b8b-VHbkVFYVCAyVbPHyqsFd8yF1W5iTVc6cbhbfDqAT.jpg"
+            },
+            "Patterns": null
+          },
+          "699ea6d0-69a6-405e-b25e-9ebd576b34f1-images28.jpg": {
+            "Children": null,
+            "Asset": {
+              "ContentRootIndex": 0,
+              "SubPath": "Images/699ea6d0-69a6-405e-b25e-9ebd576b34f1-images28.jpg"
+            },
+            "Patterns": null
+          },
+          "6b3220ba-7377-45c5-98c5-554b9223bba1-TẤT1.jpg": {
+            "Children": null,
+            "Asset": {
+              "ContentRootIndex": 0,
+              "SubPath": "Images/6b3220ba-7377-45c5-98c5-554b9223bba1-TẤT1.jpg"
+            },
+            "Patterns": null
+          },
+          "6d5eac13-6fbc-4cc9-a741-6b16bf0eb1d5-images38.jpg": {
+            "Children": null,
+            "Asset": {
+              "ContentRootIndex": 0,
+              "SubPath": "Images/6d5eac13-6fbc-4cc9-a741-6b16bf0eb1d5-images38.jpg"
+            },
+            "Patterns": null
+          },
+          "72fbb58d-d965-4f29-b605-fd86bd730859-image39.jpg": {
+            "Children": null,
+            "Asset": {
+              "ContentRootIndex": 0,
+              "SubPath": "Images/72fbb58d-d965-4f29-b605-fd86bd730859-image39.jpg"
+            },
+            "Patterns": null
+          },
+          "76dceb4d-2815-4222-a0ee-e976f0f4e2f9-images19.jpg": {
+            "Children": null,
+            "Asset": {
+              "ContentRootIndex": 0,
+              "SubPath": "Images/76dceb4d-2815-4222-a0ee-e976f0f4e2f9-images19.jpg"
+            },
+            "Patterns": null
+          },
+          "7701e15b-7417-44b9-aff4-44eeda113f62-Screenshot 2024-06-03 234507.png": {
+            "Children": null,
+            "Asset": {
+              "ContentRootIndex": 0,
+              "SubPath": "Images/7701e15b-7417-44b9-aff4-44eeda113f62-Screenshot 2024-06-03 234507.png"
+            },
+            "Patterns": null
+          },
+          "7775b560-fd89-4844-ace0-50cba44e0eb1-2dYDZRV194e6Z5GtdfYavhCW9EtBuJcWRsklLTey.jpg": {
+            "Children": null,
+            "Asset": {
+              "ContentRootIndex": 0,
+              "SubPath": "Images/7775b560-fd89-4844-ace0-50cba44e0eb1-2dYDZRV194e6Z5GtdfYavhCW9EtBuJcWRsklLTey.jpg"
+            },
+            "Patterns": null
+          },
+          "849d8ebe-dfbf-4207-ab8a-5a980c84e374-images29.jpg": {
+            "Children": null,
+            "Asset": {
+              "ContentRootIndex": 0,
+              "SubPath": "Images/849d8ebe-dfbf-4207-ab8a-5a980c84e374-images29.jpg"
+            },
+            "Patterns": null
+          },
+          "8bb14aeb-cadb-4c6e-80da-5818f26a94a2-Screenshot 2024-06-03 234532.png": {
+            "Children": null,
+            "Asset": {
+              "ContentRootIndex": 0,
+              "SubPath": "Images/8bb14aeb-cadb-4c6e-80da-5818f26a94a2-Screenshot 2024-06-03 234532.png"
+            },
+            "Patterns": null
+          },
+          "905cae1e-2413-4464-9c46-cfafa39a26cb-images5y.jpg": {
+            "Children": null,
+            "Asset": {
+              "ContentRootIndex": 0,
+              "SubPath": "Images/905cae1e-2413-4464-9c46-cfafa39a26cb-images5y.jpg"
+            },
+            "Patterns": null
+          },
+          "94c96791-9e4e-4c4b-a2ea-96c2d9fdf459-JFzNxeto6LayeyEBnM1i3sANWeDQb06IPMfbG13E.jpg": {
+            "Children": null,
+            "Asset": {
+              "ContentRootIndex": 0,
+              "SubPath": "Images/94c96791-9e4e-4c4b-a2ea-96c2d9fdf459-JFzNxeto6LayeyEBnM1i3sANWeDQb06IPMfbG13E.jpg"
+            },
+            "Patterns": null
+          },
+          "9a2c36c2-8357-488d-b2a0-196ab2d8cfde-8hCIbA2qZJuwMbLFn8hrZ0InZqOCXsAFpF21CLpj.jpg": {
+            "Children": null,
+            "Asset": {
+              "ContentRootIndex": 0,
+              "SubPath": "Images/9a2c36c2-8357-488d-b2a0-196ab2d8cfde-8hCIbA2qZJuwMbLFn8hrZ0InZqOCXsAFpF21CLpj.jpg"
+            },
+            "Patterns": null
+          },
+          "9a5b38a9-5a6b-4042-b1f4-3336c68d9e0e-images26.jpg": {
+            "Children": null,
+            "Asset": {
+              "ContentRootIndex": 0,
+              "SubPath": "Images/9a5b38a9-5a6b-4042-b1f4-3336c68d9e0e-images26.jpg"
+            },
+            "Patterns": null
+          },
+          "9d8a8923-3e2b-47a0-9666-6a258bcbcbb5-tải xuống1.jpg": {
+            "Children": null,
+            "Asset": {
+              "ContentRootIndex": 0,
+              "SubPath": "Images/9d8a8923-3e2b-47a0-9666-6a258bcbcbb5-tải xuống1.jpg"
+            },
+            "Patterns": null
+          },
+          "a047fb18-cb7c-46e6-8573-a7da7a3623c3-chelsea_boot1.jpg": {
+            "Children": null,
+            "Asset": {
+              "ContentRootIndex": 0,
+              "SubPath": "Images/a047fb18-cb7c-46e6-8573-a7da7a3623c3-chelsea_boot1.jpg"
+            },
+            "Patterns": null
+          },
+          "ab8dd4d0-aba3-4ac7-adba-f7976442d166-kQmgigKYxO2VbUjriD8IQHbhzliSUQJIQ4l2K7U7.jpg": {
+            "Children": null,
+            "Asset": {
+              "ContentRootIndex": 0,
+              "SubPath": "Images/ab8dd4d0-aba3-4ac7-adba-f7976442d166-kQmgigKYxO2VbUjriD8IQHbhzliSUQJIQ4l2K7U7.jpg"
+            },
+            "Patterns": null
+          },
+          "ac51c622-692c-4c9f-b55e-99119ef876c2-images22.jpg": {
+            "Children": null,
+            "Asset": {
+              "ContentRootIndex": 0,
+              "SubPath": "Images/ac51c622-692c-4c9f-b55e-99119ef876c2-images22.jpg"
+            },
+            "Patterns": null
+          },
+          "ac7effc7-88fd-4bd6-aec7-dcab07704085-images21.jpg": {
+            "Children": null,
+            "Asset": {
+              "ContentRootIndex": 0,
+              "SubPath": "Images/ac7effc7-88fd-4bd6-aec7-dcab07704085-images21.jpg"
+            },
+            "Patterns": null
+          },
+          "b4e7459c-996c-4cdf-8643-021a3f56c338-Jean1.jpg": {
+            "Children": null,
+            "Asset": {
+              "ContentRootIndex": 0,
+              "SubPath": "Images/b4e7459c-996c-4cdf-8643-021a3f56c338-Jean1.jpg"
+            },
+            "Patterns": null
+          },
+          "b669e6bd-d32d-44fe-ac4f-fcf2118a85c1-images31.jpg": {
+            "Children": null,
+            "Asset": {
+              "ContentRootIndex": 0,
+              "SubPath": "Images/b669e6bd-d32d-44fe-ac4f-fcf2118a85c1-images31.jpg"
+            },
+            "Patterns": null
+          },
+          "bbfdbaee-df7c-49c4-b424-779cb93f2bea-aurong2.jpg": {
+            "Children": null,
+            "Asset": {
+              "ContentRootIndex": 0,
+              "SubPath": "Images/bbfdbaee-df7c-49c4-b424-779cb93f2bea-aurong2.jpg"
+            },
+            "Patterns": null
+          },
+          "be5efa49-605b-4de4-b27c-0644c6b158f1-APC24067.jpg": {
+            "Children": null,
+            "Asset": {
+              "ContentRootIndex": 0,
+              "SubPath": "Images/be5efa49-605b-4de4-b27c-0644c6b158f1-APC24067.jpg"
+            },
+            "Patterns": null
+          },
+          "beb612cc-95f7-4d92-879a-447961a893e0-images30.jpg": {
+            "Children": null,
+            "Asset": {
+              "ContentRootIndex": 0,
+              "SubPath": "Images/beb612cc-95f7-4d92-879a-447961a893e0-images30.jpg"
+            },
+            "Patterns": null
+          },
+          "c68856be-2398-47c5-90f0-0084248e8952-image34.jpg": {
+            "Children": null,
+            "Asset": {
+              "ContentRootIndex": 0,
+              "SubPath": "Images/c68856be-2398-47c5-90f0-0084248e8952-image34.jpg"
+            },
+            "Patterns": null
+          },
+          "c8ee3e9c-2a18-42b5-893d-7494aaf5b2cd-images37.jpg": {
+            "Children": null,
+            "Asset": {
+              "ContentRootIndex": 0,
+              "SubPath": "Images/c8ee3e9c-2a18-42b5-893d-7494aaf5b2cd-images37.jpg"
+            },
+            "Patterns": null
+          },
+          "ca96c3de-15dc-42f5-b377-c0e41d8ad506-tải2.jpg": {
+            "Children": null,
+            "Asset": {
+              "ContentRootIndex": 0,
+              "SubPath": "Images/ca96c3de-15dc-42f5-b377-c0e41d8ad506-tải2.jpg"
+            },
+            "Patterns": null
+          },
+          "ccc9b2ca-2ee0-48f2-8aab-75dc86d99baa-images13.jpg": {
+            "Children": null,
+            "Asset": {
+              "ContentRootIndex": 0,
+              "SubPath": "Images/ccc9b2ca-2ee0-48f2-8aab-75dc86d99baa-images13.jpg"
+            },
+            "Patterns": null
+          },
+          "cce0f28d-8bc6-4416-9ca9-0cc8f03b64d4-images18.jpg": {
+            "Children": null,
+            "Asset": {
+              "ContentRootIndex": 0,
+              "SubPath": "Images/cce0f28d-8bc6-4416-9ca9-0cc8f03b64d4-images18.jpg"
+            },
+            "Patterns": null
+          },
+          "cd7000c7-4ab7-4869-9b6c-967ad4263965-tải xuống44.jpg": {
+            "Children": null,
+            "Asset": {
+              "ContentRootIndex": 0,
+              "SubPath": "Images/cd7000c7-4ab7-4869-9b6c-967ad4263965-tải xuống44.jpg"
+            },
+            "Patterns": null
+          },
+          "d8ae62ff-6de8-4963-b894-5ad45b27c700-images33.jpg": {
+            "Children": null,
+            "Asset": {
+              "ContentRootIndex": 0,
+              "SubPath": "Images/d8ae62ff-6de8-4963-b894-5ad45b27c700-images33.jpg"
+            },
+            "Patterns": null
+          },
+          "d969daa7-2cdf-48ae-9a75-c5719d90c141-images11.jpg": {
+            "Children": null,
+            "Asset": {
+              "ContentRootIndex": 0,
+              "SubPath": "Images/d969daa7-2cdf-48ae-9a75-c5719d90c141-images11.jpg"
+            },
+            "Patterns": null
+          },
+          "dcb5713d-b53d-4b43-acef-666cb4d32098-TẤT3.jpg": {
+            "Children": null,
+            "Asset": {
+              "ContentRootIndex": 0,
+              "SubPath": "Images/dcb5713d-b53d-4b43-acef-666cb4d32098-TẤT3.jpg"
+            },
+            "Patterns": null
+          },
+          "e424e236-aac3-481c-88fc-0cb9db82f988-images17.jpg": {
+            "Children": null,
+            "Asset": {
+              "ContentRootIndex": 0,
+              "SubPath": "Images/e424e236-aac3-481c-88fc-0cb9db82f988-images17.jpg"
+            },
+            "Patterns": null
+          },
+          "e6bd6d30-d9df-4552-86ba-481a77ef55d8-images16.jpg": {
+            "Children": null,
+            "Asset": {
+              "ContentRootIndex": 0,
+              "SubPath": "Images/e6bd6d30-d9df-4552-86ba-481a77ef55d8-images16.jpg"
+            },
+            "Patterns": null
+          },
+          "ecb60194-bcdf-4073-abe8-e533bb4f9fc5-Thắt lưng 1.jpg": {
+            "Children": null,
+            "Asset": {
+              "ContentRootIndex": 0,
+              "SubPath": "Images/ecb60194-bcdf-4073-abe8-e533bb4f9fc5-Thắt lưng 1.jpg"
+            },
+            "Patterns": null
+          },
+          "ef35e838-9034-4b96-a998-e4052c942c75-images14.jpg": {
+            "Children": null,
+            "Asset": {
+              "ContentRootIndex": 0,
+              "SubPath": "Images/ef35e838-9034-4b96-a998-e4052c942c75-images14.jpg"
+            },
+            "Patterns": null
+          },
+          "f051a923-2227-4271-abc6-9140d7b2e14e-images9.jpg": {
+            "Children": null,
+            "Asset": {
+              "ContentRootIndex": 0,
+              "SubPath": "Images/f051a923-2227-4271-abc6-9140d7b2e14e-images9.jpg"
+            },
+            "Patterns": null
+          },
+          "f1c2a403-8187-458f-999a-4a3e7045a589-IAIk3zbeifxTNhcFUhOdyQj5uQUvCjMDaM1nMkHz.jpg": {
+            "Children": null,
+            "Asset": {
+              "ContentRootIndex": 0,
+              "SubPath": "Images/f1c2a403-8187-458f-999a-4a3e7045a589-IAIk3zbeifxTNhcFUhOdyQj5uQUvCjMDaM1nMkHz.jpg"
+            },
+            "Patterns": null
+          },
+          "f4b47263-d039-476c-b0ae-25d26adcfef3-images8.jpg": {
+            "Children": null,
+            "Asset": {
+              "ContentRootIndex": 0,
+              "SubPath": "Images/f4b47263-d039-476c-b0ae-25d26adcfef3-images8.jpg"
+            },
+            "Patterns": null
+          },
+          "f8aae3b0-41d9-4a8b-9509-d4069c4a30cb-TÂTT2.jpg": {
+            "Children": null,
+            "Asset": {
+              "ContentRootIndex": 0,
+              "SubPath": "Images/f8aae3b0-41d9-4a8b-9509-d4069c4a30cb-TÂTT2.jpg"
+            },
+            "Patterns": null
+          },
+          "fcf9a533-1b31-4e10-acd7-b05261821026-images27.jpg": {
+            "Children": null,
+            "Asset": {
+              "ContentRootIndex": 0,
+              "SubPath": "Images/fcf9a533-1b31-4e10-acd7-b05261821026-images27.jpg"
+            },
+            "Patterns": null
+          },
+          "fe8b5a56-7072-464d-8a52-946a261e39b8-images36.jpg": {
+            "Children": null,
+            "Asset": {
+              "ContentRootIndex": 0,
+              "SubPath": "Images/fe8b5a56-7072-464d-8a52-946a261e39b8-images36.jpg"
+            },
+            "Patterns": null
+          },
+          "ff3572a8-a3bf-43cd-ab46-efa6225cd0d3-images4.jpg": {
+            "Children": null,
+            "Asset": {
+              "ContentRootIndex": 0,
+              "SubPath": "Images/ff3572a8-a3bf-43cd-ab46-efa6225cd0d3-images4.jpg"
+            },
+            "Patterns": null
+          }
+        },
+        "Asset": null,
+        "Patterns": null
+      },
+      "Img_Brand": {
+        "Children": {
+          "0fa477d2-bd56-4713-98f0-2ec824e2b132-D&G.png": {
+            "Children": null,
+            "Asset": {
+              "ContentRootIndex": 0,
+              "SubPath": "Img_Brand/0fa477d2-bd56-4713-98f0-2ec824e2b132-D&G.png"
+            },
+            "Patterns": null
+          },
+          "6dd13aa7-a1a6-4ee8-aed1-ca6369879049-adidas.png": {
+            "Children": null,
+            "Asset": {
+              "ContentRootIndex": 0,
+              "SubPath": "Img_Brand/6dd13aa7-a1a6-4ee8-aed1-ca6369879049-adidas.png"
+            },
+            "Patterns": null
+          },
+          "7f030da8-062e-4aea-a33c-c44af7cdd102-LV.jpg": {
+            "Children": null,
+            "Asset": {
+              "ContentRootIndex": 0,
+              "SubPath": "Img_Brand/7f030da8-062e-4aea-a33c-c44af7cdd102-LV.jpg"
+            },
+            "Patterns": null
+          },
+          "8991ebe9-a2c9-453b-af77-e6252a654629-chanel.png": {
+            "Children": null,
+            "Asset": {
+              "ContentRootIndex": 0,
+              "SubPath": "Img_Brand/8991ebe9-a2c9-453b-af77-e6252a654629-chanel.png"
+            },
+            "Patterns": null
+          },
+          "a88e7314-f948-4f7c-ae4a-75ade01b18a4-H&M.png": {
+            "Children": null,
+            "Asset": {
+              "ContentRootIndex": 0,
+              "SubPath": "Img_Brand/a88e7314-f948-4f7c-ae4a-75ade01b18a4-H&M.png"
+            },
+            "Patterns": null
+          },
+          "d064688f-3901-42d9-b8b0-f1b394bdceba-Aristino.jpg": {
+            "Children": null,
+            "Asset": {
+              "ContentRootIndex": 0,
+              "SubPath": "Img_Brand/d064688f-3901-42d9-b8b0-f1b394bdceba-Aristino.jpg"
+            },
+            "Patterns": null
+          },
+          "f8858488-8217-4fc8-9608-08212d106667-gucci.png": {
+            "Children": null,
+            "Asset": {
+              "ContentRootIndex": 0,
+              "SubPath": "Img_Brand/f8858488-8217-4fc8-9608-08212d106667-gucci.png"
+            },
+            "Patterns": null
+          }
+        },
+        "Asset": null,
+        "Patterns": null
+      },
+      "Temlate_Email": {
+        "Children": {
+          "confirmOrder.html": {
+            "Children": null,
+            "Asset": {
+              "ContentRootIndex": 0,
+              "SubPath": "Temlate_Email/confirmOrder.html"
+            },
+            "Patterns": null
+          },
+          "images": {
+            "Children": {
+              "image-1.png": {
+                "Children": null,
+                "Asset": {
+                  "ContentRootIndex": 0,
+                  "SubPath": "Temlate_Email/images/image-1.png"
+                },
+                "Patterns": null
+              }
+            },
+            "Asset": null,
+            "Patterns": null
+          },
+          "index.html": {
+            "Children": null,
+            "Asset": {
+              "ContentRootIndex": 0,
+              "SubPath": "Temlate_Email/index.html"
+            },
+            "Patterns": null
+          }
+        },
+        "Asset": null,
+        "Patterns": null
+      }
+    },
+    "Asset": null,
+    "Patterns": [
+      {
+        "ContentRootIndex": 0,
+        "Pattern": "**",
+        "Depth": 0
+      }
+    ]
+  }
+}

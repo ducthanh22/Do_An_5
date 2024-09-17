@@ -31,8 +31,8 @@
         <ng-template pTemplate="body" let-rating let-rowIndex="rowIndex">
             <tr>
                 <td>{{ rowIndex + 1}}</td>
-                <td><p-image src="https://localhost:7058/Images/{{ rating.image }}"
-                        previewImageSrc="https://localhost:7058/Images/{{ rating.image }}" alt="Image" width="100"
+                <td><p-image src="https://localhost:8443/Images/{{ rating.image }}"
+                        previewImageSrc="https://localhost:8443/Images/{{ rating.image }}" alt="Image" width="100"
                         [preview]="true"></p-image></td>
                 <td>{{ rating.username }}</td>
                 <td><p-rating [(ngModel)]="rating.evaluate" [readonly]="true" [cancel]="false"></p-rating></td>

@@ -155,7 +155,6 @@ export class HomeComponent {
         }
         return acc;
       }, []);
-      console.log(this.bestSellingProducts)
     });
     
   }

@@ -155,85 +155,98 @@ namespace DAL
         }
         public async Task<CreateOrderDto> CreateOrder(CreateOrderDto entity)
         {
-            using (var transaction = await _DbContext.Database.BeginTransactionAsync())
-            {
-                try
-                {
-                    var checkUser= await _DbContext.User.FindAsync(entity.Id_customer);
+            // Tạo chiến lược thực thi
+            var strategy = _DbContext.Database.CreateExecutionStrategy();
 
-                    CreateOrderDto orderDto = new CreateOrderDto
+            // Thực thi mã trong chiến lược thực thi
+            return await strategy.ExecuteAsync(async () =>
+            {
+                using (var transaction = await _DbContext.Database.BeginTransactionAsync())
+                {
+                    try
                     {
-                        Id_customer = entity.Id_customer,
-                        status = entity.status,
-                        Price = entity.Price,
-                        Address = entity.Address,
-                        Payment = entity.Payment,
-                        Created = DateTime.Now,
-                    };
-                    var orderEntity = _mapper.Map<Order>(orderDto);
-                    await _DbContext.Order.AddAsync(orderEntity);
-                    await _DbContext.SaveChangesAsync();
-                    entity.Id = orderEntity.Id;
-                    // Map and save order details
-                    foreach (var item in entity.OrderList)
-                    {
-                        Order_detailDto orderDetailDto = new Order_detailDto
+                        var checkUser = await _DbContext.User.FindAsync(entity.Id_customer);
+
+                        CreateOrderDto orderDto = new CreateOrderDto
                         {
-                            Id_Order = orderEntity.Id,
-                            Id_product = item.Id_product,
-                            Idsize = item.Idsize,
-                            Quantity = item.Quantity,
-                            Price = item.Price,
+                            Id_customer = entity.Id_customer,
+                            status = entity.status,
+                            Price = entity.Price,
+                            Address = entity.Address,
+                            Payment = entity.Payment,
                             Created = DateTime.Now,
                         };
-                        var orderDetailEntity = _mapper.Map<Order_detail>(orderDetailDto);
-                        await _DbContext.Order_detail.AddAsync(orderDetailEntity);
 
-                        var checkwarehouse = await _DbContext.Detail_warehouse.Where(x => x.Idproduct == item.Id_product&& x.Idsize==item.Idsize).FirstOrDefaultAsync();
-
-                        if (checkwarehouse != null)
-                        {
-                            checkwarehouse.Quantity -= item.Quantity;
-                            _DbContext.Detail_warehouse.Update(checkwarehouse);
-                            await _DbContext.SaveChangesAsync();
-                        }
-                        else
-                        {
-                            Detail_warehouse detail_Warehouse = new Detail_warehouse
-                            {
-                                Idwarehouse = Guid.NewGuid(),
-                                Idproduct = orderDetailEntity.Id_product,
-                                Quantity = orderDetailEntity.Quantity,
-                                Idsize = orderDetailEntity.Idsize,
-                            };
-                            await _DbContext.Detail_warehouse.AddAsync(detail_Warehouse);
-                            await _DbContext.SaveChangesAsync();
-                        }
+                        var orderEntity = _mapper.Map<Order>(orderDto);
+                        await _DbContext.Order.AddAsync(orderEntity);
                         await _DbContext.SaveChangesAsync();
+                        entity.Id = orderEntity.Id;
+
+                        // Map and save order details
+                        foreach (var item in entity.OrderList)
+                        {
+                            Order_detailDto orderDetailDto = new Order_detailDto
+                            {
+                                Id_Order = orderEntity.Id,
+                                Id_product = item.Id_product,
+                                Idsize = item.Idsize,
+                                Quantity = item.Quantity,
+                                Price = item.Price,
+                                Created = DateTime.Now,
+                            };
+                            var orderDetailEntity = _mapper.Map<Order_detail>(orderDetailDto);
+                            await _DbContext.Order_detail.AddAsync(orderDetailEntity);
+
+                            var checkwarehouse = await _DbContext.Detail_warehouse
+                                .Where(x => x.Idproduct == item.Id_product && x.Idsize == item.Idsize)
+                                .FirstOrDefaultAsync();
+
+                            if (checkwarehouse != null)
+                            {
+                                checkwarehouse.Quantity -= item.Quantity;
+                                _DbContext.Detail_warehouse.Update(checkwarehouse);
+                            }
+                            else
+                            {
+                                Detail_warehouse detail_Warehouse = new Detail_warehouse
+                                {
+                                    Idwarehouse = Guid.NewGuid(),
+                                    Idproduct = orderDetailEntity.Id_product,
+                                    Quantity = orderDetailEntity.Quantity,
+                                    Idsize = orderDetailEntity.Idsize,
+                                };
+                                await _DbContext.Detail_warehouse.AddAsync(detail_Warehouse);
+                            }
+                            await _DbContext.SaveChangesAsync();
+                        }
+
+                        await transaction.CommitAsync();
+
+                        // Gửi email xác nhận đơn hàng
+                        if (entity.status == 1)
+                        {
+                            var callbackUrl = "http://localhost:4200/client/confirmOder/" + entity.Id;
+                            string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "Temlate_Email", "confirmOrder.html");
+                            string htmlMessage = await System.IO.File.ReadAllTextAsync(htmlFilePath);
+                            htmlMessage = htmlMessage.Replace("{{callbackUrl}}", callbackUrl);
+                            htmlMessage = htmlMessage.Replace("{{Username}}", checkUser.UserName);
+
+                            await _sendEmailRepository.SendEmailAsync(checkUser.Email, "Xác nhận đơn hàng", htmlMessage);
+                        }
+
+                        return entity;
                     }
-                    await transaction.CommitAsync();
-                    if (entity.status==1)
+                    catch (Exception ex)
                     {
-                        var callbackUrl = "http://localhost:4200/client/confirmOder/" + entity.Id;
-                        string htmlFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "Temlate_Email", "confirmOrder.html");
-                        string htmlMessage = await System.IO.File.ReadAllTextAsync(htmlFilePath);
-                        htmlMessage = htmlMessage.Replace("{{callbackUrl}}", callbackUrl);
-                        htmlMessage = htmlMessage.Replace("{{Username}}", checkUser.UserName);
-
-
-                        await _sendEmailRepository.SendEmailAsync(checkUser.Email, "Xác nhận đơn hàng", htmlMessage);
+                        Console.WriteLine($"An error occurred: {ex.Message}");
+                        // Hoàn tác giao dịch nếu có lỗi xảy ra
+                        await transaction.RollbackAsync();
+                        throw;
                     }
-                    
-                    return entity;
                 }
-                catch (Exception)
-                {
-                    // Rollback transaction if any operation fails
-                    await transaction.RollbackAsync();
-                    throw;
-                }
-            }
+            });
         }
+
         public async Task<Order>destroyOrder(Guid id)
         {
             var checkdetail = await _DbContext.Order_detail.Where(x=>x.Id_Order== id).ToListAsync();

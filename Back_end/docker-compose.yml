@@ -1,0 +1,42 @@
+version: '3.4'
+networks:
+  backend:
+
+services:
+  back_end:
+    image: ${DOCKER_REGISTRY-}backend
+    container_name: api-backend
+    build:
+      context: .
+      dockerfile: Back_end/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "DatabaseSettings:DefaultConnection=Server=sqlserver;Database=ACHINO;User Id=sa;Password=Password123!;TrustServerCertificate=true;MultipleActiveResultSets=true"
+    ports:
+      - "8080:80"   # HTTP
+      - "8443:443"  # HTTPS
+
+
+    depends_on:
+      - sqlserver
+    restart: always
+    networks:
+      - backend
+
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: sqlserver
+    environment:
+      - MSSQL_SA_PASSWORD=Password123!
+      - ACCEPT_EULA=Y
+    ports:
+      - "1433:1433"  
+    volumes:
+      - sql_data:/var/opt/mssql
+    restart: always
+    networks:
+      - backend
+
+volumes:
+  sql_data:
+    name: sql_data

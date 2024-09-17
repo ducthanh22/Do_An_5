@@ -36,8 +36,8 @@
             <tr>
                <td class="center-align">{{ rowIndex + 1}}</td>
                 <!--<td class="center-align">{{ product.id }}</td> -->
-               <td class="center-align"><p-image src="https://localhost:7058/Images/{{ product.image }}"
-                        previewImageSrc="https://localhost:7058/Images/{{ product.image }}" alt="Image" width="100"
+               <td class="center-align"><p-image src="https://localhost:8443/Images/{{ product.image }}"
+                        previewImageSrc="https://localhost:8443/Images/{{ product.image }}" alt="Image" width="100"
                         [preview]="true"></p-image></td>
                <td class="center-align">{{ product.name }}</td>
                <td class="center-align" style="color: rgb(191, 10, 10);;">{{ product.price_product | currency:"VND" :'symbol'}}</td>
@@ -103,7 +103,7 @@
                             [style]="{'minWidth':'100%'}">
                             <ng-template let-produces pTemplate="item">
                                 <div class="flex align-items-center gap-2">
-                                    <img src="https://localhost:7058/Img_Brand/{{ produces.image }}"
+                                    <img src="https://localhost:8443/Img_Brand/{{ produces.image }}"
                                         [class]="'flag flag-' + produces.name" style="width: 30px" />
                                     <div>{{ produces.name }}</div>
                                 </div>
@@ -165,7 +165,7 @@
         <form [formGroup]="formUpload" class="full-width-form">
             <div class="card ">
                 <label for="name">Ảnh</label>
-                <p-fileUpload name="demo[]" url="https://www.primefaces.org/cdn/api/upload.php"
+                <p-fileUpload name="demo[]" url="http://www.primefaces.org/cdn/api/upload.php"
                     (onUpload)="onUpload($event)" [multiple]="true" accept="image/*" [maxFileSize]="1000000" *ngIf="viewImage== false">
                     <ng-template pTemplate="content">
                         <ul *ngIf="uploadedFiles.length">
@@ -173,8 +173,8 @@
                         </ul>
                     </ng-template>
                 </p-fileUpload>
-                <p-image src="https://localhost:7058/Images/{{ dataimage }}"
-                        previewImageSrc="https://localhost:7058/Images/{{ dataimage }}" alt="Image" width="100"
+                <p-image src="https://localhost:8443/Images/{{ dataimage }}"
+                        previewImageSrc="https://localhost:8443/Images/{{ dataimage }}" alt="Image" width="100"
                         [preview]="true" *ngIf="viewImage== true"></p-image>
             </div>
 
